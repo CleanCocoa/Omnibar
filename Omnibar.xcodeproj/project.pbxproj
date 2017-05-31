@@ -22,6 +22,8 @@
 		5038D9671EDE934F00F3DA4F /* Omnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; };
 		5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */; };
 		5038D9701EDE950900F3DA4F /* OmnibarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */; };
+		5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */; };
+		5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		5038D9661EDE934F00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarContentTests.swift; sourceTree = "<group>"; };
 		5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarTests.swift; sourceTree = "<group>"; };
+		5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Equatable.swift"; sourceTree = "<group>"; };
+		5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+EquatableTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 				5038D92F1EDE8F7200F3DA4F /* Omnibar.h */,
 				5038D95A1EDE91D700F3DA4F /* Omnibar.swift */,
 				5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */,
+				5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */,
 				5038D9301EDE8F7200F3DA4F /* Info.plist */,
 			);
 			path = Omnibar;
@@ -166,6 +171,7 @@
 			children = (
 				5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */,
 				5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */,
+				5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */,
 				5038D9661EDE934F00F3DA4F /* Info.plist */,
 			);
 			path = OmnibarTests;
@@ -320,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
 				5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */,
 			);
@@ -339,6 +346,7 @@
 			files = (
 				5038D9701EDE950900F3DA4F /* OmnibarTests.swift in Sources */,
 				5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */,
+				5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,4 +30,26 @@ public enum OmnibarContent {
         case let .suggestion(text: text, appendix: appendix): return text.appending(appendix)
         }
     }
+
+    public var selectionRange: NSRange {
+        switch self {
+        case .empty:
+            return NSRange(location: 0, length: 0)
+
+        case let .selection(text: text):
+            return NSRange(
+                location: 0,
+                length: (text as NSString).length)
+
+        case let .prefix(text: text):
+            return NSRange(
+                location: (text as NSString).length,
+                length: 0)
+
+        case let .suggestion(text: text, appendix: appendix):
+            return NSRange(
+                location: (text as NSString).length,
+                length: (appendix as NSString).length)
+        }
+    }
 }
