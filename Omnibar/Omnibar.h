@@ -1,10 +1,4 @@
-//
-//  Omnibar.h
-//  Omnibar
-//
-//  Created by Christian Tietze on 31/05/17.
-//  Copyright © 2017 Christian Tietze. All rights reserved.
-//
+//  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
 #import <Cocoa/Cocoa.h>
 
