@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5038D9311EDE8F7200F3DA4F /* Omnibar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5038D92F1EDE8F7200F3DA4F /* Omnibar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5038D93C1EDE900700F3DA4F /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; };
-		5038D93D1EDE900700F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
 		5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9461EDE902E00F3DA4F /* AppDelegate.swift */; };
 		5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9481EDE902E00F3DA4F /* Assets.xcassets */; };
 		5038D94C1EDE902E00F3DA4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5038D94A1EDE902E00F3DA4F /* MainMenu.xib */; };
@@ -21,10 +19,18 @@
 		5038D9571EDE904900F3DA4F /* Omnibar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D95A1EDE91D700F3DA4F /* Omnibar.swift */; };
 		5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */; };
+		5038D9671EDE934F00F3DA4F /* Omnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		5038D9581EDE904900F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038D92B1EDE8F7200F3DA4F;
+			remoteInfo = Omnibar;
+		};
+		5038D9681EDE934F00F3DA4F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
 			proxyType = 1;
@@ -64,6 +70,9 @@
 		5038D94D1EDE902E00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5038D95A1EDE91D700F3DA4F /* Omnibar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Omnibar.swift; sourceTree = "<group>"; };
 		5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarContent.swift; sourceTree = "<group>"; };
+		5038D9621EDE934F00F3DA4F /* OmnibarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmnibarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5038D9661EDE934F00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarContentTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5038D93C1EDE900700F3DA4F /* RxCocoa.framework in Frameworks */,
-				5038D93D1EDE900700F3DA4F /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +93,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5038D95F1EDE934F00F3DA4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038D9671EDE934F00F3DA4F /* Omnibar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -93,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				5038D92E1EDE8F7200F3DA4F /* Omnibar */,
+				5038D9631EDE934F00F3DA4F /* OmnibarTests */,
 				5038D9451EDE902E00F3DA4F /* Example */,
 				5038D92D1EDE8F7200F3DA4F /* Products */,
 				5038D93F1EDE900A00F3DA4F /* Frameworks */,
@@ -104,6 +120,7 @@
 			children = (
 				5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */,
 				5038D9441EDE902E00F3DA4F /* Example.app */,
+				5038D9621EDE934F00F3DA4F /* OmnibarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +156,14 @@
 				5038D94D1EDE902E00F3DA4F /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		5038D9631EDE934F00F3DA4F /* OmnibarTests */ = {
+			isa = PBXGroup;
+			children = (
+				5038D9661EDE934F00F3DA4F /* Info.plist */,
+			);
+			path = OmnibarTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +217,24 @@
 			productReference = 5038D9441EDE902E00F3DA4F /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5038D9611EDE934F00F3DA4F /* OmnibarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5038D96A1EDE934F00F3DA4F /* Build configuration list for PBXNativeTarget "OmnibarTests" */;
+			buildPhases = (
+				5038D95E1EDE934F00F3DA4F /* Sources */,
+				5038D95F1EDE934F00F3DA4F /* Frameworks */,
+				5038D9601EDE934F00F3DA4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5038D9691EDE934F00F3DA4F /* PBXTargetDependency */,
+			);
+			name = OmnibarTests;
+			productName = OmnibarTests;
+			productReference = 5038D9621EDE934F00F3DA4F /* OmnibarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,6 +256,12 @@
 						DevelopmentTeam = FRMDA3XRGC;
 						ProvisioningStyle = Automatic;
 					};
+					5038D9611EDE934F00F3DA4F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FRMDA3XRGC;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 5038D9261EDE8F7200F3DA4F /* Build configuration list for PBXProject "Omnibar" */;
@@ -229,6 +278,7 @@
 			projectRoot = "";
 			targets = (
 				5038D92B1EDE8F7200F3DA4F /* Omnibar */,
+				5038D9611EDE934F00F3DA4F /* OmnibarTests */,
 				5038D9431EDE902E00F3DA4F /* Example */,
 			);
 		};
@@ -248,6 +298,13 @@
 			files = (
 				5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */,
 				5038D94C1EDE902E00F3DA4F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9601EDE934F00F3DA4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +328,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5038D95E1EDE934F00F3DA4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -278,6 +342,11 @@
 			isa = PBXTargetDependency;
 			target = 5038D92B1EDE8F7200F3DA4F /* Omnibar */;
 			targetProxy = 5038D9581EDE904900F3DA4F /* PBXContainerItemProxy */;
+		};
+		5038D9691EDE934F00F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038D92B1EDE8F7200F3DA4F /* Omnibar */;
+			targetProxy = 5038D9681EDE934F00F3DA4F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -480,6 +549,35 @@
 			};
 			name = Release;
 		};
+		5038D96B1EDE934F00F3DA4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				INFOPLIST_FILE = OmnibarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.OmnibarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5038D96C1EDE934F00F3DA4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				INFOPLIST_FILE = OmnibarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.OmnibarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -505,6 +603,14 @@
 			buildConfigurations = (
 				5038D94F1EDE902E00F3DA4F /* Debug */,
 				5038D9501EDE902E00F3DA4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5038D96A1EDE934F00F3DA4F /* Build configuration list for PBXNativeTarget "OmnibarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5038D96B1EDE934F00F3DA4F /* Debug */,
+				5038D96C1EDE934F00F3DA4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
