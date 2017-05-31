@@ -11,8 +11,10 @@ struct Words {
         return Bundle.main.path(forResource: "\(letter) Words", ofType: "txt")!
     }
 
-    static func lines(atURL url: URL) throws -> [String] {
-        return try String(contentsOf: url, encoding: .utf8).components(separatedBy: "\n")
+    static func lines(atURL url: URL) throws -> AnySequence<String> {
+        return try String(contentsOf: url, encoding: .utf8)
+            .components(separatedBy: "\n")
+            .dropLast(1) // Last line is empty
     }
 
     static func allWords() throws -> [String] {
@@ -23,7 +25,7 @@ struct Words {
 }
 
 extension Array {
-    func appending(contentsOf other: [Element]) -> [Element] {
+    func appending<S: Sequence>(contentsOf other: S) -> [Element] where S.Iterator.Element == Element {
         var result = self
         result.append(contentsOf: other)
         return result
