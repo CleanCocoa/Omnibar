@@ -11,6 +11,17 @@ extension NSText: FieldEditor {
 
     func replaceAllCharacters(with string: String) {
 
-        self.string = string
+//        guard let contentString = self.string else {
+            self.string = string
+//            return
+//        }
+//
+//        // Setting .string would move the insertion point
+//        let length = (contentString as NSString).length
+//        let oldSelectedRange = self.selectedRange
+//        replaceCharacters(
+//            in: NSRange(location: 0, length: length),
+//            with: string)
+//        self.selectedRange = oldSelectedRange
     }
 }

@@ -30,6 +30,7 @@
 		5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */; };
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
 		5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */; };
+		5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+EquatableTests.swift"; sourceTree = "<group>"; };
 		5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacement.swift; sourceTree = "<group>"; };
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacementTests.swift; sourceTree = "<group>"; };
+		5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSText+FieldEditorTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */,
 				5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */,
 				5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */,
+				5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */,
 				5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */,
 				5038D9771EDEA53700F3DA4F /* Mocks and Stubs */,
 				5038D9661EDE934F00F3DA4F /* Info.plist */,
@@ -385,6 +388,7 @@
 				5038D9701EDE950900F3DA4F /* OmnibarTests.swift in Sources */,
 				5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */,
 				5038D9791EDEA54300F3DA4F /* FieldEditorDouble.swift in Sources */,
+				5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */,
 				5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */,
 				5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */,
 			);
