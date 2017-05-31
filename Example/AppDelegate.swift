@@ -7,7 +7,7 @@ import Omnibar
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
-
+    @IBOutlet weak var omnibar: Omnibar!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -17,6 +17,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    
+    @IBAction func testSuggestion(_ sender: Any) {
+        omnibar.display(content: .suggestion(text: "the quick", appendix: " brown fox"))
+    }
 
+    @IBAction func testTyping(_ sender: Any) {
+        omnibar.display(content: .prefix(text: "omnia sol"))
+    }
+    @IBAction func testReplacement(_ sender: Any) {
+        omnibar.display(content: .selection(text: "Just Like a Placeholder"))
+    }
 }
-

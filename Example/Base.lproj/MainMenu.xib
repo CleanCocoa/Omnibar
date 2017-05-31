@@ -15,6 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Example" customModuleProvider="target">
             <connections>
+                <outlet property="omnibar" destination="Z9X-j6-rKt" id="OQA-zj-vjj"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -683,14 +684,14 @@
         <window title="Example" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="232"/>
+            <rect key="contentRect" x="335" y="390" width="480" height="272"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="232"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qKl-Db-CKi">
-                        <rect key="frame" x="20" y="20" width="440" height="160"/>
+                        <rect key="frame" x="20" y="60" width="440" height="160"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="160" id="mRY-QQ-GPf"/>
                         </constraints>
@@ -700,20 +701,57 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Z9X-j6-rKt" customClass="Omnibar" customModule="Omnibar">
-                        <rect key="frame" x="20" y="190" width="440" height="22"/>
+                    <customView placeholderIntrinsicWidth="440" placeholderIntrinsicHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Z9X-j6-rKt" customClass="Omnibar" customModule="Omnibar">
+                        <rect key="frame" x="20" y="230" width="440" height="22"/>
                     </customView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BWG-GY-2kn">
+                        <rect key="frame" x="14" y="13" width="109" height="32"/>
+                        <buttonCell key="cell" type="push" title="Suggestion" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="anc-9X-pbl">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="testSuggestion:" target="Voe-Tx-rLC" id="KjN-wp-uKd"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LBA-ux-gra">
+                        <rect key="frame" x="123" y="13" width="81" height="32"/>
+                        <buttonCell key="cell" type="push" title="Typing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6rV-sh-e7P">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="testTyping:" target="Voe-Tx-rLC" id="Yxe-OE-c3Q"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QCM-wy-NIL">
+                        <rect key="frame" x="204" y="13" width="100" height="32"/>
+                        <buttonCell key="cell" type="push" title="Replacing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FZb-0I-SdK">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="testReplacement:" target="Voe-Tx-rLC" id="Uny-A9-EOz"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="QCM-wy-NIL" firstAttribute="baseline" secondItem="LBA-ux-gra" secondAttribute="baseline" id="3Et-lx-tsW"/>
                     <constraint firstItem="Z9X-j6-rKt" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="3My-qJ-ASX"/>
+                    <constraint firstAttribute="bottom" secondItem="BWG-GY-2kn" secondAttribute="bottom" constant="20" id="CKD-20-DDS"/>
                     <constraint firstItem="Z9X-j6-rKt" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="Eiv-Su-94D"/>
                     <constraint firstItem="qKl-Db-CKi" firstAttribute="top" secondItem="Z9X-j6-rKt" secondAttribute="bottom" constant="10" id="HW3-C1-Kgz"/>
-                    <constraint firstAttribute="bottom" secondItem="qKl-Db-CKi" secondAttribute="bottom" constant="20" id="Mz5-Pm-jIj"/>
+                    <constraint firstItem="BWG-GY-2kn" firstAttribute="top" secondItem="qKl-Db-CKi" secondAttribute="bottom" constant="19" id="LUl-ep-ewB"/>
                     <constraint firstAttribute="trailing" secondItem="qKl-Db-CKi" secondAttribute="trailing" constant="20" id="Oc3-SD-ftX"/>
                     <constraint firstAttribute="trailing" secondItem="Z9X-j6-rKt" secondAttribute="trailing" constant="20" id="Ol2-j9-Mnz"/>
+                    <constraint firstItem="QCM-wy-NIL" firstAttribute="leading" secondItem="LBA-ux-gra" secondAttribute="trailing" constant="12" id="YNT-bD-8ig"/>
                     <constraint firstItem="qKl-Db-CKi" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="ZfD-vm-z0x"/>
+                    <constraint firstItem="LBA-ux-gra" firstAttribute="leading" secondItem="BWG-GY-2kn" secondAttribute="trailing" constant="12" id="jg8-JS-Lsv"/>
+                    <constraint firstItem="BWG-GY-2kn" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="nYY-6Q-48J"/>
+                    <constraint firstItem="LBA-ux-gra" firstAttribute="baseline" secondItem="BWG-GY-2kn" secondAttribute="baseline" id="yeJ-wa-7VX"/>
                 </constraints>
             </view>
+            <point key="canvasLocation" x="103" y="-121"/>
         </window>
     </objects>
 </document>
