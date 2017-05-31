@@ -2,14 +2,19 @@
 
 import Cocoa
 
+extension NSTextField: EditableText { }
+
 @IBDesignable
 open class Omnibar: NSView {
 
-    let textField: NSTextField = {
+    lazy var textField: NSTextField = {
         let textField = NSTextField()
         textField.usesSingleLineMode = true
         return textField
     }()
+
+    /// Testing seam.
+    var editableText: EditableText { return textField }
 
     public convenience init() {
         self.init(frame: NSRect.zero)
@@ -41,7 +46,7 @@ extension Omnibar: DisplaysOmnibarContent {
 
     public func display(content: OmnibarContent) {
 
-        self.stringValue = content.string
+        editableText.replace(replacement: TextReplacement(omnibarContent: content))
     }
 }
 

@@ -18,6 +18,22 @@ class OmnibarTests: XCTestCase {
 
 // MARK: Displaying OmnibarContent
 
+fileprivate class EditableTextDouble: EditableText {
+    func fieldEditor() -> FieldEditor? { return nil }
+
+    var didReplace: TextReplacement?
+    func replace(replacement: TextReplacement) {
+        didReplace = replacement
+    }
+}
+
+fileprivate class TestableOmnibar: Omnibar {
+    var editableTextDouble: EditableText?
+    override var editableText: EditableText {
+        return editableTextDouble ?? super.editableText
+    }
+}
+
 extension OmnibarTests {
 
     func testDisplayContent_Empty_ChangesStringValue() {
@@ -28,6 +44,19 @@ extension OmnibarTests {
         omnibar.display(content: .empty)
 
         XCTAssertEqual(omnibar.stringValue, "")
+    }
+
+    func testDisplayContent_Empty_ConfiguresEditor() {
+
+        let omnibar = TestableOmnibar()
+        let editableTextDouble = EditableTextDouble()
+        omnibar.editableTextDouble = editableTextDouble
+
+        omnibar.display(content: .empty)
+
+        XCTAssertEqual(
+            editableTextDouble.didReplace,
+            TextReplacement(omnibarContent: .empty))
     }
 
     func testDisplayContent_Selection_ChangesStringValue() {
@@ -41,6 +70,20 @@ extension OmnibarTests {
         XCTAssertEqual(omnibar.stringValue, text)
     }
 
+    func testDisplayContent_Selection_ConfiguresEditor() {
+
+        let omnibar = TestableOmnibar()
+        let editableTextDouble = EditableTextDouble()
+        omnibar.editableTextDouble = editableTextDouble
+        let content = OmnibarContent.selection(text: "Shnabubula")
+
+        omnibar.display(content: content)
+
+        XCTAssertEqual(
+            editableTextDouble.didReplace,
+            TextReplacement(omnibarContent: content))
+    }
+
     func testDisplayContent_Prefix_ChangesStringValue() {
 
         let omnibar = Omnibar()
@@ -50,6 +93,20 @@ extension OmnibarTests {
         omnibar.display(content: .prefix(text: text))
 
         XCTAssertEqual(omnibar.stringValue, text)
+    }
+
+    func testDisplayContent_Prefix_ConfiguresEditor() {
+
+        let omnibar = TestableOmnibar()
+        let editableTextDouble = EditableTextDouble()
+        omnibar.editableTextDouble = editableTextDouble
+        let content = OmnibarContent.prefix(text: "this is new")
+
+        omnibar.display(content: content)
+
+        XCTAssertEqual(
+            editableTextDouble.didReplace,
+            TextReplacement(omnibarContent: content))
     }
 
     func testDisplayContent_Suggestion_ChangesStringValue() {
@@ -63,4 +120,19 @@ extension OmnibarTests {
 
         XCTAssertEqual(omnibar.stringValue, "first part, and the rest")
     }
+
+    func testDisplayContent_Suggestion_ConfiguresEditor() {
+
+        let omnibar = TestableOmnibar()
+        let editableTextDouble = EditableTextDouble()
+        omnibar.editableTextDouble = editableTextDouble
+        let content = OmnibarContent.suggestion(text: "first part", appendix: "second part")
+
+        omnibar.display(content: content)
+
+        XCTAssertEqual(
+            editableTextDouble.didReplace,
+            TextReplacement(omnibarContent: content))
+    }
+
 }

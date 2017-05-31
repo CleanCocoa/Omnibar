@@ -33,5 +33,5 @@ class OmnibarContentTests: XCTestCase {
             NSRange(location: ("more than text" as NSString).length,
                     length: ("like this" as NSString).length))
     }
-    
+
 }

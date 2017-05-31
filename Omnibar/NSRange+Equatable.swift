@@ -1,6 +1,6 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-import Foundation
+import struct Foundation.NSRange
 
 extension NSRange: Equatable { }
 
