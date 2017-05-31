@@ -4,8 +4,10 @@ import Cocoa
 
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
-    @IBOutlet var omnibarController: OmnibarController!
+    @IBOutlet weak var omnibarController: OmnibarController!
     
+    // MARK: Table View Contents
+
     var tableView: NSTableView! { return self.view as? NSTableView }
 
     lazy var allWords: [String] = { try! Words.allWords() }()
@@ -29,11 +31,33 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         return cellView
     }
 
+    // MARK: Table View Selection
+
     func tableViewSelectionDidChange(_ notification: Notification) {
 
         guard let tableView = notification.object as? NSTableView else { return }
 
         let word = allWords[tableView.selectedRow]
         omnibarController.select(string: word)
+    }
+
+    func selectPrevious() {
+
+        guard tableView.selectedRow > 0 else { return }
+
+        select(row: tableView.selectedRow - 1)
+    }
+
+    func selectNext() {
+
+        guard tableView.selectedRow < allWords.count else { return }
+
+        select(row: tableView.selectedRow + 1)
+    }
+
+    private func select(row: Int) {
+
+        tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        tableView.scrollRowToVisible(row)
     }
 }

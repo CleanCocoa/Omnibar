@@ -8,10 +8,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var omnibar: Omnibar!
-    @IBOutlet weak var omnibarContoller: OmnibarController!
+    @IBOutlet weak var omnibarController: OmnibarController!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
+        omnibar.delegate = omnibarController
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

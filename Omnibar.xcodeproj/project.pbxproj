@@ -60,6 +60,7 @@
 		5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BD1EDEB81100F3DA4F /* Words.swift */; };
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
 		5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */; };
+		5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		5038D9BD1EDEB81100F3DA4F /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
+		5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			children = (
 				5038D92F1EDE8F7200F3DA4F /* Omnibar.h */,
 				5038D95A1EDE91D700F3DA4F /* Omnibar.swift */,
+				5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */,
 				5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */,
 				5038D9801EDEAB0900F3DA4F /* Cocoa Adapter Layer */,
 				5038D9301EDE8F7200F3DA4F /* Info.plist */,
@@ -490,6 +493,7 @@
 				5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */,
 				5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
+				5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */,
 				5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */,
 				5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */,
 				5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */,

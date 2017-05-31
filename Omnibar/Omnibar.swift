@@ -4,12 +4,15 @@ import Cocoa
 
 extension NSTextField: EditableText { }
 
-@IBDesignable
+@IBDesignable @objc
 open class Omnibar: NSView {
+
+    @IBOutlet public weak var delegate: OmnibarDelegate?
 
     lazy var textField: NSTextField = {
         let textField = NSTextField()
         textField.usesSingleLineMode = true
+        textField.delegate = self
         return textField
     }()
 
@@ -39,6 +42,24 @@ open class Omnibar: NSView {
 
         self.autoresizingMask = [.viewWidthSizable]
         self.translatesAutoresizingMaskIntoConstraints = true
+    }
+}
+
+extension Omnibar: NSTextFieldDelegate {
+
+    public func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+
+        switch commandSelector {
+        case #selector(NSResponder.moveDown(_:)):
+            delegate?.omnibarSelectNext(self)
+            return true
+
+        case #selector(NSResponder.moveUp(_:)):
+            delegate?.omnibarSelectPrevious(self)
+            return true
+
+        default: return false
+        }
     }
 }
 
