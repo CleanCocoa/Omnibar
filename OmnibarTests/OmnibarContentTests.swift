@@ -7,6 +7,7 @@ class OmnibarContentTests: XCTestCase {
 
     func testStringValue() {
 
+        XCTAssertEqual(OmnibarContent.empty.string, "")
         XCTAssertEqual(OmnibarContent.prefix(text: "foo bar").string, "foo bar")
         XCTAssertEqual(OmnibarContent.selection(text: "selecione textual").string, "selecione textual")
         XCTAssertEqual(OmnibarContent.suggestion(text: "only text", appendix: "").string, "only text")

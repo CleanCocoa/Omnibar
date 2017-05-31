@@ -5,3 +5,11 @@ import Cocoa
 public class Omnibar: NSTextField {
 
 }
+
+extension Omnibar: DisplaysOmnibarContent {
+
+    public func display(content: OmnibarContent) {
+
+        self.stringValue = content.string
+    }
+}

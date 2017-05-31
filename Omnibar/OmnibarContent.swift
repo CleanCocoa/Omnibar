@@ -1,7 +1,14 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
+public protocol DisplaysOmnibarContent: class {
+    func display(content: OmnibarContent)
+}
+
 /// Input data model for the Omnibar, setting its contents.
 public enum OmnibarContent {
+
+    /// Empties the Omnibar.
+    case empty
 
     /// Display `text` inside the Omnibar and select it all for 
     /// quick overwriting.
@@ -17,6 +24,7 @@ public enum OmnibarContent {
 
     public var string: String {
         switch self {
+        case .empty: return ""
         case let .selection(text: text): return text
         case let .prefix(text: text): return text
         case let .suggestion(text: text, appendix: appendix): return text.appending(appendix)
