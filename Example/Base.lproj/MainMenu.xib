@@ -689,7 +689,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="232"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZK8-4p-NGD">
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZK8-4p-NGD" customClass="Omnibar" customModule="Omnibar">
                         <rect key="frame" x="20" y="190" width="440" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="wkJ-f5-vQi">
                             <font key="font" metaFont="system"/>
