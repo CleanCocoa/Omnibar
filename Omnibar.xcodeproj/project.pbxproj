@@ -61,6 +61,8 @@
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
 		5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */; };
 		5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */; };
+		5038D9CA1EDED00F00F3DA4F /* TextFieldTextChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */; };
+		5038D9CD1EDED43800F3DA4F /* TextFieldTextChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +157,8 @@
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
 		5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarDelegate.swift; sourceTree = "<group>"; };
+		5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTextChangeTests.swift; sourceTree = "<group>"; };
+		5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTextChange.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +219,7 @@
 				5038D95A1EDE91D700F3DA4F /* Omnibar.swift */,
 				5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */,
 				5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */,
+				5038D9CB1EDED42A00F3DA4F /* Text Field */,
 				5038D9801EDEAB0900F3DA4F /* Cocoa Adapter Layer */,
 				5038D9301EDE8F7200F3DA4F /* Info.plist */,
 			);
@@ -254,6 +259,7 @@
 				5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */,
 				5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */,
 				5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */,
+				5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */,
 				5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */,
 				5038D9771EDEA53700F3DA4F /* Mocks and Stubs */,
 				5038D9661EDE934F00F3DA4F /* Info.plist */,
@@ -313,6 +319,15 @@
 			);
 			name = Words;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		5038D9CB1EDED42A00F3DA4F /* Text Field */ = {
+			isa = PBXGroup;
+			children = (
+				5038D9C71EDECD4200F3DA4F /* OmnibarTextField.swift */,
+				5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */,
+			);
+			name = "Text Field";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,6 +512,7 @@
 				5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */,
 				5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */,
 				5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */,
+				5038D9CD1EDED43800F3DA4F /* TextFieldTextChange.swift in Sources */,
 				5038D9741EDE9D9800F3DA4F /* FieldEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +538,7 @@
 				5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */,
 				5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */,
 				5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */,
+				5038D9CA1EDED00F00F3DA4F /* TextFieldTextChangeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
