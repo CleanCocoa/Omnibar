@@ -20,6 +20,7 @@
 		5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D95A1EDE91D700F3DA4F /* Omnibar.swift */; };
 		5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */; };
 		5038D9671EDE934F00F3DA4F /* Omnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; };
+		5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,7 @@
 		5038D9631EDE934F00F3DA4F /* OmnibarTests */ = {
 			isa = PBXGroup;
 			children = (
+				5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */,
 				5038D9661EDE934F00F3DA4F /* Info.plist */,
 			);
 			path = OmnibarTests;
@@ -332,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

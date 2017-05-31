@@ -14,4 +14,12 @@ public enum OmnibarContent {
     /// Display `text`, followed by `appendix`, putting the insertion point
     /// before `appendix` and selecting it so it can be overwritten.
     case suggestion(text: String, appendix: String)
+
+    public var string: String {
+        switch self {
+        case let .selection(text: text): return text
+        case let .prefix(text: text): return text
+        case let .suggestion(text: text, appendix: appendix): return text.appending(appendix)
+        }
+    }
 }
