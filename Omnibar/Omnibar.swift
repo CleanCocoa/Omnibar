@@ -78,4 +78,16 @@ extension Omnibar {
         get { return textField.stringValue }
         set { textField.stringValue = newValue }
     }
+
+    open override var acceptsFirstResponder: Bool {
+        return textField.acceptsFirstResponder
+    }
+
+    open override func becomeFirstResponder() -> Bool {
+        return textField.becomeFirstResponder()
+    }
+
+    open override func resignFirstResponder() -> Bool {
+        return textField.resignFirstResponder()
+    }
 }
