@@ -45,6 +45,20 @@ open class Omnibar: NSView {
     }
 }
 
+
+// MARK: - Input
+
+extension Omnibar: DisplaysOmnibarContent {
+
+    public func display(content: OmnibarContent) {
+
+        editableText.replace(replacement: TextReplacement(omnibarContent: content))
+    }
+}
+
+
+// MARK: - Output
+
 extension Omnibar: NSTextFieldDelegate {
 
     public func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
@@ -61,18 +75,19 @@ extension Omnibar: NSTextFieldDelegate {
         default: return false
         }
     }
-}
 
-extension Omnibar: DisplaysOmnibarContent {
+    open override func controlTextDidChange(_ obj: Notification) {
 
-    public func display(content: OmnibarContent) {
+        guard let textField = obj.object as? NSTextField
+            else { fatalError("controlTextDidChange expected for NSTextField") }
 
-        editableText.replace(replacement: TextReplacement(omnibarContent: content))
+        let content = textField.stringValue
+        delegate?.omnibar(self, typed: content)
     }
 }
 
 
-// MARK: Text Field Adapter
+// MARK: - Text Field Adapter
 
 extension Omnibar {
 

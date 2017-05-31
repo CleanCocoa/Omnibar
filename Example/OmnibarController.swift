@@ -10,7 +10,6 @@ class OmnibarController: NSViewController, OmnibarDelegate {
     var omnibar: Omnibar! { return self.view as? Omnibar }
 
     func select(string: String) {
-
         omnibar.display(content: .selection(text: string))
     }
 
@@ -20,5 +19,9 @@ class OmnibarController: NSViewController, OmnibarDelegate {
 
     func omnibarSelectPrevious(_ omnibar: Omnibar) {
         tableViewController.selectPrevious()
+    }
+
+    func omnibar(_ omnibar: Omnibar, typed string: String) {
+        print(string)
     }
 }
