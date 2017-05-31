@@ -59,6 +59,7 @@
 		5038D9BB1EDEB40100F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9A11EDEB40100F3DA4F /* Z Words.txt */; };
 		5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BD1EDEB81100F3DA4F /* Words.swift */; };
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
+		5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		5038D9A11EDEB40100F3DA4F /* Z Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Z Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/Z Words.txt"; sourceTree = "<group>"; };
 		5038D9BD1EDEB81100F3DA4F /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 			children = (
 				5038D9461EDE902E00F3DA4F /* AppDelegate.swift */,
 				5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */,
+				5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */,
 				5038D9BD1EDEB81100F3DA4F /* Words.swift */,
 				5038D9481EDE902E00F3DA4F /* Assets.xcassets */,
 				5038D94A1EDE902E00F3DA4F /* MainMenu.xib */,
@@ -500,6 +503,7 @@
 			files = (
 				5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */,
 				5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */,
+				5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */,
 				5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -807,7 +807,13 @@
         </window>
         <customObject id="tuB-pm-iUc" customClass="TableViewController" customModule="Example" customModuleProvider="target">
             <connections>
+                <outlet property="omnibarController" destination="ZYw-vb-fdM" id="7d2-ox-epQ"/>
                 <outlet property="view" destination="70M-Ts-Lwm" id="NdZ-Le-U8Z"/>
+            </connections>
+        </customObject>
+        <customObject id="ZYw-vb-fdM" customClass="OmnibarController" customModule="Example" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="Z9X-j6-rKt" id="a3n-u0-r16"/>
             </connections>
         </customObject>
     </objects>
