@@ -3,7 +3,7 @@
 import Cocoa
 import Omnibar
 
-class OmnibarController: NSViewController, OmnibarDelegate {
+class OmnibarController: NSViewController {
 
     @IBOutlet weak var tableViewController: TableViewController!
 
@@ -12,6 +12,24 @@ class OmnibarController: NSViewController, OmnibarDelegate {
     func select(string: String) {
         omnibar.display(content: .selection(text: string))
     }
+}
+
+extension OmnibarController: OmnibarContentChangeDelegate {
+
+    func omnibar(_ omnibar: Omnibar, contentChanges: OmnibarContentChange) {
+
+        let searchTerm: String = {
+            switch contentChanges {
+            case .replacement(text: let text): return text
+            case .continuation(text: let text, remainingAppendix: _): return text
+            }
+        }()
+
+        tableViewController.filterResults(startingWith: searchTerm)
+    }
+}
+
+extension OmnibarController: OmnibarSelectionDelegate {
 
     func omnibarSelectNext(_ omnibar: Omnibar) {
         tableViewController.selectNext()
@@ -19,9 +37,5 @@ class OmnibarController: NSViewController, OmnibarDelegate {
 
     func omnibarSelectPrevious(_ omnibar: Omnibar) {
         tableViewController.selectPrevious()
-    }
-
-    func omnibar(_ omnibar: Omnibar, typed string: String) {
-        print(string)
     }
 }

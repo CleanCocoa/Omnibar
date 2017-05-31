@@ -7,17 +7,21 @@ extension NSTextField: EditableText { }
 @IBDesignable @objc
 open class Omnibar: NSView {
 
-    @IBOutlet public weak var delegate: OmnibarDelegate?
+    public weak var selectionDelegate: OmnibarSelectionDelegate?
+    public weak var contentDelegate: OmnibarContentChangeDelegate?
 
-    lazy var textField: NSTextField = {
-        let textField = NSTextField()
+    lazy var textField: OmnibarTextField = {
+        let textField = OmnibarTextField()
         textField.usesSingleLineMode = true
         textField.delegate = self
+        textField.textChangeDelegate = self
         return textField
     }()
 
     /// Testing seam.
     var editableText: EditableText { return textField }
+
+    fileprivate var lastContent: OmnibarContent?
 
     public convenience init() {
         self.init(frame: NSRect.zero)
@@ -53,36 +57,37 @@ extension Omnibar: DisplaysOmnibarContent {
     public func display(content: OmnibarContent) {
 
         editableText.replace(replacement: TextReplacement(omnibarContent: content))
+
+        // Update cache
+        lastContent = content
     }
 }
 
 
 // MARK: - Output
 
-extension Omnibar: NSTextFieldDelegate {
+extension Omnibar: NSTextFieldDelegate, TextChangeDelegate {
 
     public func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 
         switch commandSelector {
         case #selector(NSResponder.moveDown(_:)):
-            delegate?.omnibarSelectNext(self)
+            selectionDelegate?.omnibarSelectNext?(self)
             return true
 
         case #selector(NSResponder.moveUp(_:)):
-            delegate?.omnibarSelectPrevious(self)
+            selectionDelegate?.omnibarSelectPrevious?(self)
             return true
 
         default: return false
         }
     }
 
-    open override func controlTextDidChange(_ obj: Notification) {
+    internal func omnibarTextField(_ omnibarTextField: OmnibarTextField, willChange textChange: TextFieldTextChange) {
 
-        guard let textField = obj.object as? NSTextField
-            else { fatalError("controlTextDidChange expected for NSTextField") }
+        let lastContent = self.lastContent ?? .empty
 
-        let content = textField.stringValue
-        delegate?.omnibar(self, typed: content)
+        contentDelegate?.omnibar(self, contentChanges: OmnibarContentChange(base: lastContent, change: textChange))
     }
 }
 

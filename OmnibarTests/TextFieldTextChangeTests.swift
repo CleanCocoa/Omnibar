@@ -5,6 +5,8 @@ import XCTest
 
 class TextFieldTextChangeTests: XCTestCase {
 
+    var irrelevantMethod: TextFieldTextChange.Method { return .insertion }
+
     func testPatchResult_EmptyString_EmptyPatch_IsEmptyString() {
 
         XCTAssertEqual(
@@ -12,7 +14,8 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "",
                 patch: TextFieldTextPatch(
                     string: "",
-                    range: NSRange(location: 0, length: 0))).result,
+                    range: NSRange(location: 0, length: 0)),
+                method: irrelevantMethod).result,
             "")
         // Range does not matter
         XCTAssertEqual(
@@ -20,7 +23,8 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "",
                 patch: TextFieldTextPatch(
                     string: "",
-                    range: NSRange(location: 0, length: 20))).result,
+                    range: NSRange(location: 0, length: 20)),
+                method: irrelevantMethod).result,
             "")
     }
 
@@ -31,7 +35,8 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "",
                 patch: TextFieldTextPatch(
                     string: "foo",
-                    range: NSRange(location: 0, length: 0))).result,
+                    range: NSRange(location: 0, length: 0)),
+                method: irrelevantMethod).result,
             "foo")
         // Range does not matter when original is empty
         XCTAssertEqual(
@@ -39,7 +44,8 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "",
                 patch: TextFieldTextPatch(
                     string: "very new",
-                    range: NSRange(location: 0, length: 20))).result,
+                    range: NSRange(location: 0, length: 20)),
+                method: irrelevantMethod).result,
             "very new")
     }
 
@@ -50,7 +56,8 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "zettelkasten!!",
                 patch: TextFieldTextPatch(
                     string: "",
-                    range: NSRange(location: 0, length: 0))).result,
+                    range: NSRange(location: 0, length: 0)),
+                method: irrelevantMethod).result,
             "zettelkasten!!")
         // Range location does not matter
         XCTAssertEqual(
@@ -58,7 +65,8 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "zettelkasten!!",
                 patch: TextFieldTextPatch(
                     string: "",
-                    range: NSRange(location: 4, length: 0))).result,
+                    range: NSRange(location: 4, length: 0)),
+                method: irrelevantMethod).result,
             "zettelkasten!!")
     }
 
@@ -69,14 +77,16 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "zettelkasten!!",
                 patch: TextFieldTextPatch(
                     string: "",
-                    range: NSRange(location: 0, length: 6))).result,
+                    range: NSRange(location: 0, length: 6)),
+                method: irrelevantMethod).result,
             "kasten!!")
         XCTAssertEqual(
             TextFieldTextChange(
                 oldText: "zettelkasten!!",
                 patch: TextFieldTextPatch(
                     string: "",
-                    range: NSRange(location: 4, length: 2))).result,
+                    range: NSRange(location: 4, length: 2)),
+                method: irrelevantMethod).result,
             "zettkasten!!")
     }
 
@@ -87,14 +97,16 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "kasten",
                 patch: TextFieldTextPatch(
                     string: "zettel",
-                    range: NSRange(location: 0, length: 0))).result,
+                    range: NSRange(location: 0, length: 0)),
+                method: irrelevantMethod).result,
             "zettelkasten")
         XCTAssertEqual(
             TextFieldTextChange(
                 oldText: "zettel!!1",
                 patch: TextFieldTextPatch(
                     string: "kasten",
-                    range: NSRange(location: 6, length: 0))).result,
+                    range: NSRange(location: 6, length: 0)),
+                method: irrelevantMethod).result,
             "zettelkasten!!1")
     }
 
@@ -105,14 +117,16 @@ class TextFieldTextChangeTests: XCTestCase {
                 oldText: "bierkasten",
                 patch: TextFieldTextPatch(
                     string: "zettel",
-                    range: NSRange(location: 0, length: 4))).result,
+                    range: NSRange(location: 0, length: 4)),
+                method: irrelevantMethod).result,
             "zettelkasten")
         XCTAssertEqual(
             TextFieldTextChange(
                 oldText: "hauswirtschaftslehre",
                 patch: TextFieldTextPatch(
                     string: "verkaufs",
-                    range: NSRange(location: 4, length: 11))).result,
+                    range: NSRange(location: 4, length: 11)),
+                method: irrelevantMethod).result,
             "hausverkaufslehre")
     }
 

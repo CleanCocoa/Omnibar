@@ -12,7 +12,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        omnibar.delegate = omnibarController
+        omnibar.selectionDelegate = omnibarController
+        omnibar.contentDelegate = omnibarController
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
