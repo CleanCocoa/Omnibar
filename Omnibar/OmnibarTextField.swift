@@ -2,13 +2,9 @@
 
 import Cocoa
 
-protocol TextChangeDelegate: class {
-    func omnibarTextField(_ omnibarTextField: OmnibarTextField, willChange textChange: TextFieldTextChange)
-}
-
 class OmnibarTextField: NSTextField {
 
-    weak var textChangeDelegate: TextChangeDelegate?
+    fileprivate var cachedTextFieldChange: TextFieldTextChange?
 }
 
 // MARK: - Typing
@@ -17,6 +13,13 @@ class OmnibarTextField: NSTextField {
 // default if it conforms to `NSTextViewDelegate`.
 
 extension OmnibarTextField: NSTextViewDelegate {
+
+    func popTextFieldChange() -> TextFieldTextChange? {
+
+        let value = cachedTextFieldChange
+        cachedTextFieldChange = nil
+        return value
+    }
 
     public func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
 
@@ -34,13 +37,12 @@ extension OmnibarTextField: NSTextViewDelegate {
             return .insertion
         }()
 
-        let textChange = TextFieldTextChange(
+        self.cachedTextFieldChange = TextFieldTextChange(
             oldText: oldText,
             patch: TextFieldTextPatch(
                 string: replacementString,
                 range: affectedCharRange),
             method: method)
-        textChangeDelegate?.omnibarTextField(self, willChange: textChange)
 
         return true
     }

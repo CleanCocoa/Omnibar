@@ -29,6 +29,13 @@ public enum OmnibarContentChange: Equatable {
             }
         }()
     }
+
+    var content: OmnibarContent {
+        switch self {
+        case .replacement(text: let text): return .prefix(text: text)
+        case let .continuation(text: text, remainingAppendix: appendix): return .suggestion(text: text, appendix: appendix)
+        }
+    }
 }
 
 extension String {

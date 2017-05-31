@@ -16,10 +16,10 @@ class OmnibarController: NSViewController {
 
 extension OmnibarController: OmnibarContentChangeDelegate {
 
-    func omnibar(_ omnibar: Omnibar, contentChanges: OmnibarContentChange) {
+    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange) {
 
         let searchTerm: String = {
-            switch contentChanges {
+            switch contentChange {
             case .replacement(text: let text): return text
             case .continuation(text: let text, remainingAppendix: _): return text
             }

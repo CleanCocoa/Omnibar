@@ -4,6 +4,27 @@ import Cocoa
 
 extension NSTextField: EditableText { }
 
+/// Display model cache that forces us to consider the latest value once, only.
+/// This way, resetting auto-completions will need to call
+/// `Omnibar.display(content:)` again. The last suggestion is forgotten if it
+/// is not carried on.
+class PreviousContent {
+
+    init() { }
+
+    private var lastContent: OmnibarContent?
+
+    func pushLatest(_ content: OmnibarContent) {
+        lastContent = content
+    }
+
+    func popLatest() -> OmnibarContent? {
+        let result = lastContent
+        lastContent = nil
+        return result
+    }
+}
+
 @IBDesignable @objc
 open class Omnibar: NSView {
 
@@ -14,14 +35,14 @@ open class Omnibar: NSView {
         let textField = OmnibarTextField()
         textField.usesSingleLineMode = true
         textField.delegate = self
-        textField.textChangeDelegate = self
         return textField
     }()
 
     /// Testing seam.
     var editableText: EditableText { return textField }
 
-    fileprivate var lastContent: OmnibarContent?
+    /// Display model cache.
+    let previousContent = PreviousContent()
 
     public convenience init() {
         self.init(frame: NSRect.zero)
@@ -59,14 +80,14 @@ extension Omnibar: DisplaysOmnibarContent {
         editableText.replace(replacement: TextReplacement(omnibarContent: content))
 
         // Update cache
-        lastContent = content
+        previousContent.pushLatest(content)
     }
 }
 
 
 // MARK: - Output
 
-extension Omnibar: NSTextFieldDelegate, TextChangeDelegate {
+extension Omnibar: NSTextFieldDelegate {
 
     public func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 
@@ -83,11 +104,22 @@ extension Omnibar: NSTextFieldDelegate, TextChangeDelegate {
         }
     }
 
-    internal func omnibarTextField(_ omnibarTextField: OmnibarTextField, willChange textChange: TextFieldTextChange) {
+    open override func controlTextDidChange(_ obj: Notification) {
 
-        let lastContent = self.lastContent ?? .empty
+        guard let textField = obj.object as? OmnibarTextField
+            else { fatalError("controlTextDidChange expected for OmnibarTextField") }
 
-        contentDelegate?.omnibar(self, contentChanges: OmnibarContentChange(base: lastContent, change: textChange))
+        guard let textChange = textField.popTextFieldChange()
+            else { preconditionFailure("text change setting should precede notification") }
+
+        let lastContent = previousContent.popLatest() ?? .empty
+        let contentChange = OmnibarContentChange(base: lastContent, change: textChange)
+
+        if case .continuation = contentChange {
+            self.display(content: contentChange.content)
+        }
+        
+        contentDelegate?.omnibar(self, contentChange: contentChange)
     }
 }
 
