@@ -31,6 +31,33 @@
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
 		5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */; };
 		5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */; };
+		5038D9A21EDEB40100F3DA4F /* A Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9881EDEB40100F3DA4F /* A Words.txt */; };
+		5038D9A31EDEB40100F3DA4F /* B Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9891EDEB40100F3DA4F /* B Words.txt */; };
+		5038D9A41EDEB40100F3DA4F /* C Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98A1EDEB40100F3DA4F /* C Words.txt */; };
+		5038D9A51EDEB40100F3DA4F /* D Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98B1EDEB40100F3DA4F /* D Words.txt */; };
+		5038D9A61EDEB40100F3DA4F /* E Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98C1EDEB40100F3DA4F /* E Words.txt */; };
+		5038D9A71EDEB40100F3DA4F /* F Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98D1EDEB40100F3DA4F /* F Words.txt */; };
+		5038D9A81EDEB40100F3DA4F /* G Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98E1EDEB40100F3DA4F /* G Words.txt */; };
+		5038D9A91EDEB40100F3DA4F /* H Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98F1EDEB40100F3DA4F /* H Words.txt */; };
+		5038D9AA1EDEB40100F3DA4F /* I Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9901EDEB40100F3DA4F /* I Words.txt */; };
+		5038D9AB1EDEB40100F3DA4F /* J Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9911EDEB40100F3DA4F /* J Words.txt */; };
+		5038D9AC1EDEB40100F3DA4F /* K Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9921EDEB40100F3DA4F /* K Words.txt */; };
+		5038D9AD1EDEB40100F3DA4F /* L Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9931EDEB40100F3DA4F /* L Words.txt */; };
+		5038D9AE1EDEB40100F3DA4F /* M Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9941EDEB40100F3DA4F /* M Words.txt */; };
+		5038D9AF1EDEB40100F3DA4F /* N Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9951EDEB40100F3DA4F /* N Words.txt */; };
+		5038D9B01EDEB40100F3DA4F /* O Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9961EDEB40100F3DA4F /* O Words.txt */; };
+		5038D9B11EDEB40100F3DA4F /* P Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9971EDEB40100F3DA4F /* P Words.txt */; };
+		5038D9B21EDEB40100F3DA4F /* Q Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9981EDEB40100F3DA4F /* Q Words.txt */; };
+		5038D9B31EDEB40100F3DA4F /* R Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9991EDEB40100F3DA4F /* R Words.txt */; };
+		5038D9B41EDEB40100F3DA4F /* S Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99A1EDEB40100F3DA4F /* S Words.txt */; };
+		5038D9B51EDEB40100F3DA4F /* T Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99B1EDEB40100F3DA4F /* T Words.txt */; };
+		5038D9B61EDEB40100F3DA4F /* U Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99C1EDEB40100F3DA4F /* U Words.txt */; };
+		5038D9B71EDEB40100F3DA4F /* V Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99D1EDEB40100F3DA4F /* V Words.txt */; };
+		5038D9B81EDEB40100F3DA4F /* W Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99E1EDEB40100F3DA4F /* W Words.txt */; };
+		5038D9B91EDEB40100F3DA4F /* X Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99F1EDEB40100F3DA4F /* X Words.txt */; };
+		5038D9BA1EDEB40100F3DA4F /* Y Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9A01EDEB40100F3DA4F /* Y Words.txt */; };
+		5038D9BB1EDEB40100F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9A11EDEB40100F3DA4F /* Z Words.txt */; };
+		5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BD1EDEB81100F3DA4F /* Words.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +121,34 @@
 		5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacement.swift; sourceTree = "<group>"; };
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacementTests.swift; sourceTree = "<group>"; };
 		5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSText+FieldEditorTests.swift"; sourceTree = "<group>"; };
+		5038D9851EDEB25800F3DA4F /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		5038D9881EDEB40100F3DA4F /* A Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "A Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/A Words.txt"; sourceTree = "<group>"; };
+		5038D9891EDEB40100F3DA4F /* B Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "B Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/B Words.txt"; sourceTree = "<group>"; };
+		5038D98A1EDEB40100F3DA4F /* C Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "C Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/C Words.txt"; sourceTree = "<group>"; };
+		5038D98B1EDEB40100F3DA4F /* D Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "D Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/D Words.txt"; sourceTree = "<group>"; };
+		5038D98C1EDEB40100F3DA4F /* E Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "E Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/E Words.txt"; sourceTree = "<group>"; };
+		5038D98D1EDEB40100F3DA4F /* F Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "F Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/F Words.txt"; sourceTree = "<group>"; };
+		5038D98E1EDEB40100F3DA4F /* G Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "G Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/G Words.txt"; sourceTree = "<group>"; };
+		5038D98F1EDEB40100F3DA4F /* H Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "H Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/H Words.txt"; sourceTree = "<group>"; };
+		5038D9901EDEB40100F3DA4F /* I Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "I Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/I Words.txt"; sourceTree = "<group>"; };
+		5038D9911EDEB40100F3DA4F /* J Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "J Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/J Words.txt"; sourceTree = "<group>"; };
+		5038D9921EDEB40100F3DA4F /* K Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "K Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/K Words.txt"; sourceTree = "<group>"; };
+		5038D9931EDEB40100F3DA4F /* L Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "L Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/L Words.txt"; sourceTree = "<group>"; };
+		5038D9941EDEB40100F3DA4F /* M Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "M Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/M Words.txt"; sourceTree = "<group>"; };
+		5038D9951EDEB40100F3DA4F /* N Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "N Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/N Words.txt"; sourceTree = "<group>"; };
+		5038D9961EDEB40100F3DA4F /* O Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "O Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/O Words.txt"; sourceTree = "<group>"; };
+		5038D9971EDEB40100F3DA4F /* P Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "P Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/P Words.txt"; sourceTree = "<group>"; };
+		5038D9981EDEB40100F3DA4F /* Q Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Q Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/Q Words.txt"; sourceTree = "<group>"; };
+		5038D9991EDEB40100F3DA4F /* R Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "R Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/R Words.txt"; sourceTree = "<group>"; };
+		5038D99A1EDEB40100F3DA4F /* S Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "S Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/S Words.txt"; sourceTree = "<group>"; };
+		5038D99B1EDEB40100F3DA4F /* T Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "T Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/T Words.txt"; sourceTree = "<group>"; };
+		5038D99C1EDEB40100F3DA4F /* U Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "U Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/U Words.txt"; sourceTree = "<group>"; };
+		5038D99D1EDEB40100F3DA4F /* V Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "V Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/V Words.txt"; sourceTree = "<group>"; };
+		5038D99E1EDEB40100F3DA4F /* W Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "W Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/W Words.txt"; sourceTree = "<group>"; };
+		5038D99F1EDEB40100F3DA4F /* X Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "X Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/X Words.txt"; sourceTree = "<group>"; };
+		5038D9A01EDEB40100F3DA4F /* Y Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Y Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/Y Words.txt"; sourceTree = "<group>"; };
+		5038D9A11EDEB40100F3DA4F /* Z Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Z Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/Z Words.txt"; sourceTree = "<group>"; };
+		5038D9BD1EDEB81100F3DA4F /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +183,7 @@
 		5038D9221EDE8F7200F3DA4F = {
 			isa = PBXGroup;
 			children = (
+				5038D9851EDEB25800F3DA4F /* LICENSE.md */,
 				5038D92E1EDE8F7200F3DA4F /* Omnibar */,
 				5038D9631EDE934F00F3DA4F /* OmnibarTests */,
 				5038D9451EDE902E00F3DA4F /* Example */,
@@ -173,8 +229,10 @@
 			isa = PBXGroup;
 			children = (
 				5038D9461EDE902E00F3DA4F /* AppDelegate.swift */,
+				5038D9BD1EDEB81100F3DA4F /* Words.swift */,
 				5038D9481EDE902E00F3DA4F /* Assets.xcassets */,
 				5038D94A1EDE902E00F3DA4F /* MainMenu.xib */,
+				5038D9BC1EDEB41300F3DA4F /* Words */,
 				5038D94D1EDE902E00F3DA4F /* Info.plist */,
 			);
 			path = Example;
@@ -212,6 +270,40 @@
 				5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */,
 			);
 			name = "Cocoa Adapter Layer";
+			sourceTree = "<group>";
+		};
+		5038D9BC1EDEB41300F3DA4F /* Words */ = {
+			isa = PBXGroup;
+			children = (
+				5038D9881EDEB40100F3DA4F /* A Words.txt */,
+				5038D9891EDEB40100F3DA4F /* B Words.txt */,
+				5038D98A1EDEB40100F3DA4F /* C Words.txt */,
+				5038D98B1EDEB40100F3DA4F /* D Words.txt */,
+				5038D98C1EDEB40100F3DA4F /* E Words.txt */,
+				5038D98D1EDEB40100F3DA4F /* F Words.txt */,
+				5038D98E1EDEB40100F3DA4F /* G Words.txt */,
+				5038D98F1EDEB40100F3DA4F /* H Words.txt */,
+				5038D9901EDEB40100F3DA4F /* I Words.txt */,
+				5038D9911EDEB40100F3DA4F /* J Words.txt */,
+				5038D9921EDEB40100F3DA4F /* K Words.txt */,
+				5038D9931EDEB40100F3DA4F /* L Words.txt */,
+				5038D9941EDEB40100F3DA4F /* M Words.txt */,
+				5038D9951EDEB40100F3DA4F /* N Words.txt */,
+				5038D9961EDEB40100F3DA4F /* O Words.txt */,
+				5038D9971EDEB40100F3DA4F /* P Words.txt */,
+				5038D9981EDEB40100F3DA4F /* Q Words.txt */,
+				5038D9991EDEB40100F3DA4F /* R Words.txt */,
+				5038D99A1EDEB40100F3DA4F /* S Words.txt */,
+				5038D99B1EDEB40100F3DA4F /* T Words.txt */,
+				5038D99C1EDEB40100F3DA4F /* U Words.txt */,
+				5038D99D1EDEB40100F3DA4F /* V Words.txt */,
+				5038D99E1EDEB40100F3DA4F /* W Words.txt */,
+				5038D99F1EDEB40100F3DA4F /* X Words.txt */,
+				5038D9A01EDEB40100F3DA4F /* Y Words.txt */,
+				5038D9A11EDEB40100F3DA4F /* Z Words.txt */,
+			);
+			name = Words;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +436,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5038D9A21EDEB40100F3DA4F /* A Words.txt in Resources */,
+				5038D9A31EDEB40100F3DA4F /* B Words.txt in Resources */,
+				5038D9A41EDEB40100F3DA4F /* C Words.txt in Resources */,
+				5038D9A51EDEB40100F3DA4F /* D Words.txt in Resources */,
+				5038D9A61EDEB40100F3DA4F /* E Words.txt in Resources */,
+				5038D9A71EDEB40100F3DA4F /* F Words.txt in Resources */,
+				5038D9A81EDEB40100F3DA4F /* G Words.txt in Resources */,
+				5038D9A91EDEB40100F3DA4F /* H Words.txt in Resources */,
+				5038D9AA1EDEB40100F3DA4F /* I Words.txt in Resources */,
+				5038D9AB1EDEB40100F3DA4F /* J Words.txt in Resources */,
+				5038D9AC1EDEB40100F3DA4F /* K Words.txt in Resources */,
+				5038D9AD1EDEB40100F3DA4F /* L Words.txt in Resources */,
+				5038D9AE1EDEB40100F3DA4F /* M Words.txt in Resources */,
+				5038D9AF1EDEB40100F3DA4F /* N Words.txt in Resources */,
+				5038D9B01EDEB40100F3DA4F /* O Words.txt in Resources */,
+				5038D9B11EDEB40100F3DA4F /* P Words.txt in Resources */,
+				5038D9B21EDEB40100F3DA4F /* Q Words.txt in Resources */,
+				5038D9B31EDEB40100F3DA4F /* R Words.txt in Resources */,
+				5038D9B41EDEB40100F3DA4F /* S Words.txt in Resources */,
+				5038D9B51EDEB40100F3DA4F /* T Words.txt in Resources */,
+				5038D9B61EDEB40100F3DA4F /* U Words.txt in Resources */,
+				5038D9B71EDEB40100F3DA4F /* V Words.txt in Resources */,
+				5038D9B81EDEB40100F3DA4F /* W Words.txt in Resources */,
+				5038D9B91EDEB40100F3DA4F /* X Words.txt in Resources */,
+				5038D9BA1EDEB40100F3DA4F /* Y Words.txt in Resources */,
+				5038D9BB1EDEB40100F3DA4F /* Z Words.txt in Resources */,
 				5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */,
 				5038D94C1EDE902E00F3DA4F /* MainMenu.xib in Resources */,
 			);
@@ -378,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */,
+				5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

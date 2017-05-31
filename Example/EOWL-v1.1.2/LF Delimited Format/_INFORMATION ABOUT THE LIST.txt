@@ -1,0 +1,7 @@
+Please note that all words in these lists have Unix style line breaks. That is, there is only an LF character at the end of each word. If you are used to working with Windows style line breaks you will need to convert from LF to CRLF format.
+
+All of these files are encoded as Unicode (UTF-8).
+
+- Ken
+
+http://dreamsteep.com

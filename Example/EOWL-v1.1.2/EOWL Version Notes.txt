@@ -1,0 +1,2 @@
+09-09-12 - Saved all files with Unicode (UTF-8) encoding.
+07-11-11 - Added 'yardarm' and 'yardarms' to the 'y' list.
