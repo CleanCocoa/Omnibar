@@ -689,14 +689,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="232"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZK8-4p-NGD" customClass="Omnibar" customModule="Omnibar">
-                        <rect key="frame" x="20" y="190" width="440" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="wkJ-f5-vQi">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qKl-Db-CKi">
                         <rect key="frame" x="20" y="20" width="440" height="160"/>
                         <constraints>
@@ -708,15 +700,18 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Z9X-j6-rKt" customClass="Omnibar" customModule="Omnibar">
+                        <rect key="frame" x="20" y="190" width="440" height="22"/>
+                    </customView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZK8-4p-NGD" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="COw-oX-maA"/>
+                    <constraint firstItem="Z9X-j6-rKt" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="3My-qJ-ASX"/>
+                    <constraint firstItem="Z9X-j6-rKt" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="Eiv-Su-94D"/>
+                    <constraint firstItem="qKl-Db-CKi" firstAttribute="top" secondItem="Z9X-j6-rKt" secondAttribute="bottom" constant="10" id="HW3-C1-Kgz"/>
                     <constraint firstAttribute="bottom" secondItem="qKl-Db-CKi" secondAttribute="bottom" constant="20" id="Mz5-Pm-jIj"/>
-                    <constraint firstItem="ZK8-4p-NGD" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="NIB-Cd-0IO"/>
                     <constraint firstAttribute="trailing" secondItem="qKl-Db-CKi" secondAttribute="trailing" constant="20" id="Oc3-SD-ftX"/>
-                    <constraint firstItem="qKl-Db-CKi" firstAttribute="top" secondItem="ZK8-4p-NGD" secondAttribute="bottom" constant="10" id="UFa-N9-UkM"/>
+                    <constraint firstAttribute="trailing" secondItem="Z9X-j6-rKt" secondAttribute="trailing" constant="20" id="Ol2-j9-Mnz"/>
                     <constraint firstItem="qKl-Db-CKi" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="ZfD-vm-z0x"/>
-                    <constraint firstAttribute="trailing" secondItem="ZK8-4p-NGD" secondAttribute="trailing" constant="20" id="fW5-mT-Owc"/>
                 </constraints>
             </view>
         </window>
