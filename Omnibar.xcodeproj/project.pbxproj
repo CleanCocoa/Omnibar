@@ -25,7 +25,6 @@
 		5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9711EDE9C8600F3DA4F /* EditableText.swift */; };
 		5038D9741EDE9D9800F3DA4F /* FieldEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */; };
 		5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */; };
-		5038D9791EDEA54300F3DA4F /* FieldEditorDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9781EDEA54300F3DA4F /* FieldEditorDouble.swift */; };
 		5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */; };
 		5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */; };
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
@@ -123,7 +122,6 @@
 		5038D9711EDE9C8600F3DA4F /* EditableText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableText.swift; sourceTree = "<group>"; };
 		5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldEditor.swift; sourceTree = "<group>"; };
 		5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSText+FieldEditor.swift"; sourceTree = "<group>"; };
-		5038D9781EDEA54300F3DA4F /* FieldEditorDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldEditorDouble.swift; sourceTree = "<group>"; };
 		5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Equatable.swift"; sourceTree = "<group>"; };
 		5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+EquatableTests.swift"; sourceTree = "<group>"; };
 		5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacement.swift; sourceTree = "<group>"; };
@@ -269,18 +267,9 @@
 				5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */,
 				5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */,
 				5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */,
-				5038D9771EDEA53700F3DA4F /* Mocks and Stubs */,
 				5038D9661EDE934F00F3DA4F /* Info.plist */,
 			);
 			path = OmnibarTests;
-			sourceTree = "<group>";
-		};
-		5038D9771EDEA53700F3DA4F /* Mocks and Stubs */ = {
-			isa = PBXGroup;
-			children = (
-				5038D9781EDEA54300F3DA4F /* FieldEditorDouble.swift */,
-			);
-			name = "Mocks and Stubs";
 			sourceTree = "<group>";
 		};
 		5038D9801EDEAB0900F3DA4F /* Cocoa Adapter Layer */ = {
@@ -544,7 +533,6 @@
 			files = (
 				5038D9701EDE950900F3DA4F /* OmnibarTests.swift in Sources */,
 				5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */,
-				5038D9791EDEA54300F3DA4F /* FieldEditorDouble.swift in Sources */,
 				5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */,
 				5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */,
 				5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */,
