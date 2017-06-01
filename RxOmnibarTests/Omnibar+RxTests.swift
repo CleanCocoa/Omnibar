@@ -7,61 +7,78 @@ import RxTest
 import Omnibar
 import RxOmnibar
 
-class Omnibar_RxTests: XCTestCase {
+class Omnibar_RxTests: XCTestCase, RxTestHelpers {
 
     func testTextCompletesOnDealloc() {
         let createView: () -> Omnibar = { Omnibar(frame: CGRect(x: 0, y: 0, width: 1, height: 1)) }
         ensurePropertyDeallocated(createView, "a") { (view: Omnibar) in view.rx.text }
     }
+}
 
-    func ensurePropertyDeallocated<C, T: Equatable>(_ createControl: () -> C, _ initialValue: T, file: StaticString = #file, line: UInt = #line, _ propertySelector: (C) -> ControlProperty<T>) where C: NSObject {
+// MARK: - Selection
 
-        ensurePropertyDeallocated(createControl, initialValue, comparer: ==, file: file, line: line, propertySelector)
+extension Omnibar_RxTests {
+
+    func testControlCommand_MoveSelection_PublishesEvent() {
+
+        let scheduler = TestScheduler(initialClock: 0)
+        let omnibar = Omnibar()
+
+        let irrelevantControl = NSControl()
+        let irrelevantTextView = NSTextView()
+
+        scheduler.scheduleAt(300) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
+        scheduler.scheduleAt(400) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
+        scheduler.scheduleAt(500) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:))) }
+        // Other selectors should be ignored
+        scheduler.scheduleAt(600) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.insertNewline(_:))) }
+
+        let result = scheduler.start { omnibar.rx.moveSelection }
+
+        XCTAssertEqual(result.events, [
+            next(300, .previous),
+            next(400, .previous),
+            next(500, .next)
+            ])
     }
 
-    func ensurePropertyDeallocated<C, T>(_ createControl: () -> C, _ initialValue: T, comparer: (T, T) -> Bool, file: StaticString = #file, line: UInt = #line, _ propertySelector: (C) -> ControlProperty<T>) where C: NSObject  {
+    func testControlCommand_MoveSelectionWithDelegates_PublishesEventAndCallsDelegate() {
 
-        let variable = Variable(initialValue)
+        let scheduler = TestScheduler(initialClock: 0)
+        let omnibar = Omnibar()
+        let double = SelectionDelegateDouble()
+        omnibar.selectionDelegate = double
 
-        var completed = false
-        var deallocated = false
-        var lastReturnedPropertyValue: T!
+        let irrelevantControl = NSControl()
+        let irrelevantTextView = NSTextView()
 
-        autoreleasepool {
-            var control: C! = createControl()
-
-            let property = propertySelector(control)
-
-            let disposable = variable.asObservable().bind(to: property)
-
-            _ = property.subscribe(onNext: { n in
-                lastReturnedPropertyValue = n
-            }, onCompleted: {
-                completed = true
-                disposable.dispose()
-            })
+        scheduler.scheduleAt(500) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
+        scheduler.scheduleAt(600) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:))) }
+        scheduler.scheduleAt(700) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.insertNewline(_:))) }
+        scheduler.scheduleAt(800) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
 
 
-            _ = (control as NSObject).rx.deallocated.subscribe(onNext: { _ in
-                deallocated = true
-            })
+        let result = scheduler.start { omnibar.rx.moveSelection }
 
-            control = nil
-        }
+        XCTAssertEqual(result.events, [
+            next(500, .previous),
+            next(600, .next),
+            next(800, .previous)
+            ])
+        XCTAssertEqual(double.didSelectNext, 1)
+        XCTAssertEqual(double.didSelectPrevious, 2)
+    }
 
+}
 
-        // this code is here to flush any events that were scheduled to
-        // run on main loop
-        DispatchQueue.main.async {
-            let runLoop = CFRunLoopGetCurrent()
-            CFRunLoopStop(runLoop)
-        }
-        let runLoop = CFRunLoopGetCurrent()
-        CFRunLoopWakeUp(runLoop)
-        CFRunLoopRun()
+final class SelectionDelegateDouble: OmnibarSelectionDelegate {
+    var didSelectPrevious: Int = 0
+    func omnibarSelectPrevious(_ omnibar: Omnibar) {
+        didSelectPrevious += 1
+    }
 
-        XCTAssertTrue(deallocated, "not deallocated", file: file, line: line)
-        XCTAssertTrue(completed, "not completed", file: file, line: line)
-        XCTAssertTrue(comparer(initialValue, lastReturnedPropertyValue), "last property value (\(lastReturnedPropertyValue)) does not match initial value (\(initialValue))", file: file, line: line)
+    var didSelectNext: Int = 0
+    func omnibarSelectNext(_ omnibar: Omnibar) {
+        didSelectNext += 1
     }
 }

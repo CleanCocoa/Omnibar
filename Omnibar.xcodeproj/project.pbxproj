@@ -94,6 +94,8 @@
 		5038DA791EE00DA600F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5E1EE00DA600F3DA4F /* Z Words.txt */; };
 		5038DA7C1EE00FAB00F3DA4F /* ExampleModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; };
 		5038DA7D1EE00FAB00F3DA4F /* ExampleModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA811EE03E4200F3DA4F /* RxTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA801EE03E4200F3DA4F /* RxTestHelpers.swift */; };
+		5038DA841EE0442A00F3DA4F /* RxCocoaCasting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA831EE0442A00F3DA4F /* RxCocoaCasting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +285,8 @@
 		5038DA5C1EE00DA600F3DA4F /* X Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "X Words.txt"; sourceTree = "<group>"; };
 		5038DA5D1EE00DA600F3DA4F /* Y Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Y Words.txt"; sourceTree = "<group>"; };
 		5038DA5E1EE00DA600F3DA4F /* Z Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Z Words.txt"; sourceTree = "<group>"; };
+		5038DA801EE03E4200F3DA4F /* RxTestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTestHelpers.swift; sourceTree = "<group>"; };
+		5038DA831EE0442A00F3DA4F /* RxCocoaCasting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCocoaCasting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +476,7 @@
 			children = (
 				5038D9DD1EDFFA9E00F3DA4F /* RxOmnibar.h */,
 				5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */,
+				5038DA831EE0442A00F3DA4F /* RxCocoaCasting.swift */,
 				5038D9DE1EDFFA9E00F3DA4F /* Info.plist */,
 			);
 			path = RxOmnibar;
@@ -481,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */,
+				5038DA801EE03E4200F3DA4F /* RxTestHelpers.swift */,
 				5038D9EA1EDFFA9E00F3DA4F /* Info.plist */,
 			);
 			path = RxOmnibarTests;
@@ -956,6 +962,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5038DA141EDFFC3000F3DA4F /* Omnibar+Rx.swift in Sources */,
+				5038DA841EE0442A00F3DA4F /* RxCocoaCasting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +971,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5038DA161EDFFD4600F3DA4F /* Omnibar+RxTests.swift in Sources */,
+				5038DA811EE03E4200F3DA4F /* RxTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@ class OmnibarTests: XCTestCase {
     }
 }
 
+
 // MARK: Displaying OmnibarContent
 
 fileprivate class EditableTextDouble: EditableText {
@@ -133,6 +134,54 @@ extension OmnibarTests {
         XCTAssertEqual(
             editableTextDouble.didReplace,
             TextReplacement(omnibarContent: content))
+    }
+
+}
+
+
+// MARK: Arrow keys
+
+extension OmnibarTests {
+
+    class SelectionDelegateDouble: OmnibarSelectionDelegate {
+        var didSelectPrevious: Omnibar?
+        func omnibarSelectPrevious(_ omnibar: Omnibar) {
+            didSelectPrevious = omnibar
+        }
+
+        var didSelectNext: Omnibar?
+        func omnibarSelectNext(_ omnibar: Omnibar) {
+            didSelectNext = omnibar
+        }
+    }
+
+    var irrelevantControl: NSControl { return NSControl() }
+    var irrelevantTextView: NSTextView { return NSTextView() }
+
+    func testControlCommand_MoveDown_CallsDelegate() {
+
+        let omnibar = Omnibar()
+        let double = SelectionDelegateDouble()
+        omnibar.selectionDelegate = double
+
+        let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:)))
+
+        XCTAssert(didHandle)
+        XCTAssert(double.didSelectNext === omnibar)
+        XCTAssertNil(double.didSelectPrevious)
+    }
+
+    func testControlCommand_MoveUp_CallsDelegate() {
+
+        let omnibar = Omnibar()
+        let double = SelectionDelegateDouble()
+        omnibar.selectionDelegate = double
+
+        let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:)))
+
+        XCTAssert(didHandle)
+        XCTAssertNil(double.didSelectNext)
+        XCTAssert(double.didSelectPrevious === omnibar)
     }
 
 }
