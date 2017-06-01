@@ -8,5 +8,5 @@
 
 public protocol OmnibarContentChangeDelegate: class {
 
-    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange)
+    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod)
 }

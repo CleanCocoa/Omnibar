@@ -1,5 +1,9 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
+public enum ChangeMethod {
+    case deletion, insertion
+}
+
 public enum OmnibarContentChange: Equatable {
 
     case replacement(text: String)

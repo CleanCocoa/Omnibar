@@ -28,7 +28,7 @@ extension OmnibarTextField: NSTextViewDelegate {
         guard let replacementString = replacementString else { return true }
         guard let oldText = textView.string else { preconditionFailure("NSTextView is supposed to have non-nil string") }
 
-        let method: TextFieldTextChange.Method = {
+        let method: ChangeMethod = {
             let insertionLength = (replacementString as NSString).length
             let affectedLength = affectedCharRange.length
 

@@ -28,14 +28,15 @@ extension FilterService: SearchHandler {
 
     func displayAll() {
 
-        search(for: "")
+        search(for: "", offerSuggestion: false)
     }
 
-    func search(for searchTerm: String) {
+    func search(for searchTerm: String, offerSuggestion: Bool) {
 
         wordsModel.filtered(searchTerm: searchTerm) { result in
 
-            if let bestFit = result.bestMatch {
+            if offerSuggestion,
+                let bestFit = result.bestMatch {
                 suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
             }
 

@@ -4,13 +4,9 @@ import struct Foundation.NSRange
 
 struct TextFieldTextChange {
 
-    enum Method {
-        case deletion, insertion
-    }
-
     let oldText: String
     let patch: TextFieldTextPatch
-    let method: Method
+    let method: ChangeMethod
 
     var result: String {
 
@@ -38,7 +34,7 @@ struct TextFieldTextPatch {
 }
 
 extension TextFieldTextChange {
-    init(oldText: String, patch: String, range: NSRange, method: Method) {
+    init(oldText: String, patch: String, range: NSRange, method: ChangeMethod) {
         self.oldText = oldText
         self.patch = TextFieldTextPatch(string: patch, range: range)
         self.method = method

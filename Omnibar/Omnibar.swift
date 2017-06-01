@@ -119,7 +119,10 @@ extension Omnibar: NSTextFieldDelegate {
             self.display(content: contentChange.content)
         }
         
-        contentDelegate?.omnibar(self, contentChange: contentChange)
+        contentDelegate?.omnibar(
+            self,
+            contentChange: contentChange,
+            method: textChange.method)
     }
 }
 

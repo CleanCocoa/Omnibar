@@ -4,7 +4,7 @@ import Cocoa
 import Omnibar
 
 protocol SearchHandler: class {
-    func search(for searchTerm: String)
+    func search(for searchTerm: String, offerSuggestion: Bool)
 }
 
 protocol SelectsResult: class {
@@ -40,7 +40,7 @@ extension OmnibarController: DisplaysSuggestion {
 
 extension OmnibarController: OmnibarContentChangeDelegate {
 
-    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange) {
+    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
 
         let searchTerm: String = {
             switch contentChange {
@@ -49,7 +49,9 @@ extension OmnibarController: OmnibarContentChangeDelegate {
             }
         }()
 
-        searchHandler?.search(for: searchTerm)
+        searchHandler?.search(
+            for: searchTerm,
+            offerSuggestion: method == .insertion)
     }
 }
 

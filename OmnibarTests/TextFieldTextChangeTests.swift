@@ -5,7 +5,7 @@ import XCTest
 
 class TextFieldTextChangeTests: XCTestCase {
 
-    var irrelevantMethod: TextFieldTextChange.Method { return .insertion }
+    var irrelevantMethod: ChangeMethod { return .insertion }
 
     func testPatchResult_EmptyString_EmptyPatch_IsEmptyString() {
 

@@ -5,7 +5,7 @@ import XCTest
 
 class OmnibarContentChangeTests: XCTestCase {
 
-    var irrelevantMethod: TextFieldTextChange.Method { return .insertion }
+    var irrelevantMethod: ChangeMethod { return .insertion }
 
     func testInit_EmptyBase_ReturnsReplacement() {
 
