@@ -66,6 +66,7 @@
 		5038D9CD1EDED43800F3DA4F /* TextFieldTextChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */; };
 		5038D9CF1EDED51300F3DA4F /* OmnibarContentChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9CE1EDED51300F3DA4F /* OmnibarContentChangeTests.swift */; };
 		5038D9D11EDFE10300F3DA4F /* WordsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9D01EDFE10300F3DA4F /* WordsModel.swift */; };
+		5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9D21EDFEA8100F3DA4F /* FilterService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTextChange.swift; sourceTree = "<group>"; };
 		5038D9CE1EDED51300F3DA4F /* OmnibarContentChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarContentChangeTests.swift; sourceTree = "<group>"; };
 		5038D9D01EDFE10300F3DA4F /* WordsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordsModel.swift; sourceTree = "<group>"; };
+		5038D9D21EDFEA8100F3DA4F /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				5038D9461EDE902E00F3DA4F /* AppDelegate.swift */,
+				5038D9D21EDFEA8100F3DA4F /* FilterService.swift */,
 				5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */,
 				5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */,
 				5038D9BD1EDEB81100F3DA4F /* Words.swift */,
@@ -526,6 +529,7 @@
 				5038D9D11EDFE10300F3DA4F /* WordsModel.swift in Sources */,
 				5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */,
 				5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */,
+				5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */,
 				5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */,
 				5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */,
 			);

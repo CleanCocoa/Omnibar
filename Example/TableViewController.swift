@@ -2,19 +2,19 @@
 
 import Cocoa
 
-class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, DisplaysWords, SelectsResult {
 
     @IBOutlet weak var omnibarController: OmnibarController!
 
-    lazy var wordsModel: WordsModel = WordsModel()
-
-    func filterResults(searchTerm: String) {
-
-        wordsModel.filter(searchTerm: searchTerm)
-        if let bestFit = wordsModel.bestFit(startingWith: searchTerm) {
-            omnibarController.display(bestFit: bestFit, forSearchTerm: searchTerm)
+    private var words: [String] = [] {
+        didSet {
+            tableView.reloadData()
         }
-        tableView.reloadData()
+    }
+
+    func display(words: [String]) {
+
+        self.words = words
     }
 
     // MARK: - Table View Contents
@@ -23,19 +23,19 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func numberOfRows(in tableView: NSTableView) -> Int {
 
-        return wordsModel.count
+        return words.count
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 
-        return wordsModel[row]
+        return words[row]
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         guard let cellView = tableView.make(withIdentifier: "Cell", owner: tableView) as? NSTableCellView else { return nil }
 
-        cellView.textField?.stringValue = wordsModel[row]
+        cellView.textField?.stringValue = words[row]
 
         return cellView
     }
@@ -47,7 +47,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
         guard let tableView = notification.object as? NSTableView else { return }
 
-        let word = wordsModel[tableView.selectedRow]
+        let word = words[tableView.selectedRow]
         omnibarController.select(string: word)
     }
 
@@ -60,7 +60,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func selectNext() {
 
-        guard tableView.selectedRow < wordsModel.count else { return }
+        guard tableView.selectedRow < words.count else { return }
 
         select(row: tableView.selectedRow + 1)
     }

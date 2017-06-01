@@ -9,11 +9,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var omnibar: Omnibar!
     @IBOutlet weak var omnibarController: OmnibarController!
+    @IBOutlet weak var tableViewController: TableViewController!
 
+    var filterService: FilterService!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
         omnibar.selectionDelegate = omnibarController
         omnibar.contentDelegate = omnibarController
+
+        filterService = FilterService(
+            suggestionDisplay: omnibarController,
+            wordDisplay: tableViewController)
+        omnibarController.searchHandler = filterService
+        omnibarController.selectionHandler = tableViewController
+        filterService.displayAll()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

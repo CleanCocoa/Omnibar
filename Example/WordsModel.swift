@@ -2,39 +2,35 @@
 
 import Foundation
 
-class WordsModel {
+struct FilterResults {
 
-    private lazy var allWords: [String] = { try! Words.allWords() }()
-    private var filteredWords: [String]?
-    var currentWords: [String] {
-        return filteredWords ?? allWords
+    let words: [String]
+    let bestMatch: String?
+
+    init(words: [String], bestMatch: String? = nil) {
+
+        self.words = words
+        self.bestMatch = bestMatch
     }
+}
 
-    var count: Int { return currentWords.count }
+struct WordsModel {
 
-    subscript(index: Int) -> String {
-        return currentWords[index]
-    }
+    private let allWords: [String] = { try! Words.allWords() }()
 
-    func bestFit(startingWith searchTerm: String) -> String? {
-
-        guard !searchTerm.isEmpty else { return nil }
-        
-        return currentWords.first { $0.lowercased().hasPrefix(searchTerm.lowercased()) }
-    }
-
-    func filter(searchTerm: String) {
+    func filtered(searchTerm: String, result: (FilterResults) -> Void) {
 
         guard !searchTerm.isEmpty else {
-            filteredWords = nil
+            result(FilterResults(words: allWords))
             return
         }
 
-        let searchWords = searchTerm.lowercased().components(separatedBy: .whitespacesAndNewlines)
+        let filteredWords = filter(haystack: allWords, searchTerm: searchTerm)
+        let bestMatch = bestFit(haystack: filteredWords, needleStartingWith: searchTerm)
 
-        let lazyFiltered = allWords.lazy
-            .filter(containsAll(searchWords))
-        filteredWords = Array(lazyFiltered)
+        result(FilterResults(
+            words: filteredWords,
+            bestMatch: bestMatch))
     }
 }
 
@@ -47,4 +43,19 @@ func containsAll(_ searchWords: [String]) -> (String) -> Bool {
         }
         return true
     }
+}
+
+func bestFit(haystack: [String], needleStartingWith searchTerm: String) -> String? {
+
+    guard !searchTerm.isEmpty else { return nil }
+
+    return haystack.first { $0.lowercased().hasPrefix(searchTerm.lowercased()) }
+}
+
+func filter(haystack: [String], searchTerm: String) -> [String] {
+
+    let searchWords = searchTerm.lowercased().components(separatedBy: .whitespacesAndNewlines)
+    let filtered = haystack.filter(containsAll(searchWords))
+
+    return filtered
 }

@@ -3,15 +3,28 @@
 import Cocoa
 import Omnibar
 
+protocol SearchHandler: class {
+    func search(for searchTerm: String)
+}
+
+protocol SelectsResult: class {
+    func selectNext()
+    func selectPrevious()
+}
+
 class OmnibarController: NSViewController {
 
-    @IBOutlet weak var tableViewController: TableViewController!
+    weak var searchHandler: SearchHandler?
+    weak var selectionHandler: SelectsResult?
 
     var omnibar: Omnibar! { return self.view as? Omnibar }
 
     func select(string: String) {
         omnibar.display(content: .selection(text: string))
     }
+}
+
+extension OmnibarController: DisplaysSuggestion {
 
     func display(bestFit: String, forSearchTerm searchTerm: String) {
 
@@ -36,17 +49,17 @@ extension OmnibarController: OmnibarContentChangeDelegate {
             }
         }()
 
-        tableViewController.filterResults(searchTerm: searchTerm)
+        searchHandler?.search(for: searchTerm)
     }
 }
 
 extension OmnibarController: OmnibarSelectionDelegate {
 
     func omnibarSelectNext(_ omnibar: Omnibar) {
-        tableViewController.selectNext()
+        selectionHandler?.selectNext()
     }
 
     func omnibarSelectPrevious(_ omnibar: Omnibar) {
-        tableViewController.selectPrevious()
+        selectionHandler?.selectPrevious()
     }
 }

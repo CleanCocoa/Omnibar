@@ -17,6 +17,7 @@
             <connections>
                 <outlet property="omnibar" destination="Z9X-j6-rKt" id="OQA-zj-vjj"/>
                 <outlet property="omnibarController" destination="ZYw-vb-fdM" id="HnV-c8-wKX"/>
+                <outlet property="tableViewController" destination="tuB-pm-iUc" id="hgx-dt-9mV"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -469,7 +470,6 @@
         </customObject>
         <customObject id="ZYw-vb-fdM" customClass="OmnibarController" customModule="Example" customModuleProvider="target">
             <connections>
-                <outlet property="tableViewController" destination="tuB-pm-iUc" id="prt-ER-HmA"/>
                 <outlet property="view" destination="Z9X-j6-rKt" id="a3n-u0-r16"/>
             </connections>
         </customObject>
