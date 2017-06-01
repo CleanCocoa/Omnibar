@@ -2,42 +2,15 @@
 
 import Cocoa
 
-class WordsModel {
-    
-    private lazy var allWords: [String] = { try! Words.allWords() }()
-    private var filteredWords: [String]?
-    var currentWords: [String] {
-        return filteredWords ?? allWords
-    }
-
-    var count: Int { return currentWords.count }
-
-    subscript(index: Int) -> String {
-        return currentWords[index]
-    }
-
-    func filter(startingWith searchTerm: String) {
-
-        guard !searchTerm.isEmpty else {
-            filteredWords = nil
-            return
-        }
-
-        let lazyFiltered = allWords.lazy
-            .filter { $0.lowercased().hasPrefix(searchTerm.lowercased()) }
-        filteredWords = Array(lazyFiltered)
-    }
-}
-
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
     @IBOutlet weak var omnibarController: OmnibarController!
 
     lazy var wordsModel: WordsModel = WordsModel()
 
-    func filterResults(startingWith searchTerm: String) {
+    func filterResults(searchTerm: String) {
 
-        wordsModel.filter(startingWith: searchTerm)
+        wordsModel.filter(searchTerm: searchTerm)
         tableView.reloadData()
     }
 

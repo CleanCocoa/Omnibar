@@ -25,7 +25,7 @@ extension OmnibarController: OmnibarContentChangeDelegate {
             }
         }()
 
-        tableViewController.filterResults(startingWith: searchTerm)
+        tableViewController.filterResults(searchTerm: searchTerm)
     }
 }
 
