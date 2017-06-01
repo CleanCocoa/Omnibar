@@ -40,7 +40,7 @@ public enum OmnibarContentChange: Equatable {
 
 extension String {
 
-    func removingSubrange(_ bounds: Range<Index>) -> String {
+    public func removingSubrange(_ bounds: Range<Index>) -> String {
 
         return self.replacingCharacters(in: bounds, with: "")
     }

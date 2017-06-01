@@ -12,6 +12,17 @@ class OmnibarController: NSViewController {
     func select(string: String) {
         omnibar.display(content: .selection(text: string))
     }
+
+    func display(bestFit: String, forSearchTerm searchTerm: String) {
+
+        guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
+            matchRange.lowerBound == bestFit.startIndex
+            else { preconditionFailure("display(bestFit:forSearchTerm:) must be called with `searchTerm` starting `bestFit`") }
+
+        let appendix = bestFit.removingSubrange(matchRange)
+
+        omnibar.display(content: .suggestion(text: searchTerm, appendix: appendix))
+    }
 }
 
 extension OmnibarController: OmnibarContentChangeDelegate {

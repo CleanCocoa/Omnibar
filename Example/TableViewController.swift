@@ -11,6 +11,9 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     func filterResults(searchTerm: String) {
 
         wordsModel.filter(searchTerm: searchTerm)
+        if let bestFit = wordsModel.bestFit(startingWith: searchTerm) {
+            omnibarController.display(bestFit: bestFit, forSearchTerm: searchTerm)
+        }
         tableView.reloadData()
     }
 

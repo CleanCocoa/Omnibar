@@ -18,7 +18,9 @@ class WordsModel {
 
     func bestFit(startingWith searchTerm: String) -> String? {
 
-        return currentWords.first
+        guard !searchTerm.isEmpty else { return nil }
+        
+        return currentWords.first { $0.lowercased().hasPrefix(searchTerm.lowercased()) }
     }
 
     func filter(searchTerm: String) {
