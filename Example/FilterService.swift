@@ -8,6 +8,8 @@ protocol DisplaysSuggestion {
     func display(bestFit: String, forSearchTerm searchTerm: String)
 }
 
+import Foundation
+
 class FilterService {
 
     let suggestionDisplay: DisplaysSuggestion
@@ -22,6 +24,9 @@ class FilterService {
     }
 
     lazy var wordsModel: WordsModel = WordsModel()
+    lazy var filterQueue: DispatchQueue = DispatchQueue(label: "filter-queue", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
+
+    fileprivate var pendingRequest: Cancellable<FilterResults>?
 }
 
 extension FilterService: SearchHandler {
@@ -33,14 +38,22 @@ extension FilterService: SearchHandler {
 
     func search(for searchTerm: String, offerSuggestion: Bool) {
 
-        wordsModel.filtered(searchTerm: searchTerm) { result in
+        let newRequest = Cancellable<FilterResults> { [unowned self] result in
+            DispatchQueue.main.async {
+                if offerSuggestion,
+                    let bestFit = result.bestMatch {
+                    self.suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
+                }
 
-            if offerSuggestion,
-                let bestFit = result.bestMatch {
-                suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
+                self.wordDisplay.display(words: result.words)
             }
+        }
 
-            wordDisplay.display(words: result.words)
+        pendingRequest?.cancel()
+        pendingRequest = newRequest
+
+        filterQueue.async {
+            self.wordsModel.filtered(searchTerm: searchTerm, result: newRequest.handler)
         }
     }
 }

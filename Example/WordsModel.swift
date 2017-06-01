@@ -20,6 +20,8 @@ struct WordsModel {
 
     func filtered(searchTerm: String, result: (FilterResults) -> Void) {
 
+//        delayThread()
+        
         guard !searchTerm.isEmpty else {
             result(FilterResults(words: allWords))
             return
