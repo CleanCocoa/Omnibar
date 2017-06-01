@@ -2,12 +2,14 @@
 
 import Foundation
 
+typealias Word = String
+
 struct FilterResults {
 
-    let words: [String]
-    let bestMatch: String?
+    let words: [Word]
+    let bestMatch: Word?
 
-    init(words: [String], bestMatch: String? = nil) {
+    init(words: [Word], bestMatch: Word? = nil) {
 
         self.words = words
         self.bestMatch = bestMatch
@@ -16,7 +18,7 @@ struct FilterResults {
 
 struct WordsModel {
 
-    private let allWords: [String] = { try! Words.allWords() }()
+    private let allWords: [Word] = { try! Words.allWords() }()
 
     func filtered(searchTerm: String, result: (FilterResults) -> Void) {
 
@@ -36,7 +38,7 @@ struct WordsModel {
     }
 }
 
-func containsAll(_ searchWords: [String]) -> (String) -> Bool {
+func containsAll(_ searchWords: [String]) -> (Word) -> Bool {
 
     return { word in
         let word = word.lowercased()
@@ -47,14 +49,14 @@ func containsAll(_ searchWords: [String]) -> (String) -> Bool {
     }
 }
 
-func bestFit(haystack: [String], needleStartingWith searchTerm: String) -> String? {
+func bestFit(haystack: [Word], needleStartingWith searchTerm: String) -> Word? {
 
     guard !searchTerm.isEmpty else { return nil }
 
     return haystack.first { $0.lowercased().hasPrefix(searchTerm.lowercased()) }
 }
 
-func filter(haystack: [String], searchTerm: String) -> [String] {
+func filter(haystack: [Word], searchTerm: String) -> [Word] {
 
     let searchWords = searchTerm.lowercased().components(separatedBy: .whitespacesAndNewlines)
     let filtered = haystack.filter(containsAll(searchWords))

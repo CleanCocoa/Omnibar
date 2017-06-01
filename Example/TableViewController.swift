@@ -2,10 +2,14 @@
 
 import Cocoa
 
+protocol SelectsWord: class {
+    func select(word: Word)
+}
+
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, DisplaysWords, SelectsResult {
 
-    @IBOutlet weak var omnibarController: OmnibarController!
-
+    weak var wordSelector: SelectsWord?
+    
     private var words: [String] = [] {
         didSet {
             tableView.reloadData()
@@ -48,7 +52,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         guard let tableView = notification.object as? NSTableView else { return }
 
         let word = words[tableView.selectedRow]
-        omnibarController.select(string: word)
+        wordSelector?.select(word: word)
     }
 
     func selectPrevious() {

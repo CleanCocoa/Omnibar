@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             wordDisplay: tableViewController)
         omnibarController.searchHandler = filterService
         omnibarController.selectionHandler = tableViewController
+        tableViewController.wordSelector = omnibarController
         filterService.displayAll()
     }
 

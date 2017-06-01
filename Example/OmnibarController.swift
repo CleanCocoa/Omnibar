@@ -18,9 +18,13 @@ class OmnibarController: NSViewController {
     weak var selectionHandler: SelectsResult?
 
     var omnibar: Omnibar! { return self.view as? Omnibar }
+}
 
-    func select(string: String) {
-        omnibar.display(content: .selection(text: string))
+extension OmnibarController: SelectsWord {
+    
+    func select(word: Word) {
+        
+        omnibar.display(content: .selection(text: word))
     }
 }
 
