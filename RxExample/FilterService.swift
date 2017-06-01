@@ -1,7 +1,7 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-import ExampleModel
 import Foundation
+import ExampleModel
 
 protocol DisplaysWords {
     func display(words: [String])
@@ -26,8 +26,6 @@ class FilterService {
 
     lazy var wordsModel: WordsModel = WordsModel()
     lazy var filterQueue: DispatchQueue = DispatchQueue(label: "filter-queue", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
-
-    fileprivate var pendingRequest: Cancellable<FilterResults>?
 }
 
 extension FilterService: SearchHandler {
@@ -39,22 +37,18 @@ extension FilterService: SearchHandler {
 
     func search(for searchTerm: String, offerSuggestion: Bool) {
 
-        let newRequest = Cancellable<FilterResults> { [unowned self] result in
-            DispatchQueue.main.async {
-                if offerSuggestion,
-                    let bestFit = result.bestMatch {
-                    self.suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
-                }
-
-                self.wordDisplay.display(words: result.words)
-            }
-        }
-
-        pendingRequest?.cancel()
-        pendingRequest = newRequest
-
         filterQueue.async {
-            self.wordsModel.filtered(searchTerm: searchTerm, result: newRequest.handler)
+            self.wordsModel.filtered(searchTerm: searchTerm) { result in
+                
+                DispatchQueue.main.async {
+                    if offerSuggestion,
+                        let bestFit = result.bestMatch {
+                        self.suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
+                    }
+
+                    self.wordDisplay.display(words: result.words)
+                }
+            }
         }
     }
 }

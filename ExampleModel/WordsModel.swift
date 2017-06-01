@@ -1,29 +1,27 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-import Foundation
+public typealias Word = String
 
-typealias Word = String
+public struct FilterResults {
 
-struct FilterResults {
+    public let words: [Word]
+    public let bestMatch: Word?
 
-    let words: [Word]
-    let bestMatch: Word?
-
-    init(words: [Word], bestMatch: Word? = nil) {
+    public init(words: [Word], bestMatch: Word? = nil) {
 
         self.words = words
         self.bestMatch = bestMatch
     }
 }
 
-struct WordsModel {
+public struct WordsModel {
+
+    public init() { }
 
     private let allWords: [Word] = { try! Words.allWords() }()
 
-    func filtered(searchTerm: String, result: (FilterResults) -> Void) {
-
-//        delayThread()
-        
+    public func filtered(searchTerm: String, result: (FilterResults) -> Void) {
+       
         guard !searchTerm.isEmpty else {
             result(FilterResults(words: allWords))
             return

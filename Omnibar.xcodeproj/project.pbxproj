@@ -30,33 +30,6 @@
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
 		5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */; };
 		5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */; };
-		5038D9A21EDEB40100F3DA4F /* A Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9881EDEB40100F3DA4F /* A Words.txt */; };
-		5038D9A31EDEB40100F3DA4F /* B Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9891EDEB40100F3DA4F /* B Words.txt */; };
-		5038D9A41EDEB40100F3DA4F /* C Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98A1EDEB40100F3DA4F /* C Words.txt */; };
-		5038D9A51EDEB40100F3DA4F /* D Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98B1EDEB40100F3DA4F /* D Words.txt */; };
-		5038D9A61EDEB40100F3DA4F /* E Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98C1EDEB40100F3DA4F /* E Words.txt */; };
-		5038D9A71EDEB40100F3DA4F /* F Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98D1EDEB40100F3DA4F /* F Words.txt */; };
-		5038D9A81EDEB40100F3DA4F /* G Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98E1EDEB40100F3DA4F /* G Words.txt */; };
-		5038D9A91EDEB40100F3DA4F /* H Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D98F1EDEB40100F3DA4F /* H Words.txt */; };
-		5038D9AA1EDEB40100F3DA4F /* I Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9901EDEB40100F3DA4F /* I Words.txt */; };
-		5038D9AB1EDEB40100F3DA4F /* J Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9911EDEB40100F3DA4F /* J Words.txt */; };
-		5038D9AC1EDEB40100F3DA4F /* K Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9921EDEB40100F3DA4F /* K Words.txt */; };
-		5038D9AD1EDEB40100F3DA4F /* L Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9931EDEB40100F3DA4F /* L Words.txt */; };
-		5038D9AE1EDEB40100F3DA4F /* M Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9941EDEB40100F3DA4F /* M Words.txt */; };
-		5038D9AF1EDEB40100F3DA4F /* N Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9951EDEB40100F3DA4F /* N Words.txt */; };
-		5038D9B01EDEB40100F3DA4F /* O Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9961EDEB40100F3DA4F /* O Words.txt */; };
-		5038D9B11EDEB40100F3DA4F /* P Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9971EDEB40100F3DA4F /* P Words.txt */; };
-		5038D9B21EDEB40100F3DA4F /* Q Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9981EDEB40100F3DA4F /* Q Words.txt */; };
-		5038D9B31EDEB40100F3DA4F /* R Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9991EDEB40100F3DA4F /* R Words.txt */; };
-		5038D9B41EDEB40100F3DA4F /* S Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99A1EDEB40100F3DA4F /* S Words.txt */; };
-		5038D9B51EDEB40100F3DA4F /* T Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99B1EDEB40100F3DA4F /* T Words.txt */; };
-		5038D9B61EDEB40100F3DA4F /* U Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99C1EDEB40100F3DA4F /* U Words.txt */; };
-		5038D9B71EDEB40100F3DA4F /* V Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99D1EDEB40100F3DA4F /* V Words.txt */; };
-		5038D9B81EDEB40100F3DA4F /* W Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99E1EDEB40100F3DA4F /* W Words.txt */; };
-		5038D9B91EDEB40100F3DA4F /* X Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D99F1EDEB40100F3DA4F /* X Words.txt */; };
-		5038D9BA1EDEB40100F3DA4F /* Y Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9A01EDEB40100F3DA4F /* Y Words.txt */; };
-		5038D9BB1EDEB40100F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9A11EDEB40100F3DA4F /* Z Words.txt */; };
-		5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BD1EDEB81100F3DA4F /* Words.swift */; };
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
 		5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */; };
 		5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */; };
@@ -65,9 +38,62 @@
 		5038D9CA1EDED00F00F3DA4F /* TextFieldTextChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */; };
 		5038D9CD1EDED43800F3DA4F /* TextFieldTextChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */; };
 		5038D9CF1EDED51300F3DA4F /* OmnibarContentChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9CE1EDED51300F3DA4F /* OmnibarContentChangeTests.swift */; };
-		5038D9D11EDFE10300F3DA4F /* WordsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9D01EDFE10300F3DA4F /* WordsModel.swift */; };
 		5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9D21EDFEA8100F3DA4F /* FilterService.swift */; };
 		5038D9D51EDFEFB500F3DA4F /* ConcurrencyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */; };
+		5038D9E41EDFFA9E00F3DA4F /* RxOmnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */; };
+		5038D9EB1EDFFA9E00F3DA4F /* RxOmnibar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5038D9DD1EDFFA9E00F3DA4F /* RxOmnibar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5038D9F21EDFFAAD00F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
+		5038D9FA1EDFFACF00F3DA4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9F91EDFFACF00F3DA4F /* AppDelegate.swift */; };
+		5038D9FC1EDFFACF00F3DA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9FB1EDFFACF00F3DA4F /* Assets.xcassets */; };
+		5038D9FF1EDFFACF00F3DA4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9FD1EDFFACF00F3DA4F /* MainMenu.xib */; };
+		5038DA061EDFFB1300F3DA4F /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D93A1EDE900700F3DA4F /* RxTest.framework */; };
+		5038DA071EDFFB1900F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
+		5038DA091EDFFB3300F3DA4F /* RxCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA0A1EDFFB3300F3DA4F /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA0B1EDFFB3300F3DA4F /* RxTest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5038D93A1EDE900700F3DA4F /* RxTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA0C1EDFFB4700F3DA4F /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; };
+		5038DA0D1EDFFB4700F3DA4F /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA0E1EDFFB4700F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
+		5038DA0F1EDFFB4700F3DA4F /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA121EDFFBE000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA111EDFFBE000F3DA4F /* OmnibarController.swift */; };
+		5038DA141EDFFC3000F3DA4F /* Omnibar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */; };
+		5038DA161EDFFD4600F3DA4F /* Omnibar+RxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */; };
+		5038DA1A1EE006C900F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA191EE006C900F3DA4F /* TableViewController.swift */; };
+		5038DA1C1EE0090100F3DA4F /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA1B1EE0090100F3DA4F /* FilterService.swift */; };
+		5038DA2B1EE0093400F3DA4F /* ExampleModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; };
+		5038DA341EE0093400F3DA4F /* ExampleModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5038DA241EE0093400F3DA4F /* ExampleModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5038DA371EE0093400F3DA4F /* ExampleModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; };
+		5038DA381EE0093400F3DA4F /* ExampleModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA411EE0095200F3DA4F /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA3F1EE0095200F3DA4F /* Words.swift */; };
+		5038DA421EE0095200F3DA4F /* WordsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA401EE0095200F3DA4F /* WordsModel.swift */; };
+		5038DA601EE00DA600F3DA4F /* A Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA451EE00DA600F3DA4F /* A Words.txt */; };
+		5038DA611EE00DA600F3DA4F /* B Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA461EE00DA600F3DA4F /* B Words.txt */; };
+		5038DA621EE00DA600F3DA4F /* C Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA471EE00DA600F3DA4F /* C Words.txt */; };
+		5038DA631EE00DA600F3DA4F /* D Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA481EE00DA600F3DA4F /* D Words.txt */; };
+		5038DA641EE00DA600F3DA4F /* E Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA491EE00DA600F3DA4F /* E Words.txt */; };
+		5038DA651EE00DA600F3DA4F /* F Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA4A1EE00DA600F3DA4F /* F Words.txt */; };
+		5038DA661EE00DA600F3DA4F /* G Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA4B1EE00DA600F3DA4F /* G Words.txt */; };
+		5038DA671EE00DA600F3DA4F /* H Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA4C1EE00DA600F3DA4F /* H Words.txt */; };
+		5038DA681EE00DA600F3DA4F /* I Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA4D1EE00DA600F3DA4F /* I Words.txt */; };
+		5038DA691EE00DA600F3DA4F /* J Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA4E1EE00DA600F3DA4F /* J Words.txt */; };
+		5038DA6A1EE00DA600F3DA4F /* K Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA4F1EE00DA600F3DA4F /* K Words.txt */; };
+		5038DA6B1EE00DA600F3DA4F /* L Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA501EE00DA600F3DA4F /* L Words.txt */; };
+		5038DA6C1EE00DA600F3DA4F /* M Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA511EE00DA600F3DA4F /* M Words.txt */; };
+		5038DA6D1EE00DA600F3DA4F /* N Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA521EE00DA600F3DA4F /* N Words.txt */; };
+		5038DA6E1EE00DA600F3DA4F /* O Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA531EE00DA600F3DA4F /* O Words.txt */; };
+		5038DA6F1EE00DA600F3DA4F /* P Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA541EE00DA600F3DA4F /* P Words.txt */; };
+		5038DA701EE00DA600F3DA4F /* Q Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA551EE00DA600F3DA4F /* Q Words.txt */; };
+		5038DA711EE00DA600F3DA4F /* R Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA561EE00DA600F3DA4F /* R Words.txt */; };
+		5038DA721EE00DA600F3DA4F /* S Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA571EE00DA600F3DA4F /* S Words.txt */; };
+		5038DA731EE00DA600F3DA4F /* T Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA581EE00DA600F3DA4F /* T Words.txt */; };
+		5038DA741EE00DA600F3DA4F /* U Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA591EE00DA600F3DA4F /* U Words.txt */; };
+		5038DA751EE00DA600F3DA4F /* V Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5A1EE00DA600F3DA4F /* V Words.txt */; };
+		5038DA761EE00DA600F3DA4F /* W Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5B1EE00DA600F3DA4F /* W Words.txt */; };
+		5038DA771EE00DA600F3DA4F /* X Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5C1EE00DA600F3DA4F /* X Words.txt */; };
+		5038DA781EE00DA600F3DA4F /* Y Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5D1EE00DA600F3DA4F /* Y Words.txt */; };
+		5038DA791EE00DA600F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5E1EE00DA600F3DA4F /* Z Words.txt */; };
+		5038DA7C1EE00FAB00F3DA4F /* ExampleModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; };
+		5038DA7D1EE00FAB00F3DA4F /* ExampleModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +111,48 @@
 			remoteGlobalIDString = 5038D92B1EDE8F7200F3DA4F;
 			remoteInfo = Omnibar;
 		};
+		5038D9E51EDFFA9E00F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038D9DA1EDFFA9E00F3DA4F;
+			remoteInfo = RxOmnibar;
+		};
+		5038DA171EE0062900F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038D92B1EDE8F7200F3DA4F;
+			remoteInfo = Omnibar;
+		};
+		5038DA2C1EE0093400F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038DA211EE0093300F3DA4F;
+			remoteInfo = ExampleModel;
+		};
+		5038DA2E1EE0093400F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038D9431EDE902E00F3DA4F;
+			remoteInfo = Example;
+		};
+		5038DA351EE0093400F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038DA211EE0093300F3DA4F;
+			remoteInfo = ExampleModel;
+		};
+		5038DA7E1EE00FAB00F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038DA211EE0093300F3DA4F;
+			remoteInfo = ExampleModel;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +165,32 @@
 				5038D9571EDE904900F3DA4F /* Omnibar.framework in Embed Frameworks */,
 				5038D9541EDE904400F3DA4F /* RxSwift.framework in Embed Frameworks */,
 				5038D9521EDE904400F3DA4F /* RxCocoa.framework in Embed Frameworks */,
+				5038DA381EE0093400F3DA4F /* ExampleModel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA081EDFFB2300F3DA4F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5038DA091EDFFB3300F3DA4F /* RxCocoa.framework in CopyFiles */,
+				5038DA0A1EDFFB3300F3DA4F /* RxSwift.framework in CopyFiles */,
+				5038DA0B1EDFFB3300F3DA4F /* RxTest.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA101EDFFB4700F3DA4F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5038DA0F1EDFFB4700F3DA4F /* RxSwift.framework in Embed Frameworks */,
+				5038DA7D1EE00FAB00F3DA4F /* ExampleModel.framework in Embed Frameworks */,
+				5038DA0D1EDFFB4700F3DA4F /* RxCocoa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,33 +225,6 @@
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacementTests.swift; sourceTree = "<group>"; };
 		5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSText+FieldEditorTests.swift"; sourceTree = "<group>"; };
 		5038D9851EDEB25800F3DA4F /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		5038D9881EDEB40100F3DA4F /* A Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "A Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/A Words.txt"; sourceTree = "<group>"; };
-		5038D9891EDEB40100F3DA4F /* B Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "B Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/B Words.txt"; sourceTree = "<group>"; };
-		5038D98A1EDEB40100F3DA4F /* C Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "C Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/C Words.txt"; sourceTree = "<group>"; };
-		5038D98B1EDEB40100F3DA4F /* D Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "D Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/D Words.txt"; sourceTree = "<group>"; };
-		5038D98C1EDEB40100F3DA4F /* E Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "E Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/E Words.txt"; sourceTree = "<group>"; };
-		5038D98D1EDEB40100F3DA4F /* F Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "F Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/F Words.txt"; sourceTree = "<group>"; };
-		5038D98E1EDEB40100F3DA4F /* G Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "G Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/G Words.txt"; sourceTree = "<group>"; };
-		5038D98F1EDEB40100F3DA4F /* H Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "H Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/H Words.txt"; sourceTree = "<group>"; };
-		5038D9901EDEB40100F3DA4F /* I Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "I Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/I Words.txt"; sourceTree = "<group>"; };
-		5038D9911EDEB40100F3DA4F /* J Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "J Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/J Words.txt"; sourceTree = "<group>"; };
-		5038D9921EDEB40100F3DA4F /* K Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "K Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/K Words.txt"; sourceTree = "<group>"; };
-		5038D9931EDEB40100F3DA4F /* L Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "L Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/L Words.txt"; sourceTree = "<group>"; };
-		5038D9941EDEB40100F3DA4F /* M Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "M Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/M Words.txt"; sourceTree = "<group>"; };
-		5038D9951EDEB40100F3DA4F /* N Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "N Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/N Words.txt"; sourceTree = "<group>"; };
-		5038D9961EDEB40100F3DA4F /* O Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "O Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/O Words.txt"; sourceTree = "<group>"; };
-		5038D9971EDEB40100F3DA4F /* P Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "P Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/P Words.txt"; sourceTree = "<group>"; };
-		5038D9981EDEB40100F3DA4F /* Q Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Q Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/Q Words.txt"; sourceTree = "<group>"; };
-		5038D9991EDEB40100F3DA4F /* R Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "R Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/R Words.txt"; sourceTree = "<group>"; };
-		5038D99A1EDEB40100F3DA4F /* S Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "S Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/S Words.txt"; sourceTree = "<group>"; };
-		5038D99B1EDEB40100F3DA4F /* T Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "T Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/T Words.txt"; sourceTree = "<group>"; };
-		5038D99C1EDEB40100F3DA4F /* U Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "U Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/U Words.txt"; sourceTree = "<group>"; };
-		5038D99D1EDEB40100F3DA4F /* V Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "V Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/V Words.txt"; sourceTree = "<group>"; };
-		5038D99E1EDEB40100F3DA4F /* W Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "W Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/W Words.txt"; sourceTree = "<group>"; };
-		5038D99F1EDEB40100F3DA4F /* X Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "X Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/X Words.txt"; sourceTree = "<group>"; };
-		5038D9A01EDEB40100F3DA4F /* Y Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Y Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/Y Words.txt"; sourceTree = "<group>"; };
-		5038D9A11EDEB40100F3DA4F /* Z Words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Z Words.txt"; path = "Example/EOWL-v1.1.2/LF Delimited Format/Z Words.txt"; sourceTree = "<group>"; };
-		5038D9BD1EDEB81100F3DA4F /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
 		5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarDelegate.swift; sourceTree = "<group>"; };
@@ -166,9 +233,56 @@
 		5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTextChangeTests.swift; sourceTree = "<group>"; };
 		5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTextChange.swift; sourceTree = "<group>"; };
 		5038D9CE1EDED51300F3DA4F /* OmnibarContentChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarContentChangeTests.swift; sourceTree = "<group>"; };
-		5038D9D01EDFE10300F3DA4F /* WordsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordsModel.swift; sourceTree = "<group>"; };
 		5038D9D21EDFEA8100F3DA4F /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrencyHelpers.swift; sourceTree = "<group>"; };
+		5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxOmnibar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5038D9DD1EDFFA9E00F3DA4F /* RxOmnibar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxOmnibar.h; sourceTree = "<group>"; };
+		5038D9DE1EDFFA9E00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5038D9E31EDFFA9E00F3DA4F /* RxOmnibarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxOmnibarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5038D9EA1EDFFA9E00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5038D9F71EDFFACF00F3DA4F /* RxExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5038D9F91EDFFACF00F3DA4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5038D9FB1EDFFACF00F3DA4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5038D9FE1EDFFACF00F3DA4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		5038DA001EDFFACF00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5038DA111EDFFBE000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
+		5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Omnibar+Rx.swift"; sourceTree = "<group>"; };
+		5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Omnibar+RxTests.swift"; sourceTree = "<group>"; };
+		5038DA191EE006C900F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		5038DA1B1EE0090100F3DA4F /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
+		5038DA221EE0093300F3DA4F /* ExampleModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExampleModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5038DA241EE0093400F3DA4F /* ExampleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleModel.h; sourceTree = "<group>"; };
+		5038DA251EE0093400F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5038DA2A1EE0093400F3DA4F /* ExampleModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5038DA331EE0093400F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5038DA3F1EE0095200F3DA4F /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
+		5038DA401EE0095200F3DA4F /* WordsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordsModel.swift; sourceTree = "<group>"; };
+		5038DA451EE00DA600F3DA4F /* A Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "A Words.txt"; sourceTree = "<group>"; };
+		5038DA461EE00DA600F3DA4F /* B Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "B Words.txt"; sourceTree = "<group>"; };
+		5038DA471EE00DA600F3DA4F /* C Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C Words.txt"; sourceTree = "<group>"; };
+		5038DA481EE00DA600F3DA4F /* D Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "D Words.txt"; sourceTree = "<group>"; };
+		5038DA491EE00DA600F3DA4F /* E Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "E Words.txt"; sourceTree = "<group>"; };
+		5038DA4A1EE00DA600F3DA4F /* F Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "F Words.txt"; sourceTree = "<group>"; };
+		5038DA4B1EE00DA600F3DA4F /* G Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "G Words.txt"; sourceTree = "<group>"; };
+		5038DA4C1EE00DA600F3DA4F /* H Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "H Words.txt"; sourceTree = "<group>"; };
+		5038DA4D1EE00DA600F3DA4F /* I Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "I Words.txt"; sourceTree = "<group>"; };
+		5038DA4E1EE00DA600F3DA4F /* J Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "J Words.txt"; sourceTree = "<group>"; };
+		5038DA4F1EE00DA600F3DA4F /* K Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "K Words.txt"; sourceTree = "<group>"; };
+		5038DA501EE00DA600F3DA4F /* L Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "L Words.txt"; sourceTree = "<group>"; };
+		5038DA511EE00DA600F3DA4F /* M Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "M Words.txt"; sourceTree = "<group>"; };
+		5038DA521EE00DA600F3DA4F /* N Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "N Words.txt"; sourceTree = "<group>"; };
+		5038DA531EE00DA600F3DA4F /* O Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "O Words.txt"; sourceTree = "<group>"; };
+		5038DA541EE00DA600F3DA4F /* P Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "P Words.txt"; sourceTree = "<group>"; };
+		5038DA551EE00DA600F3DA4F /* Q Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Q Words.txt"; sourceTree = "<group>"; };
+		5038DA561EE00DA600F3DA4F /* R Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "R Words.txt"; sourceTree = "<group>"; };
+		5038DA571EE00DA600F3DA4F /* S Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "S Words.txt"; sourceTree = "<group>"; };
+		5038DA581EE00DA600F3DA4F /* T Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "T Words.txt"; sourceTree = "<group>"; };
+		5038DA591EE00DA600F3DA4F /* U Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "U Words.txt"; sourceTree = "<group>"; };
+		5038DA5A1EE00DA600F3DA4F /* V Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "V Words.txt"; sourceTree = "<group>"; };
+		5038DA5B1EE00DA600F3DA4F /* W Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "W Words.txt"; sourceTree = "<group>"; };
+		5038DA5C1EE00DA600F3DA4F /* X Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "X Words.txt"; sourceTree = "<group>"; };
+		5038DA5D1EE00DA600F3DA4F /* Y Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Y Words.txt"; sourceTree = "<group>"; };
+		5038DA5E1EE00DA600F3DA4F /* Z Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Z Words.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +300,7 @@
 				5038D9561EDE904900F3DA4F /* Omnibar.framework in Frameworks */,
 				5038D9531EDE904400F3DA4F /* RxSwift.framework in Frameworks */,
 				5038D9511EDE904400F3DA4F /* RxCocoa.framework in Frameworks */,
+				5038DA371EE0093400F3DA4F /* ExampleModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +309,49 @@
 			buildActionMask = 2147483647;
 			files = (
 				5038D9671EDE934F00F3DA4F /* Omnibar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9D71EDFFA9E00F3DA4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038D9F21EDFFAAD00F3DA4F /* RxSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9E01EDFFA9E00F3DA4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038D9E41EDFFA9E00F3DA4F /* RxOmnibar.framework in Frameworks */,
+				5038DA071EDFFB1900F3DA4F /* RxSwift.framework in Frameworks */,
+				5038DA061EDFFB1300F3DA4F /* RxTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9F41EDFFACF00F3DA4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA0E1EDFFB4700F3DA4F /* RxSwift.framework in Frameworks */,
+				5038DA7C1EE00FAB00F3DA4F /* ExampleModel.framework in Frameworks */,
+				5038DA0C1EDFFB4700F3DA4F /* RxCocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA1E1EE0093300F3DA4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA271EE0093400F3DA4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA2B1EE0093400F3DA4F /* ExampleModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +365,11 @@
 				5038D92E1EDE8F7200F3DA4F /* Omnibar */,
 				5038D9631EDE934F00F3DA4F /* OmnibarTests */,
 				5038D9451EDE902E00F3DA4F /* Example */,
+				5038D9DC1EDFFA9E00F3DA4F /* RxOmnibar */,
+				5038D9E71EDFFA9E00F3DA4F /* RxOmnibarTests */,
+				5038D9F81EDFFACF00F3DA4F /* RxExample */,
+				5038DA231EE0093400F3DA4F /* ExampleModel */,
+				5038DA301EE0093400F3DA4F /* ExampleModelTests */,
 				5038D92D1EDE8F7200F3DA4F /* Products */,
 				5038D93F1EDE900A00F3DA4F /* Frameworks */,
 			);
@@ -218,6 +381,11 @@
 				5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */,
 				5038D9441EDE902E00F3DA4F /* Example.app */,
 				5038D9621EDE934F00F3DA4F /* OmnibarTests.xctest */,
+				5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */,
+				5038D9E31EDFFA9E00F3DA4F /* RxOmnibarTests.xctest */,
+				5038D9F71EDFFACF00F3DA4F /* RxExample.app */,
+				5038DA221EE0093300F3DA4F /* ExampleModel.framework */,
+				5038DA2A1EE0093400F3DA4F /* ExampleModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,12 +423,9 @@
 				5038D9D21EDFEA8100F3DA4F /* FilterService.swift */,
 				5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */,
 				5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */,
-				5038D9BD1EDEB81100F3DA4F /* Words.swift */,
-				5038D9D01EDFE10300F3DA4F /* WordsModel.swift */,
 				5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */,
 				5038D9481EDE902E00F3DA4F /* Assets.xcassets */,
 				5038D94A1EDE902E00F3DA4F /* MainMenu.xib */,
-				5038D9BC1EDEB41300F3DA4F /* Words */,
 				5038D94D1EDE902E00F3DA4F /* Info.plist */,
 			);
 			path = Example;
@@ -293,40 +458,6 @@
 			name = "Cocoa Adapter Layer";
 			sourceTree = "<group>";
 		};
-		5038D9BC1EDEB41300F3DA4F /* Words */ = {
-			isa = PBXGroup;
-			children = (
-				5038D9881EDEB40100F3DA4F /* A Words.txt */,
-				5038D9891EDEB40100F3DA4F /* B Words.txt */,
-				5038D98A1EDEB40100F3DA4F /* C Words.txt */,
-				5038D98B1EDEB40100F3DA4F /* D Words.txt */,
-				5038D98C1EDEB40100F3DA4F /* E Words.txt */,
-				5038D98D1EDEB40100F3DA4F /* F Words.txt */,
-				5038D98E1EDEB40100F3DA4F /* G Words.txt */,
-				5038D98F1EDEB40100F3DA4F /* H Words.txt */,
-				5038D9901EDEB40100F3DA4F /* I Words.txt */,
-				5038D9911EDEB40100F3DA4F /* J Words.txt */,
-				5038D9921EDEB40100F3DA4F /* K Words.txt */,
-				5038D9931EDEB40100F3DA4F /* L Words.txt */,
-				5038D9941EDEB40100F3DA4F /* M Words.txt */,
-				5038D9951EDEB40100F3DA4F /* N Words.txt */,
-				5038D9961EDEB40100F3DA4F /* O Words.txt */,
-				5038D9971EDEB40100F3DA4F /* P Words.txt */,
-				5038D9981EDEB40100F3DA4F /* Q Words.txt */,
-				5038D9991EDEB40100F3DA4F /* R Words.txt */,
-				5038D99A1EDEB40100F3DA4F /* S Words.txt */,
-				5038D99B1EDEB40100F3DA4F /* T Words.txt */,
-				5038D99C1EDEB40100F3DA4F /* U Words.txt */,
-				5038D99D1EDEB40100F3DA4F /* V Words.txt */,
-				5038D99E1EDEB40100F3DA4F /* W Words.txt */,
-				5038D99F1EDEB40100F3DA4F /* X Words.txt */,
-				5038D9A01EDEB40100F3DA4F /* Y Words.txt */,
-				5038D9A11EDEB40100F3DA4F /* Z Words.txt */,
-			);
-			name = Words;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		5038D9CB1EDED42A00F3DA4F /* Text Field */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +465,93 @@
 				5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */,
 			);
 			name = "Text Field";
+			sourceTree = "<group>";
+		};
+		5038D9DC1EDFFA9E00F3DA4F /* RxOmnibar */ = {
+			isa = PBXGroup;
+			children = (
+				5038D9DD1EDFFA9E00F3DA4F /* RxOmnibar.h */,
+				5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */,
+				5038D9DE1EDFFA9E00F3DA4F /* Info.plist */,
+			);
+			path = RxOmnibar;
+			sourceTree = "<group>";
+		};
+		5038D9E71EDFFA9E00F3DA4F /* RxOmnibarTests */ = {
+			isa = PBXGroup;
+			children = (
+				5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */,
+				5038D9EA1EDFFA9E00F3DA4F /* Info.plist */,
+			);
+			path = RxOmnibarTests;
+			sourceTree = "<group>";
+		};
+		5038D9F81EDFFACF00F3DA4F /* RxExample */ = {
+			isa = PBXGroup;
+			children = (
+				5038D9F91EDFFACF00F3DA4F /* AppDelegate.swift */,
+				5038DA1B1EE0090100F3DA4F /* FilterService.swift */,
+				5038DA111EDFFBE000F3DA4F /* OmnibarController.swift */,
+				5038DA191EE006C900F3DA4F /* TableViewController.swift */,
+				5038D9FB1EDFFACF00F3DA4F /* Assets.xcassets */,
+				5038D9FD1EDFFACF00F3DA4F /* MainMenu.xib */,
+				5038DA001EDFFACF00F3DA4F /* Info.plist */,
+			);
+			path = RxExample;
+			sourceTree = "<group>";
+		};
+		5038DA231EE0093400F3DA4F /* ExampleModel */ = {
+			isa = PBXGroup;
+			children = (
+				5038DA241EE0093400F3DA4F /* ExampleModel.h */,
+				5038DA3F1EE0095200F3DA4F /* Words.swift */,
+				5038DA401EE0095200F3DA4F /* WordsModel.swift */,
+				5038DA431EE00DA600F3DA4F /* Words */,
+				5038DA251EE0093400F3DA4F /* Info.plist */,
+			);
+			path = ExampleModel;
+			sourceTree = "<group>";
+		};
+		5038DA301EE0093400F3DA4F /* ExampleModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				5038DA331EE0093400F3DA4F /* Info.plist */,
+			);
+			path = ExampleModelTests;
+			sourceTree = "<group>";
+		};
+		5038DA431EE00DA600F3DA4F /* Words */ = {
+			isa = PBXGroup;
+			children = (
+				5038DA451EE00DA600F3DA4F /* A Words.txt */,
+				5038DA461EE00DA600F3DA4F /* B Words.txt */,
+				5038DA471EE00DA600F3DA4F /* C Words.txt */,
+				5038DA481EE00DA600F3DA4F /* D Words.txt */,
+				5038DA491EE00DA600F3DA4F /* E Words.txt */,
+				5038DA4A1EE00DA600F3DA4F /* F Words.txt */,
+				5038DA4B1EE00DA600F3DA4F /* G Words.txt */,
+				5038DA4C1EE00DA600F3DA4F /* H Words.txt */,
+				5038DA4D1EE00DA600F3DA4F /* I Words.txt */,
+				5038DA4E1EE00DA600F3DA4F /* J Words.txt */,
+				5038DA4F1EE00DA600F3DA4F /* K Words.txt */,
+				5038DA501EE00DA600F3DA4F /* L Words.txt */,
+				5038DA511EE00DA600F3DA4F /* M Words.txt */,
+				5038DA521EE00DA600F3DA4F /* N Words.txt */,
+				5038DA531EE00DA600F3DA4F /* O Words.txt */,
+				5038DA541EE00DA600F3DA4F /* P Words.txt */,
+				5038DA551EE00DA600F3DA4F /* Q Words.txt */,
+				5038DA561EE00DA600F3DA4F /* R Words.txt */,
+				5038DA571EE00DA600F3DA4F /* S Words.txt */,
+				5038DA581EE00DA600F3DA4F /* T Words.txt */,
+				5038DA591EE00DA600F3DA4F /* U Words.txt */,
+				5038DA5A1EE00DA600F3DA4F /* V Words.txt */,
+				5038DA5B1EE00DA600F3DA4F /* W Words.txt */,
+				5038DA5C1EE00DA600F3DA4F /* X Words.txt */,
+				5038DA5D1EE00DA600F3DA4F /* Y Words.txt */,
+				5038DA5E1EE00DA600F3DA4F /* Z Words.txt */,
+			);
+			name = Words;
+			path = "EOWL-v1.1.2/LF Delimited Format";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +562,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				5038D9311EDE8F7200F3DA4F /* Omnibar.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9D81EDFFA9E00F3DA4F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038D9EB1EDFFA9E00F3DA4F /* RxOmnibar.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA1F1EE0093300F3DA4F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA341EE0093400F3DA4F /* ExampleModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +615,7 @@
 			);
 			dependencies = (
 				5038D9591EDE904900F3DA4F /* PBXTargetDependency */,
+				5038DA361EE0093400F3DA4F /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -403,6 +638,100 @@
 			name = OmnibarTests;
 			productName = OmnibarTests;
 			productReference = 5038D9621EDE934F00F3DA4F /* OmnibarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5038D9DA1EDFFA9E00F3DA4F /* RxOmnibar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5038D9EC1EDFFA9E00F3DA4F /* Build configuration list for PBXNativeTarget "RxOmnibar" */;
+			buildPhases = (
+				5038D9D61EDFFA9E00F3DA4F /* Sources */,
+				5038D9D71EDFFA9E00F3DA4F /* Frameworks */,
+				5038D9D81EDFFA9E00F3DA4F /* Headers */,
+				5038D9D91EDFFA9E00F3DA4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5038DA181EE0062900F3DA4F /* PBXTargetDependency */,
+			);
+			name = RxOmnibar;
+			productName = RxOmnibar;
+			productReference = 5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5038D9E21EDFFA9E00F3DA4F /* RxOmnibarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5038D9EF1EDFFA9E00F3DA4F /* Build configuration list for PBXNativeTarget "RxOmnibarTests" */;
+			buildPhases = (
+				5038D9DF1EDFFA9E00F3DA4F /* Sources */,
+				5038D9E01EDFFA9E00F3DA4F /* Frameworks */,
+				5038D9E11EDFFA9E00F3DA4F /* Resources */,
+				5038DA081EDFFB2300F3DA4F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5038D9E61EDFFA9E00F3DA4F /* PBXTargetDependency */,
+			);
+			name = RxOmnibarTests;
+			productName = RxOmnibarTests;
+			productReference = 5038D9E31EDFFA9E00F3DA4F /* RxOmnibarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5038D9F61EDFFACF00F3DA4F /* RxExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5038DA011EDFFACF00F3DA4F /* Build configuration list for PBXNativeTarget "RxExample" */;
+			buildPhases = (
+				5038D9F31EDFFACF00F3DA4F /* Sources */,
+				5038D9F41EDFFACF00F3DA4F /* Frameworks */,
+				5038D9F51EDFFACF00F3DA4F /* Resources */,
+				5038DA101EDFFB4700F3DA4F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5038DA7F1EE00FAB00F3DA4F /* PBXTargetDependency */,
+			);
+			name = RxExample;
+			productName = RxExample;
+			productReference = 5038D9F71EDFFACF00F3DA4F /* RxExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5038DA211EE0093300F3DA4F /* ExampleModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5038DA391EE0093400F3DA4F /* Build configuration list for PBXNativeTarget "ExampleModel" */;
+			buildPhases = (
+				5038DA1D1EE0093300F3DA4F /* Sources */,
+				5038DA1E1EE0093300F3DA4F /* Frameworks */,
+				5038DA1F1EE0093300F3DA4F /* Headers */,
+				5038DA201EE0093300F3DA4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExampleModel;
+			productName = ExampleModel;
+			productReference = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5038DA291EE0093400F3DA4F /* ExampleModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5038DA3C1EE0093400F3DA4F /* Build configuration list for PBXNativeTarget "ExampleModelTests" */;
+			buildPhases = (
+				5038DA261EE0093400F3DA4F /* Sources */,
+				5038DA271EE0093400F3DA4F /* Frameworks */,
+				5038DA281EE0093400F3DA4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5038DA2D1EE0093400F3DA4F /* PBXTargetDependency */,
+				5038DA2F1EE0093400F3DA4F /* PBXTargetDependency */,
+			);
+			name = ExampleModelTests;
+			productName = ExampleModelTests;
+			productReference = 5038DA2A1EE0093400F3DA4F /* ExampleModelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -432,6 +761,35 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
+					5038D9DA1EDFFA9E00F3DA4F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FRMDA3XRGC;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					5038D9E21EDFFA9E00F3DA4F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FRMDA3XRGC;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					5038D9F61EDFFACF00F3DA4F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FRMDA3XRGC;
+						ProvisioningStyle = Automatic;
+					};
+					5038DA211EE0093300F3DA4F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FRMDA3XRGC;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					5038DA291EE0093400F3DA4F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FRMDA3XRGC;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5038D9431EDE902E00F3DA4F;
+					};
 				};
 			};
 			buildConfigurationList = 5038D9261EDE8F7200F3DA4F /* Build configuration list for PBXProject "Omnibar" */;
@@ -450,6 +808,11 @@
 				5038D92B1EDE8F7200F3DA4F /* Omnibar */,
 				5038D9611EDE934F00F3DA4F /* OmnibarTests */,
 				5038D9431EDE902E00F3DA4F /* Example */,
+				5038D9DA1EDFFA9E00F3DA4F /* RxOmnibar */,
+				5038D9E21EDFFA9E00F3DA4F /* RxOmnibarTests */,
+				5038D9F61EDFFACF00F3DA4F /* RxExample */,
+				5038DA211EE0093300F3DA4F /* ExampleModel */,
+				5038DA291EE0093400F3DA4F /* ExampleModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -466,38 +829,75 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5038D9A21EDEB40100F3DA4F /* A Words.txt in Resources */,
-				5038D9A31EDEB40100F3DA4F /* B Words.txt in Resources */,
-				5038D9A41EDEB40100F3DA4F /* C Words.txt in Resources */,
-				5038D9A51EDEB40100F3DA4F /* D Words.txt in Resources */,
-				5038D9A61EDEB40100F3DA4F /* E Words.txt in Resources */,
-				5038D9A71EDEB40100F3DA4F /* F Words.txt in Resources */,
-				5038D9A81EDEB40100F3DA4F /* G Words.txt in Resources */,
-				5038D9A91EDEB40100F3DA4F /* H Words.txt in Resources */,
-				5038D9AA1EDEB40100F3DA4F /* I Words.txt in Resources */,
-				5038D9AB1EDEB40100F3DA4F /* J Words.txt in Resources */,
-				5038D9AC1EDEB40100F3DA4F /* K Words.txt in Resources */,
-				5038D9AD1EDEB40100F3DA4F /* L Words.txt in Resources */,
-				5038D9AE1EDEB40100F3DA4F /* M Words.txt in Resources */,
-				5038D9AF1EDEB40100F3DA4F /* N Words.txt in Resources */,
-				5038D9B01EDEB40100F3DA4F /* O Words.txt in Resources */,
-				5038D9B11EDEB40100F3DA4F /* P Words.txt in Resources */,
-				5038D9B21EDEB40100F3DA4F /* Q Words.txt in Resources */,
-				5038D9B31EDEB40100F3DA4F /* R Words.txt in Resources */,
-				5038D9B41EDEB40100F3DA4F /* S Words.txt in Resources */,
-				5038D9B51EDEB40100F3DA4F /* T Words.txt in Resources */,
-				5038D9B61EDEB40100F3DA4F /* U Words.txt in Resources */,
-				5038D9B71EDEB40100F3DA4F /* V Words.txt in Resources */,
-				5038D9B81EDEB40100F3DA4F /* W Words.txt in Resources */,
-				5038D9B91EDEB40100F3DA4F /* X Words.txt in Resources */,
-				5038D9BA1EDEB40100F3DA4F /* Y Words.txt in Resources */,
-				5038D9BB1EDEB40100F3DA4F /* Z Words.txt in Resources */,
 				5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */,
 				5038D94C1EDE902E00F3DA4F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5038D9601EDE934F00F3DA4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9D91EDFFA9E00F3DA4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9E11EDFFA9E00F3DA4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9F51EDFFACF00F3DA4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038D9FC1EDFFACF00F3DA4F /* Assets.xcassets in Resources */,
+				5038D9FF1EDFFACF00F3DA4F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA201EE0093300F3DA4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA611EE00DA600F3DA4F /* B Words.txt in Resources */,
+				5038DA781EE00DA600F3DA4F /* Y Words.txt in Resources */,
+				5038DA6C1EE00DA600F3DA4F /* M Words.txt in Resources */,
+				5038DA751EE00DA600F3DA4F /* V Words.txt in Resources */,
+				5038DA641EE00DA600F3DA4F /* E Words.txt in Resources */,
+				5038DA691EE00DA600F3DA4F /* J Words.txt in Resources */,
+				5038DA651EE00DA600F3DA4F /* F Words.txt in Resources */,
+				5038DA741EE00DA600F3DA4F /* U Words.txt in Resources */,
+				5038DA761EE00DA600F3DA4F /* W Words.txt in Resources */,
+				5038DA671EE00DA600F3DA4F /* H Words.txt in Resources */,
+				5038DA6E1EE00DA600F3DA4F /* O Words.txt in Resources */,
+				5038DA771EE00DA600F3DA4F /* X Words.txt in Resources */,
+				5038DA631EE00DA600F3DA4F /* D Words.txt in Resources */,
+				5038DA731EE00DA600F3DA4F /* T Words.txt in Resources */,
+				5038DA6A1EE00DA600F3DA4F /* K Words.txt in Resources */,
+				5038DA711EE00DA600F3DA4F /* R Words.txt in Resources */,
+				5038DA601EE00DA600F3DA4F /* A Words.txt in Resources */,
+				5038DA6F1EE00DA600F3DA4F /* P Words.txt in Resources */,
+				5038DA6B1EE00DA600F3DA4F /* L Words.txt in Resources */,
+				5038DA701EE00DA600F3DA4F /* Q Words.txt in Resources */,
+				5038DA621EE00DA600F3DA4F /* C Words.txt in Resources */,
+				5038DA6D1EE00DA600F3DA4F /* N Words.txt in Resources */,
+				5038DA791EE00DA600F3DA4F /* Z Words.txt in Resources */,
+				5038DA661EE00DA600F3DA4F /* G Words.txt in Resources */,
+				5038DA681EE00DA600F3DA4F /* I Words.txt in Resources */,
+				5038DA721EE00DA600F3DA4F /* S Words.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA281EE0093400F3DA4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -529,13 +929,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5038D9D11EDFE10300F3DA4F /* WordsModel.swift in Sources */,
 				5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */,
 				5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */,
 				5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */,
 				5038D9D51EDFEFB500F3DA4F /* ConcurrencyHelpers.swift in Sources */,
 				5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */,
-				5038D9BE1EDEB81100F3DA4F /* Words.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +951,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5038D9D61EDFFA9E00F3DA4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA141EDFFC3000F3DA4F /* Omnibar+Rx.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9DF1EDFFA9E00F3DA4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA161EDFFD4600F3DA4F /* Omnibar+RxTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038D9F31EDFFACF00F3DA4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA121EDFFBE000F3DA4F /* OmnibarController.swift in Sources */,
+				5038DA1C1EE0090100F3DA4F /* FilterService.swift in Sources */,
+				5038DA1A1EE006C900F3DA4F /* TableViewController.swift in Sources */,
+				5038D9FA1EDFFACF00F3DA4F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA1D1EE0093300F3DA4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5038DA411EE0095200F3DA4F /* Words.swift in Sources */,
+				5038DA421EE0095200F3DA4F /* WordsModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5038DA261EE0093400F3DA4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -566,6 +1007,36 @@
 			target = 5038D92B1EDE8F7200F3DA4F /* Omnibar */;
 			targetProxy = 5038D9681EDE934F00F3DA4F /* PBXContainerItemProxy */;
 		};
+		5038D9E61EDFFA9E00F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038D9DA1EDFFA9E00F3DA4F /* RxOmnibar */;
+			targetProxy = 5038D9E51EDFFA9E00F3DA4F /* PBXContainerItemProxy */;
+		};
+		5038DA181EE0062900F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038D92B1EDE8F7200F3DA4F /* Omnibar */;
+			targetProxy = 5038DA171EE0062900F3DA4F /* PBXContainerItemProxy */;
+		};
+		5038DA2D1EE0093400F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038DA211EE0093300F3DA4F /* ExampleModel */;
+			targetProxy = 5038DA2C1EE0093400F3DA4F /* PBXContainerItemProxy */;
+		};
+		5038DA2F1EE0093400F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038D9431EDE902E00F3DA4F /* Example */;
+			targetProxy = 5038DA2E1EE0093400F3DA4F /* PBXContainerItemProxy */;
+		};
+		5038DA361EE0093400F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038DA211EE0093300F3DA4F /* ExampleModel */;
+			targetProxy = 5038DA351EE0093400F3DA4F /* PBXContainerItemProxy */;
+		};
+		5038DA7F1EE00FAB00F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038DA211EE0093300F3DA4F /* ExampleModel */;
+			targetProxy = 5038DA7E1EE00FAB00F3DA4F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -573,6 +1044,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				5038D94B1EDE902E00F3DA4F /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		5038D9FD1EDFFACF00F3DA4F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5038D9FE1EDFFACF00F3DA4F /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -796,6 +1275,211 @@
 			};
 			name = Release;
 		};
+		5038D9ED1EDFFA9E00F3DA4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = RxOmnibar/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxOmnibar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5038D9EE1EDFFA9E00F3DA4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = RxOmnibar/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxOmnibar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5038D9F01EDFFA9E00F3DA4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = RxOmnibarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxOmnibarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5038D9F11EDFFA9E00F3DA4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = RxOmnibarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxOmnibarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5038DA021EDFFACF00F3DA4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = RxExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5038DA031EDFFACF00F3DA4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = RxExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5038DA3A1EE0093400F3DA4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = ExampleModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.ExampleModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5038DA3B1EE0093400F3DA4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = ExampleModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.ExampleModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5038DA3D1EE0093400F3DA4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				INFOPLIST_FILE = ExampleModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.ExampleModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Contents/MacOS/Example";
+			};
+			name = Debug;
+		};
+		5038DA3E1EE0093400F3DA4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FRMDA3XRGC;
+				INFOPLIST_FILE = ExampleModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.ExampleModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Contents/MacOS/Example";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -834,6 +1518,46 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5038D9EC1EDFFA9E00F3DA4F /* Build configuration list for PBXNativeTarget "RxOmnibar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5038D9ED1EDFFA9E00F3DA4F /* Debug */,
+				5038D9EE1EDFFA9E00F3DA4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5038D9EF1EDFFA9E00F3DA4F /* Build configuration list for PBXNativeTarget "RxOmnibarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5038D9F01EDFFA9E00F3DA4F /* Debug */,
+				5038D9F11EDFFA9E00F3DA4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5038DA011EDFFACF00F3DA4F /* Build configuration list for PBXNativeTarget "RxExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5038DA021EDFFACF00F3DA4F /* Debug */,
+				5038DA031EDFFACF00F3DA4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5038DA391EE0093400F3DA4F /* Build configuration list for PBXNativeTarget "ExampleModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5038DA3A1EE0093400F3DA4F /* Debug */,
+				5038DA3B1EE0093400F3DA4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5038DA3C1EE0093400F3DA4F /* Build configuration list for PBXNativeTarget "ExampleModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5038DA3D1EE0093400F3DA4F /* Debug */,
+				5038DA3E1EE0093400F3DA4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

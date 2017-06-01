@@ -31,7 +31,7 @@ open class Omnibar: NSView {
     public weak var selectionDelegate: OmnibarSelectionDelegate?
     public weak var contentDelegate: OmnibarContentChangeDelegate?
 
-    lazy var textField: OmnibarTextField = {
+    public lazy var _textField: OmnibarTextField = {
         let textField = OmnibarTextField()
         textField.usesSingleLineMode = true
         textField.delegate = self
@@ -39,7 +39,7 @@ open class Omnibar: NSView {
     }()
 
     /// Testing seam.
-    var editableText: EditableText { return textField }
+    var editableText: EditableText { return _textField }
 
     /// Display model cache.
     let previousContent = PreviousContent()
@@ -60,10 +60,10 @@ open class Omnibar: NSView {
 
     private func layoutSubviews() {
 
-        textField.frame = self.bounds
-        textField.autoresizingMask = [.viewWidthSizable]
-        textField.translatesAutoresizingMaskIntoConstraints = true
-        self.addSubview(textField)
+        _textField.frame = self.bounds
+        _textField.autoresizingMask = [.viewWidthSizable]
+        _textField.translatesAutoresizingMaskIntoConstraints = true
+        self.addSubview(_textField)
 
         self.autoresizingMask = [.viewWidthSizable]
         self.translatesAutoresizingMaskIntoConstraints = true
@@ -132,38 +132,38 @@ extension Omnibar: NSTextFieldDelegate {
 extension Omnibar {
 
     open override var intrinsicContentSize: NSSize {
-        return textField.intrinsicContentSize
+        return _textField.intrinsicContentSize
     }
 
     @IBInspectable open var alignment: NSTextAlignment {
-        get { return textField.alignment }
-        set { textField.alignment = newValue }
+        get { return _textField.alignment }
+        set { _textField.alignment = newValue }
     }
 
     @IBInspectable open var font: NSFont? {
-        get { return textField.font }
-        set { textField.font = newValue }
+        get { return _textField.font }
+        set { _textField.font = newValue }
     }
 
     @IBInspectable open var placeholder: String? {
-        get { return textField.placeholderString }
-        set { textField.placeholderString = newValue }
+        get { return _textField.placeholderString }
+        set { _textField.placeholderString = newValue }
     }
 
     open var stringValue: String {
-        get { return textField.stringValue }
-        set { textField.stringValue = newValue }
+        get { return _textField.stringValue }
+        set { _textField.stringValue = newValue }
     }
 
     open override var acceptsFirstResponder: Bool {
-        return textField.acceptsFirstResponder
+        return _textField.acceptsFirstResponder
     }
 
     open override func becomeFirstResponder() -> Bool {
-        return textField.becomeFirstResponder()
+        return _textField.becomeFirstResponder()
     }
 
     open override func resignFirstResponder() -> Bool {
-        return textField.resignFirstResponder()
+        return _textField.resignFirstResponder()
     }
 }

@@ -10,7 +10,7 @@ protocol SelectsWord: class {
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, DisplaysWords, SelectsResult {
 
     weak var wordSelector: SelectsWord?
-    
+
     private var words: [String] = [] {
         didSet {
             tableView.reloadData()
@@ -71,7 +71,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     }
 
     private func select(row: Int) {
-
+        
         tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         tableView.scrollRowToVisible(row)
     }

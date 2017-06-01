@@ -2,7 +2,7 @@
 
 import Cocoa
 
-class OmnibarTextField: NSTextField {
+public class OmnibarTextField: NSTextField {
 
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 }

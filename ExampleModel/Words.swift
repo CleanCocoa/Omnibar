@@ -3,12 +3,14 @@
 import struct Foundation.URL
 import class Foundation.Bundle
 
+private class ModelFramework {}
+
 struct Words {
 
     static let alphabet: [Character] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
     static func path(letter: Character) -> String {
-        return Bundle.main.path(forResource: "\(letter) Words", ofType: "txt")!
+        return Bundle.init(for: ModelFramework.self).path(forResource: "\(letter) Words", ofType: "txt")!
     }
 
     static func lines(atURL url: URL) throws -> AnySequence<String> {

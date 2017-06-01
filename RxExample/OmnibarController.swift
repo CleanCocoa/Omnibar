@@ -2,6 +2,7 @@
 
 import Cocoa
 import Omnibar
+import RxOmnibar
 import ExampleModel
 
 protocol SearchHandler: class {
@@ -22,9 +23,9 @@ class OmnibarController: NSViewController {
 }
 
 extension OmnibarController: SelectsWord {
-    
+
     func select(word: Word) {
-        
+
         omnibar.display(content: .selection(text: word))
     }
 }

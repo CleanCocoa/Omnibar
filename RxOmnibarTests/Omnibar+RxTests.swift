@@ -1,0 +1,67 @@
+//  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
+
+import XCTest
+import RxSwift
+import RxCocoa
+import RxTest
+import Omnibar
+import RxOmnibar
+
+class Omnibar_RxTests: XCTestCase {
+
+    func testTextCompletesOnDealloc() {
+        let createView: () -> Omnibar = { Omnibar(frame: CGRect(x: 0, y: 0, width: 1, height: 1)) }
+        ensurePropertyDeallocated(createView, "a") { (view: Omnibar) in view.rx.text }
+    }
+
+    func ensurePropertyDeallocated<C, T: Equatable>(_ createControl: () -> C, _ initialValue: T, file: StaticString = #file, line: UInt = #line, _ propertySelector: (C) -> ControlProperty<T>) where C: NSObject {
+
+        ensurePropertyDeallocated(createControl, initialValue, comparer: ==, file: file, line: line, propertySelector)
+    }
+
+    func ensurePropertyDeallocated<C, T>(_ createControl: () -> C, _ initialValue: T, comparer: (T, T) -> Bool, file: StaticString = #file, line: UInt = #line, _ propertySelector: (C) -> ControlProperty<T>) where C: NSObject  {
+
+        let variable = Variable(initialValue)
+
+        var completed = false
+        var deallocated = false
+        var lastReturnedPropertyValue: T!
+
+        autoreleasepool {
+            var control: C! = createControl()
+
+            let property = propertySelector(control)
+
+            let disposable = variable.asObservable().bind(to: property)
+
+            _ = property.subscribe(onNext: { n in
+                lastReturnedPropertyValue = n
+            }, onCompleted: {
+                completed = true
+                disposable.dispose()
+            })
+
+
+            _ = (control as NSObject).rx.deallocated.subscribe(onNext: { _ in
+                deallocated = true
+            })
+
+            control = nil
+        }
+
+
+        // this code is here to flush any events that were scheduled to
+        // run on main loop
+        DispatchQueue.main.async {
+            let runLoop = CFRunLoopGetCurrent()
+            CFRunLoopStop(runLoop)
+        }
+        let runLoop = CFRunLoopGetCurrent()
+        CFRunLoopWakeUp(runLoop)
+        CFRunLoopRun()
+
+        XCTAssertTrue(deallocated, "not deallocated", file: file, line: line)
+        XCTAssertTrue(completed, "not completed", file: file, line: line)
+        XCTAssertTrue(comparer(initialValue, lastReturnedPropertyValue), "last property value (\(lastReturnedPropertyValue)) does not match initial value (\(initialValue))", file: file, line: line)
+    }
+}
