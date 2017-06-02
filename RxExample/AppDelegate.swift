@@ -23,33 +23,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     lazy var filterService: FilterService = FilterService()
 
-    var viewModel: OmnibarViewModel!
+    var searchViewModel: SearchResultsViewModel!
+    var contentViewModel: OmnibarContentViewModel!
+
     let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        tableViewController.wordSelectionChange
-            .map { OmnibarContent.selection(text: $0) }
-            .bind(to: omnibar.rx.content)
-            .disposed(by: disposeBag)
-
-        omnibar.rx.moveSelection
-            .bind(to: tableViewController.movementSink)
-            .disposed(by: disposeBag)
-
-        viewModel = OmnibarViewModel(
+        searchViewModel = SearchResultsViewModel(
             searchHandler: filterService,
-            contentChange: omnibar.rx.contentChange.asObservable().startWith(RxOmnibarContentChange.initial))
+            contentChange: omnibar.rx.contentChange.startWith(RxOmnibarContentChange.initial))
 
-        let searchResults = viewModel.searchResults()
+        let searchResults = searchViewModel.searchResults()
             .asDriver(onErrorDriveWith: .empty())
-        searchResults.map { $0.suggestion }
-            .ignoreNil()
-            .map { $0.omnibarContent }
-            .drive(omnibar.rx.content)
-            .disposed(by: disposeBag)
         searchResults.map { $0.results }
             .drive(tableViewController.words)
+            .disposed(by: disposeBag)
+
+        contentViewModel = OmnibarContentViewModel(
+            wordSelectionChange: tableViewController.wordSelectionChange.asDriver(),
+            wordSuggestion: searchResults.map({ $0.suggestion }).ignoreNil())
+
+        contentViewModel.omnibarContent
+            .drive(omnibar.rx.content)
+            .disposed(by: disposeBag)
+
+        omnibar.rx.moveSelection.asDriver()
+            .drive(tableViewController.movementSink)
             .disposed(by: disposeBag)
     }
 

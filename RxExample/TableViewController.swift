@@ -13,8 +13,10 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     fileprivate let disposeBag = DisposeBag()
 
     fileprivate let _selectedWord = PublishSubject<Word>()
-    var wordSelectionChange: Observable<Word> {
-        return _selectedWord.asObservable()
+    var wordSelectionChange: ControlEvent<Word> {
+        let source = _selectedWord.asObservable()
+            .takeUntil(self.rx.deallocated)
+        return ControlEvent(events: source)
     }
 
     override func viewDidLoad() {
