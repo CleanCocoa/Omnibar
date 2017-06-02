@@ -7,20 +7,12 @@ protocol DisplaysWords {
     func display(words: [String])
 }
 
-protocol DisplaysSuggestion {
-    func display(bestFit: String, forSearchTerm searchTerm: String)
-}
-
 class FilterService {
 
-    let suggestionDisplay: DisplaysSuggestion
     let wordDisplay: DisplaysWords
 
-    init(
-        suggestionDisplay: DisplaysSuggestion,
-        wordDisplay: DisplaysWords) {
+    init(wordDisplay: DisplaysWords) {
 
-        self.suggestionDisplay = suggestionDisplay
         self.wordDisplay = wordDisplay
     }
 
@@ -31,19 +23,21 @@ class FilterService {
 extension FilterService: SearchHandler {
 
     func displayAll() {
-
-        search(for: "", offerSuggestion: false)
+        search(for: "")
     }
 
-    func search(for searchTerm: String, offerSuggestion: Bool) {
+    func search(
+        for searchTerm: String,
+        suggestionCallback: ((_ bestFit: String, _ searchTerm: String) -> Void)? = nil
+        ) {
 
         filterQueue.async {
             self.wordsModel.filtered(searchTerm: searchTerm) { result in
                 
                 DispatchQueue.main.async {
-                    if offerSuggestion,
+                    if let suggestionCallback = suggestionCallback,
                         let bestFit = result.bestMatch {
-                        self.suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
+                        suggestionCallback(bestFit, searchTerm)
                     }
 
                     self.wordDisplay.display(words: result.words)

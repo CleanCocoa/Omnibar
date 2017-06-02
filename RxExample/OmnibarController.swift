@@ -7,7 +7,9 @@ import RxOmnibar
 import ExampleModel
 
 protocol SearchHandler: class {
-    func search(for searchTerm: String, offerSuggestion: Bool)
+    func search(
+        for searchTerm: String,
+        suggestionCallback: ((_ bestFit: String, _ searchTerm: String) -> Void)?)
 }
 
 protocol SelectsResult: class {
@@ -27,13 +29,6 @@ class OmnibarController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let searchHandlerObserver = AnyObserver { [weak self] (event: Event<RxOmnibarContentChange>)  in
-            guard case .next(let change) = event else { return }
-            self?.searchHandler?.search(
-                for: change.contentChange.text,
-                offerSuggestion: change.method == .insertion)
-        }
-
         let movementObserver = AnyObserver { [weak self] (event: Event<MoveSelection>) in
             guard case .next(let movement) = event else { return }
             switch movement {
@@ -41,9 +36,17 @@ class OmnibarController: NSViewController {
             case .previous: self?.selectionHandler?.selectPrevious()
             }
         }
-        
+
         omnibar.rx.contentChange
-            .bind(to: searchHandlerObserver)
+            .flatMapLatest { change -> Maybe<(String, String)> in
+                guard let searchHandler = self.searchHandler else { return .empty() }
+
+                return RxSearchHandler(searchHandler: searchHandler)
+                    .search(for: change.contentChange.text,
+                            offerSuggestion: change.method == .insertion)
+            }
+            .map(suggestion(bestFit:forSearchTerm:))
+            .bind(to: omnibar.rx.content)
             .disposed(by: disposeBag)
 
         omnibar.rx.moveSelection
@@ -60,16 +63,39 @@ extension OmnibarController: SelectsWord {
     }
 }
 
-extension OmnibarController: DisplaysSuggestion {
+class RxSearchHandler {
 
-    func display(bestFit: String, forSearchTerm searchTerm: String) {
+    let searchHandler: SearchHandler
 
-        guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
-            matchRange.lowerBound == bestFit.startIndex
-            else { preconditionFailure("display(bestFit:forSearchTerm:) must be called with `searchTerm` starting `bestFit`") }
-
-        let appendix = bestFit.removingSubrange(matchRange)
-
-        omnibar.rx.content.onNext(.suggestion(text: searchTerm, appendix: appendix))
+    init(searchHandler: SearchHandler) {
+        self.searchHandler = searchHandler
     }
+
+    func search(for searchTerm: String, offerSuggestion: Bool = false) -> Maybe<(String, String)> {
+
+        return Observable.create { observer -> Disposable in
+
+            self.searchHandler.search(for: searchTerm) { (bestFit, suggestion) in
+
+                if offerSuggestion {
+                    observer.on(.next((bestFit, suggestion)))
+                }
+
+                observer.on(.completed)
+            }
+
+            return Disposables.create()
+            }.asMaybe()
+    }
+}
+
+fileprivate func suggestion(bestFit: String, forSearchTerm searchTerm: String) -> OmnibarContent {
+
+    guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
+        matchRange.lowerBound == bestFit.startIndex
+        else { preconditionFailure("display(bestFit:forSearchTerm:) must be called with `searchTerm` starting `bestFit`") }
+
+    let appendix = bestFit.removingSubrange(matchRange)
+
+    return .suggestion(text: searchTerm, appendix: appendix)
 }
