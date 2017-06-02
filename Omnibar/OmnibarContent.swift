@@ -22,12 +22,24 @@ public enum OmnibarContent {
     /// before `appendix` and selecting it so it can be overwritten.
     case suggestion(text: String, appendix: String)
 
+    /// The full textual representation of the contents, including appendices.
     public var string: String {
         switch self {
         case .empty: return ""
         case let .selection(text: text): return text
         case let .prefix(text: text): return text
         case let .suggestion(text: text, appendix: appendix): return text.appending(appendix)
+        }
+    }
+
+    /// The base component only; does not return the appendix of
+    public var text: String {
+        switch self {
+        case .empty: return ""
+        case let .selection(text: text),
+             let .prefix(text: text),
+             let .suggestion(text: text, appendix: _):
+            return text
         }
     }
 

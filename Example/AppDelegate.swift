@@ -12,6 +12,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var tableViewController: TableViewController!
 
     var filterService: FilterService!
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
         omnibar.delegate = omnibarController
@@ -33,16 +34,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         window.makeFirstResponder(omnibar)
     }
-    
+
+
+    // MARK: Programmatic searches
+
     @IBAction func testSuggestion(_ sender: Any) {
-        omnibar.display(content: .suggestion(text: "the quick", appendix: " brown fox"))
+        changeSearch(omnibarContent: .suggestion(text: "kar", appendix: "ate"))
     }
 
     @IBAction func testTyping(_ sender: Any) {
-        omnibar.display(content: .prefix(text: "omnia sol"))
+        changeSearch(omnibarContent: .prefix(text: "syl"))
     }
 
     @IBAction func testReplacement(_ sender: Any) {
-        omnibar.display(content: .selection(text: "Just Like a Placeholder"))
+        changeSearch(omnibarContent: .selection(text: "aardvark"))
+    }
+
+    fileprivate func changeSearch(omnibarContent: OmnibarContent) {
+
+        omnibar.display(content: omnibarContent)
+
+        // Search for the base, not the appendix of `.suggestion`s.
+        filterService.search(for: omnibarContent.text, offerSuggestion: false)
     }
 }

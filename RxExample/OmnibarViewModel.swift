@@ -8,15 +8,20 @@ struct SearchResultsViewModel {
 
     let searchHandler: SearchHandler
     let contentChange: Observable<RxOmnibarContentChange>
+    let programmaticSearch: Observable<String>
 
     func searchResults() -> Observable<SearchResult> {
 
-        return contentChange
-            .flatMapLatest { change -> Maybe<SearchResult> in
+        let content = contentChange.map { change in (change.contentChange.text, change.method == .insertion) }
+        let search = programmaticSearch.map { term in (term, false) }
+        let combined = Observable.of(content, search).merge()
+
+        return combined
+            .flatMapLatest { (searchTerm, offerSuggestion) -> Maybe<SearchResult> in
                 return self.searchHandler.search(
-                    for: change.contentChange.text,
-                    offerSuggestion: change.method == .insertion)
-            }
+                    for: searchTerm,
+                    offerSuggestion: offerSuggestion)
+        }
     }
 }
 

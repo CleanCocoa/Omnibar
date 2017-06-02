@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var searchViewModel: SearchResultsViewModel!
     var contentViewModel: OmnibarContentViewModel!
+    let programmaticSearch = PublishSubject<String>()
 
     let disposeBag = DisposeBag()
 
@@ -32,17 +33,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         searchViewModel = SearchResultsViewModel(
             searchHandler: filterService,
-            contentChange: omnibar.rx.contentChange.startWith(RxOmnibarContentChange.initial))
+            contentChange: omnibar.rx.contentChange.asObservable(),
+            programmaticSearch: programmaticSearch.asObservable().startWith(""))
 
-        let searchResults = searchViewModel.searchResults()
-            .asDriver(onErrorDriveWith: .empty())
-        searchResults.map { $0.results }
-            .drive(tableViewController.words)
-            .disposed(by: disposeBag)
+        let searchResults = searchViewModel.searchResults().asDriver(onErrorDriveWith: .empty())
 
         contentViewModel = OmnibarContentViewModel(
             wordSelectionChange: tableViewController.wordSelectionChange.asDriver(),
             wordSuggestion: searchResults.map({ $0.suggestion }).ignoreNil())
+
+        searchResults.map { $0.results }
+            .drive(tableViewController.words)
+            .disposed(by: disposeBag)
 
         contentViewModel.omnibarContent
             .drive(omnibar.rx.content)
@@ -62,15 +64,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.makeFirstResponder(omnibar)
     }
 
+
+    // MARK: Programmatic searches
+
     @IBAction func testSuggestion(_ sender: Any) {
-        omnibar.display(content: .suggestion(text: "the quick", appendix: " brown fox"))
+        changeSearch(omnibarContent: .suggestion(text: "kar", appendix: "ate"))
     }
 
     @IBAction func testTyping(_ sender: Any) {
-        omnibar.display(content: .prefix(text: "omnia sol"))
+        changeSearch(omnibarContent: .prefix(text: "syl"))
     }
 
     @IBAction func testReplacement(_ sender: Any) {
-        omnibar.display(content: .selection(text: "Just Like a Placeholder"))
+        changeSearch(omnibarContent: .selection(text: "aardvark"))
+    }
+
+    fileprivate func changeSearch(omnibarContent: OmnibarContent) {
+
+        omnibar.rx.content.onNext(omnibarContent)
+
+        // Search for the base, not the appendix of `.suggestion`s.
+        programmaticSearch.onNext(omnibarContent.text)
     }
 }
