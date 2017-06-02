@@ -155,6 +155,13 @@
 			remoteGlobalIDString = 5038DA211EE0093300F3DA4F;
 			remoteInfo = ExampleModel;
 		};
+		5038DA851EE0651300F3DA4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038D9DA1EDFFA9E00F3DA4F;
+			remoteInfo = RxOmnibar;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -696,6 +703,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5038DA861EE0651300F3DA4F /* PBXTargetDependency */,
 				5038DA7F1EE00FAB00F3DA4F /* PBXTargetDependency */,
 			);
 			name = RxExample;
@@ -1044,6 +1052,11 @@
 			isa = PBXTargetDependency;
 			target = 5038DA211EE0093300F3DA4F /* ExampleModel */;
 			targetProxy = 5038DA7E1EE00FAB00F3DA4F /* PBXContainerItemProxy */;
+		};
+		5038DA861EE0651300F3DA4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038D9DA1EDFFA9E00F3DA4F /* RxOmnibar */;
+			targetProxy = 5038DA851EE0651300F3DA4F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

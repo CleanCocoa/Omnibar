@@ -10,3 +10,5 @@ public protocol OmnibarContentChangeDelegate: class {
 
     func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod)
 }
+
+public typealias OmnibarDelegate = OmnibarSelectionDelegate & OmnibarContentChangeDelegate

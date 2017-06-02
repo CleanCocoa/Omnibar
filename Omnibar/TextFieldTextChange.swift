@@ -2,18 +2,27 @@
 
 import struct Foundation.NSRange
 
-struct TextFieldTextChange {
+public struct TextFieldTextChange {
 
-    let oldText: String
-    let patch: TextFieldTextPatch
-    let method: ChangeMethod
+    public let oldText: String
+    public let patch: TextFieldTextPatch
+    public let method: ChangeMethod
 
-    var result: String {
+    public init(oldText: String, patch: TextFieldTextPatch, method: ChangeMethod) {
+
+        self.oldText = oldText
+        self.patch = patch
+        self.method = method
+    }
+
+    public var result: String {
 
         let replacementRange: Range<String.Index> = {
             let rangeStart = oldText.index(
                 oldText.startIndex,
-                offsetBy: patch.range.location)
+                offsetBy: patch.range.location,
+                limitedBy: oldText.endIndex)
+                ?? oldText.endIndex
             let rangeEnd = oldText.index(
                 rangeStart,
                 offsetBy: patch.range.length,
@@ -28,13 +37,20 @@ struct TextFieldTextChange {
     }
 }
 
-struct TextFieldTextPatch {
-    let string: String
-    let range: NSRange
+public struct TextFieldTextPatch {
+    public let string: String
+    public let range: NSRange
+    
+    public init(string: String, range: NSRange) {
+        self.string = string
+        self.range = range
+    }
 }
 
 extension TextFieldTextChange {
-    init(oldText: String, patch: String, range: NSRange, method: ChangeMethod) {
+
+    public init(oldText: String, patch: String, range: NSRange, method: ChangeMethod) {
+
         self.oldText = oldText
         self.patch = TextFieldTextPatch(string: patch, range: range)
         self.method = method

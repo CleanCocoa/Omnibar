@@ -143,7 +143,12 @@ extension OmnibarTests {
 
 extension OmnibarTests {
 
-    class SelectionDelegateDouble: OmnibarSelectionDelegate {
+    class SelectionDelegateDouble: OmnibarDelegate {
+
+        func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
+            // no op
+        }
+
         var didSelectPrevious: Omnibar?
         func omnibarSelectPrevious(_ omnibar: Omnibar) {
             didSelectPrevious = omnibar
@@ -162,7 +167,7 @@ extension OmnibarTests {
 
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.selectionDelegate = double
+        omnibar.delegate = double
 
         let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:)))
 
@@ -175,7 +180,7 @@ extension OmnibarTests {
 
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.selectionDelegate = double
+        omnibar.delegate = double
 
         let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:)))
 

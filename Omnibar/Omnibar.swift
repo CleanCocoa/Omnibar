@@ -28,8 +28,7 @@ class PreviousContent {
 @IBDesignable @objc
 open class Omnibar: NSView {
 
-    public weak var selectionDelegate: OmnibarSelectionDelegate?
-    public weak var contentDelegate: OmnibarContentChangeDelegate?
+    public weak var delegate: OmnibarDelegate?
 
     public lazy var _textField: OmnibarTextField = {
         let textField = OmnibarTextField()
@@ -93,11 +92,11 @@ extension Omnibar: NSTextFieldDelegate {
 
         switch commandSelector {
         case #selector(NSResponder.moveDown(_:)):
-            selectionDelegate?.omnibarSelectNext?(self)
+            delegate?.omnibarSelectNext?(self)
             return true
 
         case #selector(NSResponder.moveUp(_:)):
-            selectionDelegate?.omnibarSelectPrevious?(self)
+            delegate?.omnibarSelectPrevious?(self)
             return true
 
         default: return false
@@ -112,6 +111,11 @@ extension Omnibar: NSTextFieldDelegate {
         guard let textChange = textField.popTextFieldChange()
             else { preconditionFailure("text change setting should precede notification") }
 
+        processTextChange(textChange)
+    }
+
+    open func processTextChange(_ textChange: TextFieldTextChange) {
+
         let lastContent = previousContent.popLatest() ?? .empty
         let contentChange = OmnibarContentChange(base: lastContent, change: textChange)
 
@@ -119,7 +123,7 @@ extension Omnibar: NSTextFieldDelegate {
             self.display(content: contentChange.content)
         }
         
-        contentDelegate?.omnibar(
+        delegate?.omnibar(
             self,
             contentChange: contentChange,
             method: textChange.method)

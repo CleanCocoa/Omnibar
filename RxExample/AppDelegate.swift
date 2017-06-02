@@ -14,8 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var filterService: FilterService!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        omnibar.selectionDelegate = omnibarController
-        omnibar.contentDelegate = omnibarController
+        omnibar.delegate = omnibarController
 
         filterService = FilterService(
             suggestionDisplay: omnibarController,

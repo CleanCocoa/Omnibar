@@ -47,7 +47,7 @@ extension Omnibar_RxTests {
         let scheduler = TestScheduler(initialClock: 0)
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.selectionDelegate = double
+        omnibar.delegate = double
 
         let irrelevantControl = NSControl()
         let irrelevantTextView = NSTextView()
@@ -71,7 +71,12 @@ extension Omnibar_RxTests {
 
 }
 
-final class SelectionDelegateDouble: OmnibarSelectionDelegate {
+final class SelectionDelegateDouble: OmnibarDelegate {
+
+    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
+        // no op
+    }
+
     var didSelectPrevious: Int = 0
     func omnibarSelectPrevious(_ omnibar: Omnibar) {
         didSelectPrevious += 1
@@ -80,5 +85,37 @@ final class SelectionDelegateDouble: OmnibarSelectionDelegate {
     var didSelectNext: Int = 0
     func omnibarSelectNext(_ omnibar: Omnibar) {
         didSelectNext += 1
+    }
+}
+
+
+// MARK: - Omnibar Content Changes
+
+extension RxOmnibarContentChange: Equatable {}
+
+public func ==(lhs: RxOmnibarContentChange, rhs: RxOmnibarContentChange) -> Bool {
+
+    return lhs.contentChange == rhs.contentChange
+        && lhs.method == rhs.method
+}
+
+extension Omnibar_RxTests {
+
+    func testContentChange_PublishesEvent() {
+
+        let scheduler = TestScheduler(initialClock: 0)
+        let omnibar = Omnibar()
+
+        let firstChange = TextFieldTextChange(oldText: "original", patch: "", range: NSRange(location: 0, length: 12), method: .insertion)
+        scheduler.scheduleAt(300) { omnibar.processTextChange(firstChange) }
+        let secondChange = TextFieldTextChange(oldText: "whatever", patch: "Yggdrasil", range: NSRange(location: 33, length: 0), method: .insertion)
+        scheduler.scheduleAt(400) { omnibar.processTextChange(secondChange) }
+
+        let result = scheduler.start { omnibar.rx.contentChange.asObservable() }
+
+        XCTAssertEqual(result.events, [
+            next(300, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: firstChange), method: .insertion)),
+            next(400, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: secondChange), method: .insertion))
+            ])
     }
 }
