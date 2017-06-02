@@ -47,15 +47,8 @@ extension OmnibarController: OmnibarDelegate {
 
     func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
 
-        let searchTerm: String = {
-            switch contentChange {
-            case .replacement(text: let text): return text
-            case .continuation(text: let text, remainingAppendix: _): return text
-            }
-        }()
-
         searchHandler?.search(
-            for: searchTerm,
+            for: contentChange.text,
             offerSuggestion: method == .insertion)
     }
 

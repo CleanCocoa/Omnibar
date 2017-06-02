@@ -9,6 +9,13 @@ public enum OmnibarContentChange: Equatable {
     case replacement(text: String)
     case continuation(text: String, remainingAppendix: String)
 
+    public var text: String {
+        switch self {
+        case .replacement(text: let text): return text
+        case .continuation(text: let text, remainingAppendix: _): return text
+        }
+    }
+
     public init(base content: OmnibarContent, change: TextFieldTextChange) {
 
         self = {
