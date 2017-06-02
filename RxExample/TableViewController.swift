@@ -2,25 +2,31 @@
 
 import Cocoa
 import ExampleModel
+import RxSwift
+import RxCocoa
 
 protocol SelectsWord: class {
     func select(word: Word)
 }
 
-class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, DisplaysWords, SelectsResult {
+class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate,  SelectsResult {
 
     weak var wordSelector: SelectsWord?
 
-    private var words: [String] = [] {
-        didSet {
-            tableView.reloadData()
-        }
+    let words = Variable<[Word]>([])
+
+    fileprivate let disposeBag = DisposeBag()
+
+    override func viewDidLoad() {
+
+        super.viewDidLoad()
+
+        words.asDriver()
+            .drive(onNext: { [unowned self]_ in
+                self.tableView.reloadData() })
+            .disposed(by: disposeBag)
     }
 
-    func display(words: [String]) {
-
-        self.words = words
-    }
 
     // MARK: - Table View Contents
 
@@ -28,19 +34,19 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func numberOfRows(in tableView: NSTableView) -> Int {
 
-        return words.count
+        return words.value.count
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 
-        return words[row]
+        return words.value[row]
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         guard let cellView = tableView.make(withIdentifier: "Cell", owner: tableView) as? NSTableCellView else { return nil }
 
-        cellView.textField?.stringValue = words[row]
+        cellView.textField?.stringValue = words.value[row]
 
         return cellView
     }
@@ -52,7 +58,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
         guard let tableView = notification.object as? NSTableView else { return }
 
-        let word = words[tableView.selectedRow]
+        let word = words.value[tableView.selectedRow]
         wordSelector?.select(word: word)
     }
 
@@ -65,7 +71,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func selectNext() {
 
-        guard tableView.selectedRow < words.count else { return }
+        guard tableView.selectedRow < words.value.count else { return }
 
         select(row: tableView.selectedRow + 1)
     }

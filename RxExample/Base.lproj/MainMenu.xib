@@ -16,7 +16,6 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RxExample" customModuleProvider="target">
             <connections>
                 <outlet property="omnibar" destination="EGD-ai-FGw" id="Z1E-aB-UiT"/>
-                <outlet property="omnibarController" destination="Mtg-s4-xgW" id="GXY-7s-Ls6"/>
                 <outlet property="tableViewController" destination="QXZ-Yp-dYu" id="bpy-Dq-XYo"/>
                 <outlet property="window" destination="0Gh-J3-slt" id="F2e-3B-yeh"/>
             </connections>
@@ -462,11 +461,6 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="Mtg-s4-xgW" customClass="OmnibarController" customModule="RxExample" customModuleProvider="target">
-            <connections>
-                <outlet property="view" destination="EGD-ai-FGw" id="qbz-zW-ZR5"/>
-            </connections>
-        </customObject>
         <customObject id="QXZ-Yp-dYu" customClass="TableViewController" customModule="RxExample" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="fbj-Mq-ZWr" id="jDB-gO-3bX"/>

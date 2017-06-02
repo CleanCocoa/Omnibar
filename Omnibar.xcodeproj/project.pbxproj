@@ -55,7 +55,7 @@
 		5038DA0D1EDFFB4700F3DA4F /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5038DA0E1EDFFB4700F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
 		5038DA0F1EDFFB4700F3DA4F /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5038DA121EDFFBE000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA111EDFFBE000F3DA4F /* OmnibarController.swift */; };
+		5038DA121EDFFBE000F3DA4F /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA111EDFFBE000F3DA4F /* SearchController.swift */; };
 		5038DA141EDFFC3000F3DA4F /* Omnibar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */; };
 		5038DA161EDFFD4600F3DA4F /* Omnibar+RxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */; };
 		5038DA1A1EE006C900F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA191EE006C900F3DA4F /* TableViewController.swift */; };
@@ -97,6 +97,9 @@
 		5038DA811EE03E4200F3DA4F /* RxTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA801EE03E4200F3DA4F /* RxTestHelpers.swift */; };
 		5038DA841EE0442A00F3DA4F /* RxCocoaCasting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA831EE0442A00F3DA4F /* RxCocoaCasting.swift */; };
 		5038DA881EE12F5B00F3DA4F /* RxOmnibarDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA871EE12F5B00F3DA4F /* RxOmnibarDelegateProxy.swift */; };
+		5038DA8A1EE1488100F3DA4F /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA891EE1488100F3DA4F /* Suggestion.swift */; };
+		5038DA8C1EE14AB400F3DA4F /* RxHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA8B1EE14AB400F3DA4F /* RxHelpers.swift */; };
+		5038DA8E1EE15AF100F3DA4F /* OmnibarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA8D1EE15AF100F3DA4F /* OmnibarViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,7 +258,7 @@
 		5038D9FB1EDFFACF00F3DA4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5038D9FE1EDFFACF00F3DA4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5038DA001EDFFACF00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5038DA111EDFFBE000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
+		5038DA111EDFFBE000F3DA4F /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Omnibar+Rx.swift"; sourceTree = "<group>"; };
 		5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Omnibar+RxTests.swift"; sourceTree = "<group>"; };
 		5038DA191EE006C900F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +299,9 @@
 		5038DA801EE03E4200F3DA4F /* RxTestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTestHelpers.swift; sourceTree = "<group>"; };
 		5038DA831EE0442A00F3DA4F /* RxCocoaCasting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCocoaCasting.swift; sourceTree = "<group>"; };
 		5038DA871EE12F5B00F3DA4F /* RxOmnibarDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxOmnibarDelegateProxy.swift; sourceTree = "<group>"; };
+		5038DA891EE1488100F3DA4F /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
+		5038DA8B1EE14AB400F3DA4F /* RxHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxHelpers.swift; sourceTree = "<group>"; };
+		5038DA8D1EE15AF100F3DA4F /* OmnibarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,9 +512,12 @@
 			isa = PBXGroup;
 			children = (
 				5038D9F91EDFFACF00F3DA4F /* AppDelegate.swift */,
+				5038DA8D1EE15AF100F3DA4F /* OmnibarViewModel.swift */,
 				5038DA1B1EE0090100F3DA4F /* FilterService.swift */,
-				5038DA111EDFFBE000F3DA4F /* OmnibarController.swift */,
+				5038DA111EDFFBE000F3DA4F /* SearchController.swift */,
+				5038DA891EE1488100F3DA4F /* Suggestion.swift */,
 				5038DA191EE006C900F3DA4F /* TableViewController.swift */,
+				5038DA8B1EE14AB400F3DA4F /* RxHelpers.swift */,
 				5038D9FB1EDFFACF00F3DA4F /* Assets.xcassets */,
 				5038D9FD1EDFFACF00F3DA4F /* MainMenu.xib */,
 				5038DA001EDFFACF00F3DA4F /* Info.plist */,
@@ -991,10 +1000,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5038DA121EDFFBE000F3DA4F /* OmnibarController.swift in Sources */,
+				5038DA121EDFFBE000F3DA4F /* SearchController.swift in Sources */,
 				5038DA1C1EE0090100F3DA4F /* FilterService.swift in Sources */,
 				5038DA1A1EE006C900F3DA4F /* TableViewController.swift in Sources */,
 				5038D9FA1EDFFACF00F3DA4F /* AppDelegate.swift in Sources */,
+				5038DA8A1EE1488100F3DA4F /* Suggestion.swift in Sources */,
+				5038DA8E1EE15AF100F3DA4F /* OmnibarViewModel.swift in Sources */,
+				5038DA8C1EE14AB400F3DA4F /* RxHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

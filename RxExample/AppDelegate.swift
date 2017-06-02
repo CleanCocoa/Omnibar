@@ -2,23 +2,52 @@
 
 import Cocoa
 import Omnibar
+import RxSwift
+import RxCocoa
+import RxOmnibar
+
+extension RxOmnibarContentChange {
+    static var initial: RxOmnibarContentChange {
+        return RxOmnibarContentChange(
+            contentChange: .replacement(text: ""),
+            method: .insertion)
+    }
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var omnibar: Omnibar!
-    @IBOutlet weak var omnibarController: OmnibarController!
     @IBOutlet weak var tableViewController: TableViewController!
 
-    var filterService: FilterService!
+    lazy var filterService: FilterService = FilterService()
+
+    var searchController: SearchController!
+    var viewModel: OmnibarViewModel!
+
+    let disposeBag = DisposeBag()
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        filterService = FilterService(wordDisplay: tableViewController)
-        omnibarController.searchHandler = filterService
-        omnibarController.selectionHandler = tableViewController
-        tableViewController.wordSelector = omnibarController
-        filterService.displayAll()
+        searchController = SearchController(omnibar: omnibar)
+        searchController.selectionHandler = tableViewController
+        tableViewController.wordSelector = searchController
+
+        viewModel = OmnibarViewModel(
+            searchHandler: filterService,
+            contentChange: omnibar.rx.contentChange.asObservable().startWith(RxOmnibarContentChange.initial))
+
+        let searchResults = viewModel.searchResults()
+            .asDriver(onErrorDriveWith: .empty())
+        searchResults.map { $0.suggestion }
+            .ignoreNil()
+            .map { $0.omnibarContent }
+            .drive(omnibar.rx.content)
+            .disposed(by: disposeBag)
+        searchResults.map { $0.results }
+            .drive(tableViewController.words)
+            .disposed(by: disposeBag)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

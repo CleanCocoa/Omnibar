@@ -2,6 +2,7 @@
 
 import Foundation
 import ExampleModel
+import RxSwift
 
 protocol DisplaysWords {
     func display(words: [String])
@@ -9,12 +10,7 @@ protocol DisplaysWords {
 
 class FilterService {
 
-    let wordDisplay: DisplaysWords
-
-    init(wordDisplay: DisplaysWords) {
-
-        self.wordDisplay = wordDisplay
-    }
+    init() { }
 
     lazy var wordsModel: WordsModel = WordsModel()
     lazy var filterQueue: DispatchQueue = DispatchQueue(label: "filter-queue", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
@@ -22,29 +18,39 @@ class FilterService {
 
 extension FilterService: SearchHandler {
 
-    func displayAll() {
-        search(for: "")
-    }
+    func search(for searchTerm: String, offerSuggestion: Bool = false) -> Maybe<SearchResult> {
 
-    func search(
-        for searchTerm: String,
-        suggestionCallback: ((_ bestFit: String, _ searchTerm: String) -> Void)? = nil
-        ) {
+        return Observable.create { observer -> Disposable in
 
-        filterQueue.async {
-            self.wordsModel.filtered(searchTerm: searchTerm) { result in
-//                delayThread() // uncomment to reveal timing problems
-                DispatchQueue.main.async {
-                    if let suggestionCallback = suggestionCallback,
-                        let bestFit = result.bestMatch {
-                        suggestionCallback(bestFit, searchTerm)
+            var cancelled = false
+
+            self.filterQueue.async {
+                self.wordsModel.filtered(searchTerm: searchTerm) { result in
+                    delayThread() // uncomment to reveal timing problems
+
+                    guard !cancelled else { observer.onCompleted(); return }
+
+                    if offerSuggestion,
+                        let bestFit = result.bestMatch,
+                        let suggestion = Suggestion(bestFit: bestFit, forSearchTerm: searchTerm) {
+
+                        observer.onNext(SearchResult(suggestion: suggestion, results: result.words))
+                    } else {
+                        observer.onNext(SearchResult(suggestion: nil, results: result.words))
                     }
 
-                    self.wordDisplay.display(words: result.words)
+                    observer.on(.completed)
                 }
             }
-        }
+
+            return Disposables.create { cancelled = true }
+        }.asMaybe()
     }
+}
+
+struct SearchResult {
+    let suggestion: Suggestion?
+    let results: [Word]
 }
 
 func delayThread() {
