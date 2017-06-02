@@ -9,9 +9,16 @@ public extension Reactive where Base: Omnibar {
     public var text: ControlProperty<String> {
         return base._textField.rx.text.orEmpty
     }
+
+    public var content: UIBindingObserver<Omnibar, OmnibarContent> {
+        return UIBindingObserver(UIElement: base) { (omnibar: Omnibar, content: OmnibarContent) in
+            omnibar.display(content: content)
+        }
+    }
 }
 
-// MARK: - Selection
+
+// MARK: - Rx-ified Delegate
 
 extension Omnibar {
 
@@ -20,19 +27,11 @@ extension Omnibar {
     }
 }
 
+
+// MARK: Selection
+
 public enum MoveSelection {
     case previous, next
-}
-
-public struct RxOmnibarContentChange {
-    public let contentChange: OmnibarContentChange
-    public let method: ChangeMethod
-
-    public init(contentChange: OmnibarContentChange, method: ChangeMethod) {
-
-        self.contentChange = contentChange
-        self.method = method
-    }
 }
 
 public extension Reactive where Base: Omnibar {
@@ -52,6 +51,24 @@ public extension Reactive where Base: Omnibar {
             .map { _ in return MoveSelection.previous }
         return Observable.of(selectNext, selectPrevious).merge()
     }
+}
+
+
+// MARK: Content Change
+
+public struct RxOmnibarContentChange {
+
+    public let contentChange: OmnibarContentChange
+    public let method: ChangeMethod
+
+    public init(contentChange: OmnibarContentChange, method: ChangeMethod) {
+
+        self.contentChange = contentChange
+        self.method = method
+    }
+}
+
+public extension Reactive where Base: Omnibar {
 
     public var contentChange: ControlEvent<RxOmnibarContentChange> {
 
@@ -59,57 +76,5 @@ public extension Reactive where Base: Omnibar {
             .proxyForObject(base)
             .contentChangePublishSubject
         return ControlEvent(events: source)
-    }
-}
-
-public class RxOmnibarDelegateProxy
-    : DelegateProxy
-    , DelegateProxyType
-    , OmnibarDelegate {
-
-    public override class func createProxyForObject(_ object: AnyObject) -> AnyObject {
-
-        let omnibar: Omnibar = castOrFatalError(object)
-        return omnibar.createRxOmnibarDelegateProxy()
-    }
-
-    public class func setCurrentDelegate(_ delegate: AnyObject?, toObject object: AnyObject) {
-
-        let omnibar: Omnibar = castOrFatalError(object)
-        omnibar.delegate = castOptionalOrFatalError(delegate)
-    }
-
-    public class func currentDelegateFor(_ object: AnyObject) -> AnyObject? {
-
-        let omnibar: Omnibar = castOrFatalError(object)
-        return omnibar.delegate
-    }
-
-    fileprivate var _contentChange: PublishSubject<RxOmnibarContentChange>?
-
-    // Used instead of lazy var to not initialize the object in deinit.
-    var contentChangePublishSubject: PublishSubject<RxOmnibarContentChange> {
-
-        if let subject = _contentChange {
-            return subject
-        }
-
-        let subject = PublishSubject<RxOmnibarContentChange>()
-        _contentChange = subject
-        return subject
-    }
-
-    deinit {
-
-        _contentChange?.on(.completed)
-    }
-
-    public func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
-
-        _contentChange?.on(.next(RxOmnibarContentChange(contentChange: contentChange, method: method)))
-
-        if let forwardingTo = self._forwardToDelegate as? OmnibarDelegate {
-            forwardingTo.omnibar(omnibar, contentChange: contentChange, method: method)
-        }
     }
 }

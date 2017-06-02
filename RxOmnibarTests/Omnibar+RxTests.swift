@@ -15,6 +15,50 @@ class Omnibar_RxTests: XCTestCase, RxTestHelpers {
     }
 }
 
+
+// MARK: - Display Content
+
+extension Omnibar_RxTests {
+
+    func testContentSink_Empty() {
+
+        let omnibar = Omnibar()
+        omnibar.stringValue = "something"
+
+        _ = Observable.just(OmnibarContent.empty).bind(to: omnibar.rx.content)
+
+        XCTAssertEqual(omnibar.stringValue, "")
+    }
+
+    func testContentSink_Prefix() {
+
+        let omnibar = Omnibar()
+
+        _ = Observable.just(OmnibarContent.prefix(text: "hello there")).bind(to: omnibar.rx.content)
+
+        XCTAssertEqual(omnibar.stringValue, "hello there")
+    }
+
+    func testContentSink_Selection() {
+
+        let omnibar = Omnibar()
+
+        _ = Observable.just(OmnibarContent.selection(text: "como estas")).bind(to: omnibar.rx.content)
+
+        XCTAssertEqual(omnibar.stringValue, "como estas")
+    }
+
+    func testContentSink_Suggestion() {
+
+        let omnibar = Omnibar()
+
+        _ = Observable.just(OmnibarContent.suggestion(text: "foo", appendix: " bar")).bind(to: omnibar.rx.content)
+
+        XCTAssertEqual(omnibar.stringValue, "foo bar")
+    }
+}
+
+
 // MARK: - Selection
 
 extension Omnibar_RxTests {
