@@ -48,11 +48,6 @@ extension FilterService: SearchHandler {
     }
 }
 
-struct SearchResult {
-    let suggestion: Suggestion?
-    let results: [Word]
-}
-
 func delayThread() {
     let seconds = TimeInterval(arc4random_uniform(30)) / 10.0
     NSLog("Thread \"\(Thread.current.description)\" sleeps for \(seconds)s")

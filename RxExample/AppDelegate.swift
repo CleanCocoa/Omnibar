@@ -23,19 +23,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     lazy var filterService: FilterService = FilterService()
 
-    var searchController: SearchController!
     var viewModel: OmnibarViewModel!
-
     let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        searchController = SearchController(omnibar: omnibar)
-        searchController.selectionHandler = tableViewController
-
         tableViewController.wordSelectionChange
             .map { OmnibarContent.selection(text: $0) }
             .bind(to: omnibar.rx.content)
+            .disposed(by: disposeBag)
+
+        omnibar.rx.moveSelection
+            .bind(to: tableViewController.movementSink)
             .disposed(by: disposeBag)
 
         viewModel = OmnibarViewModel(

@@ -4,8 +4,9 @@ import Cocoa
 import ExampleModel
 import RxSwift
 import RxCocoa
+import RxOmnibar
 
-class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate,  SelectsResult {
+class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
     let words = Variable<[Word]>([])
 
@@ -59,6 +60,16 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
         let word = words.value[tableView.selectedRow]
         _selectedWord.onNext(word)
+    }
+
+    var movementSink: AnyObserver<MoveSelection> {
+        return AnyObserver { [weak self] event in
+            guard case .next(let movement) = event else { return }
+            switch movement {
+            case .next: self?.selectNext()
+            case .previous: self?.selectPrevious()
+            }
+        }
     }
 
     func selectPrevious() {
