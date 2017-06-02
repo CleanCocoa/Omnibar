@@ -40,7 +40,7 @@ public extension Reactive where Base: Omnibar {
         return RxOmnibarDelegateProxy.proxyForObject(base)
     }
 
-    public var moveSelection: Observable<MoveSelection> {
+    public var moveSelection: ControlEvent<MoveSelection> {
 
         let delegate = self.delegate
         let selectNext = delegate
@@ -49,7 +49,8 @@ public extension Reactive where Base: Omnibar {
         let selectPrevious = delegate
             .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectPrevious(_:)))
             .map { _ in return MoveSelection.previous }
-        return Observable.of(selectNext, selectPrevious).merge()
+        let combined = Observable.of(selectNext, selectPrevious).merge()
+        return ControlEvent(events: combined)
     }
 }
 

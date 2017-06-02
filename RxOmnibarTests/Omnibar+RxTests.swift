@@ -77,7 +77,7 @@ extension Omnibar_RxTests {
         // Other selectors should be ignored
         scheduler.scheduleAt(600) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.insertNewline(_:))) }
 
-        let result = scheduler.start { omnibar.rx.moveSelection }
+        let result = scheduler.start { omnibar.rx.moveSelection.asObservable() }
 
         XCTAssertEqual(result.events, [
             next(300, .previous),
@@ -102,7 +102,7 @@ extension Omnibar_RxTests {
         scheduler.scheduleAt(800) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
 
 
-        let result = scheduler.start { omnibar.rx.moveSelection }
+        let result = scheduler.start { omnibar.rx.moveSelection.asObservable() }
 
         XCTAssertEqual(result.events, [
             next(500, .previous),
