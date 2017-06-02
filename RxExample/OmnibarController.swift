@@ -75,17 +75,19 @@ class RxSearchHandler {
 
         return Observable.create { observer -> Disposable in
 
+            var cancelled = false
+
             self.searchHandler.search(for: searchTerm) { (bestFit, suggestion) in
 
-                if offerSuggestion {
+                if !cancelled && offerSuggestion {
                     observer.on(.next((bestFit, suggestion)))
                 }
 
                 observer.on(.completed)
             }
 
-            return Disposables.create()
-            }.asMaybe()
+            return Disposables.create { cancelled = true }
+        }.asMaybe()
     }
 }
 
