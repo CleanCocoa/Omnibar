@@ -40,6 +40,7 @@ extension FilterService: SearchHandler {
     func search(for searchTerm: String, offerSuggestion: Bool) {
 
         let newRequest = Cancellable<FilterResults> { [unowned self] result in
+//            delayThread() // uncomment to reveal timing problems
             DispatchQueue.main.async {
                 if offerSuggestion,
                     let bestFit = result.bestMatch {

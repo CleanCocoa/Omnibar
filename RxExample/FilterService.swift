@@ -33,7 +33,7 @@ extension FilterService: SearchHandler {
 
         filterQueue.async {
             self.wordsModel.filtered(searchTerm: searchTerm) { result in
-                
+//                delayThread() // uncomment to reveal timing problems
                 DispatchQueue.main.async {
                     if let suggestionCallback = suggestionCallback,
                         let bestFit = result.bestMatch {
@@ -45,4 +45,10 @@ extension FilterService: SearchHandler {
             }
         }
     }
+}
+
+func delayThread() {
+    let seconds = TimeInterval(arc4random_uniform(30)) / 10.0
+    NSLog("Thread \"\(Thread.current.description)\" sleeps for \(seconds)s")
+    Thread.sleep(forTimeInterval: seconds)
 }
