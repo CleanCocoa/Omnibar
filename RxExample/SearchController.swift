@@ -44,11 +44,3 @@ class SearchController {
             .disposed(by: disposeBag)
     }
 }
-
-extension SearchController: SelectsWord {
-
-    func select(word: Word) {
-
-        omnibar.rx.content.onNext(.selection(text: word))
-    }
-}

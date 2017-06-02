@@ -32,7 +32,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         searchController = SearchController(omnibar: omnibar)
         searchController.selectionHandler = tableViewController
-        tableViewController.wordSelector = searchController
+
+        tableViewController.wordSelectionChange
+            .map { OmnibarContent.selection(text: $0) }
+            .bind(to: omnibar.rx.content)
+            .disposed(by: disposeBag)
 
         viewModel = OmnibarViewModel(
             searchHandler: filterService,

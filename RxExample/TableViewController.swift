@@ -5,17 +5,16 @@ import ExampleModel
 import RxSwift
 import RxCocoa
 
-protocol SelectsWord: class {
-    func select(word: Word)
-}
-
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate,  SelectsResult {
-
-    weak var wordSelector: SelectsWord?
 
     let words = Variable<[Word]>([])
 
     fileprivate let disposeBag = DisposeBag()
+
+    fileprivate let _selectedWord = PublishSubject<Word>()
+    var wordSelectionChange: Observable<Word> {
+        return _selectedWord.asObservable()
+    }
 
     override func viewDidLoad() {
 
@@ -59,7 +58,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         guard let tableView = notification.object as? NSTableView else { return }
 
         let word = words.value[tableView.selectedRow]
-        wordSelector?.select(word: word)
+        _selectedWord.onNext(word)
     }
 
     func selectPrevious() {

@@ -26,7 +26,7 @@ extension FilterService: SearchHandler {
 
             self.filterQueue.async {
                 self.wordsModel.filtered(searchTerm: searchTerm) { result in
-                    delayThread() // uncomment to reveal timing problems
+//                    delayThread() // uncomment to reveal timing problems
 
                     guard !cancelled else { observer.onCompleted(); return }
 
