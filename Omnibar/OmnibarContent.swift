@@ -32,7 +32,7 @@ public enum OmnibarContent {
         }
     }
 
-    /// The base component only; does not return the appendix of
+    /// The base component only; does not return the appendix of `.suggestion`.
     public var text: String {
         switch self {
         case .empty: return ""

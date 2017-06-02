@@ -7,6 +7,10 @@ struct Suggestion {
     let text: String
     let appendix: String
 
+    var string: String {
+        return text.appending(appendix)
+    }
+
     /// Fails to initialize if `bestFit` does not start with `searchTerm`.
     init?(bestFit: String, forSearchTerm searchTerm: String) {
 

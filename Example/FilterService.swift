@@ -4,7 +4,7 @@ import ExampleModel
 import Foundation
 
 protocol DisplaysWords {
-    func display(words: [String])
+    func display(words: [Word], selecting selectedWord: Word?)
 }
 
 protocol DisplaysSuggestion {
@@ -45,9 +45,10 @@ extension FilterService: SearchHandler {
                 if offerSuggestion,
                     let bestFit = result.bestMatch {
                     self.suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
+                    self.wordDisplay.display(words: result.words, selecting: bestFit)
+                } else {
+                    self.wordDisplay.display(words: result.words, selecting: nil)
                 }
-
-                self.wordDisplay.display(words: result.words)
             }
         }
 

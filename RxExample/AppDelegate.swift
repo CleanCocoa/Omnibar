@@ -42,8 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             wordSelectionChange: tableViewController.wordSelectionChange.asDriver(),
             wordSuggestion: searchResults.map({ $0.suggestion }).ignoreNil())
 
-        searchResults.map { $0.results }
-            .drive(tableViewController.words)
+        searchResults
+            .drive(tableViewController.searchResultSink)
             .disposed(by: disposeBag)
 
         contentViewModel.omnibarContent

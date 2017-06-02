@@ -8,7 +8,22 @@ import RxOmnibar
 
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
-    let words = Variable<[Word]>([])
+    var searchResultSink: UIBindingObserver<TableViewController, SearchResult> {
+        return UIBindingObserver(UIElement: self) { tableViewController, searchResult in
+
+            tableViewController.words = searchResult.results
+
+            tableViewController.tableView.reloadData()
+
+            if let suggestion = searchResult.suggestion?.string,
+                let selectionIndex = searchResult.results.index(of: suggestion) {
+
+                tableViewController.select(row: selectionIndex)
+            }
+        }
+    }
+
+    fileprivate var words: [Word] = []
 
     fileprivate let disposeBag = DisposeBag()
 
@@ -19,16 +34,6 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         return ControlEvent(events: source)
     }
 
-    override func viewDidLoad() {
-
-        super.viewDidLoad()
-
-        words.asDriver()
-            .drive(onNext: { [unowned self]_ in
-                self.tableView.reloadData() })
-            .disposed(by: disposeBag)
-    }
-
 
     // MARK: - Table View Contents
 
@@ -36,19 +41,19 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func numberOfRows(in tableView: NSTableView) -> Int {
 
-        return words.value.count
+        return words.count
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 
-        return words.value[row]
+        return words[row]
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         guard let cellView = tableView.make(withIdentifier: "Cell", owner: tableView) as? NSTableCellView else { return nil }
 
-        cellView.textField?.stringValue = words.value[row]
+        cellView.textField?.stringValue = words[row]
 
         return cellView
     }
@@ -60,7 +65,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
         guard let tableView = notification.object as? NSTableView else { return }
 
-        let word = words.value[tableView.selectedRow]
+        let word = words[tableView.selectedRow]
         _selectedWord.onNext(word)
     }
 
@@ -83,7 +88,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func selectNext() {
 
-        guard tableView.selectedRow < words.value.count else { return }
+        guard tableView.selectedRow < words.count else { return }
 
         select(row: tableView.selectedRow + 1)
     }

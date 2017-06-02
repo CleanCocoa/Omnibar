@@ -17,9 +17,20 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         }
     }
 
-    func display(words: [String]) {
+    /// Cache of programmatic selections to avoid change events
+    fileprivate var programmaticallySelectedRow: Int?
+
+    func display(words: [Word], selecting selectedWord: Word?) {
 
         self.words = words
+        self.programmaticallySelectedRow = nil
+
+        if let selectedWord = selectedWord,
+            let selectionIndex = words.index(of: selectedWord) {
+
+            programmaticallySelectedRow = selectionIndex
+            select(row: selectionIndex)
+        }
     }
 
     // MARK: - Table View Contents
@@ -51,6 +62,9 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     func tableViewSelectionDidChange(_ notification: Notification) {
 
         guard let tableView = notification.object as? NSTableView else { return }
+
+        // Skip programmatic changes
+        guard tableView.selectedRow != programmaticallySelectedRow else { return }
 
         let word = words[tableView.selectedRow]
         wordSelector?.select(word: word)
