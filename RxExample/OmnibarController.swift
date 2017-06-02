@@ -2,6 +2,7 @@
 
 import Cocoa
 import Omnibar
+import RxSwift
 import RxOmnibar
 import ExampleModel
 
@@ -20,13 +21,42 @@ class OmnibarController: NSViewController {
     weak var selectionHandler: SelectsResult?
 
     var omnibar: Omnibar! { return self.view as? Omnibar }
+
+    let disposeBag = DisposeBag()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let searchHandlerObserver = AnyObserver { [weak self] (event: Event<RxOmnibarContentChange>)  in
+            guard case .next(let change) = event else { return }
+            self?.searchHandler?.search(
+                for: change.contentChange.text,
+                offerSuggestion: change.method == .insertion)
+        }
+
+        let movementObserver = AnyObserver { [weak self] (event: Event<MoveSelection>) in
+            guard case .next(let movement) = event else { return }
+            switch movement {
+            case .next: self?.selectionHandler?.selectNext()
+            case .previous: self?.selectionHandler?.selectPrevious()
+            }
+        }
+        
+        omnibar.rx.contentChange
+            .bind(to: searchHandlerObserver)
+            .disposed(by: disposeBag)
+
+        omnibar.rx.moveSelection
+            .bind(to: movementObserver)
+            .disposed(by: disposeBag)
+    }
 }
 
 extension OmnibarController: SelectsWord {
 
     func select(word: Word) {
 
-        omnibar.display(content: .selection(text: word))
+        omnibar.rx.content.onNext(.selection(text: word))
     }
 }
 
@@ -40,34 +70,6 @@ extension OmnibarController: DisplaysSuggestion {
 
         let appendix = bestFit.removingSubrange(matchRange)
 
-        omnibar.display(content: .suggestion(text: searchTerm, appendix: appendix))
-    }
-}
-
-extension OmnibarController: OmnibarContentChangeDelegate {
-
-    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
-
-        let searchTerm: String = {
-            switch contentChange {
-            case .replacement(text: let text): return text
-            case .continuation(text: let text, remainingAppendix: _): return text
-            }
-        }()
-
-        searchHandler?.search(
-            for: searchTerm,
-            offerSuggestion: method == .insertion)
-    }
-}
-
-extension OmnibarController: OmnibarDelegate {
-
-    func omnibarSelectNext(_ omnibar: Omnibar) {
-        selectionHandler?.selectNext()
-    }
-
-    func omnibarSelectPrevious(_ omnibar: Omnibar) {
-        selectionHandler?.selectPrevious()
+        omnibar.rx.content.onNext(.suggestion(text: searchTerm, appendix: appendix))
     }
 }
