@@ -61,7 +61,7 @@ extension OmnibarController: OmnibarContentChangeDelegate {
     }
 }
 
-extension OmnibarController: OmnibarSelectionDelegate {
+extension OmnibarController: OmnibarDelegate {
 
     func omnibarSelectNext(_ omnibar: Omnibar) {
         selectionHandler?.selectNext()

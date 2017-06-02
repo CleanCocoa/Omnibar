@@ -43,7 +43,7 @@ extension OmnibarController: DisplaysSuggestion {
     }
 }
 
-extension OmnibarController: OmnibarContentChangeDelegate {
+extension OmnibarController: OmnibarDelegate {
 
     func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
 
@@ -58,9 +58,6 @@ extension OmnibarController: OmnibarContentChangeDelegate {
             for: searchTerm,
             offerSuggestion: method == .insertion)
     }
-}
-
-extension OmnibarController: OmnibarSelectionDelegate {
 
     func omnibarSelectNext(_ omnibar: Omnibar) {
         selectionHandler?.selectNext()
