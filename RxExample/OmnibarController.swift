@@ -38,14 +38,14 @@ class OmnibarController: NSViewController {
         }
 
         omnibar.rx.contentChange
-            .flatMapLatest { change -> Maybe<(String, String)> in
+            .flatMapLatest { change -> Maybe<Suggestion> in
                 guard let searchHandler = self.searchHandler else { return .empty() }
 
                 return RxSearchHandler(searchHandler: searchHandler)
                     .search(for: change.contentChange.text,
                             offerSuggestion: change.method == .insertion)
             }
-            .map(suggestion(bestFit:forSearchTerm:))
+            .map { $0.omnibarContent }
             .bind(to: omnibar.rx.content)
             .disposed(by: disposeBag)
 
@@ -71,16 +71,18 @@ class RxSearchHandler {
         self.searchHandler = searchHandler
     }
 
-    func search(for searchTerm: String, offerSuggestion: Bool = false) -> Maybe<(String, String)> {
+    func search(for searchTerm: String, offerSuggestion: Bool = false) -> Maybe<Suggestion> {
 
         return Observable.create { observer -> Disposable in
 
             var cancelled = false
 
-            self.searchHandler.search(for: searchTerm) { (bestFit, suggestion) in
+            self.searchHandler.search(for: searchTerm) { (bestFit, searchTerm) in
 
-                if !cancelled && offerSuggestion {
-                    observer.on(.next((bestFit, suggestion)))
+                if !cancelled,
+                    offerSuggestion,
+                    let suggestion = Suggestion(bestFit: bestFit, forSearchTerm: searchTerm) {
+                    observer.on(.next(suggestion))
                 }
 
                 observer.on(.completed)
@@ -91,13 +93,25 @@ class RxSearchHandler {
     }
 }
 
-fileprivate func suggestion(bestFit: String, forSearchTerm searchTerm: String) -> OmnibarContent {
+struct Suggestion {
 
-    guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
-        matchRange.lowerBound == bestFit.startIndex
-        else { preconditionFailure("display(bestFit:forSearchTerm:) must be called with `searchTerm` starting `bestFit`") }
+    let text: String
+    let appendix: String
 
-    let appendix = bestFit.removingSubrange(matchRange)
+    /// Fails to initialize if `bestFit` does not start with `searchTerm`.
+    init?(bestFit: String, forSearchTerm searchTerm: String) {
 
-    return .suggestion(text: searchTerm, appendix: appendix)
+        guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
+            matchRange.lowerBound == bestFit.startIndex
+            else { return nil }
+
+        let appendix = bestFit.removingSubrange(matchRange)
+
+        self.text = searchTerm
+        self.appendix = appendix
+    }
+
+    var omnibarContent: OmnibarContent {
+        return .suggestion(text: text, appendix: appendix)
+    }
 }

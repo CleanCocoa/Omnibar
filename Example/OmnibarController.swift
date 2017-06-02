@@ -33,13 +33,32 @@ extension OmnibarController: DisplaysSuggestion {
 
     func display(bestFit: String, forSearchTerm searchTerm: String) {
 
+        guard let suggestion = Suggestion(bestFit: bestFit, forSearchTerm: searchTerm) else { return }
+
+        omnibar.display(content: suggestion.omnibarContent)
+    }
+}
+
+struct Suggestion {
+
+    let text: String
+    let appendix: String
+
+    /// Fails to initialize if `bestFit` does not start with `searchTerm`.
+    init?(bestFit: String, forSearchTerm searchTerm: String) {
+
         guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
             matchRange.lowerBound == bestFit.startIndex
-            else { preconditionFailure("display(bestFit:forSearchTerm:) must be called with `searchTerm` starting `bestFit`") }
+            else { return nil }
 
         let appendix = bestFit.removingSubrange(matchRange)
 
-        omnibar.display(content: .suggestion(text: searchTerm, appendix: appendix))
+        self.text = searchTerm
+        self.appendix = appendix
+    }
+
+    var omnibarContent: OmnibarContent {
+        return .suggestion(text: text, appendix: appendix)
     }
 }
 
