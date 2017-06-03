@@ -35,6 +35,9 @@ fileprivate class TestableOmnibar: Omnibar {
     }
 }
 
+
+// MARK: - Display Content
+
 extension OmnibarTests {
 
     func testDisplayContent_Empty_ChangesStringValue() {
@@ -139,7 +142,7 @@ extension OmnibarTests {
 }
 
 
-// MARK: Arrow keys
+// MARK: - Arrow keys
 
 extension OmnibarTests {
 

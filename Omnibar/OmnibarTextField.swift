@@ -28,14 +28,10 @@ extension OmnibarTextField: NSTextViewDelegate {
         guard let replacementString = replacementString else { return true }
         guard let oldText = textView.string else { preconditionFailure("NSTextView is supposed to have non-nil string") }
 
-        let method: ChangeMethod = {
-            let insertionLength = (replacementString as NSString).length
-            let affectedLength = affectedCharRange.length
-
-            if insertionLength < 1 && affectedLength > 0 { return .deletion }
-
-            return .insertion
-        }()
+        let method = ChangeMethod(
+            original: oldText as NSString,
+            replacement: replacementString as NSString,
+            affectedRange: affectedCharRange)
 
         self.cachedTextFieldChange = TextFieldTextChange(
             oldText: oldText,

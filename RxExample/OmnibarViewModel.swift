@@ -12,7 +12,7 @@ struct SearchResultsViewModel {
 
     func searchResults() -> Observable<SearchResult> {
 
-        let content = contentChange.map { change in (change.contentChange.text, change.method == .insertion) }
+        let content = contentChange.map { change in (change.contentChange.text, change.method == .appending) }
         let search = programmaticSearch.map { term in (term, false) }
         let combined = Observable.of(content, search).merge()
 

@@ -68,7 +68,7 @@ extension OmnibarController: OmnibarDelegate {
 
         searchHandler?.search(
             for: contentChange.text,
-            offerSuggestion: method == .insertion)
+            offerSuggestion: method == .appending)
     }
 
     func omnibarSelectNext(_ omnibar: Omnibar) {

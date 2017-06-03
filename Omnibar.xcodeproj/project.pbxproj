@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500C46581EE2AA1100047991 /* ChangeMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C46571EE2AA1100047991 /* ChangeMethod.swift */; };
+		500C465A1EE2AABE00047991 /* ChangeMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C46591EE2AABE00047991 /* ChangeMethodTests.swift */; };
 		5038D9311EDE8F7200F3DA4F /* Omnibar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5038D92F1EDE8F7200F3DA4F /* Omnibar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9461EDE902E00F3DA4F /* AppDelegate.swift */; };
 		5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9481EDE902E00F3DA4F /* Assets.xcassets */; };
@@ -211,6 +213,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		500C46571EE2AA1100047991 /* ChangeMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeMethod.swift; sourceTree = "<group>"; };
+		500C46591EE2AABE00047991 /* ChangeMethodTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeMethodTests.swift; sourceTree = "<group>"; };
 		5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Omnibar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5038D92F1EDE8F7200F3DA4F /* Omnibar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Omnibar.h; sourceTree = "<group>"; };
 		5038D9301EDE8F7200F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 				5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */,
 				5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */,
 				5038D9C51EDEC85A00F3DA4F /* OmnibarContentChange.swift */,
+				500C46571EE2AA1100047991 /* ChangeMethod.swift */,
 				5038D9CB1EDED42A00F3DA4F /* Text Field */,
 				5038D9801EDEAB0900F3DA4F /* Cocoa Adapter Layer */,
 				5038D9301EDE8F7200F3DA4F /* Info.plist */,
@@ -455,6 +460,7 @@
 			children = (
 				5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */,
 				5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */,
+				500C46591EE2AABE00047991 /* ChangeMethodTests.swift */,
 				5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */,
 				5038D9CE1EDED51300F3DA4F /* OmnibarContentChangeTests.swift */,
 				5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */,
@@ -937,6 +943,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				500C46581EE2AA1100047991 /* ChangeMethod.swift in Sources */,
 				5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */,
 				5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
@@ -971,6 +978,7 @@
 				5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */,
 				5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */,
 				5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */,
+				500C465A1EE2AABE00047991 /* ChangeMethodTests.swift in Sources */,
 				5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */,
 				5038D9CF1EDED51300F3DA4F /* OmnibarContentChangeTests.swift in Sources */,
 				5038D9CA1EDED00F00F3DA4F /* TextFieldTextChangeTests.swift in Sources */,
