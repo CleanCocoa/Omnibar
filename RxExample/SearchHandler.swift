@@ -4,7 +4,12 @@ import RxSwift
 import ExampleModel
 
 protocol SearchHandler: class {
-    func search(for searchTerm: String, offerSuggestion: Bool) -> Maybe<SearchResult>
+    func filter(search: Search) -> Maybe<SearchResult>
+}
+
+struct Search {
+    let searchTerm: String
+    let requestSuggestion: Bool
 }
 
 struct SearchResult {

@@ -11,7 +11,7 @@ protocol OmnibarContentConvertible {
     var omnibarContent: OmnibarContent { get }
 }
 
-struct OmnibarContentViewModel {
+struct OmnibarViewModel {
 
     let selection: Driver<Selection>
     let suggestion: Driver<Suggestion>

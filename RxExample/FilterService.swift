@@ -18,21 +18,21 @@ class FilterService {
 
 extension FilterService: SearchHandler {
 
-    func search(for searchTerm: String, offerSuggestion: Bool = false) -> Maybe<SearchResult> {
+    func filter(search: Search) -> Maybe<SearchResult> {
 
         return Observable.create { observer -> Disposable in
 
             var cancelled = false
 
             self.filterQueue.async {
-                self.wordsModel.filtered(searchTerm: searchTerm) { result in
+                self.wordsModel.filtered(searchTerm: search.searchTerm) { result in
 //                    delayThread() // uncomment to reveal timing problems
 
                     guard !cancelled else { observer.onCompleted(); return }
 
-                    if offerSuggestion,
+                    if search.requestSuggestion,
                         let bestFit = result.bestMatch,
-                        let suggestion = Suggestion(bestFit: bestFit, forSearchTerm: searchTerm) {
+                        let suggestion = Suggestion(bestFit: bestFit, forSearchTerm: search.searchTerm) {
 
                         observer.onNext(SearchResult(suggestion: suggestion, results: result.words))
                     } else {
