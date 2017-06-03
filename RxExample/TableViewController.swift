@@ -6,32 +6,56 @@ import RxSwift
 import RxCocoa
 import RxOmnibar
 
+class TableViewModel {
+
+    let words = Variable<[Word]>([])
+    let selection = Variable<Word?>(nil)
+
+    var selectionRow: Observable<Int> {
+        return selection.asObservable()
+            .withLatestFrom(words.asObservable()) { selection, words in (selection, words) }
+            .map { selection, words -> Int? in
+                guard let selection = selection,
+                    let selectionIndex = words.index(of: selection)
+                    else { return nil }
+
+                return selectionIndex
+            }.ignoreNil()
+    }
+}
+
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
-    var searchResultSink: UIBindingObserver<TableViewController, SearchResult> {
-        return UIBindingObserver(UIElement: self) { tableViewController, searchResult in
-
-            tableViewController.words = searchResult.results
-
-            tableViewController.tableView.reloadData()
-
-            if let suggestion = searchResult.suggestion?.string,
-                let selectionIndex = searchResult.results.index(of: suggestion) {
-
-                tableViewController.select(row: selectionIndex)
-            }
-        }
-    }
-
-    fileprivate var words: [Word] = []
-
+    // Incoming changes
+    let viewModel = TableViewModel()
+    fileprivate var words: [Word] { return viewModel.words.value }
     fileprivate let disposeBag = DisposeBag()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        viewModel.words.asDriver()
+            .drive(onNext: { [unowned self] _ in self.tableView.reloadData() })
+            .disposed(by: disposeBag)
+
+        viewModel.selectionRow.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [unowned self] in self.select(row: $0) })
+            .disposed(by: disposeBag)
+    }
+
+    // Event output
     fileprivate let _selectedWord = PublishSubject<Word>()
     var wordSelectionChange: ControlEvent<Word> {
-        let source = _selectedWord.asObservable()
+
+        let selection = _selectedWord.asObservable()
             .takeUntil(self.rx.deallocated)
-        return ControlEvent(events: source)
+        let knownSelection = viewModel.selection.asObservable()
+        let changedSelection = selection
+            .withLatestFrom(knownSelection) { selected, oldSelection in (selected, oldSelection) }
+            .filter { selected, oldSelection in selected != oldSelection }
+            .map {  selected, _ in selected }
+
+        return ControlEvent(events: changedSelection)
     }
 
 
