@@ -23,3 +23,27 @@ struct SearchResultParts {
         return searchResults.map { $0.results }
     }
 }
+
+import RxOmnibar
+
+extension SearchResultParts {
+    init(
+        typedSearches: Observable<RxOmnibarContentChange>,
+        programmaticSearches: Observable<String>,
+        wordsModels: Observable<WordsModel>
+        ) {
+
+        let searches = SearchViewModel(
+            typedSearches: typedSearches.asObservable(),
+            programmaticSearches: programmaticSearches)
+            .searches
+        let filterViewModel = Filter(
+            searches: searches,
+            wordsModels: wordsModels)
+        let searchResults = filterViewModel
+            .searchResults
+            .asDriver(onErrorDriveWith: .empty())
+        
+        self.init(searchResults: searchResults)
+    }
+}

@@ -13,6 +13,7 @@
 		500C465E1EE2C23F00047991 /* Continuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C465D1EE2C23F00047991 /* Continuation.swift */; };
 		500C46611EE2C2E500047991 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C46601EE2C2E500047991 /* Selection.swift */; };
 		500C46631EE2C72900047991 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C46621EE2C72900047991 /* SearchViewModel.swift */; };
+		500C46661EE2F14B00047991 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C46651EE2F14B00047991 /* AppViewModel.swift */; };
 		5038D9311EDE8F7200F3DA4F /* Omnibar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5038D92F1EDE8F7200F3DA4F /* Omnibar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9461EDE902E00F3DA4F /* AppDelegate.swift */; };
 		5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9481EDE902E00F3DA4F /* Assets.xcassets */; };
@@ -64,7 +65,7 @@
 		5038DA141EDFFC3000F3DA4F /* Omnibar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */; };
 		5038DA161EDFFD4600F3DA4F /* Omnibar+RxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */; };
 		5038DA1A1EE006C900F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA191EE006C900F3DA4F /* TableViewController.swift */; };
-		5038DA1C1EE0090100F3DA4F /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA1B1EE0090100F3DA4F /* FilterService.swift */; };
+		5038DA1C1EE0090100F3DA4F /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA1B1EE0090100F3DA4F /* Filter.swift */; };
 		5038DA2B1EE0093400F3DA4F /* ExampleModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; };
 		5038DA341EE0093400F3DA4F /* ExampleModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5038DA241EE0093400F3DA4F /* ExampleModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5038DA371EE0093400F3DA4F /* ExampleModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; };
@@ -223,6 +224,7 @@
 		500C465D1EE2C23F00047991 /* Continuation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Continuation.swift; sourceTree = "<group>"; };
 		500C46601EE2C2E500047991 /* Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		500C46621EE2C72900047991 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		500C46651EE2F14B00047991 /* AppViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Omnibar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5038D92F1EDE8F7200F3DA4F /* Omnibar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Omnibar.h; sourceTree = "<group>"; };
 		5038D9301EDE8F7200F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -273,7 +275,7 @@
 		5038DA131EDFFC3000F3DA4F /* Omnibar+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Omnibar+Rx.swift"; sourceTree = "<group>"; };
 		5038DA151EDFFD4600F3DA4F /* Omnibar+RxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Omnibar+RxTests.swift"; sourceTree = "<group>"; };
 		5038DA191EE006C900F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		5038DA1B1EE0090100F3DA4F /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
+		5038DA1B1EE0090100F3DA4F /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		5038DA221EE0093300F3DA4F /* ExampleModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExampleModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5038DA241EE0093400F3DA4F /* ExampleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleModel.h; sourceTree = "<group>"; };
 		5038DA251EE0093400F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -398,6 +400,17 @@
 				500C465D1EE2C23F00047991 /* Continuation.swift */,
 			);
 			name = "Output - OmnibarContent";
+			sourceTree = "<group>";
+		};
+		500C46641EE2ED2F00047991 /* Input - Search */ = {
+			isa = PBXGroup;
+			children = (
+				5038DA8D1EE15AF100F3DA4F /* SearchResultParts.swift */,
+				5038DA1B1EE0090100F3DA4F /* Filter.swift */,
+				5038DA8F1EE17C3C00F3DA4F /* SearchHandler.swift */,
+				500C46621EE2C72900047991 /* SearchViewModel.swift */,
+			);
+			name = "Input - Search";
 			sourceTree = "<group>";
 		};
 		5038D9221EDE8F7200F3DA4F = {
@@ -537,12 +550,10 @@
 			isa = PBXGroup;
 			children = (
 				5038D9F91EDFFACF00F3DA4F /* AppDelegate.swift */,
-				500C46621EE2C72900047991 /* SearchViewModel.swift */,
-				5038DA8F1EE17C3C00F3DA4F /* SearchHandler.swift */,
-				5038DA8D1EE15AF100F3DA4F /* SearchResultParts.swift */,
-				500C465F1EE2C26400047991 /* Output - OmnibarContent */,
-				5038DA1B1EE0090100F3DA4F /* FilterService.swift */,
+				500C46651EE2F14B00047991 /* AppViewModel.swift */,
 				5038DA191EE006C900F3DA4F /* TableViewController.swift */,
+				500C46641EE2ED2F00047991 /* Input - Search */,
+				500C465F1EE2C26400047991 /* Output - OmnibarContent */,
 				5038DA8B1EE14AB400F3DA4F /* RxHelpers.swift */,
 				5038D9FB1EDFFACF00F3DA4F /* Assets.xcassets */,
 				5038D9FD1EDFFACF00F3DA4F /* MainMenu.xib */,
@@ -1029,7 +1040,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				500C46631EE2C72900047991 /* SearchViewModel.swift in Sources */,
-				5038DA1C1EE0090100F3DA4F /* FilterService.swift in Sources */,
+				5038DA1C1EE0090100F3DA4F /* Filter.swift in Sources */,
+				500C46661EE2F14B00047991 /* AppViewModel.swift in Sources */,
 				5038DA1A1EE006C900F3DA4F /* TableViewController.swift in Sources */,
 				5038D9FA1EDFFACF00F3DA4F /* AppDelegate.swift in Sources */,
 				5038DA8A1EE1488100F3DA4F /* Suggestion.swift in Sources */,

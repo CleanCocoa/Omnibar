@@ -13,18 +13,18 @@ protocol OmnibarContentConvertible {
 
 struct OmnibarViewModel {
 
-    let selection: Driver<Selection>
-    let suggestion: Driver<Suggestion>
-    let continuation: Driver<Continuation>
+    let selections: Driver<Selection>
+    let suggestions: Driver<Suggestion>
+    let continuations: Driver<Continuation>
 
-    var omnibarContent: Driver<OmnibarContent> {
+    var omnibarContents: Driver<OmnibarContent> {
 
-        let selection = self.selection.map { $0.omnibarContent }
-        let suggestion = self.suggestion.map { $0.omnibarContent }
-        let continuation = self.continuation.map { $0.omnibarContent }
+        let selections = self.selections.map { $0.omnibarContent }
+        let suggestions = self.suggestions.map { $0.omnibarContent }
+        let continuations = self.continuations.map { $0.omnibarContent }
 
         return Observable
-            .of(selection, suggestion, continuation)
+            .of(selections, suggestions, continuations)
             .merge()
             .asDriver(onErrorDriveWith: .empty())
     }

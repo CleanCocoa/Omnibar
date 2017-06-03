@@ -5,14 +5,7 @@ import Omnibar
 import RxSwift
 import RxCocoa
 import RxOmnibar
-
-extension RxOmnibarContentChange {
-    static var initial: RxOmnibarContentChange {
-        return RxOmnibarContentChange(
-            contentChange: .replacement(text: ""),
-            method: .insertion)
-    }
-}
+import ExampleModel
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -21,67 +14,72 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var omnibar: Omnibar!
     @IBOutlet weak var tableViewController: TableViewController!
 
-    lazy var filterService: FilterService = FilterService()
-
     let programmaticSearch = PublishSubject<String>()
-    let omnibarContentChange = PublishSubject<OmnibarContent>()
-
+    let omnibarContentChanges = PublishSubject<OmnibarContent>()
     let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        let search = SearchViewModel(
-            contentChange: omnibar.rx.contentChange.asObservable(),
-            programmaticSearch: programmaticSearch.asObservable().startWith(""))
-            .search
+        wireComponents()
+    }
+}
 
-        let searchResults = search
-            .flatMapLatest(filterService.filter(search:))
-            .asDriver(onErrorDriveWith: .empty())
 
-        let searchResultParts = SearchResultParts(searchResults: searchResults)
+// MARK: - Rx Wiring
 
-        // Update Omnibar text
+extension AppDelegate {
 
-        omnibarContentChange.asDriver(onErrorDriveWith: .empty())
-            .drive(omnibar.rx.content)
-            .disposed(by: disposeBag)
+    func wireComponents() {
 
-        let omnibarChange: OmnibarViewModel = {
-            let suggestion = searchResultParts.suggestion
-            let suggestionContinuation = omnibar.rx.contentChange.asDriver()
-                .map(Continuation.init(change:))
-                .ignoreNil()
-            let selection = tableViewController.wordSelectionChange.asDriver()
-                .map(Selection.init(word:))
+        let searchInput = AppViewModel.OmnibarInput.SearchInput(
+            typedSearches: self.omnibar.rx.contentChange.asDriver(),
+            programmaticSearches: self.programmaticSearch.asObservable().startWith(""),
+            wordsModels: Observable.just(WordsModel()))
+        let selectionInput = AppViewModel.OmnibarInput.SelectionInput(
+            wordSelections: self.tableViewController.wordSelectionChange.asDriver())
+        let (omnibarViewModel, resultParts) = AppViewModel().transform(
+            searchInput: searchInput,
+            selectionInput: selectionInput)
+        let selectionMovements = self.omnibar.rx.moveSelection.asDriver()
 
-            return OmnibarViewModel(
-                selection: selection,
-                suggestion: suggestion,
-                continuation: suggestionContinuation)
-        }()
+        updateOmnibar(viewModel: omnibarViewModel)
+        updateResultsList(fromParts: resultParts)
+        adjustSelection(movingWith: selectionMovements)
+    }
 
-        omnibarChange.omnibarContent
-            .drive(omnibarContentChange)
-            .disposed(by: disposeBag)
+    private func adjustSelection(movingWith moveSignal: Driver<MoveSelection>) {
 
-        // Update results list
-
-        searchResultParts.words
-            .drive(tableViewController.viewModel.words)
-            .disposed(by: disposeBag)
-        searchResultParts.selectWord
-            .drive(tableViewController.viewModel.selection)
-            .disposed(by: disposeBag)
-
-        omnibar.rx.moveSelection.asDriver()
-            .drive(tableViewController.movementSink)
+        moveSignal
+            .drive(self.tableViewController.movementSink)
             .disposed(by: disposeBag)
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    private func updateOmnibar(viewModel: OmnibarViewModel) {
+
+        viewModel.omnibarContents
+            .drive(self.omnibarContentChanges)
+            .disposed(by: disposeBag)
+
+        self.omnibarContentChanges.asDriver(onErrorDriveWith: .empty())
+            .drive(self.omnibar.rx.content)
+            .disposed(by: disposeBag)
     }
+
+    private func updateResultsList(fromParts parts: SearchResultParts) {
+
+        parts.words
+            .drive(self.tableViewController.viewModel.words)
+            .disposed(by: disposeBag)
+        parts.selectWord
+            .drive(self.tableViewController.viewModel.selection)
+            .disposed(by: disposeBag)
+    }
+}
+
+
+// MARK: - IB Actions
+
+extension AppDelegate {
 
     @IBAction func focusOmnibar(_ sender: Any) {
 
@@ -105,7 +103,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     fileprivate func changeSearch(omnibarContent: OmnibarContent) {
 
-        omnibarContentChange.onNext(omnibarContent)
+        omnibarContentChanges.onNext(omnibarContent)
 
         // Search for the base, not the appendix of `.suggestion`s.
         programmaticSearch.onNext(omnibarContent.text)
