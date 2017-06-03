@@ -4,6 +4,16 @@ import RxSwift
 import RxCocoa
 import ExampleModel
 
+struct Search {
+    let searchTerm: String
+    let requestSuggestion: Bool
+}
+
+struct SearchResult {
+    let suggestion: Suggestion?
+    let results: [Word]
+}
+
 struct SearchResultParts {
 
     let searchResults: Driver<SearchResult>
@@ -34,7 +44,7 @@ extension SearchResultParts {
         ) {
 
         let searches = SearchViewModel(
-            typedSearches: typedSearches.asObservable(),
+            typedSearches: typedSearches,
             programmaticSearches: programmaticSearches)
             .searches
         let filterViewModel = Filter(

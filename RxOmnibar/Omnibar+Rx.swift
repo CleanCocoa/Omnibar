@@ -6,10 +6,12 @@ import RxCocoa
 
 public extension Reactive where Base: Omnibar {
 
+    /// Reactive wrapper for the text property, based on `stringValue`.
     public var text: ControlProperty<String> {
         return base._textField.rx.text.orEmpty
     }
 
+    /// Content sink to change the text and selection of the Omnibar.
     public var content: UIBindingObserver<Omnibar, OmnibarContent> {
         return UIBindingObserver(UIElement: base) { (omnibar: Omnibar, content: OmnibarContent) in
             omnibar.display(content: content)
@@ -40,6 +42,7 @@ public extension Reactive where Base: Omnibar {
         return RxOmnibarDelegateProxy.proxyForObject(base)
     }
 
+    /// Control event for pressing the up or down arrow keys inside the Omnibar.
     public var moveSelection: ControlEvent<MoveSelection> {
 
         let delegate = self.delegate
@@ -71,6 +74,7 @@ public struct RxOmnibarContentChange {
 
 public extension Reactive where Base: Omnibar {
 
+    /// Control event for user-generated changes to the omnibar.
     public var contentChange: ControlEvent<RxOmnibarContentChange> {
 
         let source = RxOmnibarDelegateProxy
