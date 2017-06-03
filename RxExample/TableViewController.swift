@@ -87,7 +87,9 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func tableViewSelectionDidChange(_ notification: Notification) {
 
-        guard let tableView = notification.object as? NSTableView else { return }
+        guard let tableView = notification.object as? NSTableView,
+            tableView.selectedRow != -1
+            else { return }
 
         let word = words[tableView.selectedRow]
         _selectedWord.onNext(word)
