@@ -42,7 +42,7 @@ class OmnibarContentChangeTests: XCTestCase {
             range: NSRange(
                 location: ("same base" as NSString).length,
                 length: ("continued here" as NSString).length),
-            method: .insertion)
+            method: .appending)
 
         XCTAssertEqual(
             OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: continuingAppendix),
@@ -70,7 +70,7 @@ class OmnibarContentChangeTests: XCTestCase {
             oldText: "same base",
             patch: "c",
             range: NSRange(location: ("same base" as NSString).length, length: 0),
-            method: .insertion)
+            method: .appending)
 
         XCTAssertEqual(
             OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: appendingFitting),
@@ -152,7 +152,7 @@ class OmnibarContentChangeTests: XCTestCase {
             range: NSRange(
                 location: ("same base" as NSString).length,
                 length: ("continued here" as NSString).length),
-            method: .insertion)
+            method: .appending)
 
         XCTAssertEqual(
             OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal),

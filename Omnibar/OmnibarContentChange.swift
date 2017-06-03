@@ -18,7 +18,7 @@ public enum OmnibarContentChange: Equatable {
             switch content {
             case .suggestion:
 
-                guard change.method == .insertion else { return .replacement(text: change.result) }
+                guard change.method != .deletion else { return .replacement(text: change.result) }
 
                 let originalText = content.string
                 let newText = change.result
