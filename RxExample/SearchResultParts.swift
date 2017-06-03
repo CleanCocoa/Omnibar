@@ -10,7 +10,7 @@ struct Search {
 }
 
 struct SearchResult {
-    let suggestion: Suggestion?
+    let suggestion: Suggestion
     let results: [Word]
 }
 
@@ -20,13 +20,12 @@ struct SearchResultParts {
 
     var suggestion: Driver<Suggestion> {
         return searchResults
-            .map({ $0.suggestion })
-            .ignoreNil()
+            .map { $0.suggestion }
     }
 
     var selectWord: Driver<String?> {
         return searchResults
-            .map { $0.suggestion?.string }
+            .map { $0.suggestion.string }
     }
 
     var words: Driver<[Word]> {

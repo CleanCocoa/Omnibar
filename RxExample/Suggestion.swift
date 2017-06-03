@@ -5,10 +5,10 @@ import enum Omnibar.OmnibarContent
 struct Suggestion {
 
     let text: String
-    let appendix: String
+    let appendix: String?
 
     var string: String {
-        return text.appending(appendix)
+        return text.appending(appendix ?? "")
     }
 
     /// Fails to initialize if `bestFit` does not start with `searchTerm`.
@@ -23,10 +23,21 @@ struct Suggestion {
         self.text = searchTerm
         self.appendix = appendix
     }
+
+    init(onlySearchTerm searchTerm: String) {
+
+        self.text = searchTerm
+        self.appendix = nil
+    }
 }
 
 extension Suggestion: OmnibarContentConvertible {
     var omnibarContent: OmnibarContent {
+
+        guard let appendix = self.appendix else {
+            return .prefix(text: text)
+        }
+
         return .suggestion(text: text, appendix: appendix)
     }
 }

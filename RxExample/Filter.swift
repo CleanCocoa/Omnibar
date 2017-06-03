@@ -43,7 +43,7 @@ fileprivate func filter(filterQueue: DispatchQueue) -> (Search, WordsModel) -> M
 
                         observer.onNext(SearchResult(suggestion: suggestion, results: result.words))
                     } else {
-                        observer.onNext(SearchResult(suggestion: nil, results: result.words))
+                        observer.onNext(SearchResult(suggestion: Suggestion(onlySearchTerm: search.searchTerm), results: result.words))
                     }
 
                     observer.on(.completed)
