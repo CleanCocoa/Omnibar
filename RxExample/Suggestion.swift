@@ -23,7 +23,9 @@ struct Suggestion {
         self.text = searchTerm
         self.appendix = appendix
     }
+}
 
+extension Suggestion: OmnibarContentConvertible {
     var omnibarContent: OmnibarContent {
         return .suggestion(text: text, appendix: appendix)
     }
