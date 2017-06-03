@@ -28,20 +28,42 @@ struct SearchResultsViewModel {
 import Omnibar
 import ExampleModel
 
+struct Continuation {
+    let text: String
+    let appendix: String
+
+    var omnibarContent: OmnibarContent {
+        return .suggestion(text: text, appendix: appendix)
+    }
+}
+
+extension Continuation {
+    init?(change: RxOmnibarContentChange) {
+        switch change.contentChange {
+        case .replacement: return nil
+        case let .continuation(text: text, remainingAppendix: appendix):
+            self.init(text: text, appendix: appendix)
+        }
+    }
+}
+
 struct OmnibarContentViewModel {
 
     let wordSelectionChange: Driver<Word>
     let wordSuggestion: Driver<Suggestion>
+    let continuation: Driver<Continuation>
 
     var omnibarContent: Driver<OmnibarContent> {
 
-        let selection = wordSelectionChange
+        let selection = self.wordSelectionChange
             .map { OmnibarContent.selection(text: $0) }
-        let suggestion = wordSuggestion
+        let suggestion = self.wordSuggestion
+            .map { $0.omnibarContent }
+        let continuation = self.continuation
             .map { $0.omnibarContent }
 
         return Observable
-            .of(selection, suggestion)
+            .of(selection, suggestion, continuation)
             .merge()
             .asDriver(onErrorDriveWith: .empty())
     }

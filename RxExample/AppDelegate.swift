@@ -36,11 +36,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             contentChange: omnibar.rx.contentChange.asObservable(),
             programmaticSearch: programmaticSearch.asObservable().startWith(""))
 
+        let suggestionContinuation = omnibar.rx.contentChange.asDriver()
+            .map(Continuation.init(change:))
+            .ignoreNil()
+
         let searchResults = searchViewModel.searchResults().asDriver(onErrorDriveWith: .empty())
 
         contentViewModel = OmnibarContentViewModel(
             wordSelectionChange: tableViewController.wordSelectionChange.asDriver(),
-            wordSuggestion: searchResults.map({ $0.suggestion }).ignoreNil())
+            wordSuggestion: searchResults.map({ $0.suggestion }).ignoreNil(),
+            continuation: suggestionContinuation)
 
         searchResults.map { $0.results }
             .drive(tableViewController.viewModel.words)
