@@ -1,7 +1,5 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-import Omnibar
-
 struct Continuation {
 
     let text: String
@@ -9,7 +7,9 @@ struct Continuation {
     let requestNumber: Int
 }
 
-import RxOmnibar
+import struct RxOmnibar.OmnibarContentResponse
+import struct RxOmnibar.RxOmnibarContentChange
+
 
 extension Continuation: OmnibarContentResponseConvertible {
 

@@ -34,7 +34,7 @@ struct Suggestion {
     }
 }
 
-import RxOmnibar
+import struct RxOmnibar.OmnibarContentResponse
 
 extension Suggestion: OmnibarContentResponseConvertible {
     var omnibarContentResponse: OmnibarContentResponse {
