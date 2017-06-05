@@ -78,4 +78,12 @@ extension OmnibarController: OmnibarDelegate {
     func omnibarSelectPrevious(_ omnibar: Omnibar) {
         selectionHandler?.selectPrevious()
     }
+
+    func omnibar(_ omnibar: Omnibar, commit text: String) {
+
+        let alert = NSAlert()
+        alert.messageText = text
+        alert.addButton(withTitle: "Continue")
+        alert.runModal()
+    }
 }

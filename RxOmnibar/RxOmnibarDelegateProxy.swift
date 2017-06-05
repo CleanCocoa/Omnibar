@@ -7,7 +7,7 @@ import RxCocoa
 public class RxOmnibarDelegateProxy
     : DelegateProxy
     , DelegateProxyType
-, OmnibarDelegate {
+    , OmnibarDelegate {
 
     public override class func createProxyForObject(_ object: AnyObject) -> AnyObject {
 
@@ -41,9 +41,23 @@ public class RxOmnibarDelegateProxy
         return subject
     }
 
+    fileprivate var _commits: PublishSubject<String>?
+
+    var commitsPublishSubject: PublishSubject<String> {
+
+        if let subject = _commits {
+            return subject
+        }
+
+        let subject = PublishSubject<String>()
+        _commits = subject
+        return subject
+    }
+
     deinit {
 
         _contentChange?.on(.completed)
+        _commits?.on(.completed)
     }
 
     public func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
@@ -52,6 +66,15 @@ public class RxOmnibarDelegateProxy
 
         if let forwardingTo = self._forwardToDelegate as? OmnibarDelegate {
             forwardingTo.omnibar(omnibar, contentChange: contentChange, method: method)
+        }
+    }
+
+    public func omnibar(_ omnibar: Omnibar, commit text: String) {
+
+        _commits?.on(.next(text))
+
+        if let forwardingTo = self._forwardToDelegate as? OmnibarDelegate {
+            forwardingTo.omnibar(omnibar, commit: text)
         }
     }
 }

@@ -45,6 +45,21 @@ extension AppDelegate {
         updateOmnibar(viewModel: omnibarViewModel)
         updateResultsList(fromParts: resultParts)
         adjustSelection(movingWith: selectionMovements)
+
+        omnibar.rx.commits.asDriver()
+            .drive(commitAlertSink)
+            .disposed(by: disposeBag)
+    }
+
+    var commitAlertSink: AnyObserver<String> {
+        return AnyObserver { event in
+            guard case .next(let text) = event else { return }
+
+            let alert = NSAlert()
+            alert.messageText = text
+            alert.addButton(withTitle: "Continue")
+            alert.runModal()
+        }
     }
 
     private func adjustSelection(movingWith moveSignal: Driver<MoveSelection>) {

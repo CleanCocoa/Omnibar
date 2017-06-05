@@ -46,6 +46,8 @@ open class Omnibar: NSView {
     /// Enable/disable resetting the contents with the Esc key. `True` by default.
     open var isResettable: Bool = true
 
+    open var usesTabForNextResponder: Bool = true
+
     public convenience init() {
         self.init(frame: NSRect.zero)
     }
@@ -100,6 +102,13 @@ extension Omnibar: NSTextFieldDelegate {
             self.focusAndClearText()
             return true
 
+        case #selector(NSResponder.insertNewline(_:)),
+             #selector(NSResponder.insertLineBreak(_:)),
+             #selector(NSResponder.insertNewlineIgnoringFieldEditor(_:)):
+
+            self.commit()
+            return true
+
         case #selector(NSResponder.moveDown(_:)):
             delegate?.omnibarSelectNext?(self)
             return true
@@ -150,6 +159,11 @@ extension Omnibar: NSTextFieldDelegate {
 
         self.selectText(nil)
     }
+
+    open func commit() {
+
+        self.delegate?.omnibar(self, commit: self.stringValue)
+    }
 }
 
 
@@ -181,18 +195,6 @@ extension Omnibar {
         set { _textField.stringValue = newValue }
     }
 
-    open override var acceptsFirstResponder: Bool {
-        return _textField.acceptsFirstResponder
-    }
-
-    open override func becomeFirstResponder() -> Bool {
-        return _textField.becomeFirstResponder()
-    }
-
-    open override func resignFirstResponder() -> Bool {
-        return _textField.resignFirstResponder()
-    }
-
     open func selectText(_ sender: Any?) {
 
         _textField.selectText(sender)
@@ -215,5 +217,22 @@ extension Omnibar {
 
     open func currentEditor() -> NSText? {
         return _textField.currentEditor()
+    }
+}
+
+// MARK: NSResponder
+
+extension Omnibar {
+
+    open override var acceptsFirstResponder: Bool {
+        return _textField.acceptsFirstResponder
+    }
+
+    open override func becomeFirstResponder() -> Bool {
+        return _textField.becomeFirstResponder()
+    }
+
+    open override func resignFirstResponder() -> Bool {
+        return _textField.resignFirstResponder()
     }
 }

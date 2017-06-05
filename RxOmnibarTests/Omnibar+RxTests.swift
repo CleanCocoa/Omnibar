@@ -117,6 +117,10 @@ extension Omnibar_RxTests {
 
 final class SelectionDelegateDouble: OmnibarDelegate {
 
+    public func omnibar(_ omnibar: Omnibar, commit text: String) {
+        // no op
+    }
+
     func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
         // no op
     }
@@ -160,6 +164,34 @@ extension Omnibar_RxTests {
         XCTAssertEqual(result.events, [
             next(300, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: firstChange), method: .insertion)),
             next(400, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: secondChange), method: .insertion))
+            ])
+    }
+}
+
+
+// MARK: - Commits
+
+extension Omnibar_RxTests {
+
+    func testCommits_PublishesEvent() {
+
+        let scheduler = TestScheduler(initialClock: 0)
+        let omnibar = Omnibar()
+
+        scheduler.scheduleAt(400) {
+            omnibar.stringValue = "shnabubula"
+            omnibar.commit()
+        }
+        scheduler.scheduleAt(600) {
+            omnibar.stringValue = "overclocked"
+            omnibar.commit()
+        }
+
+        let result = scheduler.start { omnibar.rx.commits.asObservable() }
+
+        XCTAssertEqual(result.events, [
+            next(400, "shnabubula"),
+            next(600, "overclocked")
             ])
     }
 }

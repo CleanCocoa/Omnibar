@@ -83,3 +83,18 @@ public extension Reactive where Base: Omnibar {
         return ControlEvent(events: source)
     }
 }
+
+
+// MARK: Text Commits
+
+public extension Reactive where Base: Omnibar {
+
+    /// Sequence of committed text, e.g. through hitting the Enter key.
+    public var commits: ControlEvent<String> {
+
+        let source = RxOmnibarDelegateProxy
+            .proxyForObject(base)
+            .commitsPublishSubject
+        return ControlEvent(events: source)
+    }
+}
