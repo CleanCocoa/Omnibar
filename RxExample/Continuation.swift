@@ -6,24 +6,31 @@ struct Continuation {
 
     let text: String
     let appendix: String
-}
-
-extension Continuation: OmnibarContentConvertible {
-
-    var omnibarContent: OmnibarContent {
-        return .suggestion(text: text, appendix: appendix)
-    }
+    let requestNumber: Int
 }
 
 import RxOmnibar
+
+extension Continuation: OmnibarContentResponseConvertible {
+
+    var omnibarContentResponse: OmnibarContentResponse {
+        return OmnibarContentResponse(
+            omnibarContent: .suggestion(text: text, appendix: appendix),
+            requestNumber: requestNumber)
+    }
+}
 
 extension Continuation {
 
     init?(change: RxOmnibarContentChange) {
         switch change.contentChange {
-        case .replacement: return nil
         case let .continuation(text: text, remainingAppendix: appendix):
-            self.init(text: text, appendix: appendix)
+            self.init(
+                text: text,
+                appendix: appendix,
+                requestNumber: change.requestNumber)
+
+        case .replacement: return nil
         }
     }
 }

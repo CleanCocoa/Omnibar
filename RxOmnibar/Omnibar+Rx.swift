@@ -4,6 +4,17 @@ import Omnibar
 import RxSwift
 import RxCocoa
 
+public struct OmnibarContentResponse {
+    public let omnibarContent: OmnibarContent
+    public let requestNumber: Int
+
+    public init(omnibarContent: OmnibarContent, requestNumber: Int) {
+
+        self.omnibarContent = omnibarContent
+        self.requestNumber = requestNumber
+    }
+}
+
 public extension Reactive where Base: Omnibar {
 
     /// Reactive wrapper for the text property, based on `stringValue`.
@@ -15,6 +26,26 @@ public extension Reactive where Base: Omnibar {
     public var content: UIBindingObserver<Omnibar, OmnibarContent> {
         return UIBindingObserver(UIElement: base) { (omnibar: Omnibar, content: OmnibarContent) in
             omnibar.display(content: content)
+        }
+    }
+
+    public var contentResponseSink: AnyObserver<OmnibarContentResponse> {
+
+        let requestNumbers = self.contentChange.asDriver()
+            .map { $0.requestNumber }
+        let publish = PublishSubject<OmnibarContentResponse>()
+
+        let subscription = publish.asDriver(onErrorDriveWith: .empty())
+            .withLatestFrom(requestNumbers) { response, number in (response, number) }
+            .filter { response, latestRequestNumber in response.requestNumber >= latestRequestNumber }
+            .map { response, _ in response.omnibarContent }
+            .drive(content)
+
+        return AnyObserver { [subscription] event in
+
+            guard case .next(let response) = event else { return }
+
+            publish.onNext(response)
         }
     }
 }
@@ -64,11 +95,16 @@ public struct RxOmnibarContentChange {
 
     public let contentChange: OmnibarContentChange
     public let method: ChangeMethod
+    public let requestNumber: Int
 
-    public init(contentChange: OmnibarContentChange, method: ChangeMethod) {
+    public init(
+        contentChange: OmnibarContentChange,
+        method: ChangeMethod,
+        requestNumber: Int) {
 
         self.contentChange = contentChange
         self.method = method
+        self.requestNumber = requestNumber
     }
 }
 

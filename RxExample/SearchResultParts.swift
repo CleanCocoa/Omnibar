@@ -7,6 +7,17 @@ import ExampleModel
 struct Search {
     let searchTerm: String
     let requestSuggestion: Bool
+    let requestNumber: Int
+
+    init(
+        searchTerm: String,
+        requestSuggestion: Bool,
+        requestNumber: Int = Int.max) {
+
+        self.searchTerm = searchTerm
+        self.requestSuggestion = requestSuggestion
+        self.requestNumber = requestNumber
+    }
 }
 
 struct SearchResult {

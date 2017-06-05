@@ -39,11 +39,11 @@ fileprivate func filter(filterQueue: DispatchQueue) -> (Search, WordsModel) -> M
 
                     if search.requestSuggestion,
                         let bestFit = result.bestMatch,
-                        let suggestion = Suggestion(bestFit: bestFit, forSearchTerm: search.searchTerm) {
+                        let suggestion = Suggestion(bestFit: bestFit, forSearchTerm: search.searchTerm, requestNumber: search.requestNumber) {
 
                         observer.onNext(SearchResult(suggestion: suggestion, results: result.words))
                     } else {
-                        observer.onNext(SearchResult(suggestion: Suggestion(onlySearchTerm: search.searchTerm), results: result.words))
+                        observer.onNext(SearchResult(suggestion: Suggestion(onlySearchTerm: search.searchTerm,requestNumber: search.requestNumber), results: result.words))
                     }
 
                     observer.on(.completed)
