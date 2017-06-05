@@ -43,6 +43,9 @@ open class Omnibar: NSView {
     /// Display model cache.
     let previousContent = PreviousContent()
 
+    /// Enable/disable resetting the contents with the Esc key. `True` by default.
+    open var isResettable: Bool = true
+
     public convenience init() {
         self.init(frame: NSRect.zero)
     }
@@ -91,6 +94,12 @@ extension Omnibar: NSTextFieldDelegate {
     public func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 
         switch commandSelector {
+        case #selector(NSResponder.cancelOperation(_:)):
+            guard isResettable else { return false }
+
+            self.focusAndClearText()
+            return true
+
         case #selector(NSResponder.moveDown(_:)):
             delegate?.omnibarSelectNext?(self)
             return true
@@ -127,6 +136,19 @@ extension Omnibar: NSTextFieldDelegate {
             self,
             contentChange: contentChange,
             method: textChange.method)
+    }
+
+    open func focusAndClearText() {
+
+        self.focus()
+
+        guard let fieldEditor = window?.fieldEditor(true, for: self._textField) else { return }
+        fieldEditor.delete(self)
+    }
+
+    open func focus() {
+
+        self.selectText(nil)
     }
 }
 
