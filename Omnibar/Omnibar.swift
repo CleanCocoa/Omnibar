@@ -170,4 +170,28 @@ extension Omnibar {
     open override func resignFirstResponder() -> Bool {
         return _textField.resignFirstResponder()
     }
+
+    open func selectText(_ sender: Any?) {
+
+        _textField.selectText(sender)
+    }
+
+    @IBInspectable open var isEditable: Bool {
+        get { return _textField.isEditable }
+        set { _textField.isEditable = newValue }
+    }
+
+    @IBInspectable open var bezelStyle: NSTextFieldBezelStyle {
+        get { return _textField.bezelStyle }
+        set { _textField.bezelStyle = newValue }
+    }
+
+    @IBInspectable open var isBordered: Bool {
+        get { return _textField.isBordered }
+        set { _textField.isBordered = newValue }
+    }
+
+    open func currentEditor() -> NSText? {
+        return _textField.currentEditor()
+    }
 }
