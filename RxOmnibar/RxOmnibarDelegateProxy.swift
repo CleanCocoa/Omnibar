@@ -60,9 +60,16 @@ public class RxOmnibarDelegateProxy
         _commits?.on(.completed)
     }
 
+    fileprivate var requestNumber: Int = 0
+
     public func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
 
-        _contentChange?.on(.next(RxOmnibarContentChange(contentChange: contentChange, method: method)))
+        requestNumber += 1
+
+        _contentChange?.on(.next(RxOmnibarContentChange(
+            contentChange: contentChange,
+            method: method,
+            requestNumber: self.requestNumber)))
 
         if let forwardingTo = self._forwardToDelegate as? OmnibarDelegate {
             forwardingTo.omnibar(omnibar, contentChange: contentChange, method: method)

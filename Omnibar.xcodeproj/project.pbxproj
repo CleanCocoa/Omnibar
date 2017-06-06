@@ -106,6 +106,7 @@
 		5038DA8A1EE1488100F3DA4F /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA891EE1488100F3DA4F /* Suggestion.swift */; };
 		5038DA8C1EE14AB400F3DA4F /* RxHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA8B1EE14AB400F3DA4F /* RxHelpers.swift */; };
 		5038DA8E1EE15AF100F3DA4F /* SearchResultParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038DA8D1EE15AF100F3DA4F /* SearchResultParts.swift */; };
+		50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,6 +315,7 @@
 		5038DA891EE1488100F3DA4F /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		5038DA8B1EE14AB400F3DA4F /* RxHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxHelpers.swift; sourceTree = "<group>"; };
 		5038DA8D1EE15AF100F3DA4F /* SearchResultParts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultParts.swift; sourceTree = "<group>"; };
+		50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarTextFieldCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				5038D9C71EDECD4200F3DA4F /* OmnibarTextField.swift */,
+				50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */,
 				5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */,
 			);
 			name = "Text Field";
@@ -973,6 +976,7 @@
 			files = (
 				500C46581EE2AA1100047991 /* ChangeMethod.swift in Sources */,
 				5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */,
+				50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */,
 				5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
 				5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */,

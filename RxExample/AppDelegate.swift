@@ -71,10 +71,14 @@ extension AppDelegate {
 
     private func updateOmnibar(viewModel: OmnibarViewModel) {
 
-        viewModel.omnibarContents
-            .drive(self.omnibarContentChanges)
+        viewModel.omnibarContentResponse
+            .drive(self.omnibar.rx.contentResponseSink)
             .disposed(by: disposeBag)
 
+        // Buffer these for button-driven changes
+        viewModel.omnibarContent
+            .drive(self.omnibarContentChanges)
+            .disposed(by: disposeBag)
         self.omnibarContentChanges.asDriver(onErrorDriveWith: .empty())
             .drive(self.omnibar.rx.content)
             .disposed(by: disposeBag)

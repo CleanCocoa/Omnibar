@@ -28,12 +28,36 @@ class PreviousContent {
 @IBDesignable @objc
 open class Omnibar: NSView {
 
+    public struct Insets {
+
+        public let left: CGFloat
+        public let right: CGFloat
+
+        public var width: CGFloat { return left + right }
+
+        public init(left: CGFloat, right: CGFloat) {
+            self.left = left
+            self.right = right
+        }
+    }
+
     public weak var delegate: OmnibarDelegate?
 
     public lazy var _textField: OmnibarTextField = {
         let textField = OmnibarTextField()
+
+        let omnibarCell = OmnibarTextFieldCell(textCell: "")
+        omnibarCell.insets = self.textInsets
+        textField.cell = omnibarCell
+
+        textField.isEditable = true
+        textField.isBezeled = true
+        textField.bezelStyle = .squareBezel
+        textField.drawsBackground = true
+
         textField.usesSingleLineMode = true
         textField.delegate = self
+        
         return textField
     }()
 
@@ -46,7 +70,24 @@ open class Omnibar: NSView {
     /// Enable/disable resetting the contents with the Esc key. `True` by default.
     open var isResettable: Bool = true
 
-    open var usesTabForNextResponder: Bool = true
+    /// Left and right insets of text field where the text may be drawn.
+    ///
+    /// **Insets affect the field editor, too.** In order to reload
+    /// the field editor with updated layout constraints, 
+    /// resign first responder and refocus the Omnibar:
+    ///
+    ///     window.makeFirstResponder(window)
+    ///     omnibar.textInsets = newInsets
+    ///     window.makeFirstResponder(omnibar)
+    ///
+    open var textInsets: Insets = Insets(left: 0, right: 0) {
+        didSet {
+            guard let cell = _textField.cell as? OmnibarTextFieldCell else { return }
+
+            cell.insets = textInsets
+            _textField.needsLayout = true
+        }
+    }
 
     public convenience init() {
         self.init(frame: NSRect.zero)
@@ -147,6 +188,7 @@ extension Omnibar: NSTextFieldDelegate {
             method: textChange.method)
     }
 
+    /// Clears the text so that a change event is fired.
     open func focusAndClearText() {
 
         self.focus()
@@ -203,6 +245,11 @@ extension Omnibar {
     @IBInspectable open var isEditable: Bool {
         get { return _textField.isEditable }
         set { _textField.isEditable = newValue }
+    }
+
+    @IBInspectable open var isBezeled: Bool {
+        get { return _textField.isBezeled }
+        set { _textField.isBezeled = newValue }
     }
 
     @IBInspectable open var bezelStyle: NSTextFieldBezelStyle {

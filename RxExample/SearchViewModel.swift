@@ -13,7 +13,8 @@ struct SearchViewModel {
 
         let typed = typedSearches.map { change in
             Search(searchTerm: change.contentChange.text,
-                   requestSuggestion: change.method == .appending) }
+                   requestSuggestion: change.method == .appending,
+                   requestNumber: change.requestNumber) }
         let programmatic = programmaticSearches.map { term in
             Search(searchTerm: term,
                    requestSuggestion: false) }

@@ -6,8 +6,11 @@ import RxOmnibar
 import Omnibar
 import ExampleModel
 
-protocol OmnibarContentConvertible {
+protocol OmnibarContentResponseConvertible {
+    var omnibarContentResponse: OmnibarContentResponse { get }
+}
 
+protocol OmnibarContentConvertible {
     var omnibarContent: OmnibarContent { get }
 }
 
@@ -17,14 +20,20 @@ struct OmnibarViewModel {
     let suggestions: Driver<Suggestion>
     let continuations: Driver<Continuation>
 
-    var omnibarContents: Driver<OmnibarContent> {
+    var omnibarContent: Driver<OmnibarContent> {
 
         let selections = self.selections.map { $0.omnibarContent }
-        let suggestions = self.suggestions.map { $0.omnibarContent }
-        let continuations = self.continuations.map { $0.omnibarContent }
+
+        return selections.asDriver(onErrorDriveWith: .empty())
+    }
+
+    var omnibarContentResponse: Driver<OmnibarContentResponse> {
+
+        let continuations = self.continuations.map { $0.omnibarContentResponse }
+        let suggestions = self.suggestions.map { $0.omnibarContentResponse }
 
         return Observable
-            .of(selections, suggestions, continuations)
+            .of(continuations, suggestions)
             .merge()
             .asDriver(onErrorDriveWith: .empty())
     }

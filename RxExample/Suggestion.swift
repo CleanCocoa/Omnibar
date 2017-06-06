@@ -4,6 +4,7 @@ import enum Omnibar.OmnibarContent
 
 struct Suggestion {
 
+    let requestNumber: Int
     let text: String
     let appendix: String?
 
@@ -12,7 +13,7 @@ struct Suggestion {
     }
 
     /// Fails to initialize if `bestFit` does not start with `searchTerm`.
-    init?(bestFit: String, forSearchTerm searchTerm: String) {
+    init?(bestFit: String, forSearchTerm searchTerm: String, requestNumber: Int) {
 
         guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
             matchRange.lowerBound == bestFit.startIndex
@@ -22,22 +23,32 @@ struct Suggestion {
 
         self.text = searchTerm
         self.appendix = appendix
+        self.requestNumber = requestNumber
     }
 
-    init(onlySearchTerm searchTerm: String) {
+    init(onlySearchTerm searchTerm: String, requestNumber: Int) {
 
         self.text = searchTerm
         self.appendix = nil
+        self.requestNumber = requestNumber
     }
 }
 
-extension Suggestion: OmnibarContentConvertible {
-    var omnibarContent: OmnibarContent {
+import struct RxOmnibar.OmnibarContentResponse
 
-        guard let appendix = self.appendix else {
-            return .prefix(text: text)
-        }
+extension Suggestion: OmnibarContentResponseConvertible {
+    var omnibarContentResponse: OmnibarContentResponse {
 
-        return .suggestion(text: text, appendix: appendix)
+        let content: OmnibarContent = {
+            guard let appendix = self.appendix else {
+                return .prefix(text: text)
+            }
+
+            return .suggestion(text: text, appendix: appendix)
+        }()
+
+        return OmnibarContentResponse(
+            omnibarContent: content,
+            requestNumber: self.requestNumber)
     }
 }
