@@ -105,13 +105,11 @@ open class Omnibar: NSView {
 
     private func layoutSubviews() {
 
-        _textField.frame = self.bounds
-        _textField.autoresizingMask = [.viewWidthSizable]
-        _textField.translatesAutoresizingMaskIntoConstraints = true
+        _textField.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(_textField)
+        _textField.constrainToSuperviewBounds()
 
-        self.autoresizingMask = [.viewWidthSizable]
-        self.translatesAutoresizingMaskIntoConstraints = true
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
