@@ -235,6 +235,15 @@ extension Omnibar {
         set { _textField.stringValue = newValue }
     }
 
+    @IBInspectable open override var nextKeyView: NSView? {
+        get { return _textField.nextKeyView }
+        set { _textField.nextKeyView = newValue }
+    }
+
+    open override var nextValidKeyView: NSView? {
+        return _textField.nextValidKeyView
+    }
+
     open func selectText(_ sender: Any?) {
 
         _textField.selectText(sender)
