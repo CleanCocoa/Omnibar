@@ -148,12 +148,22 @@ extension Omnibar: NSTextFieldDelegate {
             self.commit()
             return true
 
-        case #selector(NSResponder.moveDown(_:)):
-            delegate?.omnibarSelectNext?(self)
+        case #selector(NSResponder.moveToBeginningOfDocument(_:)),
+             #selector(NSResponder.moveToBeginningOfParagraph(_:)):
+            delegate?.omnibarSelectFirst?(self)
             return true
 
         case #selector(NSResponder.moveUp(_:)):
             delegate?.omnibarSelectPrevious?(self)
+            return true
+
+        case #selector(NSResponder.moveDown(_:)):
+            delegate?.omnibarSelectNext?(self)
+            return true
+
+        case #selector(NSResponder.moveToEndOfDocument(_:)),
+             #selector(NSResponder.moveToEndOfParagraph(_:)):
+            delegate?.omnibarSelectLast?(self)
             return true
 
         default: return false

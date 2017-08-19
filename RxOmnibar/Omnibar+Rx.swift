@@ -64,7 +64,7 @@ extension Omnibar {
 // MARK: Selection
 
 public enum MoveSelection {
-    case previous, next
+    case first, previous, next, last
 }
 
 public extension Reactive where Base: Omnibar {
@@ -77,13 +77,24 @@ public extension Reactive where Base: Omnibar {
     public var moveSelection: ControlEvent<MoveSelection> {
 
         let delegate = self.delegate
-        let selectNext = delegate
-            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectNext(_:)))
-            .map { _ in return MoveSelection.next }
+        let selectFirst = delegate
+            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectFirst(_:)))
+            .map { _ in return MoveSelection.first }
         let selectPrevious = delegate
             .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectPrevious(_:)))
             .map { _ in return MoveSelection.previous }
-        let combined = Observable.of(selectNext, selectPrevious).merge()
+        let selectNext = delegate
+            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectNext(_:)))
+            .map { _ in return MoveSelection.next }
+        let selectLast = delegate
+            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectLast(_:)))
+            .map { _ in return MoveSelection.last }
+        let combined = Observable
+            .of(selectFirst,
+                selectNext,
+                selectPrevious,
+                selectLast)
+            .merge()
         return ControlEvent(events: combined)
     }
 }

@@ -99,10 +99,19 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         return AnyObserver { [weak self] event in
             guard case .next(let movement) = event else { return }
             switch movement {
-            case .next: self?.selectNext()
+            case .first: self?.selectFirst()
             case .previous: self?.selectPrevious()
+            case .next: self?.selectNext()
+            case .last: self?.selectLast()
             }
         }
+    }
+
+    func selectFirst() {
+
+        guard tableView.numberOfRows > 0 else { return }
+
+        select(row: 0)
     }
 
     func selectPrevious() {
@@ -117,6 +126,13 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         guard tableView.selectedRow < words.count else { return }
 
         select(row: tableView.selectedRow + 1)
+    }
+
+    func selectLast() {
+
+        guard tableView.numberOfRows > 0 else { return }
+
+        select(row: tableView.numberOfRows - 1)
     }
 
     private func select(row: Int) {
