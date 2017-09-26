@@ -32,7 +32,6 @@
 		5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9711EDE9C8600F3DA4F /* EditableText.swift */; };
 		5038D9741EDE9D9800F3DA4F /* FieldEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */; };
 		5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */; };
-		5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */; };
 		5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */; };
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
 		5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */; };
@@ -247,7 +246,6 @@
 		5038D9711EDE9C8600F3DA4F /* EditableText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableText.swift; sourceTree = "<group>"; };
 		5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldEditor.swift; sourceTree = "<group>"; };
 		5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSText+FieldEditor.swift"; sourceTree = "<group>"; };
-		5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Equatable.swift"; sourceTree = "<group>"; };
 		5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+EquatableTests.swift"; sourceTree = "<group>"; };
 		5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacement.swift; sourceTree = "<group>"; };
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReplacementTests.swift; sourceTree = "<group>"; };
@@ -512,7 +510,6 @@
 				5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */,
 				5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */,
 				5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */,
-				5038D97A1EDEA6D600F3DA4F /* NSRange+Equatable.swift */,
 			);
 			name = "Cocoa Adapter Layer";
 			sourceTree = "<group>";
@@ -980,7 +977,6 @@
 				500C46581EE2AA1100047991 /* ChangeMethod.swift in Sources */,
 				5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */,
 				50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */,
-				5038D97B1EDEA6D600F3DA4F /* NSRange+Equatable.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
 				5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */,
 				5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */,
