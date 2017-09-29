@@ -46,6 +46,8 @@ public extension Reactive where Base: Omnibar {
             guard case .next(let response) = event else { return }
 
             publish.onNext(response)
+
+            _ = subscription // keep alive
         }
     }
 }

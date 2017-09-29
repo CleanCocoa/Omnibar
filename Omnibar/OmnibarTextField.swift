@@ -26,7 +26,7 @@ extension OmnibarTextField: NSTextViewDelegate {
         // `replacementString` is `nil` on attribute changes only,
         // but equals "" on deletion.
         guard let replacementString = replacementString else { return true }
-        guard let oldText = textView.string else { preconditionFailure("NSTextView is supposed to have non-nil string") }
+        let oldText = textView.string
 
         let method = ChangeMethod(
             original: oldText as NSString,

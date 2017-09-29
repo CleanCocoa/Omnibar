@@ -75,7 +75,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
-        guard let cellView = tableView.make(withIdentifier: "Cell", owner: tableView) as? NSTableCellView else { return nil }
+        guard let cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Cell"), owner: tableView) as? NSTableCellView else { return nil }
 
         cellView.textField?.stringValue = words[row]
 

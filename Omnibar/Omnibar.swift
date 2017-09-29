@@ -269,7 +269,7 @@ extension Omnibar {
         set { _textField.isBezeled = newValue }
     }
 
-    @IBInspectable open var bezelStyle: NSTextFieldBezelStyle {
+    @IBInspectable open var bezelStyle: NSTextField.BezelStyle {
         get { return _textField.bezelStyle }
         set { _textField.bezelStyle = newValue }
     }

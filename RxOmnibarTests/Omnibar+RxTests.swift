@@ -162,8 +162,8 @@ extension Omnibar_RxTests {
         let result = scheduler.start { omnibar.rx.contentChange.asObservable() }
 
         XCTAssertEqual(result.events, [
-            next(300, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: firstChange), method: .insertion)),
-            next(400, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: secondChange), method: .insertion))
+            next(300, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: firstChange), method: .insertion, requestNumber: 1)),
+            next(400, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: secondChange), method: .insertion, requestNumber: 2))
             ])
     }
 }

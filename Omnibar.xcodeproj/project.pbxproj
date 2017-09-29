@@ -810,7 +810,7 @@
 					5038D92B1EDE8F7200F3DA4F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FRMDA3XRGC;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					5038D9431EDE902E00F3DA4F = {
@@ -821,30 +821,31 @@
 					5038D9611EDE934F00F3DA4F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FRMDA3XRGC;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					5038D9DA1EDFFA9E00F3DA4F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FRMDA3XRGC;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					5038D9E21EDFFA9E00F3DA4F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FRMDA3XRGC;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					5038D9F61EDFFACF00F3DA4F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FRMDA3XRGC;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					5038DA211EE0093300F3DA4F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = FRMDA3XRGC;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					5038DA291EE0093400F3DA4F = {
@@ -1271,7 +1272,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1297,7 +1298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.Omnibar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1350,7 +1351,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.OmnibarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1364,7 +1365,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.OmnibarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1391,7 +1392,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1417,7 +1418,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxOmnibar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1437,7 +1438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxOmnibarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1456,7 +1457,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxOmnibarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1475,7 +1476,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1494,7 +1495,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.RxExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1517,7 +1518,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1539,7 +1540,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleancocoa.ExampleModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
