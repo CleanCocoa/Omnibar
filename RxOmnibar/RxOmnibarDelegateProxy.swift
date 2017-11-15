@@ -5,27 +5,33 @@ import RxSwift
 import RxCocoa
 
 public class RxOmnibarDelegateProxy
-    : DelegateProxy
+    : DelegateProxy<Omnibar, OmnibarDelegate>
     , DelegateProxyType
-    , OmnibarDelegate {
+    , OmnibarDelegate
+{
 
-    public override class func createProxyForObject(_ object: AnyObject) -> AnyObject {
+    // MARK: - DelegateProxy Implementation
 
-        let omnibar: Omnibar = castOrFatalError(object)
-        return omnibar.createRxOmnibarDelegateProxy()
+    public init(parentObject: Omnibar) {
+        super.init(
+            parentObject: parentObject,
+            delegateProxy: RxOmnibarDelegateProxy.self)
     }
 
-    public class func setCurrentDelegate(_ delegate: AnyObject?, toObject object: AnyObject) {
+    public static func registerKnownImplementations() {
 
-        let omnibar: Omnibar = castOrFatalError(object)
-        omnibar.delegate = castOptionalOrFatalError(delegate)
+        self.register { RxOmnibarDelegateProxy(parentObject: $0) }
+    }
+    
+    public static func currentDelegate(for object: Omnibar) -> OmnibarDelegate? {
+        return object.delegate
+    }
+    
+    public static func setCurrentDelegate(_ delegate: OmnibarDelegate?, to object: Omnibar) {
+        object.delegate = delegate
     }
 
-    public class func currentDelegateFor(_ object: AnyObject) -> AnyObject? {
-
-        let omnibar: Omnibar = castOrFatalError(object)
-        return omnibar.delegate
-    }
+    // MARK: - OmnibarDelegate Implementation
 
     fileprivate var _contentChange: PublishSubject<RxOmnibarContentChange>?
 

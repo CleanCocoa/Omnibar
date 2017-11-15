@@ -23,8 +23,8 @@ public extension Reactive where Base: Omnibar {
     }
 
     /// Content sink to change the text and selection of the Omnibar.
-    public var content: UIBindingObserver<Omnibar, OmnibarContent> {
-        return UIBindingObserver(UIElement: base) { (omnibar: Omnibar, content: OmnibarContent) in
+    public var content: Binder<OmnibarContent> {
+        return Binder(base) { (omnibar: Omnibar, content: OmnibarContent) in
             omnibar.display(content: content)
         }
     }
@@ -55,14 +55,6 @@ public extension Reactive where Base: Omnibar {
 
 // MARK: - Rx-ified Delegate
 
-extension Omnibar {
-
-    public func createRxOmnibarDelegateProxy() -> RxOmnibarDelegateProxy {
-        return RxOmnibarDelegateProxy(parentObject: self)
-    }
-}
-
-
 // MARK: Selection
 
 public enum MoveSelection {
@@ -72,7 +64,7 @@ public enum MoveSelection {
 public extension Reactive where Base: Omnibar {
 
     public var delegate: RxOmnibarDelegateProxy {
-        return RxOmnibarDelegateProxy.proxyForObject(base)
+        return RxOmnibarDelegateProxy.proxy(for: base)
     }
 
     /// Control event for pressing the up or down arrow keys inside the Omnibar.
@@ -126,9 +118,7 @@ public extension Reactive where Base: Omnibar {
     /// Control event for user-generated changes to the omnibar.
     public var contentChange: ControlEvent<RxOmnibarContentChange> {
 
-        let source = RxOmnibarDelegateProxy
-            .proxyForObject(base)
-            .contentChangePublishSubject
+        let source = delegate.contentChangePublishSubject
         return ControlEvent(events: source)
     }
 }
@@ -141,9 +131,7 @@ public extension Reactive where Base: Omnibar {
     /// Sequence of committed text, e.g. through hitting the Enter key.
     public var commits: ControlEvent<String> {
 
-        let source = RxOmnibarDelegateProxy
-            .proxyForObject(base)
-            .commitsPublishSubject
+        let source = delegate.commitsPublishSubject
         return ControlEvent(events: source)
     }
 }
