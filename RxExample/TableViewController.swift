@@ -9,10 +9,11 @@ import RxOmnibar
 class TableViewModel {
 
     let words = Variable<[Word]>([])
-    let selection = Variable<Word?>(nil)
+    let programmaticSelection = Variable<Word?>(nil)
+    fileprivate let manualSelection = PublishSubject<Int>()
 
-    var selectionRow: Observable<Int> {
-        return selection.asObservable()
+    var selectionChange: Observable<Int> {
+        let programmaticallySelectedRow = programmaticSelection.asObservable()
             .withLatestFrom(words.asObservable()) { selection, words in (selection, words) }
             .map { selection, words -> Int? in
                 guard let selection = selection,
@@ -21,6 +22,16 @@ class TableViewModel {
 
                 return selectionIndex
             }.ignoreNil()
+
+        return manualSelection.asObservable()
+            .withLatestFrom(programmaticallySelectedRow) { ($0, $1) }
+            .filter { (params: (manual: Int, programmatic: Int)) in params.manual != params.programmatic }
+            .map    { (params: (manual: Int, programmatic: Int)) in params.manual }
+    }
+
+    var selectedWord: Observable<Word> {
+        return selectionChange
+            .withLatestFrom(words.asObservable()) { index, words in words[index] }
     }
 }
 
@@ -38,24 +49,14 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
             .drive(onNext: { [unowned self] _ in self.tableView.reloadData() })
             .disposed(by: disposeBag)
 
-        viewModel.selectionRow.asDriver(onErrorDriveWith: .empty())
+        viewModel.selectionChange.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [unowned self] in self.select(row: $0) })
             .disposed(by: disposeBag)
     }
 
     // Event output
-    fileprivate let _selectedWord = PublishSubject<Word>()
     var wordSelectionChange: ControlEvent<Word> {
-
-        let selection = _selectedWord.asObservable()
-            .takeUntil(self.rx.deallocated)
-        let knownSelection = viewModel.selection.asObservable()
-        let changedSelection = selection
-            .withLatestFrom(knownSelection) { selected, oldSelection in (selected, oldSelection) }
-            .filter { selected, oldSelection in selected != oldSelection }
-            .map {  selected, _ in selected }
-
-        return ControlEvent(events: changedSelection)
+        return ControlEvent(events: viewModel.selectedWord.takeUntil(self.rx.deallocated))
     }
 
 
@@ -91,8 +92,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
             tableView.selectedRow != -1
             else { return }
 
-        let word = words[tableView.selectedRow]
-        _selectedWord.onNext(word)
+        viewModel.manualSelection.onNext(tableView.selectedRow)
     }
 
     var movementSink: AnyObserver<MoveSelection> {

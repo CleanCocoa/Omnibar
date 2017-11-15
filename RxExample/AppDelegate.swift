@@ -90,7 +90,7 @@ extension AppDelegate {
             .drive(self.tableViewController.viewModel.words)
             .disposed(by: disposeBag)
         parts.selectWord
-            .drive(self.tableViewController.viewModel.selection)
+            .drive(self.tableViewController.viewModel.programmaticSelection)
             .disposed(by: disposeBag)
     }
 }
