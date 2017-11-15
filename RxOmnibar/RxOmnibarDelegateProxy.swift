@@ -12,15 +12,15 @@ public class RxOmnibarDelegateProxy
 
     // MARK: - DelegateProxy Implementation
 
-    public init(parentObject: Omnibar) {
+    public init(omnibar: Omnibar) {
         super.init(
-            parentObject: parentObject,
+            parentObject: omnibar,
             delegateProxy: RxOmnibarDelegateProxy.self)
     }
 
     public static func registerKnownImplementations() {
 
-        self.register { RxOmnibarDelegateProxy(parentObject: $0) }
+        self.register { RxOmnibarDelegateProxy(omnibar: $0) }
     }
     
     public static func currentDelegate(for object: Omnibar) -> OmnibarDelegate? {
