@@ -33,9 +33,10 @@ public class RxOmnibarDelegateProxy
 
     // MARK: - OmnibarDelegate Implementation
 
+    // Use the private/internal property dance instead of lazy var to not initialize the object in deinit.
+
     fileprivate var _contentChange: PublishSubject<RxOmnibarContentChange>?
 
-    // Used instead of lazy var to not initialize the object in deinit.
     var contentChangePublishSubject: PublishSubject<RxOmnibarContentChange> {
 
         if let subject = _contentChange {
@@ -60,10 +61,24 @@ public class RxOmnibarDelegateProxy
         return subject
     }
 
+    fileprivate var _cancelOperations: PublishSubject<Void>?
+
+    var cancelPublishSubject: PublishSubject<Void> {
+
+        if let subject = _cancelOperations {
+            return subject
+        }
+
+        let subject = PublishSubject<Void>()
+        _cancelOperations = subject
+        return subject
+    }
+
     deinit {
 
         _contentChange?.on(.completed)
         _commits?.on(.completed)
+        _cancelOperations?.on(.completed)
     }
 
     fileprivate var requestNumber: Int = 0
@@ -88,6 +103,15 @@ public class RxOmnibarDelegateProxy
 
         if let forwardingTo = self._forwardToDelegate as? OmnibarDelegate {
             forwardingTo.omnibar(omnibar, commit: text)
+        }
+    }
+
+    public func omnibarDidCancelOperation(_ omnibar: Omnibar) {
+
+        _cancelOperations?.on(.next(()))
+
+        if let forwardingTo = self._forwardToDelegate as? OmnibarDelegate {
+            forwardingTo.omnibarDidCancelOperation(omnibar)
         }
     }
 }

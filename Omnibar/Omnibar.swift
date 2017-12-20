@@ -203,6 +203,8 @@ extension Omnibar: NSTextFieldDelegate {
 
         guard let fieldEditor = window?.fieldEditor(true, for: self._textField) else { return }
         fieldEditor.delete(self)
+
+        self.delegate?.omnibarDidCancelOperation(self)
     }
 
     open func focus() {

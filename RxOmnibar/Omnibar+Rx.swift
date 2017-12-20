@@ -121,17 +121,18 @@ public extension Reactive where Base: Omnibar {
         let source = delegate.contentChangePublishSubject
         return ControlEvent(events: source)
     }
-}
-
-
-// MARK: Text Commits
-
-public extension Reactive where Base: Omnibar {
 
     /// Sequence of committed text, e.g. through hitting the Enter key.
     public var commits: ControlEvent<String> {
 
         let source = delegate.commitsPublishSubject
+        return ControlEvent(events: source)
+    }
+
+    /// Cancel operations in the Omnibar, e.g. by hitting ESC.
+    public var cancelOperations: ControlEvent<Void> {
+
+        let source = delegate.cancelPublishSubject
         return ControlEvent(events: source)
     }
 }

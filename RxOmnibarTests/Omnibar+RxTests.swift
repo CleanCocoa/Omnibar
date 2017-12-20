@@ -125,6 +125,10 @@ final class SelectionDelegateDouble: OmnibarDelegate {
         // no op
     }
 
+    func omnibarDidCancelOperation(_ omnibar: Omnibar) {
+        // no op
+    }
+
     var didSelectPrevious: Int = 0
     func omnibarSelectPrevious(_ omnibar: Omnibar) {
         didSelectPrevious += 1

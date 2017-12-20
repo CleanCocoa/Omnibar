@@ -155,6 +155,10 @@ extension OmnibarTests {
         func omnibar(_ omnibar: Omnibar, commit text: String) {
             // no op
         }
+
+        func omnibarDidCancelOperation(_ omnibar: Omnibar) {
+            // no op
+        }
         
         var didSelectPrevious: Omnibar?
         func omnibarSelectPrevious(_ omnibar: Omnibar) {

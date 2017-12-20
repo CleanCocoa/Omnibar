@@ -24,6 +24,9 @@ public protocol OmnibarContentChangeDelegate: class {
 
     /// Indicates the user confirms the currently typed text.
     func omnibar(_ omnibar: Omnibar, commit text: String)
+
+    /// Indicates the user did press ESC or ⌘. inside the Omnibar _after_ a content change is dispatched.
+    func omnibarDidCancelOperation(_ omnibar: Omnibar)
 }
 
 public typealias OmnibarDelegate = OmnibarSelectionDelegate & OmnibarContentChangeDelegate
