@@ -58,7 +58,10 @@ public extension Reactive where Base: Omnibar {
 // MARK: Selection
 
 public enum MoveSelection {
-    case first, previous, next, last
+    case first(expandingSelection: Bool)
+    case previous(expandingSelection: Bool)
+    case next(expandingSelection: Bool)
+    case last(expandingSelection: Bool)
 }
 
 public extension Reactive where Base: Omnibar {
@@ -71,23 +74,43 @@ public extension Reactive where Base: Omnibar {
     public var moveSelection: ControlEvent<MoveSelection> {
 
         let delegate = self.delegate
+
         let selectFirst = delegate
             .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectFirst(_:)))
-            .map { _ in return MoveSelection.first }
+            .map { _ in return MoveSelection.first(expandingSelection: false) }
         let selectPrevious = delegate
             .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectPrevious(_:)))
-            .map { _ in return MoveSelection.previous }
+            .map { _ in return MoveSelection.previous(expandingSelection: false) }
         let selectNext = delegate
             .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectNext(_:)))
-            .map { _ in return MoveSelection.next }
+            .map { _ in return MoveSelection.next(expandingSelection: false) }
         let selectLast = delegate
             .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectLast(_:)))
-            .map { _ in return MoveSelection.last }
+            .map { _ in return MoveSelection.last(expandingSelection: false) }
+
+        let expandToFirst = delegate
+            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarExpandSelectionToFirst(_:)))
+            .map { _ in return MoveSelection.first(expandingSelection: true) }
+        let expandToPrevious = delegate
+            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarExpandSelectionToPrevious(_:)))
+            .map { _ in return MoveSelection.previous(expandingSelection: true) }
+        let expandToNext = delegate
+            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarExpandSelectionToNext(_:)))
+            .map { _ in return MoveSelection.next(expandingSelection: true) }
+        let expandToLast = delegate
+            .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarExpandSelectionToLast(_:)))
+            .map { _ in return MoveSelection.last(expandingSelection: true) }
+
         let combined = Observable
             .of(selectFirst,
                 selectNext,
                 selectPrevious,
-                selectLast)
+                selectLast,
+
+                expandToFirst,
+                expandToPrevious,
+                expandToNext,
+                expandToLast)
             .merge()
         return ControlEvent(events: combined)
     }
