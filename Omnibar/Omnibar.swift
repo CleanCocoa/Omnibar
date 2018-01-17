@@ -276,6 +276,15 @@ extension Omnibar {
         return _textField.nextValidKeyView
     }
 
+    open override var previousKeyView: NSView? {
+        return _textField.previousKeyView
+    }
+
+    open override var previousValidKeyView: NSView? {
+        return _textField.previousValidKeyView
+    }
+
+    /// Ends editing and selects the entire contents of the receiver if it’s selectable.
     open func selectText(_ sender: Any?) {
 
         _textField.selectText(sender)
