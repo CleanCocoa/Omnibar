@@ -21,12 +21,12 @@ class TableViewModel {
                     else { return nil }
 
                 return selectionIndex
-            }.ignoreNil()
+            }
 
         return manualSelection.asObservable()
             .withLatestFrom(programmaticallySelectedRow) { ($0, $1) }
-            .filter { (params: (manual: Int, programmatic: Int)) in params.manual != params.programmatic }
-            .map    { (params: (manual: Int, programmatic: Int)) in params.manual }
+            .filter { (params: (manual: Int, programmatic: Int?)) in params.manual != params.programmatic }
+            .map    { (params: (manual: Int, programmatic: Int?)) in params.manual }
     }
 
     var selectedWord: Observable<Word> {
