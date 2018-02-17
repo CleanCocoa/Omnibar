@@ -21,6 +21,8 @@ extension EditableText where Self: NSControl {
 
     func replace(replacement: TextReplacement) {
 
+        // Do not set `stringValue` in an active editing session because that
+        // "aborts all editing before setting the value." (See docs.)
         guard let fieldEditor = self.fieldEditor() else {
             self.stringValue = replacement.text
             return
