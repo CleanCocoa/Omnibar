@@ -324,10 +324,11 @@ extension Omnibar {
     }
 
     open override func becomeFirstResponder() -> Bool {
-        return _textField.becomeFirstResponder()
+        guard acceptsFirstResponder else { return false }
+        return window?.makeFirstResponder(_textField) ?? false
     }
 
     open override func resignFirstResponder() -> Bool {
-        return _textField.resignFirstResponder()
+        return true
     }
 }
