@@ -168,8 +168,7 @@ extension Omnibar: NSTextFieldDelegate {
             return true
 
 
-        case #selector(NSResponder.moveToBeginningOfDocument(_:)),
-             #selector(NSResponder.moveToBeginningOfParagraph(_:)):
+        case #selector(NSResponder.moveToBeginningOfDocument(_:)):
             delegate?.omnibarSelectFirst?(self)
             return true
 
@@ -181,8 +180,7 @@ extension Omnibar: NSTextFieldDelegate {
             delegate?.omnibarSelectNext?(self)
             return true
 
-        case #selector(NSResponder.moveToEndOfDocument(_:)),
-             #selector(NSResponder.moveToEndOfParagraph(_:)):
+        case #selector(NSResponder.moveToEndOfDocument(_:)):
             delegate?.omnibarSelectLast?(self)
             return true
 
