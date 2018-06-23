@@ -64,6 +64,10 @@ struct Suggestion {
 
 extension OmnibarController: OmnibarDelegate {
 
+    func omnibarDidCancelOperation(_ omnibar: Omnibar) {
+        // nop
+    }
+
     func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
 
         searchHandler?.search(
