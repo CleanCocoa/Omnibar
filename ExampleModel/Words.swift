@@ -13,7 +13,7 @@ struct Words {
         return Bundle.init(for: ModelFramework.self).path(forResource: "\(letter) Words", ofType: "txt")!
     }
 
-    static func lines(atURL url: URL) throws -> AnySequence<String> {
+    static func lines(atURL url: URL) throws -> ArraySlice<String> {
         return try String(contentsOf: url, encoding: .utf8)
             .components(separatedBy: "\n")
             .dropLast(1) // Last line is empty
