@@ -193,8 +193,10 @@ extension Omnibar: NSTextFieldDelegate {
         guard let textField = obj.object as? OmnibarTextField
             else { fatalError("controlTextDidChange expected for OmnibarTextField") }
 
-        guard let textChange = textField.popTextFieldChange()
-            else { preconditionFailure("text change setting should precede notification") }
+        // NSTextFieldDelegate.controlTextDidChange fires twice when you paste "\n" inside:
+        // once for the original, once for the replacement, but the delegate method will only
+        // be called once.
+        guard let textChange = textField.popTextFieldChange() else { return }
 
         processTextChange(textChange)
     }

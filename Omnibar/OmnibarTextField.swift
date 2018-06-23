@@ -2,7 +2,7 @@
 
 import Cocoa
 
-public class OmnibarTextField: NSTextField {
+public class OmnibarTextField: DelegatableTextField {
 
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 }
@@ -25,21 +25,23 @@ extension OmnibarTextField: NSTextViewDelegate {
 
         // `replacementString` is `nil` on attribute changes only,
         // but equals "" on deletion.
-        guard let replacementString = replacementString else { return true }
-        let oldText = textView.string
+        guard let replacement = replacementString else {
+            return super.del_textView(textView, shouldChangeTextIn: affectedCharRange, replacementString: replacementString)
+        }
 
+        let oldText = textView.string
         let method = ChangeMethod(
             original: oldText as NSString,
-            replacement: replacementString as NSString,
+            replacement: replacement as NSString,
             affectedRange: affectedCharRange)
 
         self.cachedTextFieldChange = TextFieldTextChange(
             oldText: oldText,
             patch: TextFieldTextPatch(
-                string: replacementString,
+                string: replacement,
                 range: affectedCharRange),
             method: method)
 
-        return true
+        return super.del_textView(textView, shouldChangeTextIn: affectedCharRange, replacementString: replacementString)
     }
 }
