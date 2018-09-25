@@ -56,6 +56,6 @@ extension RxTestHelpers {
 
         XCTAssertTrue(deallocated, "not deallocated", file: file, line: line)
         XCTAssertTrue(completed, "not completed", file: file, line: line)
-        XCTAssertTrue(comparer(initialValue, lastReturnedPropertyValue), "last property value (\(lastReturnedPropertyValue)) does not match initial value (\(initialValue))", file: file, line: line)
+        XCTAssertTrue(comparer(initialValue, lastReturnedPropertyValue), "last property value (\(String(describing: lastReturnedPropertyValue))) does not match initial value (\(initialValue))", file: file, line: line)
     }
 }

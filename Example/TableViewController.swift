@@ -7,6 +7,10 @@ protocol SelectsWord: class {
     func select(word: Word)
 }
 
+extension NSUserInterfaceItemIdentifier {
+    static var tableCellView: NSUserInterfaceItemIdentifier { return .init(rawValue: "ExTableCellView") }
+}
+
 class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, DisplaysWords, SelectsResult {
 
     weak var wordSelector: SelectsWord?
@@ -49,7 +53,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
-        guard let cellView = tableView.make(withIdentifier: "Cell", owner: tableView) as? NSTableCellView else { return nil }
+        guard let cellView = tableView.makeView(withIdentifier: .tableCellView, owner: tableView) as? NSTableCellView else { return nil }
 
         cellView.textField?.stringValue = words[row]
 

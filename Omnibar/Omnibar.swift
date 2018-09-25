@@ -188,7 +188,7 @@ extension Omnibar: NSTextFieldDelegate {
         }
     }
 
-    open override func controlTextDidChange(_ obj: Notification) {
+    open func controlTextDidChange(_ obj: Notification) {
 
         guard let textField = obj.object as? OmnibarTextField
             else { fatalError("controlTextDidChange expected for OmnibarTextField") }
