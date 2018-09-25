@@ -79,11 +79,12 @@ extension Omnibar_RxTests {
 
         let result = scheduler.start { omnibar.rx.moveSelection.asObservable() }
 
-        XCTAssertEqual(result.events, [
-            next(300, .previous),
-            next(400, .previous),
-            next(500, .next)
-            ])
+        let expected: [Recorded<Event<RxOmnibar.MoveSelection>>] = [
+            next(300, .previous(expandingSelection: false)),
+            next(400, .previous(expandingSelection: false)),
+            next(500, .next(expandingSelection: false))
+        ]
+        XCTAssertEqual(result.events, expected)
     }
 
     func testControlCommand_MoveSelectionWithDelegates_PublishesEventAndCallsDelegate() {
@@ -104,15 +105,28 @@ extension Omnibar_RxTests {
 
         let result = scheduler.start { omnibar.rx.moveSelection.asObservable() }
 
-        XCTAssertEqual(result.events, [
-            next(500, .previous),
-            next(600, .next),
-            next(800, .previous)
-            ])
+        let expected: [Recorded<Event<RxOmnibar.MoveSelection>>] = [
+            next(500, .previous(expandingSelection: false)),
+            next(600, .next(expandingSelection: false)),
+            next(800, .previous(expandingSelection: false))
+        ]
+        XCTAssertEqual(result.events, expected)
         XCTAssertEqual(double.didSelectNext, 1)
         XCTAssertEqual(double.didSelectPrevious, 2)
     }
 
+}
+
+extension RxOmnibar.MoveSelection: Equatable {
+    public static func ==(lhs: RxOmnibar.MoveSelection, rhs: RxOmnibar.MoveSelection) -> Bool {
+        switch (lhs, rhs) {
+        case let (.first(lExpandSelection), .first(rExpandSelection)): return lExpandSelection == rExpandSelection
+        case let (.previous(lExpandSelection), .previous(rExpandSelection)): return lExpandSelection == rExpandSelection
+        case let (.next(lExpandSelection), .next(rExpandSelection)): return lExpandSelection == rExpandSelection
+        case let (.last(lExpandSelection), .last(rExpandSelection)): return lExpandSelection == rExpandSelection
+        default: return false
+        }
+    }
 }
 
 final class SelectionDelegateDouble: OmnibarDelegate {
