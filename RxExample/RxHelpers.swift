@@ -33,7 +33,7 @@ extension ObservableType where E: OptionalType {
 import RxCocoa
 
 /// via <https://github.com/RxSwiftCommunity/RxOptional/tree/93d12b3c3bfc1886ebd038149b24a8d7d6ef1ea4/Source/Driver%2BOptional.swift>
-public extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, E: OptionalType {
+extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, E: OptionalType {
     public func ignoreNil() -> Driver<E.Wrapped> {
         return self.flatMap { element -> Driver<E.Wrapped> in
             guard let value = element.optional else {
