@@ -866,10 +866,9 @@
 			};
 			buildConfigurationList = 5038D9261EDE8F7200F3DA4F /* Build configuration list for PBXProject "Omnibar" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
