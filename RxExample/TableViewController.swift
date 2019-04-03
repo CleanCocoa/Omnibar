@@ -17,7 +17,7 @@ class TableViewModel {
             .withLatestFrom(words.asObservable()) { selection, words in (selection, words) }
             .map { selection, words -> Int? in
                 guard let selection = selection,
-                    let selectionIndex = words.index(of: selection)
+                    let selectionIndex = words.firstIndex(of: selection)
                     else { return nil }
 
                 return selectionIndex

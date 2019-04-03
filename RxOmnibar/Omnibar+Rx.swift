@@ -15,7 +15,7 @@ public struct OmnibarContentResponse {
     }
 }
 
-public extension Reactive where Base: Omnibar {
+extension Reactive where Base: Omnibar {
 
     /// Reactive wrapper for the text property, based on `stringValue`.
     public var text: ControlProperty<String> {
@@ -64,7 +64,7 @@ public enum MoveSelection {
     case last(expandingSelection: Bool)
 }
 
-public extension Reactive where Base: Omnibar {
+extension Reactive where Base: Omnibar {
 
     public var delegate: RxOmnibarDelegateProxy {
         return RxOmnibarDelegateProxy.proxy(for: base)
@@ -136,7 +136,7 @@ public struct RxOmnibarContentChange {
     }
 }
 
-public extension Reactive where Base: Omnibar {
+extension Reactive where Base: Omnibar {
 
     /// Control event for user-generated changes to the omnibar.
     public var contentChange: ControlEvent<RxOmnibarContentChange> {
