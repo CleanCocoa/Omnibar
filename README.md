@@ -1,6 +1,6 @@
 # Omnibar
 
-![Swift 4.2](https://img.shields.io/badge/Swift-5.0-blue.svg?style=flat)
+![Swift 5.0](https://img.shields.io/badge/Swift-5.0-blue.svg?style=flat)
 ![Version](https://img.shields.io/github/tag/CleanCocoa/Omnibar.svg?style=flat)
 ![License](https://img.shields.io/github/license/CleanCocoa/Omnibar.svg?style=flat)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat)
@@ -93,4 +93,4 @@ The sample app uses a list of 12000+ english words to display and filter.
 
 ## License
 
-Copyright (c) 2017 Christian Tietze. Distributed under the MIT License.
+Copyright (c) 2017-2019 Christian Tietze. Distributed under the MIT License.
