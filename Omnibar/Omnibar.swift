@@ -48,8 +48,10 @@ open class Omnibar: NSView {
 
         let omnibarCell = OmnibarTextFieldCell(textCell: "")
         omnibarCell.insets = self.textInsets
+        omnibarCell.isScrollable = true
         textField.cell = omnibarCell
 
+        textField.alignment = .natural
         textField.isEditable = true
         textField.isBezeled = true
         textField.bezelStyle = .squareBezel
