@@ -70,6 +70,9 @@ open class Omnibar: NSView {
     /// Enable/disable resetting the contents with the Esc key. `True` by default.
     open var isResettable: Bool = true
 
+    /// If clearing/Esc events should always fire, even if the Omnibar was empty before and no actual text change occured. `True` by default to trigger events when you hit Esc multiple times.
+    open var alwaysFireWhenClearingText: Bool = true
+
     /// Left and right insets of text field where the text may be drawn.
     ///
     /// **Insets affect the field editor, too.** In order to reload
@@ -221,8 +224,14 @@ extension Omnibar: NSTextFieldDelegate {
 
         self.focus()
 
-        guard let fieldEditor = window?.fieldEditor(true, for: self._textField) else { return }
-        fieldEditor.delete(self)
+        // Clearing the editor produces the text change event -- iff the editor was non-empty before. We want clear-text events to be triggered in all cases, though.
+        if let fieldEditor = window?.fieldEditor(true, for: self._textField) {
+            if fieldEditor.string.isEmpty && self.alwaysFireWhenClearingText {
+                self.delegate?.omnibar(self, contentChange: .replacement(text: ""), method: .deletion)
+            } else {
+                fieldEditor.delete(self)
+            }
+        }
 
         self.delegate?.omnibarDidCancelOperation(self)
     }
