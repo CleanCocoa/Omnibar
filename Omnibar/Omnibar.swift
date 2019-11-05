@@ -43,8 +43,57 @@ public class Omnibar: DelegatableTextField {
 
     public weak var omnibarDelegate: OmnibarDelegate?
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
-    
-    private func _setup() {
+
+    /// Testing seam.
+    var editableText: EditableText { return self }
+
+    /// Display model cache.
+    let previousContent = PreviousContent()
+
+    /// Enable/disable resetting the contents with the Esc key. `True` by default.
+    public var isResettable: Bool = true
+
+    /// If clearing/Esc events should always fire, even if the Omnibar was empty before and no actual text change occured. `True` by default to trigger events when you hit Esc multiple times.
+    public var alwaysFireWhenClearingText: Bool = true
+
+    /// Left and right insets of text field where the text may be drawn.
+    ///
+    /// **Insets affect the field editor, too.** In order to reload
+    /// the field editor with updated layout constraints, 
+    /// resign first responder and refocus the Omnibar:
+    ///
+    ///     window.makeFirstResponder(window)
+    ///     omnibar.textInsets = newInsets
+    ///     window.makeFirstResponder(omnibar)
+    ///
+    public var textInsets: Insets = Insets(left: 0, right: 0) {
+        didSet {
+            guard let cell = self.cell as? OmnibarTextFieldCell else { return }
+
+            cell.insets = textInsets
+            self.needsLayout = true
+        }
+    }
+
+    // MARK: - Initialization
+
+    public convenience init() {
+        self.init(frame: NSRect.zero)
+    }
+
+    public override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        setup()
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+
+    fileprivate var controlTextChangeSubscription: Any?
+
+    private func setup() {
         let omnibarCell = OmnibarTextFieldCell(textCell: "")
         omnibarCell.insets = self.textInsets
         omnibarCell.isScrollable = true
@@ -58,64 +107,18 @@ public class Omnibar: DelegatableTextField {
 
         self.usesSingleLineMode = true
 
-
-        NotificationCenter.default.addObserver(self, selector: #selector(controlTextDidChange(_:)), name: NSControl.textDidChangeNotification, object: self)
-    }
-
-    /// Testing seam.
-    var editableText: EditableText { return self }
-
-    /// Display model cache.
-    let previousContent = PreviousContent()
-
-    /// Enable/disable resetting the contents with the Esc key. `True` by default.
-    open var isResettable: Bool = true
-
-    /// If clearing/Esc events should always fire, even if the Omnibar was empty before and no actual text change occured. `True` by default to trigger events when you hit Esc multiple times.
-    open var alwaysFireWhenClearingText: Bool = true
-
-    /// Left and right insets of text field where the text may be drawn.
-    ///
-    /// **Insets affect the field editor, too.** In order to reload
-    /// the field editor with updated layout constraints, 
-    /// resign first responder and refocus the Omnibar:
-    ///
-    ///     window.makeFirstResponder(window)
-    ///     omnibar.textInsets = newInsets
-    ///     window.makeFirstResponder(omnibar)
-    ///
-    open var textInsets: Insets = Insets(left: 0, right: 0) {
-        didSet {
-            guard let cell = self.cell as? OmnibarTextFieldCell else { return }
-
-            cell.insets = textInsets
-            self.needsLayout = true
+        self.controlTextChangeSubscription = NotificationCenter.default
+            .addObserver(forName: NSControl.textDidChangeNotification,
+                         object: self,
+                         queue: .main) { [unowned self] notification in
+                            self.controlTextDidChange(notification)
         }
     }
 
-    public convenience init() {
-        self.init(frame: NSRect.zero)
-    }
-
-    public override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        _setup()
-        layoutSubviews()
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        _setup()
-        layoutSubviews()
-    }
-
-    private func layoutSubviews() {
-
-//        _textField.translatesAutoresizingMaskIntoConstraints = false
-//        self.addSubview(_textField)
-//        _textField.constrainToSuperviewBounds()
-
-        self.translatesAutoresizingMaskIntoConstraints = false
+    deinit {
+        if let subscription = controlTextChangeSubscription {
+            NotificationCenter.default.removeObserver(subscription)
+        }
     }
 }
 
@@ -210,7 +213,7 @@ extension Omnibar {
         processTextChange(textChange)
     }
 
-    open func processTextChange(_ textChange: TextFieldTextChange) {
+    public func processTextChange(_ textChange: TextFieldTextChange) {
 
         let lastContent = previousContent.popLatest() ?? .empty
         let contentChange = OmnibarContentChange(base: lastContent, change: textChange)
@@ -226,7 +229,7 @@ extension Omnibar {
     }
 
     /// Clears the text so that a change event is fired.
-    open func focusAndClearText() {
+    public func focusAndClearText() {
 
         self.focus()
 
@@ -242,12 +245,12 @@ extension Omnibar {
         self.omnibarDelegate?.omnibarDidCancelOperation(self)
     }
 
-    open func focus() {
+    public func focus() {
 
         self.selectText(nil)
     }
 
-    open func commit() {
+    public func commit() {
 
         self.omnibarDelegate?.omnibar(self, commit: self.stringValue)
     }
