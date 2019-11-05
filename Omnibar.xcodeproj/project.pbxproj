@@ -111,6 +111,10 @@
 		50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */; };
 		50D69B7F2371600B0088123E /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D69B7D237160000088123E /* RxRelay.framework */; };
 		50D69B802371600B0088123E /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50D69B7D237160000088123E /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50D69B81237161880088123E /* Omnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; };
+		50D69B82237161880088123E /* Omnibar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50D69B85237161880088123E /* RxOmnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */; };
+		50D69B86237161880088123E /* RxOmnibar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +181,20 @@
 			remoteGlobalIDString = 5038D9DA1EDFFA9E00F3DA4F;
 			remoteInfo = RxOmnibar;
 		};
+		50D69B83237161880088123E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038D92B1EDE8F7200F3DA4F;
+			remoteInfo = Omnibar;
+		};
+		50D69B87237161880088123E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5038D9231EDE8F7200F3DA4F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5038D9DA1EDFFA9E00F3DA4F;
+			remoteInfo = RxOmnibar;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -213,9 +231,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				50D69B802371600B0088123E /* RxRelay.framework in Embed Frameworks */,
+				50D69B82237161880088123E /* Omnibar.framework in Embed Frameworks */,
 				5038DA0F1EDFFB4700F3DA4F /* RxSwift.framework in Embed Frameworks */,
 				5038DA7D1EE00FAB00F3DA4F /* ExampleModel.framework in Embed Frameworks */,
 				5038DA0D1EDFFB4700F3DA4F /* RxCocoa.framework in Embed Frameworks */,
+				50D69B86237161880088123E /* RxOmnibar.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,9 +396,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D69B7F2371600B0088123E /* RxRelay.framework in Frameworks */,
+				50D69B81237161880088123E /* Omnibar.framework in Frameworks */,
 				5038DA0E1EDFFB4700F3DA4F /* RxSwift.framework in Frameworks */,
 				5038DA7C1EE00FAB00F3DA4F /* ExampleModel.framework in Frameworks */,
 				5038DA0C1EDFFB4700F3DA4F /* RxCocoa.framework in Frameworks */,
+				50D69B85237161880088123E /* RxOmnibar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +789,8 @@
 			dependencies = (
 				5038DA861EE0651300F3DA4F /* PBXTargetDependency */,
 				5038DA7F1EE00FAB00F3DA4F /* PBXTargetDependency */,
+				50D69B84237161880088123E /* PBXTargetDependency */,
+				50D69B88237161880088123E /* PBXTargetDependency */,
 			);
 			name = RxExample;
 			productName = RxExample;
@@ -1133,6 +1157,16 @@
 			isa = PBXTargetDependency;
 			target = 5038D9DA1EDFFA9E00F3DA4F /* RxOmnibar */;
 			targetProxy = 5038DA851EE0651300F3DA4F /* PBXContainerItemProxy */;
+		};
+		50D69B84237161880088123E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038D92B1EDE8F7200F3DA4F /* Omnibar */;
+			targetProxy = 50D69B83237161880088123E /* PBXContainerItemProxy */;
+		};
+		50D69B88237161880088123E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5038D9DA1EDFFA9E00F3DA4F /* RxOmnibar */;
+			targetProxy = 50D69B87237161880088123E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
