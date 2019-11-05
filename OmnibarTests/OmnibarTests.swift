@@ -178,7 +178,7 @@ extension OmnibarTests {
 
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.delegate = double
+        omnibar.omnibarDelegate = double
 
         let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:)))
 
@@ -191,7 +191,7 @@ extension OmnibarTests {
 
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.delegate = double
+        omnibar.omnibarDelegate = double
 
         let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:)))
 

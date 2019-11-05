@@ -26,7 +26,7 @@ class PreviousContent {
 }
 
 @IBDesignable @objc
-open class Omnibar: NSView {
+public class Omnibar: OmnibarTextField {
 
     public struct Insets {
 
@@ -41,30 +41,32 @@ open class Omnibar: NSView {
         }
     }
 
-    public weak var delegate: OmnibarDelegate?
+    public weak var omnibarDelegate: OmnibarDelegate?
 
-    public lazy var _textField: OmnibarTextField = {
-        let textField = OmnibarTextField()
-
+    private func _setup() {
         let omnibarCell = OmnibarTextFieldCell(textCell: "")
         omnibarCell.insets = self.textInsets
         omnibarCell.isScrollable = true
-        textField.cell = omnibarCell
+        self.cell = omnibarCell
 
-        textField.alignment = .natural
-        textField.isEditable = true
-        textField.isBezeled = true
-        textField.bezelStyle = .squareBezel
-        textField.drawsBackground = true
+        self.alignment = .natural
+        self.isEditable = true
+        self.isBezeled = true
+        self.bezelStyle = .squareBezel
+        self.drawsBackground = true
 
-        textField.usesSingleLineMode = true
-        textField.delegate = self
-        
-        return textField
-    }()
+        self.usesSingleLineMode = true
+
+
+
+
+        self.delegate = self
+
+
+    }
 
     /// Testing seam.
-    var editableText: EditableText { return _textField }
+    var editableText: EditableText { return self }
 
     /// Display model cache.
     let previousContent = PreviousContent()
@@ -87,10 +89,10 @@ open class Omnibar: NSView {
     ///
     open var textInsets: Insets = Insets(left: 0, right: 0) {
         didSet {
-            guard let cell = _textField.cell as? OmnibarTextFieldCell else { return }
+            guard let cell = self.cell as? OmnibarTextFieldCell else { return }
 
             cell.insets = textInsets
-            _textField.needsLayout = true
+            self.needsLayout = true
         }
     }
 
@@ -100,19 +102,21 @@ open class Omnibar: NSView {
 
     public override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        _setup()
         layoutSubviews()
     }
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
+        _setup()
         layoutSubviews()
     }
 
     private func layoutSubviews() {
 
-        _textField.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(_textField)
-        _textField.constrainToSuperviewBounds()
+//        _textField.translatesAutoresizingMaskIntoConstraints = false
+//        self.addSubview(_textField)
+//        _textField.constrainToSuperviewBounds()
 
         self.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -156,37 +160,37 @@ extension Omnibar: NSTextFieldDelegate {
 
         case #selector(NSResponder.moveToBeginningOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToBeginningOfParagraphAndModifySelection(_:)):
-            delegate?.omnibarExpandSelectionToFirst?(self)
+            omnibarDelegate?.omnibarExpandSelectionToFirst?(self)
             return true
 
         case #selector(NSResponder.moveUpAndModifySelection(_:)):
-            delegate?.omnibarExpandSelectionToPrevious?(self)
+            omnibarDelegate?.omnibarExpandSelectionToPrevious?(self)
             return true
 
         case #selector(NSResponder.moveDownAndModifySelection(_:)):
-            delegate?.omnibarExpandSelectionToNext?(self)
+            omnibarDelegate?.omnibarExpandSelectionToNext?(self)
             return true
 
         case #selector(NSResponder.moveToEndOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToEndOfParagraphAndModifySelection(_:)):
-            delegate?.omnibarExpandSelectionToLast?(self)
+            omnibarDelegate?.omnibarExpandSelectionToLast?(self)
             return true
 
 
         case #selector(NSResponder.moveToBeginningOfDocument(_:)):
-            delegate?.omnibarSelectFirst?(self)
+            omnibarDelegate?.omnibarSelectFirst?(self)
             return true
 
         case #selector(NSResponder.moveUp(_:)):
-            delegate?.omnibarSelectPrevious?(self)
+            omnibarDelegate?.omnibarSelectPrevious?(self)
             return true
 
         case #selector(NSResponder.moveDown(_:)):
-            delegate?.omnibarSelectNext?(self)
+            omnibarDelegate?.omnibarSelectNext?(self)
             return true
 
         case #selector(NSResponder.moveToEndOfDocument(_:)):
-            delegate?.omnibarSelectLast?(self)
+            omnibarDelegate?.omnibarSelectLast?(self)
             return true
 
         default: return false
@@ -215,7 +219,7 @@ extension Omnibar: NSTextFieldDelegate {
             self.display(content: contentChange.content)
         }
         
-        delegate?.omnibar(
+        omnibarDelegate?.omnibar(
             self,
             contentChange: contentChange,
             method: textChange.method)
@@ -227,15 +231,15 @@ extension Omnibar: NSTextFieldDelegate {
         self.focus()
 
         // Clearing the editor produces the text change event -- iff the editor was non-empty before. We want clear-text events to be triggered in all cases, though.
-        if let fieldEditor = window?.fieldEditor(true, for: self._textField) {
+        if let fieldEditor = window?.fieldEditor(true, for: self) {
             if fieldEditor.string.isEmpty && self.alwaysFireWhenClearingText {
-                self.delegate?.omnibar(self, contentChange: .replacement(text: ""), method: .deletion)
+                self.omnibarDelegate?.omnibar(self, contentChange: .replacement(text: ""), method: .deletion)
             } else {
                 fieldEditor.delete(self)
             }
         }
 
-        self.delegate?.omnibarDidCancelOperation(self)
+        self.omnibarDelegate?.omnibarDidCancelOperation(self)
     }
 
     open func focus() {
@@ -245,101 +249,101 @@ extension Omnibar: NSTextFieldDelegate {
 
     open func commit() {
 
-        self.delegate?.omnibar(self, commit: self.stringValue)
+        self.omnibarDelegate?.omnibar(self, commit: self.stringValue)
     }
 }
 
 
 // MARK: - Text Field Adapter
 
-extension Omnibar {
-
-    open override var intrinsicContentSize: NSSize {
-        return _textField.intrinsicContentSize
-    }
-
-    @IBInspectable open var alignment: NSTextAlignment {
-        get { return _textField.alignment }
-        set { _textField.alignment = newValue }
-    }
-
-    @IBInspectable open var font: NSFont? {
-        get { return _textField.font }
-        set { _textField.font = newValue }
-    }
-
-    @IBInspectable open var placeholder: String? {
-        get { return _textField.placeholderString }
-        set { _textField.placeholderString = newValue }
-    }
-
-    open var stringValue: String {
-        get { return _textField.stringValue }
-        set { _textField.stringValue = newValue }
-    }
-
-    @IBInspectable open override var nextKeyView: NSView? {
-        get { return _textField.nextKeyView }
-        set { _textField.nextKeyView = newValue }
-    }
-
-    open override var nextValidKeyView: NSView? {
-        return _textField.nextValidKeyView
-    }
-
-    open override var previousKeyView: NSView? {
-        return _textField.previousKeyView
-    }
-
-    open override var previousValidKeyView: NSView? {
-        return _textField.previousValidKeyView
-    }
-
-    /// Ends editing and selects the entire contents of the receiver if it’s selectable.
-    open func selectText(_ sender: Any?) {
-
-        _textField.selectText(sender)
-    }
-
-    @IBInspectable open var isEditable: Bool {
-        get { return _textField.isEditable }
-        set { _textField.isEditable = newValue }
-    }
-
-    @IBInspectable open var isBezeled: Bool {
-        get { return _textField.isBezeled }
-        set { _textField.isBezeled = newValue }
-    }
-
-    @IBInspectable open var bezelStyle: NSTextField.BezelStyle {
-        get { return _textField.bezelStyle }
-        set { _textField.bezelStyle = newValue }
-    }
-
-    @IBInspectable open var isBordered: Bool {
-        get { return _textField.isBordered }
-        set { _textField.isBordered = newValue }
-    }
-
-    open func currentEditor() -> NSText? {
-        return _textField.currentEditor()
-    }
-}
-
-// MARK: NSResponder
-
-extension Omnibar {
-
-    open override var acceptsFirstResponder: Bool {
-        return _textField.acceptsFirstResponder
-    }
-
-    open override func becomeFirstResponder() -> Bool {
-        guard acceptsFirstResponder else { return false }
-        return window?.makeFirstResponder(_textField) ?? false
-    }
-
-    open override func resignFirstResponder() -> Bool {
-        return true
-    }
-}
+//extension Omnibar {
+//
+//    open override var intrinsicContentSize: NSSize {
+//        return _textField.intrinsicContentSize
+//    }
+//
+//    @IBInspectable open var alignment: NSTextAlignment {
+//        get { return _textField.alignment }
+//        set { _textField.alignment = newValue }
+//    }
+//
+//    @IBInspectable open var font: NSFont? {
+//        get { return _textField.font }
+//        set { _textField.font = newValue }
+//    }
+//
+//    @IBInspectable open var placeholder: String? {
+//        get { return _textField.placeholderString }
+//        set { _textField.placeholderString = newValue }
+//    }
+//
+//    open var stringValue: String {
+//        get { return _textField.stringValue }
+//        set { _textField.stringValue = newValue }
+//    }
+//
+//    @IBInspectable open override var nextKeyView: NSView? {
+//        get { return _textField.nextKeyView }
+//        set { _textField.nextKeyView = newValue }
+//    }
+//
+//    open override var nextValidKeyView: NSView? {
+//        return _textField.nextValidKeyView
+//    }
+//
+//    open override var previousKeyView: NSView? {
+//        return _textField.previousKeyView
+//    }
+//
+//    open override var previousValidKeyView: NSView? {
+//        return _textField.previousValidKeyView
+//    }
+//
+//    /// Ends editing and selects the entire contents of the receiver if it’s selectable.
+//    open func selectText(_ sender: Any?) {
+//
+//        _textField.selectText(sender)
+//    }
+//
+//    @IBInspectable open var isEditable: Bool {
+//        get { return _textField.isEditable }
+//        set { _textField.isEditable = newValue }
+//    }
+//
+//    @IBInspectable open var isBezeled: Bool {
+//        get { return _textField.isBezeled }
+//        set { _textField.isBezeled = newValue }
+//    }
+//
+//    @IBInspectable open var bezelStyle: NSTextField.BezelStyle {
+//        get { return _textField.bezelStyle }
+//        set { _textField.bezelStyle = newValue }
+//    }
+//
+//    @IBInspectable open var isBordered: Bool {
+//        get { return _textField.isBordered }
+//        set { _textField.isBordered = newValue }
+//    }
+//
+//    open func currentEditor() -> NSText? {
+//        return _textField.currentEditor()
+//    }
+//}
+//
+//// MARK: NSResponder
+//
+//extension Omnibar {
+//
+//    open override var acceptsFirstResponder: Bool {
+//        return _textField.acceptsFirstResponder
+//    }
+//
+//    open override func becomeFirstResponder() -> Bool {
+//        guard acceptsFirstResponder else { return false }
+//        return window?.makeFirstResponder(_textField) ?? false
+//    }
+//
+//    open override func resignFirstResponder() -> Bool {
+//        return true
+//    }
+//}
