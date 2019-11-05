@@ -30,7 +30,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         self.programmaticallySelectedRow = nil
 
         if let selectedWord = selectedWord,
-            let selectionIndex = words.index(of: selectedWord) {
+            let selectionIndex = words.firstIndex(of: selectedWord) {
 
             programmaticallySelectedRow = selectionIndex
             select(row: selectionIndex)
