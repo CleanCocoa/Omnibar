@@ -23,25 +23,31 @@ extension OmnibarTextField: NSTextViewDelegate {
 
     public func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
 
-        // `replacementString` is `nil` on attribute changes only,
+        // `replacementString` is `nil` on attribute changes only, which we ignore,
         // but equals "" on deletion.
-        guard let replacement = replacementString else {
-            return super.del_textView(textView, shouldChangeTextIn: affectedCharRange, replacementString: replacementString)
+        if let replacement = replacementString {
+            self.cacheTextFieldChange(
+                textView: textView,
+                shouldChangeTextIn: affectedCharRange,
+                replacementString: replacement)
         }
+
+        return super.del_textView(textView, shouldChangeTextIn: affectedCharRange, replacementString: replacementString)
+    }
+
+    private func cacheTextFieldChange(textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String) {
 
         let oldText = textView.string
         let method = ChangeMethod(
             original: oldText as NSString,
-            replacement: replacement as NSString,
+            replacement: replacementString as NSString,
             affectedRange: affectedCharRange)
 
         self.cachedTextFieldChange = TextFieldTextChange(
             oldText: oldText,
             patch: TextFieldTextPatch(
-                string: replacement,
+                string: replacementString,
                 range: affectedCharRange),
             method: method)
-
-        return super.del_textView(textView, shouldChangeTextIn: affectedCharRange, replacementString: replacementString)
     }
 }
