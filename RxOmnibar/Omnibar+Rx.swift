@@ -17,11 +17,6 @@ public struct OmnibarContentResponse {
 
 extension Reactive where Base: Omnibar {
 
-    /// Reactive wrapper for the text property, based on `stringValue`.
-    public var text: ControlProperty<String> {
-        return base._textField.rx.text.orEmpty
-    }
-
     /// Content sink to change the text and selection of the Omnibar.
     public var content: Binder<OmnibarContent> {
         return Binder(base) { (omnibar: Omnibar, content: OmnibarContent) in
@@ -66,14 +61,14 @@ public enum MoveSelection {
 
 extension Reactive where Base: Omnibar {
 
-    public var delegate: RxOmnibarDelegateProxy {
+    public var omnibarDelegate: RxOmnibarDelegateProxy {
         return RxOmnibarDelegateProxy.proxy(for: base)
     }
 
     /// Control event for pressing the up or down arrow keys inside the Omnibar.
     public var moveSelection: ControlEvent<MoveSelection> {
 
-        let delegate = self.delegate
+        let delegate = self.omnibarDelegate
 
         let selectFirst = delegate
             .methodInvoked(#selector(OmnibarSelectionDelegate.omnibarSelectFirst(_:)))
@@ -141,21 +136,21 @@ extension Reactive where Base: Omnibar {
     /// Control event for user-generated changes to the omnibar.
     public var contentChange: ControlEvent<RxOmnibarContentChange> {
 
-        let source = delegate.contentChangePublishSubject
+        let source = omnibarDelegate.contentChangePublishSubject
         return ControlEvent(events: source)
     }
 
     /// Sequence of committed text, e.g. through hitting the Enter key.
     public var commits: ControlEvent<String> {
 
-        let source = delegate.commitsPublishSubject
+        let source = omnibarDelegate.commitsPublishSubject
         return ControlEvent(events: source)
     }
 
     /// Cancel operations in the Omnibar, e.g. by hitting ESC.
     public var cancelOperations: ControlEvent<Void> {
 
-        let source = delegate.cancelPublishSubject
+        let source = omnibarDelegate.cancelPublishSubject
         return ControlEvent(events: source)
     }
 }
