@@ -109,6 +109,8 @@
 		5078A3CB20DE735A00C4A686 /* DelegatableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5078A3C920DE735A00C4A686 /* DelegatableTextField.m */; };
 		50B0D6301EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */; };
 		50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */; };
+		50D69B7F2371600B0088123E /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D69B7D237160000088123E /* RxRelay.framework */; };
+		50D69B802371600B0088123E /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50D69B7D237160000088123E /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +212,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				50D69B802371600B0088123E /* RxRelay.framework in Embed Frameworks */,
 				5038DA0F1EDFFB4700F3DA4F /* RxSwift.framework in Embed Frameworks */,
 				5038DA7D1EE00FAB00F3DA4F /* ExampleModel.framework in Embed Frameworks */,
 				5038DA0D1EDFFB4700F3DA4F /* RxCocoa.framework in Embed Frameworks */,
@@ -320,6 +323,7 @@
 		5078A3C920DE735A00C4A686 /* DelegatableTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegatableTextField.m; sourceTree = "<group>"; };
 		50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+constrainToSuperviewBounds.swift"; sourceTree = "<group>"; };
 		50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarTextFieldCell.swift; sourceTree = "<group>"; };
+		50D69B7D237160000088123E /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/Mac/RxRelay.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +375,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D69B7F2371600B0088123E /* RxRelay.framework in Frameworks */,
 				5038DA0E1EDFFB4700F3DA4F /* RxSwift.framework in Frameworks */,
 				5038DA7C1EE00FAB00F3DA4F /* ExampleModel.framework in Frameworks */,
 				5038DA0C1EDFFB4700F3DA4F /* RxCocoa.framework in Frameworks */,
@@ -469,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				5038D9371EDE900700F3DA4F /* RxBlocking.framework */,
+				50D69B7D237160000088123E /* RxRelay.framework */,
 				5038D9381EDE900700F3DA4F /* RxCocoa.framework */,
 				5038D9391EDE900700F3DA4F /* RxSwift.framework */,
 				5038D93A1EDE900700F3DA4F /* RxTest.framework */,

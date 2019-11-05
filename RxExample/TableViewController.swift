@@ -4,12 +4,13 @@ import Cocoa
 import ExampleModel
 import RxSwift
 import RxCocoa
+import RxRelay
 import RxOmnibar
 
 class TableViewModel {
 
-    let words = Variable<[Word]>([])
-    let programmaticSelection = Variable<Word?>(nil)
+    let words = BehaviorRelay<[Word]>(value: [])
+    let programmaticSelection = BehaviorRelay<Word?>(value: nil)
     fileprivate let manualSelection = PublishSubject<Int>()
 
     var selectionChange: Observable<Int> {
