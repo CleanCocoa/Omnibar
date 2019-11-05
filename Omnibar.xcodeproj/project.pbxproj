@@ -18,10 +18,6 @@
 		5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9461EDE902E00F3DA4F /* AppDelegate.swift */; };
 		5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9481EDE902E00F3DA4F /* Assets.xcassets */; };
 		5038D94C1EDE902E00F3DA4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5038D94A1EDE902E00F3DA4F /* MainMenu.xib */; };
-		5038D9511EDE904400F3DA4F /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; };
-		5038D9521EDE904400F3DA4F /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5038D9531EDE904400F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
-		5038D9541EDE904400F3DA4F /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5038D9561EDE904900F3DA4F /* Omnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; };
 		5038D9571EDE904900F3DA4F /* Omnibar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D95A1EDE91D700F3DA4F /* Omnibar.swift */; };
@@ -205,8 +201,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5038D9571EDE904900F3DA4F /* Omnibar.framework in Embed Frameworks */,
-				5038D9541EDE904400F3DA4F /* RxSwift.framework in Embed Frameworks */,
-				5038D9521EDE904400F3DA4F /* RxCocoa.framework in Embed Frameworks */,
 				5038DA381EE0093400F3DA4F /* ExampleModel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -359,8 +353,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5038D9561EDE904900F3DA4F /* Omnibar.framework in Frameworks */,
-				5038D9531EDE904400F3DA4F /* RxSwift.framework in Frameworks */,
-				5038D9511EDE904400F3DA4F /* RxCocoa.framework in Frameworks */,
 				5038DA371EE0093400F3DA4F /* ExampleModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
