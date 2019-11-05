@@ -49,9 +49,9 @@
 		5038D9FF1EDFFACF00F3DA4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9FD1EDFFACF00F3DA4F /* MainMenu.xib */; };
 		5038DA061EDFFB1300F3DA4F /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D93A1EDE900700F3DA4F /* RxTest.framework */; };
 		5038DA071EDFFB1900F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
-		5038DA091EDFFB3300F3DA4F /* RxCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5038DA0A1EDFFB3300F3DA4F /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5038DA0B1EDFFB3300F3DA4F /* RxTest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5038D93A1EDE900700F3DA4F /* RxTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA091EDFFB3300F3DA4F /* RxCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA0A1EDFFB3300F3DA4F /* RxSwift.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5038DA0B1EDFFB3300F3DA4F /* RxTest.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D93A1EDE900700F3DA4F /* RxTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5038DA0C1EDFFB4700F3DA4F /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; };
 		5038DA0D1EDFFB4700F3DA4F /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9381EDE900700F3DA4F /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5038DA0E1EDFFB4700F3DA4F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9391EDE900700F3DA4F /* RxSwift.framework */; };
@@ -110,6 +110,7 @@
 		50D69B82237161880088123E /* Omnibar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50D69B85237161880088123E /* RxOmnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */; };
 		50D69B86237161880088123E /* RxOmnibar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D9DB1EDFFA9E00F3DA4F /* RxOmnibar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50D69BDF2371874C0088123E /* RxRelay.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 50D69B7D237160000088123E /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,16 +206,18 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5038DA081EDFFB2300F3DA4F /* CopyFiles */ = {
+		5038DA081EDFFB2300F3DA4F /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5038DA091EDFFB3300F3DA4F /* RxCocoa.framework in CopyFiles */,
-				5038DA0A1EDFFB3300F3DA4F /* RxSwift.framework in CopyFiles */,
-				5038DA0B1EDFFB3300F3DA4F /* RxTest.framework in CopyFiles */,
+				5038DA091EDFFB3300F3DA4F /* RxCocoa.framework in Copy Frameworks */,
+				5038DA0A1EDFFB3300F3DA4F /* RxSwift.framework in Copy Frameworks */,
+				50D69BDF2371874C0088123E /* RxRelay.framework in Copy Frameworks */,
+				5038DA0B1EDFFB3300F3DA4F /* RxTest.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5038DA101EDFFB4700F3DA4F /* Embed Frameworks */ = {
@@ -752,7 +755,7 @@
 				5038D9DF1EDFFA9E00F3DA4F /* Sources */,
 				5038D9E01EDFFA9E00F3DA4F /* Frameworks */,
 				5038D9E11EDFFA9E00F3DA4F /* Resources */,
-				5038DA081EDFFB2300F3DA4F /* CopyFiles */,
+				5038DA081EDFFB2300F3DA4F /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
