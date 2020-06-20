@@ -68,21 +68,18 @@ extension Omnibar_RxTests {
         let scheduler = TestScheduler(initialClock: 0)
         let omnibar = Omnibar()
 
-        let irrelevantControl = NSControl()
-        let irrelevantTextView = NSTextView()
-
-        scheduler.scheduleAt(300) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
-        scheduler.scheduleAt(400) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
-        scheduler.scheduleAt(500) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:))) }
+        scheduler.scheduleAt(300) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:))) }
+        scheduler.scheduleAt(400) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:))) }
+        scheduler.scheduleAt(500) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:))) }
         // Other selectors should be ignored
-        scheduler.scheduleAt(600) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.insertNewline(_:))) }
+        scheduler.scheduleAt(600) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.insertNewline(_:))) }
 
         let result = scheduler.start { omnibar.rx.moveSelection.asObservable() }
 
         let expected: [Recorded<Event<RxOmnibar.MoveSelection>>] = [
-            next(300, .previous(expandingSelection: false)),
-            next(400, .previous(expandingSelection: false)),
-            next(500, .next(expandingSelection: false))
+            Recorded.next(300, .previous(expandingSelection: false)),
+            Recorded.next(400, .previous(expandingSelection: false)),
+            Recorded.next(500, .next(expandingSelection: false))
         ]
         XCTAssertEqual(result.events, expected)
     }
@@ -92,23 +89,20 @@ extension Omnibar_RxTests {
         let scheduler = TestScheduler(initialClock: 0)
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.delegate = double
+        omnibar.omnibarDelegate = double
 
-        let irrelevantControl = NSControl()
-        let irrelevantTextView = NSTextView()
-
-        scheduler.scheduleAt(500) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
-        scheduler.scheduleAt(600) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:))) }
-        scheduler.scheduleAt(700) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.insertNewline(_:))) }
-        scheduler.scheduleAt(800) { _ = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:))) }
+        scheduler.scheduleAt(500) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:))) }
+        scheduler.scheduleAt(600) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:))) }
+        scheduler.scheduleAt(700) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.insertNewline(_:))) }
+        scheduler.scheduleAt(800) { _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:))) }
 
 
         let result = scheduler.start { omnibar.rx.moveSelection.asObservable() }
 
         let expected: [Recorded<Event<RxOmnibar.MoveSelection>>] = [
-            next(500, .previous(expandingSelection: false)),
-            next(600, .next(expandingSelection: false)),
-            next(800, .previous(expandingSelection: false))
+            Recorded.next(500, .previous(expandingSelection: false)),
+            Recorded.next(600, .next(expandingSelection: false)),
+            Recorded.next(800, .previous(expandingSelection: false))
         ]
         XCTAssertEqual(result.events, expected)
         XCTAssertEqual(double.didSelectNext, 1)
@@ -120,10 +114,14 @@ extension Omnibar_RxTests {
 extension RxOmnibar.MoveSelection: Equatable {
     public static func ==(lhs: RxOmnibar.MoveSelection, rhs: RxOmnibar.MoveSelection) -> Bool {
         switch (lhs, rhs) {
-        case let (.first(lExpandSelection), .first(rExpandSelection)): return lExpandSelection == rExpandSelection
-        case let (.previous(lExpandSelection), .previous(rExpandSelection)): return lExpandSelection == rExpandSelection
-        case let (.next(lExpandSelection), .next(rExpandSelection)): return lExpandSelection == rExpandSelection
-        case let (.last(lExpandSelection), .last(rExpandSelection)): return lExpandSelection == rExpandSelection
+        case let (.first(lExpandSelection), .first(rExpandSelection)):
+            return lExpandSelection == rExpandSelection
+        case let (.previous(lExpandSelection), .previous(rExpandSelection)):
+            return lExpandSelection == rExpandSelection
+        case let (.next(lExpandSelection), .next(rExpandSelection)):
+            return lExpandSelection == rExpandSelection
+        case let (.last(lExpandSelection), .last(rExpandSelection)):
+            return lExpandSelection == rExpandSelection
         default: return false
         }
     }
@@ -180,8 +178,8 @@ extension Omnibar_RxTests {
         let result = scheduler.start { omnibar.rx.contentChange.asObservable() }
 
         XCTAssertEqual(result.events, [
-            next(300, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: firstChange), method: .insertion, requestNumber: 1)),
-            next(400, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: secondChange), method: .insertion, requestNumber: 2))
+            Recorded.next(300, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: firstChange), method: .insertion, requestNumber: 1)),
+            Recorded.next(400, RxOmnibarContentChange(contentChange: OmnibarContentChange(base: .empty, change: secondChange), method: .insertion, requestNumber: 2))
             ])
     }
 }
@@ -208,8 +206,8 @@ extension Omnibar_RxTests {
         let result = scheduler.start { omnibar.rx.commits.asObservable() }
 
         XCTAssertEqual(result.events, [
-            next(400, "shnabubula"),
-            next(600, "overclocked")
+            Recorded.next(400, "shnabubula"),
+            Recorded.next(600, "overclocked")
             ])
     }
 }

@@ -24,11 +24,11 @@ public class RxOmnibarDelegateProxy
     }
     
     public static func currentDelegate(for object: Omnibar) -> OmnibarDelegate? {
-        return object.delegate
+        return object.omnibarDelegate
     }
     
     public static func setCurrentDelegate(_ delegate: OmnibarDelegate?, to object: Omnibar) {
-        object.delegate = delegate
+        object.omnibarDelegate = delegate
     }
 
     // MARK: - OmnibarDelegate Implementation

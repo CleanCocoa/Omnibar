@@ -171,16 +171,13 @@ extension OmnibarTests {
         }
     }
 
-    var irrelevantControl: NSControl { return NSControl() }
-    var irrelevantTextView: NSTextView { return NSTextView() }
-
     func testControlCommand_MoveDown_CallsDelegate() {
 
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.delegate = double
+        omnibar.omnibarDelegate = double
 
-        let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveDown(_:)))
+        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:)))
 
         XCTAssert(didHandle)
         XCTAssert(double.didSelectNext === omnibar)
@@ -191,9 +188,9 @@ extension OmnibarTests {
 
         let omnibar = Omnibar()
         let double = SelectionDelegateDouble()
-        omnibar.delegate = double
+        omnibar.omnibarDelegate = double
 
-        let didHandle = omnibar.control(irrelevantControl, textView: irrelevantTextView, doCommandBy: #selector(NSResponder.moveUp(_:)))
+        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:)))
 
         XCTAssert(didHandle)
         XCTAssertNil(double.didSelectNext)
