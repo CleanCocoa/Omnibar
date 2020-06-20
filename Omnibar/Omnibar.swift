@@ -106,13 +106,6 @@ public class Omnibar: DelegatableTextField {
         self.drawsBackground = true
 
         self.usesSingleLineMode = true
-
-        self.controlTextChangeSubscription = NotificationCenter.default
-            .addObserver(forName: NSControl.textDidChangeNotification,
-                         object: self,
-                         queue: .main) { [unowned self] notification in
-                            self.controlTextDidChange(notification)
-        }
     }
 
     deinit {
@@ -200,14 +193,11 @@ extension Omnibar {
         }
     }
 
-    @objc func controlTextDidChange(_ notification: Notification) {
-
-        guard notification.object is Omnibar
-            else { assertionFailure("controlTextDidChange expected for Omnibar"); return }
-
-        // NSTextFieldDelegate.controlTextDidChange fires twice when you paste "\n" inside:
-        // once for the original, once for the replacement, but the delegate method will only
-        // be called once.
+    public override func textDidChange(_ notification: Notification) {
+        super.textDidChange(notification)
+        
+        // textDidChange(_:) fires twice when you paste "\n" inside: once for the original,
+        // and once for the replacement, but our delegate method will only be called one time.
         guard let textChange = self.popTextFieldChange() else { return }
 
         processTextChange(textChange)
