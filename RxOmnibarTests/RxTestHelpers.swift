@@ -15,7 +15,7 @@ extension RxTestHelpers {
 
     func ensurePropertyDeallocated<C, T>(_ createControl: () -> C, _ initialValue: T, comparer: (T, T) -> Bool, file: StaticString = #file, line: UInt = #line, _ propertySelector: (C) -> ControlProperty<T>) where C: NSObject  {
 
-        let variable = Variable(initialValue)
+        let relay = BehaviorRelay(value: initialValue)
 
         var completed = false
         var deallocated = false
@@ -26,7 +26,7 @@ extension RxTestHelpers {
 
             let property = propertySelector(control)
 
-            let disposable = variable.asObservable().bind(to: property)
+            let disposable = relay.asObservable().bind(to: property)
 
             _ = property.subscribe(onNext: { n in
                 lastReturnedPropertyValue = n

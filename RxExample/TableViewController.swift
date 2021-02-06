@@ -57,7 +57,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     // Event output
     var wordSelectionChange: ControlEvent<Word> {
-        return ControlEvent(events: viewModel.selectedWord.takeUntil(self.rx.deallocated))
+        return ControlEvent(events: viewModel.selectedWord.take(until: self.rx.deallocated))
     }
 
 
