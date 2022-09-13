@@ -1,6 +1,6 @@
 # Omnibar
 
-![Swift 5.0](https://img.shields.io/badge/Swift-5.0-blue.svg?style=flat)
+![Swift 5.7](https://img.shields.io/badge/Swift-5.7-blue.svg?style=flat)
 ![Version](https://img.shields.io/github/tag/CleanCocoa/Omnibar.svg?style=flat)
 ![License](https://img.shields.io/github/license/CleanCocoa/Omnibar.svg?style=flat)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat)
@@ -8,7 +8,7 @@
 
 A search field with support for auto-completion of typed strings and reactive extensions (RxSwift).
 
-## Overview 
+## Overview
 
 Made to satisfy these needs:
 
@@ -27,7 +27,7 @@ So if you type "aard", the Omnibar will suggest the term "aardvark" in the examp
 
 ### Displaying Values
 
-Call `display(content: OmnibarContent)` to change the content of the Omnibar and affect the selection. You can also use the `stringValue` property to change the text and put the insertion point at the end like regular `NSTextField`s do. 
+Call `display(content: OmnibarContent)` to change the content of the Omnibar and affect the selection. You can also use the `stringValue` property to change the text and put the insertion point at the end like regular `NSTextField`s do.
 
 ```swift
 public enum OmnibarContent {
@@ -35,7 +35,7 @@ public enum OmnibarContent {
     /// Empties the Omnibar.
     case empty
 
-    /// Display `text` inside the Omnibar and select it all (like ⌘A) for 
+    /// Display `text` inside the Omnibar and select it all (like ⌘A) for
     /// quick overwriting.
     case selection(text: String)
 
@@ -53,7 +53,7 @@ public enum OmnibarContent {
 
 Set `delegate` to be notified of changes. The `OmnibarDelegate` protocol offers these function signatures:
 
-- Optional: `omnibarSelectNext(_ omnibar: Omnibar)` and `omnibarSelectPrevious(_ omnibar: Omnibar)` to change the selected result without unfocusing the Omnibar. 
+- Optional: `omnibarSelectNext(_ omnibar: Omnibar)` and `omnibarSelectPrevious(_ omnibar: Omnibar)` to change the selected result without unfocusing the Omnibar.
 - Required: `omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod)`, notifying the delegate about the last user interaction and typing change.
 
 `ChangeMethod` can be `.deletion`, `.insertion`, or `.appending` to convey what the user did so you can react to all cases differently.
@@ -93,4 +93,4 @@ The sample app uses a list of 12000+ english words to display and filter.
 
 ## License
 
-Copyright (c) 2017-2019 Christian Tietze. Distributed under the MIT License.
+Copyright (c) 2017-2022 Christian Tietze. Distributed under the MIT License.
