@@ -4,11 +4,11 @@ import Cocoa
 import Omnibar
 import ExampleModel
 
-protocol SearchHandler: class {
+protocol SearchHandler: AnyObject {
     func search(for searchTerm: String, offerSuggestion: Bool)
 }
 
-protocol SelectsResult: class {
+protocol SelectsResult: AnyObject {
     func selectNext()
     func selectPrevious()
 }

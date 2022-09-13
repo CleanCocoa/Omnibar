@@ -3,7 +3,7 @@
 import Cocoa
 import ExampleModel
 
-protocol SelectsWord: class {
+protocol SelectsWord: AnyObject {
     func select(word: Word)
 }
 

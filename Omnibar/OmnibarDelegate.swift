@@ -1,6 +1,6 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-@objc public protocol OmnibarSelectionDelegate: class {
+@objc public protocol OmnibarSelectionDelegate: AnyObject {
 
     /// Called when the up arrow key is pressed from inside the Omnibar while
     /// the Command or Alt modifier key is held.
@@ -33,7 +33,7 @@
     @objc optional func omnibarExpandSelectionToLast(_ omnibar: Omnibar)
 }
 
-public protocol OmnibarContentChangeDelegate: class {
+public protocol OmnibarContentChangeDelegate: AnyObject {
 
     /// Callback for live changes to the user-visible text while typing.
     func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod)
