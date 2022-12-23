@@ -18,3 +18,6 @@ class OmnibarTextFieldCell: NSTextFieldCell {
         return drawingRect
     }
 }
+
+// NSTextFieldCell responds to these selectors already, but only as an informal protocol, not a formal conformance, making this inavailable to Swift.
+extension OmnibarTextFieldCell: NSTextViewDelegate { }

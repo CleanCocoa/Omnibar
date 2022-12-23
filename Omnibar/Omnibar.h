@@ -9,5 +9,3 @@ FOUNDATION_EXPORT double OmnibarVersionNumber;
 FOUNDATION_EXPORT const unsigned char OmnibarVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Omnibar/PublicHeader.h>
-
-#import "DelegatableTextField.h"

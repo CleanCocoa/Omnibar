@@ -26,7 +26,7 @@ class PreviousContent {
 }
 
 @IBDesignable @objc
-public class Omnibar: DelegatableTextField {
+public class Omnibar: NSTextField {
 
     public struct Insets {
 
@@ -271,7 +271,10 @@ extension Omnibar: NSTextViewDelegate {
                 replacementString: replacement)
         }
 
-        return super.del_textView(textView, shouldChangeTextIn: affectedCharRange, replacementString: replacementString)
+        guard let cellAsDelegate = self.cell as? NSTextViewDelegate,
+              cellAsDelegate.responds(to: #selector(NSTextViewDelegate.textView(_:shouldChangeTextIn:replacementString:)))
+        else { return false }
+        return cellAsDelegate.textView!(textView, shouldChangeTextIn: affectedCharRange, replacementString: replacementString)
     }
 
     private func cacheTextFieldChange(textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String) {

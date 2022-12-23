@@ -1,5 +1,7 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
+import Foundation
+
 public enum ChangeMethod {
 
     /// Deletion anywhere in the Omnibar.

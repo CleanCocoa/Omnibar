@@ -1,5 +1,7 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
+import Foundation
+
 @objc public protocol OmnibarSelectionDelegate: AnyObject {
 
     /// Called when the up arrow key is pressed from inside the Omnibar while
