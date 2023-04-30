@@ -1,1 +1,2 @@
-github "ReactiveX/RxSwift" ~> 6.0
+github "keith/RxSwift" "ks/fix-deployment-target-warnings-in-xcode-14"
+# github "ReactiveX/RxSwift" ~> 6.5
