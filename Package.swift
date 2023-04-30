@@ -11,6 +11,14 @@ let package = Package(
     .library(
       name: "RxOmnibar",
       targets: ["RxOmnibar"]),
+    .library(
+      name: "RxOmnibar-Static",
+      type: .static,
+      targets: ["RxOmnibar"]),
+    .library(
+      name: "RxOmnibar-Dynamic",
+      type: .dynamic,
+      targets: ["RxOmnibar"]),
   ],
   dependencies: [
     .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.0.0"),
