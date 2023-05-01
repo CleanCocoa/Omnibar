@@ -1,2 +1,3 @@
-github "keith/RxSwift" "ks/fix-deployment-target-warnings-in-xcode-14"
 # github "ReactiveX/RxSwift" ~> 6.5
+# 2023-05-01: 'main' branch for Xcode 14 fixes
+github "ReactiveX/RxSwift" "main"
