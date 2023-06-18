@@ -21,7 +21,7 @@ let package = Package(
       targets: ["RxOmnibar"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.0.0"),
+    .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.6.0"),
   ],
   targets: [
     .target(
