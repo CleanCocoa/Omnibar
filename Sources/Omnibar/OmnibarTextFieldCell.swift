@@ -19,5 +19,5 @@ class OmnibarTextFieldCell: NSTextFieldCell {
     }
 }
 
-// NSTextFieldCell responds to these selectors already, but only as an informal protocol, not a formal conformance, making this inavailable to Swift.
+// NSTextFieldCell responds to these selectors already, but only as an informal protocol, not via formal conformance, so the selectors are unavailable to Swift unless we declare conformance explicitly.
 extension OmnibarTextFieldCell: NSTextViewDelegate { }
