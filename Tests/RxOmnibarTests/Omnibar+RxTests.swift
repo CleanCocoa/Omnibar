@@ -111,7 +111,7 @@ extension Omnibar_RxTests {
 
 }
 
-extension RxOmnibar.MoveSelection: Equatable {
+extension RxOmnibar.MoveSelection: @retroactive Equatable {
     public static func ==(lhs: RxOmnibar.MoveSelection, rhs: RxOmnibar.MoveSelection) -> Bool {
         switch (lhs, rhs) {
         case let (.first(lExpandSelection), .first(rExpandSelection)):
@@ -155,7 +155,7 @@ final class SelectionDelegateDouble: OmnibarDelegate {
 
 // MARK: - Omnibar Content Changes
 
-extension RxOmnibarContentChange: Equatable {}
+extension RxOmnibarContentChange: @retroactive Equatable {}
 
 public func ==(lhs: RxOmnibarContentChange, rhs: RxOmnibarContentChange) -> Bool {
 
