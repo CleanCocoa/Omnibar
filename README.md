@@ -5,7 +5,9 @@
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-A search field with support for auto-completion of typed strings and reactive extensions (RxSwift).
+A search field with support for auto-completion of typed strings.
+
+> **Looking for RxSwift compatibility?** The reactive extensions (RxSwift) have moved to <https://github.com/CleanCocoa/RxOmnibar> after v0.21.
 
 ## Overview
 
@@ -65,19 +67,6 @@ enum OmnibarContentChange {
     case continuation(text: String, remainingAppendix: String)
 }
 ```
-
-
-## Reactive Extension
-
-Implementing delegates is nice and all, but with RxSwift, reacting to search term changes with filtering the results and offering a suggestion from the results back to the Omnibar is even simpler thanks to the declarative nature of observable sequences.
-
-Once you have a reference to `omnibar: Omnibar`, the reactive extension `.rx` offers this:
-
-- `omnibar.rx.text` which behaves just like `NSTextField().rx.text` and sends the whole contents while the user is typing -- it's like a stream of `stringValue` property changes;
-- `omnibar.rx.contentChange` emits the changed content, either a `.replacement` or `.continuation`;
-- `omnibar.rx.moveSelection` emits either `.previous` (up arrow key) or `.next` (down arrow key);
-- `omnibar.rx.content` takes in any `OmnibarContent` value to change the text being displayed.
-
 
 # Attributions and Contributions
 
