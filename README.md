@@ -2,7 +2,6 @@
 
 ![Swift 5.7](https://img.shields.io/badge/Swift-5.7-blue.svg?style=flat)
 ![Version](https://img.shields.io/github/tag/CleanCocoa/Omnibar.svg?style=flat)
-![License](https://img.shields.io/github/license/CleanCocoa/Omnibar.svg?style=flat)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
