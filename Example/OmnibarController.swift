@@ -11,6 +11,9 @@ protocol SearchHandler: AnyObject {
 protocol SelectsResult: AnyObject {
     func selectNext()
     func selectPrevious()
+
+    func selectFirst()
+    func selectLast()
 }
 
 class OmnibarController: NSViewController {
@@ -62,8 +65,7 @@ struct Suggestion {
     }
 }
 
-extension OmnibarController: OmnibarDelegate {
-
+extension OmnibarController: OmnibarContentChangeDelegate {
     func omnibarDidCancelOperation(_ omnibar: Omnibar) {
         // nop
     }
@@ -75,6 +77,16 @@ extension OmnibarController: OmnibarDelegate {
             offerSuggestion: method == .appending)
     }
 
+    func omnibar(_ omnibar: Omnibar, commit text: String) {
+
+        let alert = NSAlert()
+        alert.messageText = text
+        alert.addButton(withTitle: "Continue")
+        alert.runModal()
+    }
+}
+
+extension OmnibarController: OmnibarSelectionDelegate {
     func omnibarSelectNext(_ omnibar: Omnibar) {
         selectionHandler?.selectNext()
     }
@@ -83,11 +95,11 @@ extension OmnibarController: OmnibarDelegate {
         selectionHandler?.selectPrevious()
     }
 
-    func omnibar(_ omnibar: Omnibar, commit text: String) {
+    func omnibarSelectFirst(_ omnibar: Omnibar) {
+        selectionHandler?.selectFirst()
+    }
 
-        let alert = NSAlert()
-        alert.messageText = text
-        alert.addButton(withTitle: "Continue")
-        alert.runModal()
+    func omnibarSelectLast(_ omnibar: Omnibar) {
+        selectionHandler?.selectLast()
     }
 }

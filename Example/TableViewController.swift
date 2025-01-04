@@ -74,6 +74,14 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         wordSelector?.select(word: word)
     }
 
+    func selectFirst() {
+        select(row: words.indices.first ?? -1)
+    }
+
+    func selectLast() {
+        select(row: words.indices.last ?? -1)
+    }
+
     func selectPrevious() {
 
         guard tableView.selectedRow > 0 else { return }
@@ -82,14 +90,11 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     }
 
     func selectNext() {
-
         guard tableView.selectedRow < words.count else { return }
-
         select(row: tableView.selectedRow + 1)
     }
 
     private func select(row: Int) {
-
         tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         tableView.scrollRowToVisible(row)
     }

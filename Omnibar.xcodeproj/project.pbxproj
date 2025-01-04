@@ -29,7 +29,7 @@
 		5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */; };
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
 		5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */; };
-		5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */; };
+		5038D9C41EDEBDC100F3DA4F /* OmnibarSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C31EDEBDC100F3DA4F /* OmnibarSelectionDelegate.swift */; };
 		5038D9C61EDEC85A00F3DA4F /* OmnibarContentChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C51EDEC85A00F3DA4F /* OmnibarContentChange.swift */; };
 		5038D9CA1EDED00F00F3DA4F /* TextFieldTextChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */; };
 		5038D9CD1EDED43800F3DA4F /* TextFieldTextChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */; };
@@ -69,6 +69,7 @@
 		5038DA791EE00DA600F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5E1EE00DA600F3DA4F /* Z Words.txt */; };
 		509302EA2D29996B0096B7C7 /* String+prefixRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302E82D29996B0096B7C7 /* String+prefixRange.swift */; };
 		509302EB2D29996B0096B7C7 /* String+removingSubrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302E92D29996B0096B7C7 /* String+removingSubrange.swift */; };
+		509302ED2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302EC2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift */; };
 		50B0D6301EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */; };
 		50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */; };
 /* End PBXBuildFile section */
@@ -139,7 +140,7 @@
 		5038D9851EDEB25800F3DA4F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
-		5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarDelegate.swift; path = ../Sources/Omnibar/OmnibarDelegate.swift; sourceTree = "<group>"; };
+		5038D9C31EDEBDC100F3DA4F /* OmnibarSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarSelectionDelegate.swift; path = ../Sources/Omnibar/OmnibarSelectionDelegate.swift; sourceTree = "<group>"; };
 		5038D9C51EDEC85A00F3DA4F /* OmnibarContentChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarContentChange.swift; path = ../Sources/Omnibar/OmnibarContentChange.swift; sourceTree = "<group>"; };
 		5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldTextChangeTests.swift; path = ../Tests/OmnibarTests/TextFieldTextChangeTests.swift; sourceTree = "<group>"; };
 		5038D9CC1EDED43800F3DA4F /* TextFieldTextChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldTextChange.swift; path = ../Sources/Omnibar/TextFieldTextChange.swift; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 		503906F02D292844004BEDD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		509302E82D29996B0096B7C7 /* String+prefixRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+prefixRange.swift"; path = "Sources/Omnibar/String+prefixRange.swift"; sourceTree = SOURCE_ROOT; };
 		509302E92D29996B0096B7C7 /* String+removingSubrange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+removingSubrange.swift"; path = "Sources/Omnibar/String+removingSubrange.swift"; sourceTree = SOURCE_ROOT; };
+		509302EC2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OmnibarContentChangeDelegate.swift; path = Sources/Omnibar/OmnibarContentChangeDelegate.swift; sourceTree = SOURCE_ROOT; };
 		50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+constrainToSuperviewBounds.swift"; path = "../Sources/Omnibar/NSView+constrainToSuperviewBounds.swift"; sourceTree = "<group>"; };
 		50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarTextFieldCell.swift; path = ../Sources/Omnibar/OmnibarTextFieldCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,7 +251,8 @@
 			children = (
 				5038D92F1EDE8F7200F3DA4F /* Omnibar.h */,
 				5038D95A1EDE91D700F3DA4F /* Omnibar.swift */,
-				5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */,
+				5038D9C31EDEBDC100F3DA4F /* OmnibarSelectionDelegate.swift */,
+				509302EC2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift */,
 				5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */,
 				5038D9C51EDEC85A00F3DA4F /* OmnibarContentChange.swift */,
 				500C46571EE2AA1100047991 /* ChangeMethod.swift */,
@@ -587,7 +590,8 @@
 				5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */,
 				50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
-				5038D9C41EDEBDC100F3DA4F /* OmnibarDelegate.swift in Sources */,
+				5038D9C41EDEBDC100F3DA4F /* OmnibarSelectionDelegate.swift in Sources */,
+				509302ED2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift in Sources */,
 				5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */,
 				5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */,
 				5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */,

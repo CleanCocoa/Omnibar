@@ -41,7 +41,8 @@ public class Omnibar: NSTextField {
         }
     }
 
-    public weak var omnibarDelegate: OmnibarDelegate?
+    public weak var omnibarSelectionDelegate: OmnibarSelectionDelegate?
+    public weak var omnibarContentChangeDelegate: OmnibarContentChangeDelegate?
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 
     /// Testing seam.
@@ -154,38 +155,38 @@ extension Omnibar {
 
         case #selector(NSResponder.moveToBeginningOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToBeginningOfParagraphAndModifySelection(_:)):
-            omnibarDelegate?.omnibarExpandSelectionToFirst?(self)
+            omnibarSelectionDelegate?.omnibarExpandSelectionToFirst?(self)
             return true
 
         case #selector(NSResponder.moveUpAndModifySelection(_:)):
-            omnibarDelegate?.omnibarExpandSelectionToPrevious?(self)
+            omnibarSelectionDelegate?.omnibarExpandSelectionToPrevious?(self)
             return true
 
         case #selector(NSResponder.moveDownAndModifySelection(_:)):
-            omnibarDelegate?.omnibarExpandSelectionToNext?(self)
+            omnibarSelectionDelegate?.omnibarExpandSelectionToNext?(self)
             return true
 
         case #selector(NSResponder.moveToEndOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToEndOfParagraphAndModifySelection(_:)):
-            omnibarDelegate?.omnibarExpandSelectionToLast?(self)
+            omnibarSelectionDelegate?.omnibarExpandSelectionToLast?(self)
             return true
 
         // MARK: Arrow Keys
 
         case #selector(NSResponder.moveToBeginningOfDocument(_:)):
-            omnibarDelegate?.omnibarSelectFirst?(self)
+            omnibarSelectionDelegate?.omnibarSelectFirst?(self)
             return true
 
         case #selector(NSResponder.moveUp(_:)):
-            omnibarDelegate?.omnibarSelectPrevious?(self)
+            omnibarSelectionDelegate?.omnibarSelectPrevious?(self)
             return true
 
         case #selector(NSResponder.moveDown(_:)):
-            omnibarDelegate?.omnibarSelectNext?(self)
+            omnibarSelectionDelegate?.omnibarSelectNext?(self)
             return true
 
         case #selector(NSResponder.moveToEndOfDocument(_:)):
-            omnibarDelegate?.omnibarSelectLast?(self)
+            omnibarSelectionDelegate?.omnibarSelectLast?(self)
             return true
 
         default:
@@ -212,7 +213,7 @@ extension Omnibar {
             self.display(content: contentChange.content)
         }
         
-        omnibarDelegate?.omnibar(
+        omnibarContentChangeDelegate?.omnibar(
             self,
             didChangeContent: contentChange,
             method: textChange.method
@@ -227,7 +228,7 @@ extension Omnibar {
         // Clearing the editor produces the text change event -- iff the editor was non-empty before. We want clear-text events to be triggered in all cases, though.
         if let fieldEditor = window?.fieldEditor(true, for: self) {
             if fieldEditor.string.isEmpty && self.alwaysFireWhenClearingText {
-                self.omnibarDelegate?.omnibar(
+                self.omnibarContentChangeDelegate?.omnibar(
                     self,
                     didChangeContent: .replacement(text: ""),
                     method: .deletion
@@ -237,7 +238,7 @@ extension Omnibar {
             }
         }
 
-        self.omnibarDelegate?.omnibarDidCancelOperation(self)
+        self.omnibarContentChangeDelegate?.omnibarDidCancelOperation(self)
     }
 
     public func focus() {
@@ -247,7 +248,7 @@ extension Omnibar {
 
     public func commit() {
 
-        self.omnibarDelegate?.omnibar(self, commit: self.stringValue)
+        self.omnibarContentChangeDelegate?.omnibar(self, commit: self.stringValue)
     }
 }
 

@@ -146,20 +146,17 @@ extension OmnibarTests {
 
 extension OmnibarTests {
 
-    class OmnibarDelegateDouble: OmnibarDelegate {
-
-        func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
-            // no op
+    class OmnibarDelegateDouble: OmnibarSelectionDelegate {
+        var didSelectFirst: Omnibar?
+        func omnibarSelectFirst(_ omnibar: Omnibar) {
+            didSelectFirst = omnibar
         }
 
-        func omnibar(_ omnibar: Omnibar, commit text: String) {
-            // no op
+        var didSelectLast: Omnibar?
+        func omnibarSelectLast(_ omnibar: Omnibar) {
+            didSelectLast = omnibar
         }
 
-        func omnibarDidCancelOperation(_ omnibar: Omnibar) {
-            // no op
-        }
-        
         var didSelectPrevious: Omnibar?
         func omnibarSelectPrevious(_ omnibar: Omnibar) {
             didSelectPrevious = omnibar
@@ -171,11 +168,34 @@ extension OmnibarTests {
         }
     }
 
-    func testControlCommand_MoveDown_CallsDelegate() {
-
+    func testControlCommand_MoveToBeginning_CallsDelegate() {
         let omnibar = Omnibar()
         let double = OmnibarDelegateDouble()
-        omnibar.omnibarDelegate = double
+        omnibar.omnibarSelectionDelegate = double
+
+        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveToBeginningOfDocument(_:)))
+
+        XCTAssert(didHandle)
+        XCTAssert(double.didSelectFirst === omnibar)
+        XCTAssertNil(double.didSelectLast)
+    }
+
+    func testControlCommand_MoveToEnd_CallsDelegate() {
+        let omnibar = Omnibar()
+        let double = OmnibarDelegateDouble()
+        omnibar.omnibarSelectionDelegate = double
+
+        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveToEndOfDocument(_:)))
+
+        XCTAssert(didHandle)
+        XCTAssertNil(double.didSelectFirst)
+        XCTAssert(double.didSelectLast === omnibar)
+    }
+
+    func testControlCommand_MoveDown_CallsDelegate() {
+        let omnibar = Omnibar()
+        let double = OmnibarDelegateDouble()
+        omnibar.omnibarSelectionDelegate = double
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:)))
 
@@ -185,10 +205,9 @@ extension OmnibarTests {
     }
 
     func testControlCommand_MoveUp_CallsDelegate() {
-
         let omnibar = Omnibar()
         let double = OmnibarDelegateDouble()
-        omnibar.omnibarDelegate = double
+        omnibar.omnibarSelectionDelegate = double
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:)))
 
