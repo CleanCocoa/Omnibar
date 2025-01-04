@@ -9,25 +9,23 @@ public enum ChangeMethod {
 
     /// Append (or replace) text up to the end of the Omnibar's content.
     ///
-    /// Before:
+    /// Before (`«...»` denotes selection of parts of the text):
     ///
-    ///     "lorem ips[o facto]"
-    ///                ^^^^^^^--- selected
+    ///     "lorem ips«o facto»"
     ///
-    /// After type-replacing at the end:
+    /// After type-replacing the selection at the end:
     ///
-    ///     "lorem ipsum[|]"
-    ///               ÎÎ ^--- insertion point
-    ///               ``--- typed
+    ///     "lorem ipsumˇ"
+    ///               ^^--- typed (ˇ denotes insertion point)
     case appending
 
     /// Insert text in the middle or at the beginning, but with still more text following after.
     ///
-    /// Examples:
+    /// Example (`ˇ` denotes insertion point):
     ///
-    ///    Before: "[|] ipsum"
-    ///    After:  "lorem[|] ipsum"
-    ///                   ^--- insertion point
+    ///     Before: "ˇ ipsum"
+    ///     After:  "loremˇ ipsum"
+    ///
     case insertion
 
     init(original: NSString, replacement: NSString, affectedRange: NSRange) {
