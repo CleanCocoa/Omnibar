@@ -2,21 +2,12 @@
 
 import struct Foundation.NSRange
 
-public struct TextFieldTextChange {
+struct TextFieldTextChange {
+    let oldText: String
+    let patch: TextFieldTextPatch
+    let method: ChangeMethod
 
-    public let oldText: String
-    public let patch: TextFieldTextPatch
-    public let method: ChangeMethod
-
-    public init(oldText: String, patch: TextFieldTextPatch, method: ChangeMethod) {
-
-        self.oldText = oldText
-        self.patch = patch
-        self.method = method
-    }
-
-    public var result: String {
-
+    var result: String {
         let replacementRange: Range<String.Index> = {
             let rangeStart = oldText.index(
                 oldText.startIndex,
@@ -34,6 +25,16 @@ public struct TextFieldTextChange {
         return oldText.replacingCharacters(
             in: replacementRange,
             with: patch.string)
+    }
+
+    init(
+        oldText: String,
+        patch: TextFieldTextPatch,
+        method: ChangeMethod
+    ) {
+        self.oldText = oldText
+        self.patch = patch
+        self.method = method
     }
 }
 

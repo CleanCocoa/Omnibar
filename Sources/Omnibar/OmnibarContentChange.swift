@@ -12,31 +12,6 @@ public enum OmnibarContentChange: Equatable {
         }
     }
 
-    public init(base content: OmnibarContent, change: TextFieldTextChange) {
-
-        self = {
-            switch content {
-            case .suggestion:
-
-                guard change.method != .deletion else { return .replacement(text: change.result) }
-
-                let originalText = content.string
-                let newText = change.result
-
-                guard let matchedRange = originalText.range(of: newText, options: .caseInsensitive),
-                    matchedRange.lowerBound == originalText.startIndex
-                    else {
-                        return .replacement(text: newText) }
-
-                return .continuation(
-                    text: change.result,
-                    remainingAppendix: originalText.removingSubrange(matchedRange))
-            default:
-                return .replacement(text: change.result)
-            }
-        }()
-    }
-
     var content: OmnibarContent {
         switch self {
         case .replacement(text: let text): return .prefix(text: text)
@@ -45,26 +20,32 @@ public enum OmnibarContentChange: Equatable {
     }
 }
 
-extension String {
+extension OmnibarContentChange {
+    init(
+        base content: OmnibarContent,
+        change: TextFieldTextChange
+    ) {
+        self = {
+            switch content {
+            case .suggestion
+            where change.method == .deletion:
+                return .replacement(text: change.result)
 
-    public func removingSubrange(_ bounds: Range<Index>) -> String {
+            case .suggestion:
+                let originalText = content.string
+                let newText = change.result
 
-        return self.replacingCharacters(in: bounds, with: "")
-    }
-}
+                guard let matchedRange = originalText.prefixRange(of: newText, options: .caseInsensitive)
+                else { return .replacement(text: newText) }
 
-public func ==(lhs: OmnibarContentChange, rhs: OmnibarContentChange) -> Bool {
+                return .continuation(
+                    text: change.result,
+                    remainingAppendix: originalText.removingSubrange(matchedRange)
+                 )
 
-    switch (lhs, rhs) {
-    case (.replacement(text: let lText),
-          .replacement(text: let rText)):
-        return lText == rText
-
-    case let (.continuation(text: lText, remainingAppendix: lAppendix),
-              .continuation(text: rText, remainingAppendix: rAppendix)):
-        return lText == rText && lAppendix == rAppendix
-
-    default:
-        return false
+            default:
+                return .replacement(text: change.result)
+            }
+        }()
     }
 }

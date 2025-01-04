@@ -146,9 +146,9 @@ extension OmnibarTests {
 
 extension OmnibarTests {
 
-    class SelectionDelegateDouble: OmnibarDelegate {
+    class OmnibarDelegateDouble: OmnibarDelegate {
 
-        func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
+        func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
             // no op
         }
 
@@ -174,7 +174,7 @@ extension OmnibarTests {
     func testControlCommand_MoveDown_CallsDelegate() {
 
         let omnibar = Omnibar()
-        let double = SelectionDelegateDouble()
+        let double = OmnibarDelegateDouble()
         omnibar.omnibarDelegate = double
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:)))
@@ -187,7 +187,7 @@ extension OmnibarTests {
     func testControlCommand_MoveUp_CallsDelegate() {
 
         let omnibar = Omnibar()
-        let double = SelectionDelegateDouble()
+        let double = OmnibarDelegateDouble()
         omnibar.omnibarDelegate = double
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:)))

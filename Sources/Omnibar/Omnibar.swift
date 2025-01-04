@@ -203,7 +203,7 @@ extension Omnibar {
         processTextChange(textChange)
     }
 
-    public func processTextChange(_ textChange: TextFieldTextChange) {
+    func processTextChange(_ textChange: TextFieldTextChange) {
 
         let lastContent = previousContent.popLatest() ?? .empty
         let contentChange = OmnibarContentChange(base: lastContent, change: textChange)
@@ -214,8 +214,9 @@ extension Omnibar {
         
         omnibarDelegate?.omnibar(
             self,
-            contentChange: contentChange,
-            method: textChange.method)
+            didChangeContent: contentChange,
+            method: textChange.method
+        )
     }
 
     /// Clears the text so that a change event is fired.
@@ -226,7 +227,11 @@ extension Omnibar {
         // Clearing the editor produces the text change event -- iff the editor was non-empty before. We want clear-text events to be triggered in all cases, though.
         if let fieldEditor = window?.fieldEditor(true, for: self) {
             if fieldEditor.string.isEmpty && self.alwaysFireWhenClearingText {
-                self.omnibarDelegate?.omnibar(self, contentChange: .replacement(text: ""), method: .deletion)
+                self.omnibarDelegate?.omnibar(
+                    self,
+                    didChangeContent: .replacement(text: ""),
+                    method: .deletion
+                )
             } else {
                 fieldEditor.delete(self)
             }

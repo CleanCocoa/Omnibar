@@ -68,7 +68,7 @@ extension OmnibarController: OmnibarDelegate {
         // nop
     }
 
-    func omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod) {
+    func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
 
         searchHandler?.search(
             for: contentChange.text,

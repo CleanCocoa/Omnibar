@@ -67,6 +67,8 @@
 		5038DA771EE00DA600F3DA4F /* X Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5C1EE00DA600F3DA4F /* X Words.txt */; };
 		5038DA781EE00DA600F3DA4F /* Y Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5D1EE00DA600F3DA4F /* Y Words.txt */; };
 		5038DA791EE00DA600F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5E1EE00DA600F3DA4F /* Z Words.txt */; };
+		509302EA2D29996B0096B7C7 /* String+prefixRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302E82D29996B0096B7C7 /* String+prefixRange.swift */; };
+		509302EB2D29996B0096B7C7 /* String+removingSubrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302E92D29996B0096B7C7 /* String+removingSubrange.swift */; };
 		50B0D6301EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */; };
 		50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */; };
 /* End PBXBuildFile section */
@@ -176,6 +178,8 @@
 		5038DA5D1EE00DA600F3DA4F /* Y Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Y Words.txt"; sourceTree = "<group>"; };
 		5038DA5E1EE00DA600F3DA4F /* Z Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Z Words.txt"; sourceTree = "<group>"; };
 		503906F02D292844004BEDD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		509302E82D29996B0096B7C7 /* String+prefixRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+prefixRange.swift"; path = "Sources/Omnibar/String+prefixRange.swift"; sourceTree = SOURCE_ROOT; };
+		509302E92D29996B0096B7C7 /* String+removingSubrange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+removingSubrange.swift"; path = "Sources/Omnibar/String+removingSubrange.swift"; sourceTree = SOURCE_ROOT; };
 		50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+constrainToSuperviewBounds.swift"; path = "../Sources/Omnibar/NSView+constrainToSuperviewBounds.swift"; sourceTree = "<group>"; };
 		50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarTextFieldCell.swift; path = ../Sources/Omnibar/OmnibarTextFieldCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +253,8 @@
 				5038D95C1EDE924600F3DA4F /* OmnibarContent.swift */,
 				5038D9C51EDEC85A00F3DA4F /* OmnibarContentChange.swift */,
 				500C46571EE2AA1100047991 /* ChangeMethod.swift */,
+				509302E82D29996B0096B7C7 /* String+prefixRange.swift */,
+				509302E92D29996B0096B7C7 /* String+removingSubrange.swift */,
 				50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */,
 				5038D9CB1EDED42A00F3DA4F /* Text Field */,
 				5038D9801EDEAB0900F3DA4F /* Cocoa Adapter Layer */,
@@ -575,6 +581,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				500C46581EE2AA1100047991 /* ChangeMethod.swift in Sources */,
+				509302EA2D29996B0096B7C7 /* String+prefixRange.swift in Sources */,
+				509302EB2D29996B0096B7C7 /* String+removingSubrange.swift in Sources */,
 				5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */,
 				50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
