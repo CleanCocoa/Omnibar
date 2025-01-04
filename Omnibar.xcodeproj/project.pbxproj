@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -243,7 +243,7 @@
 		5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextReplacement.swift; path = ../Sources/Omnibar/TextReplacement.swift; sourceTree = "<group>"; };
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextReplacementTests.swift; path = ../Tests/OmnibarTests/TextReplacementTests.swift; sourceTree = "<group>"; };
 		5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSText+FieldEditorTests.swift"; path = "../Tests/OmnibarTests/NSText+FieldEditorTests.swift"; sourceTree = "<group>"; };
-		5038D9851EDEB25800F3DA4F /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		5038D9851EDEB25800F3DA4F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
 		5038D9C31EDEBDC100F3DA4F /* OmnibarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarDelegate.swift; path = ../Sources/Omnibar/OmnibarDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +304,7 @@
 		5038DA891EE1488100F3DA4F /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		5038DA8B1EE14AB400F3DA4F /* RxHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxHelpers.swift; sourceTree = "<group>"; };
 		5038DA8D1EE15AF100F3DA4F /* SearchResultParts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultParts.swift; sourceTree = "<group>"; };
+		503906F02D292844004BEDD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		506126A828D0A5A700EAE6F6 /* RxBlocking.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxBlocking.xcframework; path = Carthage/Build/RxBlocking.xcframework; sourceTree = "<group>"; };
 		506126A928D0A5A700EAE6F6 /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = Carthage/Build/RxSwift.xcframework; sourceTree = "<group>"; };
 		506126AA28D0A5A700EAE6F6 /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxCocoa.xcframework; path = Carthage/Build/RxCocoa.xcframework; sourceTree = "<group>"; };
@@ -404,7 +405,8 @@
 		5038D9221EDE8F7200F3DA4F = {
 			isa = PBXGroup;
 			children = (
-				5038D9851EDEB25800F3DA4F /* LICENSE.md */,
+				503906F02D292844004BEDD2 /* README.md */,
+				5038D9851EDEB25800F3DA4F /* LICENSE */,
 				5038D92E1EDE8F7200F3DA4F /* Omnibar */,
 				5038D9631EDE934F00F3DA4F /* OmnibarTests */,
 				5038D9451EDE902E00F3DA4F /* Example */,
