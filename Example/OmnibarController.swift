@@ -19,7 +19,6 @@ protocol SelectsResult: AnyObject {
 class OmnibarController: NSViewController {
 
     weak var searchHandler: SearchHandler?
-    weak var selectionHandler: SelectsResult?
 
     var omnibar: Omnibar! { return self.view as? Omnibar }
 }
@@ -83,23 +82,5 @@ extension OmnibarController: OmnibarContentChangeDelegate {
         alert.messageText = text
         alert.addButton(withTitle: "Continue")
         alert.runModal()
-    }
-}
-
-extension OmnibarController: OmnibarSelectionDelegate {
-    func omnibarSelectNext(_ omnibar: Omnibar) {
-        selectionHandler?.selectNext()
-    }
-
-    func omnibarSelectPrevious(_ omnibar: Omnibar) {
-        selectionHandler?.selectPrevious()
-    }
-
-    func omnibarSelectFirst(_ omnibar: Omnibar) {
-        selectionHandler?.selectFirst()
-    }
-
-    func omnibarSelectLast(_ omnibar: Omnibar) {
-        selectionHandler?.selectLast()
     }
 }

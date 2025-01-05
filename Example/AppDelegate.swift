@@ -15,14 +15,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        omnibar.omnibarSelectionDelegate = omnibarController
+        omnibar.moveFromOmnibar = MoveFromOmnibar(wrapping: tableViewController)
         omnibar.omnibarContentChangeDelegate = omnibarController
 
         filterService = FilterService(
             suggestionDisplay: omnibarController,
             wordDisplay: tableViewController)
         omnibarController.searchHandler = filterService
-        omnibarController.selectionHandler = tableViewController
         tableViewController.wordSelector = omnibarController
         filterService.displayAll()
     }

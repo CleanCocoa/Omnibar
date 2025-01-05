@@ -41,7 +41,7 @@ public class Omnibar: NSTextField {
         }
     }
 
-    public weak var omnibarSelectionDelegate: OmnibarSelectionDelegate?
+    public var moveFromOmnibar: MoveFromOmnibar?
     public weak var omnibarContentChangeDelegate: OmnibarContentChangeDelegate?
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 
@@ -155,38 +155,38 @@ extension Omnibar {
 
         case #selector(NSResponder.moveToBeginningOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToBeginningOfParagraphAndModifySelection(_:)):
-            omnibarSelectionDelegate?.omnibarExpandSelectionToFirst?(self)
+            moveFromOmnibar?(movement: .top, expandingSelection: true)
             return true
 
         case #selector(NSResponder.moveUpAndModifySelection(_:)):
-            omnibarSelectionDelegate?.omnibarExpandSelectionToPrevious?(self)
+            moveFromOmnibar?(movement: .up, expandingSelection: true)
             return true
 
         case #selector(NSResponder.moveDownAndModifySelection(_:)):
-            omnibarSelectionDelegate?.omnibarExpandSelectionToNext?(self)
+            moveFromOmnibar?(movement: .down, expandingSelection: true)
             return true
 
         case #selector(NSResponder.moveToEndOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToEndOfParagraphAndModifySelection(_:)):
-            omnibarSelectionDelegate?.omnibarExpandSelectionToLast?(self)
+            moveFromOmnibar?(movement: .bottom, expandingSelection: true)
             return true
 
         // MARK: Arrow Keys
 
         case #selector(NSResponder.moveToBeginningOfDocument(_:)):
-            omnibarSelectionDelegate?.omnibarSelectFirst?(self)
+            moveFromOmnibar?(movement: .top)
             return true
 
         case #selector(NSResponder.moveUp(_:)):
-            omnibarSelectionDelegate?.omnibarSelectPrevious?(self)
+            moveFromOmnibar?(movement: .up)
             return true
 
         case #selector(NSResponder.moveDown(_:)):
-            omnibarSelectionDelegate?.omnibarSelectNext?(self)
+            moveFromOmnibar?(movement: .down)
             return true
 
         case #selector(NSResponder.moveToEndOfDocument(_:)):
-            omnibarSelectionDelegate?.omnibarSelectLast?(self)
+            moveFromOmnibar?(movement: .bottom)
             return true
 
         default:

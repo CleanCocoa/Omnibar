@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -337,12 +337,13 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="89" y="20"/>
         </menu>
         <window title="Example" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="476"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="476"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -351,7 +352,7 @@
                         <rect key="frame" x="20" y="434" width="440" height="22"/>
                     </customView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BWG-GY-2kn">
-                        <rect key="frame" x="14" y="13" width="109" height="32"/>
+                        <rect key="frame" x="13" y="13" width="103" height="32"/>
                         <buttonCell key="cell" type="push" title="Suggestion" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="anc-9X-pbl">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -361,7 +362,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LBA-ux-gra">
-                        <rect key="frame" x="123" y="13" width="81" height="32"/>
+                        <rect key="frame" x="114" y="13" width="75" height="32"/>
                         <buttonCell key="cell" type="push" title="Typing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6rV-sh-e7P">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -371,7 +372,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QCM-wy-NIL">
-                        <rect key="frame" x="204" y="13" width="100" height="32"/>
+                        <rect key="frame" x="187" y="13" width="94" height="32"/>
                         <buttonCell key="cell" type="push" title="Replacing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FZb-0I-SdK">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -381,21 +382,20 @@
                         </connections>
                     </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tb-i2-4PX">
-                        <rect key="frame" x="20" y="61" width="440" height="353"/>
+                        <rect key="frame" x="20" y="60" width="440" height="354"/>
                         <clipView key="contentView" id="7L0-4b-MIT">
-                            <rect key="frame" x="1" y="1" width="438" height="351"/>
+                            <rect key="frame" x="1" y="1" width="438" height="352"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="70M-Ts-Lwm">
-                                    <rect key="frame" x="0.0" y="0.0" width="438" height="351"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="438" height="352"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="Cell" width="435" minWidth="40" maxWidth="1000" id="2p2-uo-JyY">
+                                        <tableColumn identifier="Cell" width="426" minWidth="40" maxWidth="1000" id="2p2-uo-JyY">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
@@ -410,7 +410,7 @@
                                                     <rect key="frame" x="1" y="1" width="435" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0P-Yy-gfs">
+                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0P-Yy-gfs">
                                                             <rect key="frame" x="0.0" y="0.0" width="435" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="qIu-6U-LmT">
@@ -460,7 +460,7 @@
                     <constraint firstItem="LBA-ux-gra" firstAttribute="baseline" secondItem="BWG-GY-2kn" secondAttribute="baseline" id="yeJ-wa-7VX"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="103" y="-223"/>
+            <point key="canvasLocation" x="89" y="372"/>
         </window>
         <customObject id="tuB-pm-iUc" customClass="TableViewController" customModule="Example" customModuleProvider="target">
             <connections>

@@ -145,75 +145,59 @@ extension OmnibarTests {
 // MARK: - Arrow keys
 
 extension OmnibarTests {
-
-    class OmnibarDelegateDouble: OmnibarSelectionDelegate {
-        var didSelectFirst: Omnibar?
-        func omnibarSelectFirst(_ omnibar: Omnibar) {
-            didSelectFirst = omnibar
-        }
-
-        var didSelectLast: Omnibar?
-        func omnibarSelectLast(_ omnibar: Omnibar) {
-            didSelectLast = omnibar
-        }
-
-        var didSelectPrevious: Omnibar?
-        func omnibarSelectPrevious(_ omnibar: Omnibar) {
-            didSelectPrevious = omnibar
-        }
-
-        var didSelectNext: Omnibar?
-        func omnibarSelectNext(_ omnibar: Omnibar) {
-            didSelectNext = omnibar
-        }
-    }
-
-    func testControlCommand_MoveToBeginning_CallsDelegate() {
+    func testControlCommand_MoveToBeginning_CallsMovementHandler() {
         let omnibar = Omnibar()
-        let double = OmnibarDelegateDouble()
-        omnibar.omnibarSelectionDelegate = double
+        let movementExpectation = expectation(description: "movement event forwarding")
+        omnibar.moveFromOmnibar = .init(handler: { event in
+            XCTAssertEqual(event, .init(movement: .top))
+            movementExpectation.fulfill()
+        })
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveToBeginningOfDocument(_:)))
 
         XCTAssert(didHandle)
-        XCTAssert(double.didSelectFirst === omnibar)
-        XCTAssertNil(double.didSelectLast)
+        wait(for: [movementExpectation])
     }
 
-    func testControlCommand_MoveToEnd_CallsDelegate() {
+    func testControlCommand_MoveToEnd_CallsMovementHandler() {
         let omnibar = Omnibar()
-        let double = OmnibarDelegateDouble()
-        omnibar.omnibarSelectionDelegate = double
+        let movementExpectation = expectation(description: "movement event forwarding")
+        omnibar.moveFromOmnibar = .init(handler: { event in
+            XCTAssertEqual(event, .init(movement: .bottom))
+            movementExpectation.fulfill()
+        })
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveToEndOfDocument(_:)))
 
         XCTAssert(didHandle)
-        XCTAssertNil(double.didSelectFirst)
-        XCTAssert(double.didSelectLast === omnibar)
+        wait(for: [movementExpectation])
     }
 
-    func testControlCommand_MoveDown_CallsDelegate() {
+    func testControlCommand_MoveDown_CallsMovementHandler() {
         let omnibar = Omnibar()
-        let double = OmnibarDelegateDouble()
-        omnibar.omnibarSelectionDelegate = double
+        let movementExpectation = expectation(description: "movement event forwarding")
+        omnibar.moveFromOmnibar = .init(handler: { event in
+            XCTAssertEqual(event, .init(movement: .down))
+            movementExpectation.fulfill()
+        })
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:)))
 
         XCTAssert(didHandle)
-        XCTAssert(double.didSelectNext === omnibar)
-        XCTAssertNil(double.didSelectPrevious)
+        wait(for: [movementExpectation])
     }
 
-    func testControlCommand_MoveUp_CallsDelegate() {
+    func testControlCommand_MoveUp_CallsMovementHandler() {
         let omnibar = Omnibar()
-        let double = OmnibarDelegateDouble()
-        omnibar.omnibarSelectionDelegate = double
+        let movementExpectation = expectation(description: "movement event forwarding")
+        omnibar.moveFromOmnibar = .init(handler: { event in
+            XCTAssertEqual(event, .init(movement: .up))
+            movementExpectation.fulfill()
+        })
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:)))
 
         XCTAssert(didHandle)
-        XCTAssertNil(double.didSelectNext)
-        XCTAssert(double.didSelectPrevious === omnibar)
+        wait(for: [movementExpectation])
     }
-
 }
