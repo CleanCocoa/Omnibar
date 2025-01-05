@@ -48,10 +48,8 @@ struct Suggestion {
 
     /// Fails to initialize if `bestFit` does not start with `searchTerm`.
     init?(bestFit: String, forSearchTerm searchTerm: String) {
-
-        guard let matchRange = bestFit.lowercased().range(of: searchTerm.lowercased()),
-            matchRange.lowerBound == bestFit.startIndex
-            else { return nil }
+        guard let matchRange = bestFit.prefixRange(of: searchTerm, options: .caseInsensitive)
+        else { return nil }
 
         let appendix = bestFit.removingSubrange(matchRange)
 
