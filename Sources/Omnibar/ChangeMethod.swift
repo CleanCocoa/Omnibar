@@ -2,6 +2,7 @@
 
 import Foundation
 
+/// The means by which the ``Omnibar`` text field changes in reaction to a user event (like typing and pasting).
 public enum ChangeMethod {
 
     /// Deletion anywhere in the Omnibar.
@@ -27,9 +28,15 @@ public enum ChangeMethod {
     ///     After:  "loremˇ ipsum"
     ///
     case insertion
+}
 
-    init(original: NSString, replacement: NSString, affectedRange: NSRange) {
-
+extension ChangeMethod {
+    /// Determines the nature of the change from `original` in `affectedRange` with `replacement`.
+    init(
+        original: NSString,
+        replacement: NSString,
+        affectedRange: NSRange
+    ) {
         self = {
             let insertionLength = replacement.length
             let affectedLength = affectedRange.length
