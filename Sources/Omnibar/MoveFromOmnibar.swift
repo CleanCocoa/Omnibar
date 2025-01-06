@@ -30,10 +30,11 @@ public struct MovementEvent: Equatable {
 }
 
 /// Action handler used by ``Omnibar`` to forward movement events to change the selection in search results.
+@MainActor
 public struct MoveFromOmnibar {
-    let handler: (_ event: MovementEvent) -> Void
+    let handler: @MainActor (_ event: MovementEvent) -> Void
 
-    public init(handler: @escaping (_: MovementEvent) -> Void) {
+    public init(handler: @escaping @MainActor (_ event: MovementEvent) -> Void) {
         self.handler = handler
     }
 

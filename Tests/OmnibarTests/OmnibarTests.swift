@@ -143,7 +143,7 @@ extension OmnibarTests {
 // MARK: - Arrow keys
 
 extension OmnibarTests {
-    func testControlCommand_MoveToBeginning_CallsMovementHandler() {
+    @MainActor func testControlCommand_MoveToBeginning_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in
@@ -157,7 +157,7 @@ extension OmnibarTests {
         wait(for: [movementExpectation])
     }
 
-    func testControlCommand_MoveToEnd_CallsMovementHandler() {
+    @MainActor func testControlCommand_MoveToEnd_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in
@@ -171,7 +171,7 @@ extension OmnibarTests {
         wait(for: [movementExpectation])
     }
 
-    func testControlCommand_MoveDown_CallsMovementHandler() {
+    @MainActor func testControlCommand_MoveDown_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in
@@ -185,7 +185,7 @@ extension OmnibarTests {
         wait(for: [movementExpectation])
     }
 
-    func testControlCommand_MoveUp_CallsMovementHandler() {
+    @MainActor func testControlCommand_MoveUp_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in
