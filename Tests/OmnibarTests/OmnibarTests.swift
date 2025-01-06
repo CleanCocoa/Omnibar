@@ -20,8 +20,6 @@ class OmnibarTests: XCTestCase {
 // MARK: Displaying OmnibarContent
 
 fileprivate class EditableTextDouble: EditableText {
-    func fieldEditor() -> FieldEditor? { return nil }
-
     var didReplace: TextReplacement?
     func replace(replacement: TextReplacement) {
         didReplace = replacement

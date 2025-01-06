@@ -21,12 +21,9 @@
 		5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */; };
 		5038D9701EDE950900F3DA4F /* OmnibarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */; };
 		5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9711EDE9C8600F3DA4F /* EditableText.swift */; };
-		5038D9741EDE9D9800F3DA4F /* FieldEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */; };
-		5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */; };
 		5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */; };
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
 		5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */; };
-		5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */; };
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
 		5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */; };
 		5038D9C41EDEBDC100F3DA4F /* MoveFromOmnibar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C31EDEBDC100F3DA4F /* MoveFromOmnibar.swift */; };
@@ -132,12 +129,9 @@
 		5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarContentTests.swift; path = ../Tests/OmnibarTests/OmnibarContentTests.swift; sourceTree = "<group>"; };
 		5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarTests.swift; path = ../Tests/OmnibarTests/OmnibarTests.swift; sourceTree = "<group>"; };
 		5038D9711EDE9C8600F3DA4F /* EditableText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditableText.swift; path = ../Sources/Omnibar/EditableText.swift; sourceTree = "<group>"; };
-		5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FieldEditor.swift; path = ../Sources/Omnibar/FieldEditor.swift; sourceTree = "<group>"; };
-		5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSText+FieldEditor.swift"; path = "../Sources/Omnibar/NSText+FieldEditor.swift"; sourceTree = "<group>"; };
 		5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRange+EquatableTests.swift"; path = "../Tests/OmnibarTests/NSRange+EquatableTests.swift"; sourceTree = "<group>"; };
 		5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextReplacement.swift; path = ../Sources/Omnibar/TextReplacement.swift; sourceTree = "<group>"; };
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextReplacementTests.swift; path = ../Tests/OmnibarTests/TextReplacementTests.swift; sourceTree = "<group>"; };
-		5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSText+FieldEditorTests.swift"; path = "../Tests/OmnibarTests/NSText+FieldEditorTests.swift"; sourceTree = "<group>"; };
 		5038D9851EDEB25800F3DA4F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
@@ -295,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */,
-				5038D9831EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift */,
 				500C46591EE2AABE00047991 /* ChangeMethodTests.swift */,
 				5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */,
 				5038D9CE1EDED51300F3DA4F /* OmnibarContentChangeTests.swift */,
@@ -311,9 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				5038D9711EDE9C8600F3DA4F /* EditableText.swift */,
-				5038D9731EDE9D9800F3DA4F /* FieldEditor.swift */,
 				5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */,
-				5038D9751EDE9DB400F3DA4F /* NSText+FieldEditor.swift */,
 			);
 			name = "Cocoa Adapter Layer";
 			sourceTree = "<group>";
@@ -590,7 +581,6 @@
 				500C46581EE2AA1100047991 /* ChangeMethod.swift in Sources */,
 				509302EA2D29996B0096B7C7 /* String+prefixRange.swift in Sources */,
 				509302EB2D29996B0096B7C7 /* String+removingSubrange.swift in Sources */,
-				5038D9761EDE9DB400F3DA4F /* NSText+FieldEditor.swift in Sources */,
 				50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */,
 				5038D95D1EDE924600F3DA4F /* OmnibarContent.swift in Sources */,
 				5038D9C41EDEBDC100F3DA4F /* MoveFromOmnibar.swift in Sources */,
@@ -601,7 +591,6 @@
 				5038D9C61EDEC85A00F3DA4F /* OmnibarContentChange.swift in Sources */,
 				5038D9CD1EDED43800F3DA4F /* TextFieldTextChange.swift in Sources */,
 				50B0D6301EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift in Sources */,
-				5038D9741EDE9D9800F3DA4F /* FieldEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +613,6 @@
 			files = (
 				5038D9701EDE950900F3DA4F /* OmnibarTests.swift in Sources */,
 				5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */,
-				5038D9841EDEAF1D00F3DA4F /* NSText+FieldEditorTests.swift in Sources */,
 				5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */,
 				500C465A1EE2AABE00047991 /* ChangeMethodTests.swift in Sources */,
 				5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */,

@@ -3,32 +3,21 @@
 import Cocoa
 
 protocol EditableText {
-    /// The current `FieldEditor` to read from and write into.
-    ///
-    /// - returns: A `FieldEditor` instance for the current
-    ///   editing session, `nil` when no editing session
-    ///   is active.
-    func fieldEditor() -> FieldEditor?
-
     func replace(replacement: TextReplacement)
 }
 
 extension EditableText where Self: NSControl {
-
-    func fieldEditor() -> FieldEditor? {
-        return self.currentEditor()
-    }
-
     func replace(replacement: TextReplacement) {
-
-        // Do not set `stringValue` in an active editing session because that
-        // "aborts all editing before setting the value." (See docs.)
-        guard let fieldEditor = self.fieldEditor() else {
+        // Do not set `stringValue` in an active editing session because that "aborts all editing before setting the value." (See docs.)
+        // Note that `currentEditor()` returns `NSText` for legacy reasons, but:  "The field editor is a single NSTextView object that is shared among all the controls in a window for light text-editing needs."
+        guard let fieldEditor = self.currentEditor() as? NSTextView else {
             self.stringValue = replacement.text
             return
         }
 
-        fieldEditor.replaceAllCharacters(with: replacement.text)
-        fieldEditor.selectRange(replacement.selectedRange)
+        // Set `NSText.string` directly instead to *not* handle this as if the user typed the text.
+        // (Usually, you will want to perform a change by bracketing it in `shouldChangeText(in:replacementString:)` before, `didChangeText()` after the replacement, and perform the change on `NSTextStorage` directly.)
+        fieldEditor.string = replacement.text
+        fieldEditor.selectedRange = replacement.selectedRange
     }
 }
