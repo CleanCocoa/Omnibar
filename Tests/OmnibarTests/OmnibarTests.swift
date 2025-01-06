@@ -19,16 +19,16 @@ class OmnibarTests: XCTestCase {
 
 // MARK: Displaying OmnibarContent
 
-fileprivate class EditableTextDouble: EditableText {
+fileprivate class EditableTextDouble: TextReplaceable {
     var didReplace: TextReplacement?
-    func replace(replacement: TextReplacement) {
+    func replaceText(replacement: TextReplacement) {
         didReplace = replacement
     }
 }
 
 fileprivate class TestableOmnibar: Omnibar {
-    var editableTextDouble: EditableText?
-    override var editableText: EditableText {
+    var editableTextDouble: TextReplaceable?
+    override var editableText: TextReplaceable {
         return editableTextDouble ?? super.editableText
     }
 }

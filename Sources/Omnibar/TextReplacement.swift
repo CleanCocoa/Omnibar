@@ -2,6 +2,10 @@
 
 import struct Foundation.NSRange
 
+protocol TextReplaceable {
+    func replaceText(replacement: TextReplacement)
+}
+
 struct TextReplacement: Equatable {
     let text: String
     let selectedRange: NSRange

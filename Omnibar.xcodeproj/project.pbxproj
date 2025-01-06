@@ -20,7 +20,7 @@
 		5038D9671EDE934F00F3DA4F /* Omnibar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038D92C1EDE8F7200F3DA4F /* Omnibar.framework */; };
 		5038D96E1EDE936200F3DA4F /* OmnibarContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */; };
 		5038D9701EDE950900F3DA4F /* OmnibarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */; };
-		5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9711EDE9C8600F3DA4F /* EditableText.swift */; };
+		5038D9721EDE9C8600F3DA4F /* NSControl+TextReplaceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9711EDE9C8600F3DA4F /* NSControl+TextReplaceable.swift */; };
 		5038D97D1EDEA71300F3DA4F /* NSRange+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */; };
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
 		5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */; };
@@ -128,7 +128,7 @@
 		5038D9661EDE934F00F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5038D96D1EDE936200F3DA4F /* OmnibarContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarContentTests.swift; path = ../Tests/OmnibarTests/OmnibarContentTests.swift; sourceTree = "<group>"; };
 		5038D96F1EDE950900F3DA4F /* OmnibarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarTests.swift; path = ../Tests/OmnibarTests/OmnibarTests.swift; sourceTree = "<group>"; };
-		5038D9711EDE9C8600F3DA4F /* EditableText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditableText.swift; path = ../Sources/Omnibar/EditableText.swift; sourceTree = "<group>"; };
+		5038D9711EDE9C8600F3DA4F /* NSControl+TextReplaceable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSControl+TextReplaceable.swift"; path = "../Sources/Omnibar/NSControl+TextReplaceable.swift"; sourceTree = "<group>"; };
 		5038D97C1EDEA71300F3DA4F /* NSRange+EquatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRange+EquatableTests.swift"; path = "../Tests/OmnibarTests/NSRange+EquatableTests.swift"; sourceTree = "<group>"; };
 		5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextReplacement.swift; path = ../Sources/Omnibar/TextReplacement.swift; sourceTree = "<group>"; };
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextReplacementTests.swift; path = ../Tests/OmnibarTests/TextReplacementTests.swift; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 		5038D9801EDEAB0900F3DA4F /* Cocoa Adapter Layer */ = {
 			isa = PBXGroup;
 			children = (
-				5038D9711EDE9C8600F3DA4F /* EditableText.swift */,
+				5038D9711EDE9C8600F3DA4F /* NSControl+TextReplaceable.swift */,
 				5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */,
 			);
 			name = "Cocoa Adapter Layer";
@@ -586,7 +586,7 @@
 				5038D9C41EDEBDC100F3DA4F /* MoveFromOmnibar.swift in Sources */,
 				509302ED2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift in Sources */,
 				5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */,
-				5038D9721EDE9C8600F3DA4F /* EditableText.swift in Sources */,
+				5038D9721EDE9C8600F3DA4F /* NSControl+TextReplaceable.swift in Sources */,
 				5038D95B1EDE91D700F3DA4F /* Omnibar.swift in Sources */,
 				5038D9C61EDEC85A00F3DA4F /* OmnibarContentChange.swift in Sources */,
 				5038D9CD1EDED43800F3DA4F /* TextFieldTextChange.swift in Sources */,

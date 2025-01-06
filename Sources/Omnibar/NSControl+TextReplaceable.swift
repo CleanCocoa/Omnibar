@@ -2,12 +2,8 @@
 
 import Cocoa
 
-protocol EditableText {
-    func replace(replacement: TextReplacement)
-}
-
-extension EditableText where Self: NSControl {
-    func replace(replacement: TextReplacement) {
+extension TextReplaceable where Self: NSControl {
+    func replaceText(replacement: TextReplacement) {
         // Do not set `stringValue` in an active editing session because that "aborts all editing before setting the value." (See docs.)
         // Note that `currentEditor()` returns `NSText` for legacy reasons, but:  "The field editor is a single NSTextView object that is shared among all the controls in a window for light text-editing needs."
         guard let fieldEditor = self.currentEditor() as? NSTextView else {

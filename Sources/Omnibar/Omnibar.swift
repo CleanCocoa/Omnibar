@@ -2,7 +2,7 @@
 
 import Cocoa
 
-extension NSTextField: EditableText { }
+extension NSTextField: TextReplaceable { }
 
 /// Display model cache that forces us to consider the latest value once, only.
 /// This way, resetting auto-completions will need to call
@@ -46,7 +46,7 @@ public class Omnibar: NSTextField {
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 
     /// Testing seam.
-    var editableText: EditableText { return self }
+    var editableText: TextReplaceable { return self }
 
     /// Display model cache.
     let previousContent = PreviousContent()
@@ -121,7 +121,7 @@ public class Omnibar: NSTextField {
 
 extension Omnibar {
     public func display(content: OmnibarContent) {
-        editableText.replace(replacement: TextReplacement(omnibarContent: content))
+        editableText.replaceText(replacement: TextReplacement(omnibarContent: content))
 
         // Update cache
         previousContent.pushLatest(content)
