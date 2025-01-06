@@ -125,6 +125,12 @@ extension Omnibar {
 
         // Update cache
         previousContent.pushLatest(content)
+
+        omnibarContentChangeDelegate?.omnibar(
+            self,
+            didChangeContent: .replacement(text: content.string),
+            method: .programmaticReplacement
+        )
     }
 }
 
@@ -258,10 +264,8 @@ extension Omnibar {
 extension Omnibar: NSTextViewDelegate {
 
     func popTextFieldChange() -> TextFieldTextChange? {
-
-        let value = cachedTextFieldChange
-        cachedTextFieldChange = nil
-        return value
+        defer { cachedTextFieldChange = nil }
+        return cachedTextFieldChange
     }
 
     public func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {

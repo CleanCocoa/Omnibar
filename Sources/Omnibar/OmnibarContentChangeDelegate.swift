@@ -2,7 +2,7 @@
 
 public protocol OmnibarContentChangeDelegate: AnyObject {
 
-    /// Callback for live changes to the user-visible text while typing.
+    /// Callback for live changes to the user-visible text, both while typing and from programmatic changes to the displayed content (as distingushed by `method`).
     func omnibar(
         _ omnibar: Omnibar,
         didChangeContent contentChange: OmnibarContentChange,

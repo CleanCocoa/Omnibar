@@ -60,14 +60,13 @@ extension OmnibarController: OmnibarContentChangeDelegate {
     }
 
     func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
-
+        guard method != .programmaticReplacement else { return }
         searchHandler?.search(
             for: contentChange.text,
             offerSuggestion: method == .appending)
     }
 
     func omnibar(_ omnibar: Omnibar, commit text: String) {
-
         let alert = NSAlert()
         alert.messageText = text
         alert.addButton(withTitle: "Continue")

@@ -4,6 +4,8 @@ import Foundation
 
 /// The means by which the ``Omnibar`` text field changes in reaction to a user event (like typing and pasting).
 public enum ChangeMethod {
+    /// Complete programmatic text replacement.
+    case programmaticReplacement
 
     /// Deletion anywhere in the Omnibar.
     case deletion
@@ -31,7 +33,9 @@ public enum ChangeMethod {
 }
 
 extension ChangeMethod {
-    /// Determines the nature of the change from `original` in `affectedRange` with `replacement`.
+    /// Determines the nature of the user-interactive change from `original` in `affectedRange` with `replacement`.
+    ///
+    /// > Invariant: Is never going to be ``ChangeMethod/programmaticReplacement``.
     init(
         original: NSString,
         replacement: NSString,
