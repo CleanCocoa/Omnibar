@@ -22,7 +22,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             suggestionDisplay: omnibarController,
             wordDisplay: tableViewController)
         omnibarController.searchHandler = filterService
-        tableViewController.wordSelector = omnibarController
+        tableViewController.selectWord = SelectWord { [weak omnibarController] selectedWord in
+            omnibarController?.display(selectedWord: selectedWord)
+        }
         filterService.displayAll()
     }
 
@@ -51,9 +53,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     fileprivate func changeSearch(omnibarContent: OmnibarContent) {
-
         omnibar.display(content: omnibarContent)
 
+        // TODO: select word in table view
         // Search for the base, not the appendix of `.suggestion`s.
         filterService.search(for: omnibarContent.text, offerSuggestion: false)
     }

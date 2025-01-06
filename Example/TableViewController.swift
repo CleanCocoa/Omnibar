@@ -3,39 +3,39 @@
 import Cocoa
 import ExampleModel
 
-protocol SelectsWord: AnyObject {
-    func select(word: Word)
+struct SelectWord {
+    let handler: (_ word: Word) -> Void
+
+    init(handler: @escaping (_: Word) -> Void) {
+        self.handler = handler
+    }
+
+    func select(word: Word) {
+        handler(word)
+    }
+
+    @inlinable @inline(__always)
+    func callAsFunction(word: Word) {
+        select(word: word)
+    }
 }
 
 extension NSUserInterfaceItemIdentifier {
     static var tableCellView: NSUserInterfaceItemIdentifier { return .init(rawValue: "ExTableCellView") }
 }
 
-class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, DisplaysWords, SelectsResult {
+class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
-    weak var wordSelector: SelectsWord?
-    
+    var selectWord: SelectWord = SelectWord { _ in /* no op */ }
+
     private var words: [String] = [] {
         didSet {
             tableView.reloadData()
         }
     }
 
-    /// Cache of programmatic selections to avoid change events
+    /// Cache of programmatic selections to avoid sending change events to `selectWord` for these .
     fileprivate var programmaticallySelectedRow: Int?
-
-    func display(words: [Word], selecting selectedWord: Word?) {
-
-        self.words = words
-        self.programmaticallySelectedRow = nil
-
-        if let selectedWord = selectedWord,
-            let selectionIndex = words.firstIndex(of: selectedWord) {
-
-            programmaticallySelectedRow = selectionIndex
-            select(row: selectionIndex)
-        }
-    }
 
     // MARK: - Table View Contents
 
@@ -71,9 +71,26 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         guard tableView.selectedRow != programmaticallySelectedRow else { return }
 
         let word = words[tableView.selectedRow]
-        wordSelector?.select(word: word)
+        selectWord(word: word)
     }
+}
 
+extension TableViewController: DisplaysWords {
+    func display(words: [Word], selecting selectedWord: Word?) {
+
+        self.words = words
+        self.programmaticallySelectedRow = nil
+
+        if let selectedWord = selectedWord,
+           let selectionIndex = words.firstIndex(of: selectedWord) {
+
+            programmaticallySelectedRow = selectionIndex
+            select(row: selectionIndex)
+        }
+    }
+}
+
+extension TableViewController {
     func selectFirst() {
         select(row: words.indices.first ?? -1)
     }
@@ -83,9 +100,7 @@ class TableViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     }
 
     func selectPrevious() {
-
         guard tableView.selectedRow > 0 else { return }
-
         select(row: tableView.selectedRow - 1)
     }
 

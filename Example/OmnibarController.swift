@@ -8,14 +8,6 @@ protocol SearchHandler: AnyObject {
     func search(for searchTerm: String, offerSuggestion: Bool)
 }
 
-protocol SelectsResult: AnyObject {
-    func selectNext()
-    func selectPrevious()
-
-    func selectFirst()
-    func selectLast()
-}
-
 class OmnibarController: NSViewController {
 
     weak var searchHandler: SearchHandler?
@@ -23,11 +15,11 @@ class OmnibarController: NSViewController {
     var omnibar: Omnibar! { return self.view as? Omnibar }
 }
 
-extension OmnibarController: SelectsWord {
+extension OmnibarController {
     
-    func select(word: Word) {
-        
-        omnibar.display(content: .selection(text: word))
+    func display(selectedWord: Word) {
+
+        omnibar.display(content: .selection(text: selectedWord))
     }
 }
 
