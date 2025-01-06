@@ -119,10 +119,8 @@ public class Omnibar: NSTextField {
 
 // MARK: - Input
 
-extension Omnibar: DisplaysOmnibarContent {
-
+extension Omnibar {
     public func display(content: OmnibarContent) {
-
         editableText.replace(replacement: TextReplacement(omnibarContent: content))
 
         // Update cache
