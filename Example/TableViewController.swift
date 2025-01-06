@@ -1,6 +1,6 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-import Cocoa
+import AppKit
 import ExampleModel
 
 struct SelectWord {
