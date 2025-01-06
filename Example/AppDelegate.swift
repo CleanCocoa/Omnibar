@@ -8,7 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var omnibar: Omnibar!
-    @IBOutlet weak var omnibarController: OmnibarController!
+    @IBOutlet weak var omnibarViewController: OmnibarViewController!
     @IBOutlet weak var tableViewController: TableViewController!
 
     var filterService: FilterService!
@@ -16,14 +16,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
         omnibar.moveFromOmnibar = MoveFromOmnibar(wrapping: tableViewController)
-        omnibar.omnibarContentChangeDelegate = omnibarController
+        omnibar.omnibarContentChangeDelegate = omnibarViewController
 
         filterService = FilterService(
-            suggestionDisplay: omnibarController,
+            suggestionDisplay: omnibarViewController,
             wordDisplay: tableViewController)
-        omnibarController.searchHandler = filterService
-        tableViewController.selectWord = SelectWord { [weak omnibarController] selectedWord in
-            omnibarController?.display(selectedWord: selectedWord)
+        omnibarViewController.searchHandler = filterService
+        tableViewController.selectWord = SelectWord { [weak omnibarViewController] selectedWord in
+            omnibarViewController?.display(selectedWord: selectedWord)
         }
         filterService.displayAll()
     }

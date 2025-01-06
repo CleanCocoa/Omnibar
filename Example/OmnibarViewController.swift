@@ -8,14 +8,14 @@ protocol SearchHandler: AnyObject {
     func search(for searchTerm: String, offerSuggestion: Bool)
 }
 
-class OmnibarController: NSViewController {
+class OmnibarViewController: NSViewController {
 
     weak var searchHandler: SearchHandler?
 
     var omnibar: Omnibar! { return self.view as? Omnibar }
 }
 
-extension OmnibarController {
+extension OmnibarViewController {
     
     func display(selectedWord: Word) {
 
@@ -23,7 +23,7 @@ extension OmnibarController {
     }
 }
 
-extension OmnibarController: DisplaysSuggestion {
+extension OmnibarViewController: DisplaysSuggestion {
 
     func display(bestFit: String, forSearchTerm searchTerm: String) {
 
@@ -54,7 +54,7 @@ struct Suggestion {
     }
 }
 
-extension OmnibarController: OmnibarContentChangeDelegate {
+extension OmnibarViewController: OmnibarContentChangeDelegate {
     func omnibarDidCancelOperation(_ omnibar: Omnibar) {
         // nop
     }

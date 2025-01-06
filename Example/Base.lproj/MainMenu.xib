@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Example" customModuleProvider="target">
             <connections>
                 <outlet property="omnibar" destination="Z9X-j6-rKt" id="OQA-zj-vjj"/>
-                <outlet property="omnibarController" destination="ZYw-vb-fdM" id="HnV-c8-wKX"/>
+                <outlet property="omnibarViewController" destination="ZYw-vb-fdM" id="HnV-c8-wKX"/>
                 <outlet property="tableViewController" destination="tuB-pm-iUc" id="hgx-dt-9mV"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -385,7 +384,7 @@
                         <rect key="frame" x="20" y="60" width="440" height="354"/>
                         <clipView key="contentView" id="7L0-4b-MIT">
                             <rect key="frame" x="1" y="1" width="438" height="352"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="70M-Ts-Lwm">
                                     <rect key="frame" x="0.0" y="0.0" width="438" height="352"/>
@@ -394,7 +393,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="Cell" width="426" minWidth="40" maxWidth="1000" id="2p2-uo-JyY">
+                                        <tableColumn identifier="Cell" width="397" minWidth="40" maxWidth="1000" id="2p2-uo-JyY">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -407,11 +406,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="ExTableCellView" id="Hyb-pd-7Ug">
-                                                    <rect key="frame" x="1" y="1" width="435" height="17"/>
+                                                    <rect key="frame" x="11" y="1" width="406" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0P-Yy-gfs">
-                                                            <rect key="frame" x="0.0" y="0.0" width="435" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="406" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="qIu-6U-LmT">
                                                                 <font key="font" metaFont="system"/>
@@ -467,7 +466,7 @@
                 <outlet property="view" destination="70M-Ts-Lwm" id="NdZ-Le-U8Z"/>
             </connections>
         </customObject>
-        <customObject id="ZYw-vb-fdM" customClass="OmnibarController" customModule="Example" customModuleProvider="target">
+        <customObject id="ZYw-vb-fdM" customClass="OmnibarViewController" customModule="Example" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="Z9X-j6-rKt" id="a3n-u0-r16"/>
             </connections>

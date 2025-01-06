@@ -25,7 +25,7 @@
 		5038D97F1EDEAAE500F3DA4F /* TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D97E1EDEAAE500F3DA4F /* TextReplacement.swift */; };
 		5038D9821EDEAB3600F3DA4F /* TextReplacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */; };
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
-		5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */; };
+		5038D9C21EDEBB6000F3DA4F /* OmnibarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */; };
 		5038D9C41EDEBDC100F3DA4F /* MoveFromOmnibar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C31EDEBDC100F3DA4F /* MoveFromOmnibar.swift */; };
 		5038D9C61EDEC85A00F3DA4F /* OmnibarContentChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C51EDEC85A00F3DA4F /* OmnibarContentChange.swift */; };
 		5038D9CA1EDED00F00F3DA4F /* TextFieldTextChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */; };
@@ -134,7 +134,7 @@
 		5038D9811EDEAB3600F3DA4F /* TextReplacementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextReplacementTests.swift; path = ../Tests/OmnibarTests/TextReplacementTests.swift; sourceTree = "<group>"; };
 		5038D9851EDEB25800F3DA4F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarController.swift; sourceTree = "<group>"; };
+		5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarViewController.swift; sourceTree = "<group>"; };
 		5038D9C31EDEBDC100F3DA4F /* MoveFromOmnibar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveFromOmnibar.swift; path = ../Sources/Omnibar/MoveFromOmnibar.swift; sourceTree = "<group>"; };
 		5038D9C51EDEC85A00F3DA4F /* OmnibarContentChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarContentChange.swift; path = ../Sources/Omnibar/OmnibarContentChange.swift; sourceTree = "<group>"; };
 		5038D9C91EDED00F00F3DA4F /* TextFieldTextChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldTextChangeTests.swift; path = ../Tests/OmnibarTests/TextFieldTextChangeTests.swift; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 				5038D9D21EDFEA8100F3DA4F /* FilterService.swift */,
 				5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */,
 				509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */,
-				5038D9C11EDEBB6000F3DA4F /* OmnibarController.swift */,
+				5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */,
 				5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */,
 				5038D9481EDE902E00F3DA4F /* Assets.xcassets */,
 				5038D94A1EDE902E00F3DA4F /* MainMenu.xib */,
@@ -603,7 +603,7 @@
 				5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */,
 				509302EF2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift in Sources */,
 				5038D9D51EDFEFB500F3DA4F /* ConcurrencyHelpers.swift in Sources */,
-				5038D9C21EDEBB6000F3DA4F /* OmnibarController.swift in Sources */,
+				5038D9C21EDEBB6000F3DA4F /* OmnibarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
