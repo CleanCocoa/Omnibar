@@ -5,10 +5,19 @@ public enum OmnibarContentChange: Equatable {
     case replacement(text: String)
     case continuation(text: String, remainingAppendix: String)
 
+    /// The base portion of the content change, i.e. the text typed by the user without any appendices.
     public var text: String {
         switch self {
         case .replacement(text: let text): return text
         case .continuation(text: let text, remainingAppendix: _): return text
+        }
+    }
+
+    /// The complete string value of the content change, including the suggestion/appendix.
+    public var string: String {
+        switch self {
+        case .replacement(text: let text): return text
+        case .continuation(text: let text, remainingAppendix: let appendix): return text + appendix
         }
     }
 
