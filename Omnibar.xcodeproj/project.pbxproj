@@ -69,6 +69,7 @@
 		509302ED2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302EC2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift */; };
 		509302EF2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */; };
 		5093030B2D2BD6DD0096B7C7 /* SelectWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093030A2D2BD6DD0096B7C7 /* SelectWord.swift */; };
+		509303272D2BDAAC0096B7C7 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509303262D2BDAAC0096B7C7 /* Suggestion.swift */; };
 		50B0D6301EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */; };
 		50D13BD01EE6870B0073A2A7 /* OmnibarTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */; };
 /* End PBXBuildFile section */
@@ -180,6 +181,7 @@
 		509302EC2D299AE80096B7C7 /* OmnibarContentChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OmnibarContentChangeDelegate.swift; path = Sources/Omnibar/OmnibarContentChangeDelegate.swift; sourceTree = SOURCE_ROOT; };
 		509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveFromOmnibar+fromTableViewController.swift"; sourceTree = "<group>"; };
 		5093030A2D2BD6DD0096B7C7 /* SelectWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWord.swift; sourceTree = "<group>"; };
+		509303262D2BDAAC0096B7C7 /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		50B0D62F1EE7BF080025941D /* NSView+constrainToSuperviewBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+constrainToSuperviewBounds.swift"; path = "../Sources/Omnibar/NSView+constrainToSuperviewBounds.swift"; sourceTree = "<group>"; };
 		50D13BCF1EE6870B0073A2A7 /* OmnibarTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OmnibarTextFieldCell.swift; path = ../Sources/Omnibar/OmnibarTextFieldCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -280,6 +282,7 @@
 				5093030A2D2BD6DD0096B7C7 /* SelectWord.swift */,
 				509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */,
 				5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */,
+				509303262D2BDAAC0096B7C7 /* Suggestion.swift */,
 				5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */,
 				5038D9481EDE902E00F3DA4F /* Assets.xcassets */,
 				5038D94A1EDE902E00F3DA4F /* MainMenu.xib */,
@@ -604,6 +607,7 @@
 				5093030B2D2BD6DD0096B7C7 /* SelectWord.swift in Sources */,
 				5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */,
 				5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */,
+				509303272D2BDAAC0096B7C7 /* Suggestion.swift in Sources */,
 				5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */,
 				509302EF2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift in Sources */,
 				5038D9D51EDFEFB500F3DA4F /* ConcurrencyHelpers.swift in Sources */,
