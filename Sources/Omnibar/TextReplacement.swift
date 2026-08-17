@@ -2,6 +2,7 @@
 
 import struct Foundation.NSRange
 
+@MainActor
 protocol TextReplaceable {
     func replaceText(replacement: TextReplacement)
 }

@@ -1,11 +1,11 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.1
 
 import PackageDescription
 
 let package = Package(
     name: "Omnibar",
     platforms: [
-        .macOS(.v10_13),
+        .macOS(.v15),
     ],
     products: [
         .library(

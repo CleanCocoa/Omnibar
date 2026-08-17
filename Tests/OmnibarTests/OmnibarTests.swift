@@ -3,18 +3,8 @@
 import XCTest
 @testable import Omnibar
 
-class OmnibarTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-}
+@MainActor
+class OmnibarTests: XCTestCase { }
 
 
 // MARK: Displaying OmnibarContent
@@ -143,7 +133,7 @@ extension OmnibarTests {
 // MARK: - Arrow keys
 
 extension OmnibarTests {
-    @MainActor func testControlCommand_MoveToBeginning_CallsMovementHandler() {
+    func testControlCommand_MoveToBeginning_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in
@@ -157,7 +147,7 @@ extension OmnibarTests {
         wait(for: [movementExpectation])
     }
 
-    @MainActor func testControlCommand_MoveToEnd_CallsMovementHandler() {
+    func testControlCommand_MoveToEnd_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in
@@ -171,7 +161,7 @@ extension OmnibarTests {
         wait(for: [movementExpectation])
     }
 
-    @MainActor func testControlCommand_MoveDown_CallsMovementHandler() {
+    func testControlCommand_MoveDown_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in
@@ -185,7 +175,7 @@ extension OmnibarTests {
         wait(for: [movementExpectation])
     }
 
-    @MainActor func testControlCommand_MoveUp_CallsMovementHandler() {
+    func testControlCommand_MoveUp_CallsMovementHandler() {
         let omnibar = Omnibar()
         let movementExpectation = expectation(description: "movement event forwarding")
         omnibar.moveFromOmnibar = .init(handler: { event in

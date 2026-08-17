@@ -92,8 +92,6 @@ public class Omnibar: NSTextField {
         setup()
     }
 
-    fileprivate var controlTextChangeSubscription: Any?
-
     private func setup() {
         let omnibarCell = OmnibarTextFieldCell(textCell: "")
         omnibarCell.insets = self.textInsets
@@ -107,12 +105,6 @@ public class Omnibar: NSTextField {
         self.drawsBackground = true
 
         self.usesSingleLineMode = true
-    }
-
-    deinit {
-        if let subscription = controlTextChangeSubscription {
-            NotificationCenter.default.removeObserver(subscription)
-        }
     }
 }
 
