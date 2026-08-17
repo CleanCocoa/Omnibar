@@ -1,9 +1,8 @@
 # Omnibar
 
-![Swift 5.7](https://img.shields.io/badge/Swift-5.7-blue.svg?style=flat)
+![Swift 6.1](https://img.shields.io/badge/Swift-6.1-blue.svg?style=flat)
 ![Version](https://img.shields.io/github/tag/CleanCocoa/Omnibar.svg?style=flat)
-![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![Platform](https://img.shields.io/badge/platform-macOS%2015+-lightgrey.svg?style=flat)
 
 A search field with support for auto-completion of typed strings.
 
