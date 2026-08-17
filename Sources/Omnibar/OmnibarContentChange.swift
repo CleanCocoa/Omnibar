@@ -1,6 +1,6 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-public enum OmnibarContentChange: Equatable {
+public enum OmnibarContentChange: Equatable, Sendable {
 
     case replacement(text: String)
     case continuation(text: String, remainingAppendix: String)

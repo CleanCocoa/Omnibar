@@ -3,7 +3,7 @@
 import Foundation
 
 /// The means by which the ``Omnibar`` text field changes in reaction to a user event (like typing and pasting).
-public enum ChangeMethod {
+public enum ChangeMethod: Equatable, Sendable {
     /// Complete programmatic text replacement.
     case programmaticReplacement
 

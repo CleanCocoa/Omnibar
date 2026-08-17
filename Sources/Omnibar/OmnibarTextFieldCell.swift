@@ -6,7 +6,7 @@ class OmnibarTextFieldCell: NSTextFieldCell {
 
     var insets: Omnibar.Insets?
 
-    public override func drawingRect(forBounds rect: NSRect) -> NSRect {
+    override func drawingRect(forBounds rect: NSRect) -> NSRect {
 
         guard let insets = self.insets else {
             return super.drawingRect(forBounds: rect)

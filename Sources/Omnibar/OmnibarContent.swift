@@ -5,7 +5,7 @@ import Foundation
 /// Input data model for the ``Omnibar``, setting its displayed contents.
 ///
 /// Show ``OmnibarContent`` via ``Omnibar/display(content:)``.
-public enum OmnibarContent {
+public enum OmnibarContent: Equatable, Sendable {
 
     /// Empties the Omnibar.
     case empty

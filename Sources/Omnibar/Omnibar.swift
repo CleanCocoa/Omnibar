@@ -28,7 +28,7 @@ class PreviousContent {
 @IBDesignable @objc
 public class Omnibar: NSTextField {
 
-    public struct Insets {
+    public struct Insets: Equatable, Sendable {
 
         public let left: CGFloat
         public let right: CGFloat
@@ -131,7 +131,7 @@ extension Omnibar {
 
 extension Omnibar {
 
-    public func doOmnibarCommand(commandSelector: Selector) -> Bool {
+    func doOmnibarCommand(commandSelector: Selector) -> Bool {
 
         switch commandSelector {
         case #selector(NSResponder.cancelOperation(_:)):

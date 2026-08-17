@@ -2,7 +2,7 @@
 
 import struct Foundation.NSRange
 
-struct TextFieldTextChange {
+struct TextFieldTextChange: Sendable {
     let oldText: String
     let patch: TextFieldTextPatch
     let method: ChangeMethod
@@ -38,11 +38,11 @@ struct TextFieldTextChange {
     }
 }
 
-public struct TextFieldTextPatch {
-    public let string: String
-    public let range: NSRange
-    
-    public init(string: String, range: NSRange) {
+struct TextFieldTextPatch: Sendable {
+    let string: String
+    let range: NSRange
+
+    init(string: String, range: NSRange) {
         self.string = string
         self.range = range
     }
@@ -50,7 +50,7 @@ public struct TextFieldTextPatch {
 
 extension TextFieldTextChange {
 
-    public init(oldText: String, patch: String, range: NSRange, method: ChangeMethod) {
+    init(oldText: String, patch: String, range: NSRange, method: ChangeMethod) {
 
         self.oldText = oldText
         self.patch = TextFieldTextPatch(string: patch, range: range)

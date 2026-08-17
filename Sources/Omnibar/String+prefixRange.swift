@@ -4,7 +4,7 @@ import Foundation
 
 extension String {
     /// Returns the range of `prefix` in `self` if it is matched at the start.
-    public func prefixRange(
+    func prefixRange(
         of prefix: String,
         options: CompareOptions = []
     ) -> Range<Index>? {

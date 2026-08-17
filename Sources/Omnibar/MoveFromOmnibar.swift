@@ -3,17 +3,18 @@
 /// Movement event forwarded by the ``Omnibar``.
 ///
 /// Holding shift to expand the selection while using a movement key (e.g. the keyboard's arrow keys) will set ``isExpandingSelection`` to `true`. The default movement does not expand the selection and is intended to merely change a single selected item.
-public struct MovementEvent: Equatable {
-    public enum Movement: Equatable {
-        /// - Next: Called when the down arrow key is pressed from inside the Omnibar.
-        /// - Last: Called when the down arrow key is pressed from inside the Omnibar while the Command or Alt modifier key is held.
-
-        /// Called when the up arrow key is pressed from inside the Omnibar.
+public struct MovementEvent: Equatable, Sendable {
+    public enum Movement: Equatable, Sendable {
+        /// Move the selection one item towards the start of the list.
         case up
+
+        /// Move the selection one item towards the end of the list.
         case down
 
-        /// Called when the up arrow key is pressed from inside the Omnibar while the Command or Alt modifier key is held.
+        /// Move the selection to the first item of the list.
         case top
+
+        /// Move the selection to the last item of the list.
         case bottom
     }
 
