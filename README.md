@@ -6,7 +6,7 @@
 
 A search field with support for auto-completion of typed strings.
 
-> **Looking for RxSwift compatibility?** The reactive extensions (RxSwift) have moved to <https://github.com/CleanCocoa/RxOmnibar> after v0.21.
+> **Looking for RxSwift compatibility?** The reactive extensions (RxSwift) have moved to <https://github.com/CleanCocoa/RxOmnibar> after v0.21. That package targets the pre-2.0.0 delegate API and has not been updated for the renames in 2.0.0.
 
 ## Overview
 
@@ -51,12 +51,24 @@ public enum OmnibarContent {
 
 ### Reacting to Events
 
-Set `delegate` to be notified of changes. The `OmnibarDelegate` protocol offers these function signatures:
+Set `omnibarContentChangeDelegate` to be notified of text changes. The `OmnibarContentChangeDelegate` protocol is `@MainActor` and requires all three of:
 
-- Optional: `omnibarSelectNext(_ omnibar: Omnibar)` and `omnibarSelectPrevious(_ omnibar: Omnibar)` to change the selected result without unfocusing the Omnibar.
-- Required: `omnibar(_ omnibar: Omnibar, contentChange: OmnibarContentChange, method: ChangeMethod)`, notifying the delegate about the last user interaction and typing change.
+```swift
+func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod)
+func omnibar(_ omnibar: Omnibar, commit text: String)
+func omnibarDidCancelOperation(_ omnibar: Omnibar)
+```
 
-`ChangeMethod` can be `.deletion`, `.insertion`, or `.appending` to convey what the user did so you can react to all cases differently.
+Arrow keys are a separate concern: set `moveFromOmnibar` to change the selected result without unfocusing the Omnibar.
+
+```swift
+omnibar.moveFromOmnibar = MoveFromOmnibar { event in
+    // event.movement is .up, .down, .top, or .bottom
+    // event.isExpandingSelection is true when Shift was held
+}
+```
+
+`ChangeMethod` can be `.programmaticReplacement`, `.deletion`, `.insertion`, or `.appending` to convey what the user did so you can react to all cases differently.
 
 `OmnibarContentChange` is either a `.replacement` of the old stuff, or a `.continuation` of the last suggestion, if there was any; `.continuation` is just like a self-suggested `OmnibarContent.suggestion` waiting for approval.
 
