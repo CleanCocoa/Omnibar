@@ -86,31 +86,38 @@ enum OmnibarContentChange {
 
 ## Async Streams
 
-`AsyncOmnibar` republishes the same interactions as an `AsyncStream`. Store the observer: it occupies the Omnibar's delegate and action slots, and the Omnibar holds its delegate weakly.
+`AsyncOmnibar` republishes the same interactions as an `AsyncStream`. The observer takes over the Omnibar's delegate and action slots for as long as it lives, so store it, and call `finish()` when its owner goes away:
 
 ```swift
 import AsyncOmnibar
 
 self.events = OmnibarEvents(omnibar: omnibar)
-
-for await event in self.events.makeStream() {
-    switch event {
-    case let .contentChange(change, method):
-        guard method != .programmaticReplacement else { continue }
-        search(for: change.text, offerSuggestion: method == .appending)
-    case let .commit(text):
-        open(text)
-    case let .movement(movement):
-        moveSelection(movement)
-    case .cancel:
-        break
+self.observation = Task { [events] in
+    for await event in events.makeStream() {
+        switch event {
+        case let .contentChange(change, method):
+            guard method != .programmaticReplacement else { continue }
+            await search(for: change.text, offerSuggestion: method == .appending)
+        case let .commit(text):
+            open(text)
+        case let .movement(movement):
+            moveSelection(movement)
+        case .cancel:
+            break
+        }
     }
+}
+
+deinit {
+    events.finish()
 }
 ```
 
+`finish()` is not optional bookkeeping. A task consuming a stream holds the observer alive, and the observer only ends its streams once it is released — so relying on deallocation to stop the loop waits for a deallocation the loop itself prevents. Calling `finish()` ends every stream, and hands the delegate and action slots back to whatever held them before, so an Omnibar that already had a delegate keeps working afterwards.
+
 All event kinds share one stream because their order matters: clearing the Omnibar with Esc emits the `.contentChange` for the emptied text before the `.cancel`.
 
-`makeStream()` can be called more than once, and every stream sees every event. Displaying content stays synchronous — call `omnibar.display(content:)` from the main actor. To discard results of a search the user has already typed past, cancel the previous task:
+`makeStream()` can be called more than once, and every stream sees every event. Streams handed out after `finish()` are already finished. Displaying content stays synchronous — call `omnibar.display(content:)` from the main actor. To discard results of a search the user has already typed past, cancel the previous task:
 
 ```swift
 searchTask?.cancel()

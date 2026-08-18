@@ -116,6 +116,59 @@ struct OmnibarEventsTests {
         #expect(omnibar.moveFromOmnibar == nil)
     }
 
+    @Test("finish() puts back the delegate it displaced")
+    func finishRestoresDisplacedDelegate() {
+        let omnibar = Omnibar()
+        let original = RecordingDelegate()
+        omnibar.omnibarContentChangeDelegate = original
+        let events = OmnibarEvents(omnibar: omnibar)
+
+        events.finish()
+        omnibar.commit()
+
+        #expect(omnibar.omnibarContentChangeDelegate === original)
+        #expect(original.commits == [""])
+    }
+
+    @Test("finish() puts back the movement handler it displaced")
+    func finishRestoresDisplacedMovement() {
+        let omnibar = Omnibar()
+        let original = MovementRecorder()
+        omnibar.moveFromOmnibar = MoveFromOmnibar { original.events.append($0) }
+        let events = OmnibarEvents(omnibar: omnibar)
+
+        events.finish()
+        omnibar.moveFromOmnibar?(movement: .up)
+
+        #expect(original.events == [MovementEvent(movement: .up)])
+    }
+
+    @Test("streams handed out after finish() are already finished")
+    func makeStreamAfterFinishIsEmpty() async {
+        let omnibar = Omnibar()
+        let events = OmnibarEvents(omnibar: omnibar)
+        events.finish()
+
+        var received: [OmnibarEvent] = []
+        for await event in events.makeStream() {
+            received.append(event)
+        }
+
+        #expect(received.isEmpty)
+    }
+
+    @Test("finish() does not reclaim slots a later observer took over")
+    func finishLeavesLaterObserverAlone() {
+        let omnibar = Omnibar()
+        let first = OmnibarEvents(omnibar: omnibar)
+        let second = OmnibarEvents(omnibar: omnibar)
+
+        first.finish()
+        first.finish()
+
+        #expect(omnibar.omnibarContentChangeDelegate === second)
+    }
+
     @Test("releasing the observer ends the streams")
     func releasingObserverEndsStreams() async {
         let omnibar = Omnibar()
@@ -130,4 +183,18 @@ struct OmnibarEventsTests {
         }
         #expect(received.isEmpty)
     }
+}
+
+@MainActor
+private final class RecordingDelegate: OmnibarContentChangeDelegate {
+    var commits: [String] = []
+
+    func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {}
+    func omnibar(_ omnibar: Omnibar, commit text: String) { commits.append(text) }
+    func omnibarDidCancelOperation(_ omnibar: Omnibar) {}
+}
+
+@MainActor
+private final class MovementRecorder {
+    var events: [MovementEvent] = []
 }
