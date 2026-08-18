@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `AsyncOmnibar` library: `OmnibarEvents` republishes the Omnibar's
+  interactions as multicast `AsyncStream<OmnibarEvent>`s. Additive; the
+  `Omnibar` library is unchanged.
+
+  RxOmnibar users blocked by 2.0.0 can move here instead of staying on
+  1.0.0.
+
 ## 2.0.0
 
 Breaking release. The delegate protocol was split in two and renamed, so

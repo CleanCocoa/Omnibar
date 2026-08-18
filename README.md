@@ -6,6 +6,11 @@
 
 A search field with support for auto-completion of typed strings.
 
+The package ships two libraries:
+
+- `Omnibar` — the search field and its delegate-based API.
+- `AsyncOmnibar` — an `AsyncStream` decoration on top of it, for `for await` instead of delegate callbacks.
+
 > **Looking for RxSwift compatibility?** The reactive extensions (RxSwift) have moved to <https://github.com/CleanCocoa/RxOmnibar> after v0.21. That package targets the pre-2.0.0 delegate API and has not been updated for the renames in 2.0.0.
 
 ## Overview
@@ -77,6 +82,39 @@ enum OmnibarContentChange {
     case replacement(text: String)
     case continuation(text: String, remainingAppendix: String)
 }
+```
+
+## Async Streams
+
+`AsyncOmnibar` republishes the same interactions as an `AsyncStream`. Store the observer: it occupies the Omnibar's delegate and action slots, and the Omnibar holds its delegate weakly.
+
+```swift
+import AsyncOmnibar
+
+self.events = OmnibarEvents(omnibar: omnibar)
+
+for await event in self.events.makeStream() {
+    switch event {
+    case let .contentChange(change, method):
+        guard method != .programmaticReplacement else { continue }
+        search(for: change.text, offerSuggestion: method == .appending)
+    case let .commit(text):
+        open(text)
+    case let .movement(movement):
+        moveSelection(movement)
+    case .cancel:
+        break
+    }
+}
+```
+
+All event kinds share one stream because their order matters: clearing the Omnibar with Esc emits the `.contentChange` for the emptied text before the `.cancel`.
+
+`makeStream()` can be called more than once, and every stream sees every event. Displaying content stays synchronous — call `omnibar.display(content:)` from the main actor. To discard results of a search the user has already typed past, cancel the previous task:
+
+```swift
+searchTask?.cancel()
+searchTask = Task { ... }
 ```
 
 # Attributions and Contributions
