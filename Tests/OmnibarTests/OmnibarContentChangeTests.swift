@@ -1,40 +1,46 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-import XCTest
+import Foundation
+import Testing
 @testable import Omnibar
 
-class OmnibarContentChangeTests: XCTestCase {
+@Suite("OmnibarContentChange")
+struct OmnibarContentChangeTests {
 
     var irrelevantMethod: ChangeMethod { return .insertion }
 
-    func testInit_EmptyBase_ReturnsReplacement() {
+    @Test("an empty base yields a replacement")
+    func emptyBaseYieldsReplacement() {
 
         let textChange = TextFieldTextChange(oldText: "something", patch: "patched", range: NSRange(location: 2, length: 4), method: irrelevantMethod)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .empty, change: textChange),
-            .replacement(text: textChange.result))
+        #expect(
+            OmnibarContentChange(base: .empty, change: textChange)
+                == .replacement(text: textChange.result))
     }
 
-    func testInit_SelectionBase_ReturnsReplacement() {
+    @Test("a selection base yields a replacement")
+    func selectionBaseYieldsReplacement() {
 
         let textChange = TextFieldTextChange(oldText: "the change", patch: "xoxo", range: NSRange(location: 3, length: 1), method: irrelevantMethod)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .selection(text: "irrelevant"), change: textChange),
-            .replacement(text: textChange.result))
+        #expect(
+            OmnibarContentChange(base: .selection(text: "irrelevant"), change: textChange)
+                == .replacement(text: textChange.result))
     }
 
-    func testInit_PrefixBase_ReturnsReplacement() {
+    @Test("a prefix base yields a replacement")
+    func prefixBaseYieldsReplacement() {
 
         let textChange = TextFieldTextChange(oldText: "outdated", patch: "material", range: NSRange(location: 2, length: 4), method: irrelevantMethod)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .prefix(text: "irrelevant"), change: textChange),
-            .replacement(text: textChange.result))
+        #expect(
+            OmnibarContentChange(base: .prefix(text: "irrelevant"), change: textChange)
+                == .replacement(text: textChange.result))
     }
 
-    func testInit_SuggestionBase_ChangeContinuesAppendixByReplacement_ReturnsContinuation() {
+    @Test("typing the appendix's next character continues the suggestion")
+    func appendixContinuedByReplacement() {
 
         let continuingAppendix = TextFieldTextChange(
             oldText: "same base",
@@ -44,12 +50,13 @@ class OmnibarContentChangeTests: XCTestCase {
                 length: ("continued here" as NSString).length),
             method: .appending)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: continuingAppendix),
-            .continuation(text: "same basec", remainingAppendix: "ontinued here"))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: continuingAppendix)
+                == .continuation(text: "same basec", remainingAppendix: "ontinued here"))
     }
 
-    func testInit_SuggestionBase_ChangeContinuesAppendixByDeletion_ReturnsReplacement() {
+    @Test("deleting into the appendix ends the suggestion")
+    func appendixContinuedByDeletion() {
 
         let removingFromAppendix = TextFieldTextChange(
             oldText: "same base",
@@ -59,12 +66,13 @@ class OmnibarContentChangeTests: XCTestCase {
                 length: ("continued here" as NSString).length),
             method: .deletion)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removingFromAppendix),
-            .replacement(text: "same basec"))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removingFromAppendix)
+                == .replacement(text: "same basec"))
     }
 
-    func testInit_SuggestionBase_ChangeContinuesAppendixWithoutRemovingAppendix_ReturnsContinuation() {
+    @Test("appending without consuming the appendix continues the suggestion")
+    func appendixContinuedWithoutRemoval() {
 
         let appendingFitting = TextFieldTextChange(
             oldText: "same base",
@@ -72,12 +80,13 @@ class OmnibarContentChangeTests: XCTestCase {
             range: NSRange(location: ("same base" as NSString).length, length: 0),
             method: .appending)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: appendingFitting),
-            .continuation(text: "same basec", remainingAppendix: "ontinued here"))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: appendingFitting)
+                == .continuation(text: "same basec", remainingAppendix: "ontinued here"))
     }
 
-    func testInit_SuggestionBase_ChangeReplacesIdenticalCharInBetween_ReturnsContinuation() {
+    @Test("retyping an identical character keeps the suggestion")
+    func identicalCharacterReplaced() {
 
         let identicalReplacement = TextFieldTextChange(
             oldText: "same base",
@@ -85,12 +94,13 @@ class OmnibarContentChangeTests: XCTestCase {
             range: NSRange(location: 1, length: 1),
             method: .insertion)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: identicalReplacement),
-            .continuation(text: "same base", remainingAppendix: "continued here"))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: identicalReplacement)
+                == .continuation(text: "same base", remainingAppendix: "continued here"))
     }
 
-    func testInit_SuggestionBase_ChangeReplaces2IdenticalCharsInBetween_ReturnsContinuation() {
+    @Test("retyping identical characters keeps the suggestion")
+    func identicalCharactersReplaced() {
 
         let identicalReplacement = TextFieldTextChange(
             oldText: "same base",
@@ -98,12 +108,13 @@ class OmnibarContentChangeTests: XCTestCase {
             range: NSRange(location: 1, length: 3),
             method: .insertion)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: identicalReplacement),
-            .continuation(text: "same base", remainingAppendix: "continued here"))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: identicalReplacement)
+                == .continuation(text: "same base", remainingAppendix: "continued here"))
     }
 
-    func testInit_SuggestionBase_ChangeRemovesCharacterInBetween_ThroughInsertion_ReturnsReplacement() {
+    @Test("removing a character mid-text through insertion ends the suggestion")
+    func characterRemovedThroughInsertion() {
 
         let removal = TextFieldTextChange(
             oldText: "same base",
@@ -111,12 +122,13 @@ class OmnibarContentChangeTests: XCTestCase {
             range: NSRange(location: 3, length: 1),
             method: .insertion)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal),
-            .replacement(text: removal.result))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal)
+                == .replacement(text: removal.result))
     }
 
-    func testInit_SuggestionBase_ChangeRemovesCharacterInBetween_ThroughDeletion_ReturnsReplacement() {
+    @Test("removing a character mid-text through deletion ends the suggestion")
+    func characterRemovedThroughDeletion() {
 
         let removal = TextFieldTextChange(
             oldText: "same base",
@@ -124,12 +136,13 @@ class OmnibarContentChangeTests: XCTestCase {
             range: NSRange(location: 3, length: 1),
             method: .deletion)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal),
-            .replacement(text: removal.result))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal)
+                == .replacement(text: removal.result))
     }
 
-    func testInit_SuggestionBase_ChangeRemovesAppendix_ThroughDeletion_ReturnsReplacement() {
+    @Test("deleting the appendix ends the suggestion")
+    func appendixRemovedThroughDeletion() {
 
         let removal = TextFieldTextChange(
             oldText: "same base",
@@ -139,12 +152,13 @@ class OmnibarContentChangeTests: XCTestCase {
                 length: ("continued here" as NSString).length),
             method: .deletion)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal),
-            .replacement(text: "same base"))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal)
+                == .replacement(text: "same base"))
     }
 
-    func testInit_SuggestionBase_ChangeRemovesAppendix_ThroughInsertion_ReturnsReplacement() {
+    @Test("overwriting the appendix with nothing keeps the suggestion")
+    func appendixRemovedThroughInsertion() {
 
         let removal = TextFieldTextChange(
             oldText: "same base",
@@ -154,9 +168,9 @@ class OmnibarContentChangeTests: XCTestCase {
                 length: ("continued here" as NSString).length),
             method: .appending)
 
-        XCTAssertEqual(
-            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal),
-            .continuation(text: "same base", remainingAppendix: "continued here"))
+        #expect(
+            OmnibarContentChange(base: .suggestion(text: "same base", appendix: "continued here"), change: removal)
+                == .continuation(text: "same base", remainingAppendix: "continued here"))
     }
 
 }

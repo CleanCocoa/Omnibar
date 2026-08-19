@@ -1,13 +1,8 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
-import XCTest
+import AppKit
+import Testing
 @testable import Omnibar
-
-@MainActor
-class OmnibarTests: XCTestCase { }
-
-
-// MARK: Displaying OmnibarContent
 
 fileprivate class EditableTextDouble: TextReplaceable {
     var didReplace: TextReplacement?
@@ -23,47 +18,44 @@ fileprivate class TestableOmnibar: Omnibar {
     }
 }
 
+@MainActor
+@Suite("Omnibar: displaying content")
+struct OmnibarDisplayTests {
 
-// MARK: - Display Content
-
-extension OmnibarTests {
-
-    func testDisplayContent_Empty_ChangesStringValue() {
-
+    @Test("empty content clears the text")
+    func emptyChangesStringValue() {
         let omnibar = Omnibar()
         omnibar.stringValue = "existing"
 
         omnibar.display(content: .empty)
 
-        XCTAssertEqual(omnibar.stringValue, "")
+        #expect(omnibar.stringValue == "")
     }
 
-    func testDisplayContent_Empty_ConfiguresEditor() {
-
+    @Test("empty content configures the editor")
+    func emptyConfiguresEditor() {
         let omnibar = TestableOmnibar()
         let editableTextDouble = EditableTextDouble()
         omnibar.editableTextDouble = editableTextDouble
 
         omnibar.display(content: .empty)
 
-        XCTAssertEqual(
-            editableTextDouble.didReplace,
-            TextReplacement(omnibarContent: .empty))
+        #expect(editableTextDouble.didReplace == TextReplacement(omnibarContent: .empty))
     }
 
-    func testDisplayContent_Selection_ChangesStringValue() {
-
+    @Test("a selection replaces the text")
+    func selectionChangesStringValue() {
         let omnibar = Omnibar()
         omnibar.stringValue = "existing"
         let text = "some new text"
 
         omnibar.display(content: .selection(text: text))
 
-        XCTAssertEqual(omnibar.stringValue, text)
+        #expect(omnibar.stringValue == text)
     }
 
-    func testDisplayContent_Selection_ConfiguresEditor() {
-
+    @Test("a selection configures the editor")
+    func selectionConfiguresEditor() {
         let omnibar = TestableOmnibar()
         let editableTextDouble = EditableTextDouble()
         omnibar.editableTextDouble = editableTextDouble
@@ -71,24 +63,22 @@ extension OmnibarTests {
 
         omnibar.display(content: content)
 
-        XCTAssertEqual(
-            editableTextDouble.didReplace,
-            TextReplacement(omnibarContent: content))
+        #expect(editableTextDouble.didReplace == TextReplacement(omnibarContent: content))
     }
 
-    func testDisplayContent_Prefix_ChangesStringValue() {
-
+    @Test("a prefix replaces the text")
+    func prefixChangesStringValue() {
         let omnibar = Omnibar()
         omnibar.stringValue = "existing"
         let text = "replacement text"
 
         omnibar.display(content: .prefix(text: text))
 
-        XCTAssertEqual(omnibar.stringValue, text)
+        #expect(omnibar.stringValue == text)
     }
 
-    func testDisplayContent_Prefix_ConfiguresEditor() {
-
+    @Test("a prefix configures the editor")
+    func prefixConfiguresEditor() {
         let omnibar = TestableOmnibar()
         let editableTextDouble = EditableTextDouble()
         omnibar.editableTextDouble = editableTextDouble
@@ -96,25 +86,21 @@ extension OmnibarTests {
 
         omnibar.display(content: content)
 
-        XCTAssertEqual(
-            editableTextDouble.didReplace,
-            TextReplacement(omnibarContent: content))
+        #expect(editableTextDouble.didReplace == TextReplacement(omnibarContent: content))
     }
 
-    func testDisplayContent_Suggestion_ChangesStringValue() {
-
+    @Test("a suggestion shows text and appendix together")
+    func suggestionChangesStringValue() {
         let omnibar = Omnibar()
         omnibar.stringValue = "existing"
-        let text = "first part"
-        let appendix = ", and the rest"
 
-        omnibar.display(content: .suggestion(text: text, appendix: appendix))
+        omnibar.display(content: .suggestion(text: "first part", appendix: ", and the rest"))
 
-        XCTAssertEqual(omnibar.stringValue, "first part, and the rest")
+        #expect(omnibar.stringValue == "first part, and the rest")
     }
 
-    func testDisplayContent_Suggestion_ConfiguresEditor() {
-
+    @Test("a suggestion configures the editor")
+    func suggestionConfiguresEditor() {
         let omnibar = TestableOmnibar()
         let editableTextDouble = EditableTextDouble()
         omnibar.editableTextDouble = editableTextDouble
@@ -122,70 +108,35 @@ extension OmnibarTests {
 
         omnibar.display(content: content)
 
-        XCTAssertEqual(
-            editableTextDouble.didReplace,
-            TextReplacement(omnibarContent: content))
+        #expect(editableTextDouble.didReplace == TextReplacement(omnibarContent: content))
     }
-
 }
 
+@MainActor
+@Suite("Omnibar: movement commands")
+struct OmnibarMovementTests {
 
-// MARK: - Arrow keys
-
-extension OmnibarTests {
-    func testControlCommand_MoveToBeginning_CallsMovementHandler() {
+    @Test(
+        "forwards the movement selectors it handles",
+        arguments: [
+            (#selector(NSResponder.moveToBeginningOfDocument(_:)), MovementEvent.Movement.top),
+            (#selector(NSResponder.moveToEndOfDocument(_:)), .bottom),
+            (#selector(NSResponder.moveDown(_:)), .down),
+            (#selector(NSResponder.moveUp(_:)), .up),
+        ])
+    func forwardsMovement(commandSelector: Selector, movement: MovementEvent.Movement) {
         let omnibar = Omnibar()
-        let movementExpectation = expectation(description: "movement event forwarding")
-        omnibar.moveFromOmnibar = .init(handler: { event in
-            XCTAssertEqual(event, .init(movement: .top))
-            movementExpectation.fulfill()
-        })
+        let recorder = MovementRecorder()
+        omnibar.moveFromOmnibar = .init(handler: { recorder.events.append($0) })
 
-        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveToBeginningOfDocument(_:)))
+        let didHandle = omnibar.doOmnibarCommand(commandSelector: commandSelector)
 
-        XCTAssert(didHandle)
-        wait(for: [movementExpectation])
+        #expect(didHandle)
+        #expect(recorder.events == [MovementEvent(movement: movement)])
     }
+}
 
-    func testControlCommand_MoveToEnd_CallsMovementHandler() {
-        let omnibar = Omnibar()
-        let movementExpectation = expectation(description: "movement event forwarding")
-        omnibar.moveFromOmnibar = .init(handler: { event in
-            XCTAssertEqual(event, .init(movement: .bottom))
-            movementExpectation.fulfill()
-        })
-
-        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveToEndOfDocument(_:)))
-
-        XCTAssert(didHandle)
-        wait(for: [movementExpectation])
-    }
-
-    func testControlCommand_MoveDown_CallsMovementHandler() {
-        let omnibar = Omnibar()
-        let movementExpectation = expectation(description: "movement event forwarding")
-        omnibar.moveFromOmnibar = .init(handler: { event in
-            XCTAssertEqual(event, .init(movement: .down))
-            movementExpectation.fulfill()
-        })
-
-        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:)))
-
-        XCTAssert(didHandle)
-        wait(for: [movementExpectation])
-    }
-
-    func testControlCommand_MoveUp_CallsMovementHandler() {
-        let omnibar = Omnibar()
-        let movementExpectation = expectation(description: "movement event forwarding")
-        omnibar.moveFromOmnibar = .init(handler: { event in
-            XCTAssertEqual(event, .init(movement: .up))
-            movementExpectation.fulfill()
-        })
-
-        let didHandle = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveUp(_:)))
-
-        XCTAssert(didHandle)
-        wait(for: [movementExpectation])
-    }
+@MainActor
+fileprivate final class MovementRecorder {
+    var events: [MovementEvent] = []
 }
