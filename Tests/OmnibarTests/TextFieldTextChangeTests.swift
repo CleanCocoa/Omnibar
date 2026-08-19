@@ -7,135 +7,58 @@ import Testing
 @Suite("TextFieldTextChange")
 struct TextFieldTextChangeTests {
 
-    var irrelevantMethod: ChangeMethod { return .insertion }
+    let irrelevantMethod = ChangeMethod.insertion
+
+    func result(_ oldText: String, patch: String, at range: NSRange) -> String {
+        return TextFieldTextChange(
+            oldText: oldText,
+            patch: patch,
+            range: range,
+            method: irrelevantMethod).result
+    }
 
     @Test("an empty patch on empty text stays empty")
     func emptyPatchOnEmptyText() {
 
-        #expect(
-            TextFieldTextChange(
-                oldText: "",
-                patch: TextFieldTextPatch(
-                    string: "",
-                    range: NSRange(location: 0, length: 0)),
-                method: irrelevantMethod).result
-                == "")
+        #expect(result("", patch: "", at: NSRange(location: 0, length: 0)) == "")
         // Range does not matter
-        #expect(
-            TextFieldTextChange(
-                oldText: "",
-                patch: TextFieldTextPatch(
-                    string: "",
-                    range: NSRange(location: 0, length: 20)),
-                method: irrelevantMethod).result
-                == "")
+        #expect(result("", patch: "", at: NSRange(location: 0, length: 20)) == "")
     }
 
     @Test("a patch on empty text is the patch")
     func patchOnEmptyText() {
 
-        #expect(
-            TextFieldTextChange(
-                oldText: "",
-                patch: TextFieldTextPatch(
-                    string: "foo",
-                    range: NSRange(location: 0, length: 0)),
-                method: irrelevantMethod).result
-                == "foo")
+        #expect(result("", patch: "foo", at: NSRange(location: 0, length: 0)) == "foo")
         // Range does not matter when original is empty
-        #expect(
-            TextFieldTextChange(
-                oldText: "",
-                patch: TextFieldTextPatch(
-                    string: "very new",
-                    range: NSRange(location: 0, length: 20)),
-                method: irrelevantMethod).result
-                == "very new")
+        #expect(result("", patch: "very new", at: NSRange(location: 0, length: 20)) == "very new")
     }
 
     @Test("an empty patch of nothing leaves the text alone")
     func emptyPatchOfNothing() {
 
-        #expect(
-            TextFieldTextChange(
-                oldText: "zettelkasten!!",
-                patch: TextFieldTextPatch(
-                    string: "",
-                    range: NSRange(location: 0, length: 0)),
-                method: irrelevantMethod).result
-                == "zettelkasten!!")
+        #expect(result("zettelkasten!!", patch: "", at: NSRange(location: 0, length: 0)) == "zettelkasten!!")
         // Range location does not matter
-        #expect(
-            TextFieldTextChange(
-                oldText: "zettelkasten!!",
-                patch: TextFieldTextPatch(
-                    string: "",
-                    range: NSRange(location: 4, length: 0)),
-                method: irrelevantMethod).result
-                == "zettelkasten!!")
+        #expect(result("zettelkasten!!", patch: "", at: NSRange(location: 4, length: 0)) == "zettelkasten!!")
     }
 
     @Test("an empty patch over a range removes that range")
     func emptyPatchOverRange() {
 
-        #expect(
-            TextFieldTextChange(
-                oldText: "zettelkasten!!",
-                patch: TextFieldTextPatch(
-                    string: "",
-                    range: NSRange(location: 0, length: 6)),
-                method: irrelevantMethod).result
-                == "kasten!!")
-        #expect(
-            TextFieldTextChange(
-                oldText: "zettelkasten!!",
-                patch: TextFieldTextPatch(
-                    string: "",
-                    range: NSRange(location: 4, length: 2)),
-                method: irrelevantMethod).result
-                == "zettkasten!!")
+        #expect(result("zettelkasten!!", patch: "", at: NSRange(location: 0, length: 6)) == "kasten!!")
+        #expect(result("zettelkasten!!", patch: "", at: NSRange(location: 4, length: 2)) == "zettkasten!!")
     }
 
     @Test("a patch of nothing inserts")
     func patchWithoutRange() {
 
-        #expect(
-            TextFieldTextChange(
-                oldText: "kasten",
-                patch: TextFieldTextPatch(
-                    string: "zettel",
-                    range: NSRange(location: 0, length: 0)),
-                method: irrelevantMethod).result
-                == "zettelkasten")
-        #expect(
-            TextFieldTextChange(
-                oldText: "zettel!!1",
-                patch: TextFieldTextPatch(
-                    string: "kasten",
-                    range: NSRange(location: 6, length: 0)),
-                method: irrelevantMethod).result
-                == "zettelkasten!!1")
+        #expect(result("kasten", patch: "zettel", at: NSRange(location: 0, length: 0)) == "zettelkasten")
+        #expect(result("zettel!!1", patch: "kasten", at: NSRange(location: 6, length: 0)) == "zettelkasten!!1")
     }
 
     @Test("a patch over a range replaces that range")
     func patchOverRange() {
 
-        #expect(
-            TextFieldTextChange(
-                oldText: "bierkasten",
-                patch: TextFieldTextPatch(
-                    string: "zettel",
-                    range: NSRange(location: 0, length: 4)),
-                method: irrelevantMethod).result
-                == "zettelkasten")
-        #expect(
-            TextFieldTextChange(
-                oldText: "hauswirtschaftslehre",
-                patch: TextFieldTextPatch(
-                    string: "verkaufs",
-                    range: NSRange(location: 4, length: 11)),
-                method: irrelevantMethod).result
-                == "hausverkaufslehre")
+        #expect(result("bierkasten", patch: "zettel", at: NSRange(location: 0, length: 4)) == "zettelkasten")
+        #expect(result("hauswirtschaftslehre", patch: "verkaufs", at: NSRange(location: 4, length: 11)) == "hausverkaufslehre")
     }
-
 }
