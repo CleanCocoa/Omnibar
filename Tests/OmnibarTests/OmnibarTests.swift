@@ -136,7 +136,6 @@ struct OmnibarMovementTests {
     }
 }
 
-@MainActor
 fileprivate final class MovementRecorder {
     var events: [MovementEvent] = []
 }

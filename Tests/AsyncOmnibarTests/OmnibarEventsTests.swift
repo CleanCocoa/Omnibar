@@ -94,15 +94,11 @@ struct OmnibarEventsTests {
     func finishEndsStreams() async {
         let omnibar = Omnibar()
         let events = OmnibarEvents(omnibar: omnibar)
-        let stream = events.makeStream()
+        var stream = events.makeStream().makeAsyncIterator()
 
         events.finish()
 
-        var received: [OmnibarEvent] = []
-        for await event in stream {
-            received.append(event)
-        }
-        #expect(received.isEmpty)
+        #expect(await stream.next() == nil)
     }
 
     @Test("finish() releases the Omnibar's delegate and action slots")
@@ -149,12 +145,9 @@ struct OmnibarEventsTests {
         let events = OmnibarEvents(omnibar: omnibar)
         events.finish()
 
-        var received: [OmnibarEvent] = []
-        for await event in events.makeStream() {
-            received.append(event)
-        }
+        var stream = events.makeStream().makeAsyncIterator()
 
-        #expect(received.isEmpty)
+        #expect(await stream.next() == nil)
     }
 
     @Test("finish() does not reclaim slots a later observer took over")
@@ -173,19 +166,14 @@ struct OmnibarEventsTests {
     func releasingObserverEndsStreams() async {
         let omnibar = Omnibar()
         var events: OmnibarEvents? = OmnibarEvents(omnibar: omnibar)
-        let stream = events!.makeStream()
+        var stream = events!.makeStream().makeAsyncIterator()
 
         events = nil
 
-        var received: [OmnibarEvent] = []
-        for await event in stream {
-            received.append(event)
-        }
-        #expect(received.isEmpty)
+        #expect(await stream.next() == nil)
     }
 }
 
-@MainActor
 private final class RecordingDelegate: OmnibarContentChangeDelegate {
     var commits: [String] = []
 
@@ -194,7 +182,6 @@ private final class RecordingDelegate: OmnibarContentChangeDelegate {
     func omnibarDidCancelOperation(_ omnibar: Omnibar) {}
 }
 
-@MainActor
 private final class MovementRecorder {
     var events: [MovementEvent] = []
 }
