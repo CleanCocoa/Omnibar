@@ -3,17 +3,14 @@
 import ExampleModel
 import Foundation
 
-@MainActor
 protocol DisplaysWords {
     func display(words: [Word], selecting selectedWord: Word?)
 }
 
-@MainActor
 protocol DisplaysSuggestion {
     func display(bestFit: String, forSearchTerm searchTerm: String)
 }
 
-@MainActor
 class FilterService {
 
     let suggestionDisplay: DisplaysSuggestion

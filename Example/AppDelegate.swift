@@ -3,8 +3,7 @@
 import AppKit
 import Omnibar
 
-@NSApplicationMain
-@MainActor
+@main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
