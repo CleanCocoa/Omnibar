@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0159DB91E8AE600908C8A2CF /* AsyncOmnibar in Frameworks */ = {isa = PBXBuildFile; productRef = D4990466BDC9383AAAB26D50 /* AsyncOmnibar */; };
 		5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9461EDE902E00F3DA4F /* AppDelegate.swift */; };
 		5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9481EDE902E00F3DA4F /* Assets.xcassets */; };
 		5038D94C1EDE902E00F3DA4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5038D94A1EDE902E00F3DA4F /* MainMenu.xib */; };
@@ -44,7 +45,7 @@
 		5038DA771EE00DA600F3DA4F /* X Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5C1EE00DA600F3DA4F /* X Words.txt */; };
 		5038DA781EE00DA600F3DA4F /* Y Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5D1EE00DA600F3DA4F /* Y Words.txt */; };
 		5038DA791EE00DA600F3DA4F /* Z Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5038DA5E1EE00DA600F3DA4F /* Z Words.txt */; };
-		509302EF2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */; };
+		509302EF2D2A59170096B7C7 /* TableViewController+MovementEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509302EE2D2A59170096B7C7 /* TableViewController+MovementEvent.swift */; };
 		5093030B2D2BD6DD0096B7C7 /* SelectWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093030A2D2BD6DD0096B7C7 /* SelectWord.swift */; };
 		509303272D2BDAAC0096B7C7 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509303262D2BDAAC0096B7C7 /* Suggestion.swift */; };
 		FFC23A71B3BB5D43179A395E /* Omnibar in Frameworks */ = {isa = PBXBuildFile; productRef = 14DC6ABB9B8AB80B3FA31E7F /* Omnibar */; };
@@ -116,7 +117,7 @@
 		5038DA5D1EE00DA600F3DA4F /* Y Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Y Words.txt"; sourceTree = "<group>"; };
 		5038DA5E1EE00DA600F3DA4F /* Z Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Z Words.txt"; sourceTree = "<group>"; };
 		503906F02D292844004BEDD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveFromOmnibar+fromTableViewController.swift"; sourceTree = "<group>"; };
+		509302EE2D2A59170096B7C7 /* TableViewController+MovementEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewController+MovementEvent.swift"; sourceTree = "<group>"; };
 		5093030A2D2BD6DD0096B7C7 /* SelectWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWord.swift; sourceTree = "<group>"; };
 		509303262D2BDAAC0096B7C7 /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +129,7 @@
 			files = (
 				5038DA371EE0093400F3DA4F /* ExampleModel.framework in Frameworks */,
 				FFC23A71B3BB5D43179A395E /* Omnibar in Frameworks */,
+				0159DB91E8AE600908C8A2CF /* AsyncOmnibar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +178,7 @@
 				5038D9D21EDFEA8100F3DA4F /* FilterService.swift */,
 				5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */,
 				5093030A2D2BD6DD0096B7C7 /* SelectWord.swift */,
-				509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */,
+				509302EE2D2A59170096B7C7 /* TableViewController+MovementEvent.swift */,
 				5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */,
 				509303262D2BDAAC0096B7C7 /* Suggestion.swift */,
 				5038D9481EDE902E00F3DA4F /* Assets.xcassets */,
@@ -263,6 +265,7 @@
 			name = Example;
 			packageProductDependencies = (
 				14DC6ABB9B8AB80B3FA31E7F /* Omnibar */,
+				D4990466BDC9383AAAB26D50 /* AsyncOmnibar */,
 			);
 			productName = Example;
 			productReference = 5038D9441EDE902E00F3DA4F /* Example.app */;
@@ -396,7 +399,7 @@
 				5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */,
 				509303272D2BDAAC0096B7C7 /* Suggestion.swift in Sources */,
 				5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */,
-				509302EF2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift in Sources */,
+				509302EF2D2A59170096B7C7 /* TableViewController+MovementEvent.swift in Sources */,
 				5038D9C21EDEBB6000F3DA4F /* OmnibarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,6 +690,10 @@
 		14DC6ABB9B8AB80B3FA31E7F /* Omnibar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Omnibar;
+		};
+		D4990466BDC9383AAAB26D50 /* AsyncOmnibar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AsyncOmnibar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

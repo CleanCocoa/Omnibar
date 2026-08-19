@@ -1,6 +1,7 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
 import AppKit
+import AsyncOmnibar
 import Omnibar
 
 @main
@@ -12,24 +13,54 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var tableViewController: TableViewController!
 
     var filterService: FilterService!
-    
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        omnibar.moveFromOmnibar = MoveFromOmnibar(wrapping: tableViewController)
-        omnibar.omnibarContentChangeDelegate = omnibarViewController
+    private var omnibarEvents: OmnibarEvents?
+    private var observation: Task<Void, Never>?
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
 
         filterService = FilterService(
             suggestionDisplay: omnibarViewController,
             wordDisplay: tableViewController)
-        omnibarViewController.searchHandler = filterService
         tableViewController.selectWord = SelectWord { [weak omnibarViewController] selectedWord in
             omnibarViewController?.display(selectedWord: selectedWord)
         }
+
+        let events = OmnibarEvents(omnibar: omnibar)
+        self.omnibarEvents = events
+        // Weak, because the task keeps `events` alive on its own: capturing self here would keep the app delegate alive through the very object whose teardown ends the loop.
+        self.observation = Task { [weak self] in
+            for await event in events.makeStream() {
+                self?.handle(event)
+            }
+        }
+
         filterService.displayAll()
     }
 
+    private func handle(_ event: OmnibarEvent) {
+
+        switch event {
+        case let .contentChange(contentChange, method):
+            guard method != .programmaticReplacement else { break }
+            filterService.search(
+                for: contentChange.text,
+                offerSuggestion: method == .appending)
+
+        case let .commit(text):
+            omnibarViewController.confirm(text: text)
+
+        case let .movement(movementEvent):
+            tableViewController.move(movementEvent)
+
+        case .cancel:
+            break
+        }
+    }
+
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+
+        omnibarEvents?.finish()
     }
 
     @IBAction func focusOmnibar(_ sender: Any) {

@@ -30,7 +30,7 @@ class FilterService {
     private var pendingSearch: Task<Void, Never>?
 }
 
-extension FilterService: SearchHandler {
+extension FilterService {
 
     func displayAll() {
 
