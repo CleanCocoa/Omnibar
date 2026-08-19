@@ -20,19 +20,18 @@ public struct WordsModel {
 
     private let allWords: [Word] = { try! Words.allWords() }()
 
-    public func filtered(searchTerm: String, result: (FilterResults) -> Void) {
-       
+    public func filtered(searchTerm: String) -> FilterResults {
+
         guard !searchTerm.isEmpty else {
-            result(FilterResults(words: allWords))
-            return
+            return FilterResults(words: allWords)
         }
 
         let filteredWords = filter(haystack: allWords, searchTerm: searchTerm)
         let bestMatch = bestFit(haystack: filteredWords, needleStartingWith: searchTerm)
 
-        result(FilterResults(
+        return FilterResults(
             words: filteredWords,
-            bestMatch: bestMatch))
+            bestMatch: bestMatch)
     }
 }
 

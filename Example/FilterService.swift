@@ -56,7 +56,7 @@ extension FilterService: SearchHandler {
         pendingRequest = newRequest
 
         filterQueue.async {
-            self.wordsModel.filtered(searchTerm: searchTerm, result: newRequest.handler)
+            newRequest.handler(result: self.wordsModel.filtered(searchTerm: searchTerm))
         }
     }
 }
