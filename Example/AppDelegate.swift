@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let events = OmnibarEvents(omnibar: omnibar)
         self.omnibarEvents = events
-        // Weak, because the task keeps `events` alive on its own: capturing self here would keep the app delegate alive through the very object whose teardown ends the loop.
+        // Weak, because `self` owns this task: a strong capture would be a retain cycle. The task keeps `events` alive on its own.
         self.observation = Task { [weak self] in
             for await event in events.makeStream() {
                 self?.handle(event)
