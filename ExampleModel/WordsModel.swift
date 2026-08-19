@@ -2,7 +2,7 @@
 
 public typealias Word = String
 
-public struct FilterResults {
+public struct FilterResults: Sendable {
 
     public let words: [Word]
     public let bestMatch: Word?
@@ -14,7 +14,7 @@ public struct FilterResults {
     }
 }
 
-public struct WordsModel {
+public struct WordsModel: Sendable {
 
     public init() { }
 

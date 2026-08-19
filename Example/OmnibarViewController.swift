@@ -4,6 +4,7 @@ import AppKit
 import Omnibar
 import ExampleModel
 
+@MainActor
 protocol SearchHandler: AnyObject {
     func search(for searchTerm: String, offerSuggestion: Bool)
 }

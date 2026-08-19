@@ -13,7 +13,6 @@
 		5038D9C01EDEB91D00F3DA4F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */; };
 		5038D9C21EDEBB6000F3DA4F /* OmnibarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */; };
 		5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9D21EDFEA8100F3DA4F /* FilterService.swift */; };
-		5038D9D51EDFEFB500F3DA4F /* ConcurrencyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */; };
 		5038DA341EE0093400F3DA4F /* ExampleModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5038DA241EE0093400F3DA4F /* ExampleModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5038DA371EE0093400F3DA4F /* ExampleModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; };
 		5038DA381EE0093400F3DA4F /* ExampleModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5038DA221EE0093300F3DA4F /* ExampleModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -85,7 +84,6 @@
 		5038D9BF1EDEB91D00F3DA4F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnibarViewController.swift; sourceTree = "<group>"; };
 		5038D9D21EDFEA8100F3DA4F /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
-		5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrencyHelpers.swift; sourceTree = "<group>"; };
 		5038DA221EE0093300F3DA4F /* ExampleModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExampleModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5038DA241EE0093400F3DA4F /* ExampleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleModel.h; sourceTree = "<group>"; };
 		5038DA251EE0093400F3DA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				509302EE2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift */,
 				5038D9C11EDEBB6000F3DA4F /* OmnibarViewController.swift */,
 				509303262D2BDAAC0096B7C7 /* Suggestion.swift */,
-				5038D9D41EDFEFB500F3DA4F /* ConcurrencyHelpers.swift */,
 				5038D9481EDE902E00F3DA4F /* Assets.xcassets */,
 				5038D94A1EDE902E00F3DA4F /* MainMenu.xib */,
 				5038D94D1EDE902E00F3DA4F /* Info.plist */,
@@ -400,7 +397,6 @@
 				509303272D2BDAAC0096B7C7 /* Suggestion.swift in Sources */,
 				5038D9D31EDFEA8100F3DA4F /* FilterService.swift in Sources */,
 				509302EF2D2A59170096B7C7 /* MoveFromOmnibar+fromTableViewController.swift in Sources */,
-				5038D9D51EDFEFB500F3DA4F /* ConcurrencyHelpers.swift in Sources */,
 				5038D9C21EDEBB6000F3DA4F /* OmnibarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

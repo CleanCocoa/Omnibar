@@ -3,14 +3,17 @@
 import ExampleModel
 import Foundation
 
+@MainActor
 protocol DisplaysWords {
     func display(words: [Word], selecting selectedWord: Word?)
 }
 
+@MainActor
 protocol DisplaysSuggestion {
     func display(bestFit: String, forSearchTerm searchTerm: String)
 }
 
+@MainActor
 class FilterService {
 
     let suggestionDisplay: DisplaysSuggestion
@@ -24,10 +27,10 @@ class FilterService {
         self.wordDisplay = wordDisplay
     }
 
-    lazy var wordsModel: WordsModel = WordsModel()
-    lazy var filterQueue: DispatchQueue = DispatchQueue(label: "filter-queue", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
+    private let wordsModel = WordsModel()
 
-    fileprivate var pendingRequest: Cancellable<FilterResults>?
+    /// Cancelled whenever a newer search starts, so results the user has typed past are never displayed.
+    private var pendingSearch: Task<Void, Never>?
 }
 
 extension FilterService: SearchHandler {
@@ -39,24 +42,30 @@ extension FilterService: SearchHandler {
 
     func search(for searchTerm: String, offerSuggestion: Bool) {
 
-        let newRequest = Cancellable<FilterResults> { [unowned self] result in
-//            delayThread() // uncomment to reveal timing problems
-            DispatchQueue.main.async {
-                if offerSuggestion,
-                    let bestFit = result.bestMatch {
-                    self.suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
-                    self.wordDisplay.display(words: result.words, selecting: bestFit)
-                } else {
-                    self.wordDisplay.display(words: result.words, selecting: nil)
-                }
+        pendingSearch?.cancel()
+        pendingSearch = Task { [wordsModel] in
+            let result = await filtered(searchTerm, in: wordsModel)
+
+            guard !Task.isCancelled else { return }
+
+            if offerSuggestion,
+                let bestFit = result.bestMatch {
+                suggestionDisplay.display(bestFit: bestFit, forSearchTerm: searchTerm)
+                wordDisplay.display(words: result.words, selecting: bestFit)
+            } else {
+                wordDisplay.display(words: result.words, selecting: nil)
             }
         }
-
-        pendingRequest?.cancel()
-        pendingRequest = newRequest
-
-        filterQueue.async {
-            newRequest.handler(result: self.wordsModel.filtered(searchTerm: searchTerm))
-        }
     }
+}
+
+/// Runs off the main actor: filtering 12000+ words on every keystroke would stutter typing in the Omnibar.
+@concurrent
+private func filtered(
+    _ searchTerm: String,
+    in model: WordsModel
+) async -> FilterResults {
+
+//    try? await Task.sleep(for: .milliseconds(Int.random(in: 0...3000))) // uncomment to reveal timing problems
+    return model.filtered(searchTerm: searchTerm)
 }
