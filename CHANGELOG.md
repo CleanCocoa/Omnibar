@@ -1,15 +1,21 @@
 # Changelog
 
-## Unreleased
+## 2.1.0
 
 ### Added
 
 - `AsyncOmnibar` library: `OmnibarEvents` republishes the Omnibar's
-  interactions as multicast `AsyncStream<OmnibarEvent>`s. Additive; the
-  `Omnibar` library is unchanged.
+  interactions as multicast `AsyncStream<OmnibarEvent>`s, and hands the
+  delegate and action slots back on `finish()`. Additive; the `Omnibar`
+  library is unchanged.
 
   RxOmnibar users blocked by 2.0.0 can move here instead of staying on
   1.0.0.
+
+  This library needs Swift 6.2 (Xcode 26) for `isolated deinit`. The
+  package's tools version stays at 6.1 so that depending on the `Omnibar`
+  product alone keeps working on older toolchains, which never build this
+  target.
 
 ## 2.0.0
 
