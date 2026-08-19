@@ -24,8 +24,6 @@ class FilterService {
         self.wordDisplay = wordDisplay
     }
 
-    private let wordsModel = WordsModel()
-
     /// Cancelled whenever a newer search starts, so results the user has typed past are never displayed.
     private var pendingSearch: Task<Void, Never>?
 }
@@ -40,8 +38,8 @@ extension FilterService {
     func search(for searchTerm: String, offerSuggestion: Bool) {
 
         pendingSearch?.cancel()
-        pendingSearch = Task { [wordsModel] in
-            let result = await filtered(searchTerm, in: wordsModel)
+        pendingSearch = Task {
+            let result = await filtered(searchTerm)
 
             guard !Task.isCancelled else { return }
 
@@ -56,13 +54,13 @@ extension FilterService {
     }
 }
 
+/// Loaded on first use, i.e. from ``filtered(_:)`` and thus off the main actor.
+private nonisolated let wordsModel = WordsModel()
+
 /// Runs off the main actor: filtering 12000+ words on every keystroke would stutter typing in the Omnibar.
 @concurrent
-private func filtered(
-    _ searchTerm: String,
-    in model: WordsModel
-) async -> FilterResults {
+private func filtered(_ searchTerm: String) async -> FilterResults {
 
 //    try? await Task.sleep(for: .milliseconds(Int.random(in: 0...3000))) // uncomment to reveal timing problems
-    return model.filtered(searchTerm: searchTerm)
+    return wordsModel.filtered(searchTerm: searchTerm)
 }
