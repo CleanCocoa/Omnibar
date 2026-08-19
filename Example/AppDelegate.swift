@@ -61,6 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
 
         omnibarEvents?.finish()
+        observation?.cancel()
     }
 
     @IBAction func focusOmnibar(_ sender: Any) {

@@ -57,7 +57,7 @@ extension FilterService {
 /// Loaded on first use, i.e. from ``filtered(_:)`` and thus off the main actor.
 private nonisolated let wordsModel = WordsModel()
 
-/// Runs off the main actor: filtering 12000+ words on every keystroke would stutter typing in the Omnibar.
+/// Runs off the main actor: filtering 128000+ words on every keystroke would stutter typing in the Omnibar.
 @concurrent
 private func filtered(_ searchTerm: String) async -> FilterResults {
 
