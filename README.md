@@ -108,7 +108,8 @@ self.observation = Task { [events] in
     }
 }
 
-deinit {
+// `finish()` is `@MainActor`, so a plain `deinit` cannot call it.
+isolated deinit {
     events.finish()
 }
 ```

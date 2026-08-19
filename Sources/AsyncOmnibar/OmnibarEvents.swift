@@ -13,7 +13,7 @@ import Omnibar
 ///         }
 ///     }
 ///
-/// **Call ``finish()`` when the observer's owner goes away.** A task consuming a stream keeps the observer alive, and the observer only ends its streams once it is released, so waiting for deallocation to stop the loop waits forever.
+/// **Call ``finish()`` when the observer's owner goes away.** A task consuming a stream keeps the observer alive, and the observer only ends its streams once it is released, so waiting for deallocation to stop the loop waits forever. ``finish()`` is main actor-isolated, so an owner tearing down in `deinit` needs an `isolated deinit`.
 ///
 /// There is no async counterpart for *displaying* content: call `Omnibar.display(content:)` directly from the main actor.
 @MainActor
@@ -78,6 +78,8 @@ public final class OmnibarEvents {
     /// Ends all streams and returns the Omnibar's delegate and action slots to whatever held them before.
     ///
     /// Idempotent, and latching: streams handed out afterwards are already finished.
+    ///
+    /// Whether the slots still belong to this observer is decided by the delegate alone, since `MoveFromOmnibar` has no identity to compare. Installing a movement handler over this observer's while leaving the delegate in place therefore loses that handler here.
     public func finish() {
         guard !isFinished else { return }
         isFinished = true
