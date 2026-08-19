@@ -23,8 +23,7 @@ public final class OmnibarEvents {
     private weak var displacedDelegate: OmnibarContentChangeDelegate?
     private let displacedMovement: MoveFromOmnibar?
 
-    private var continuations: [Int: AsyncStream<OmnibarEvent>.Continuation] = [:]
-    private var nextID = 0
+    private var continuations: [AsyncStream<OmnibarEvent>.Continuation] = []
     private var isFinished = false
 
     public init(omnibar: Omnibar) {
@@ -62,15 +61,7 @@ public final class OmnibarEvents {
             return stream
         }
 
-        let id = nextID
-        nextID += 1
-        continuation.onTermination = { [weak self] _ in
-            // Termination is reported from whatever context ended the stream, so the bookkeeping has to hop back here. Until it lands, `emit(_:)` may still yield to this continuation, which a finished stream ignores.
-            Task { @MainActor in
-                self?.continuations[id] = nil
-            }
-        }
-        continuations[id] = continuation
+        continuations.append(continuation)
 
         return stream
     }
@@ -95,15 +86,16 @@ public final class OmnibarEvents {
     }
 
     private func finishStreams() {
-        for continuation in continuations.values {
+        for continuation in continuations {
             continuation.finish()
         }
         continuations.removeAll()
     }
 
+    /// Drops the streams whose consumer has gone away, which `yield` reports as it delivers.
     private func emit(_ event: OmnibarEvent) {
-        for continuation in continuations.values {
-            continuation.yield(event)
+        continuations.removeAll { continuation in
+            if case .terminated = continuation.yield(event) { true } else { false }
         }
     }
 }
