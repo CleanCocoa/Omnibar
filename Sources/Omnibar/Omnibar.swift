@@ -151,43 +151,47 @@ extension Omnibar {
 
         case #selector(NSResponder.moveToBeginningOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToBeginningOfParagraphAndModifySelection(_:)):
-            moveFromOmnibar?(movement: .top, expandingSelection: true)
+            move(.top, expandingSelection: true)
             return true
 
         case #selector(NSResponder.moveUpAndModifySelection(_:)):
-            moveFromOmnibar?(movement: .up, expandingSelection: true)
+            move(.up, expandingSelection: true)
             return true
 
         case #selector(NSResponder.moveDownAndModifySelection(_:)):
-            moveFromOmnibar?(movement: .down, expandingSelection: true)
+            move(.down, expandingSelection: true)
             return true
 
         case #selector(NSResponder.moveToEndOfDocumentAndModifySelection(_:)),
              #selector(NSResponder.moveToEndOfParagraphAndModifySelection(_:)):
-            moveFromOmnibar?(movement: .bottom, expandingSelection: true)
+            move(.bottom, expandingSelection: true)
             return true
 
         // MARK: Arrow Keys
 
         case #selector(NSResponder.moveToBeginningOfDocument(_:)):
-            moveFromOmnibar?(movement: .top)
+            move(.top)
             return true
 
         case #selector(NSResponder.moveUp(_:)):
-            moveFromOmnibar?(movement: .up)
+            move(.up)
             return true
 
         case #selector(NSResponder.moveDown(_:)):
-            moveFromOmnibar?(movement: .down)
+            move(.down)
             return true
 
         case #selector(NSResponder.moveToEndOfDocument(_:)):
-            moveFromOmnibar?(movement: .bottom)
+            move(.bottom)
             return true
 
         default:
             return false
         }
+    }
+
+    private func move(_ movement: MovementEvent.Movement, expandingSelection: Bool = false) {
+        moveFromOmnibar?(movement: movement, expandingSelection: expandingSelection)
     }
 
     public override func textDidChange(_ notification: Notification) {
