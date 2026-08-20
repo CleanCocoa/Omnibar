@@ -1,5 +1,40 @@
 # Changelog
 
+## 2.2.0
+
+### Added
+
+- `Omnibar.observe(_:)` and `Omnibar.events(bufferingPolicy:)`: any number
+  of observers can watch one Omnibar, as closures or as `AsyncStream`s.
+  `observe(_:)` returns an `Observation` whose `cancel()` is idempotent and
+  independent of every other observer, so teardown order does not matter.
+
+  `OmnibarEvent` moved into the `Omnibar` library. `AsyncOmnibar` re-exports
+  it, so `import AsyncOmnibar` keeps compiling.
+
+### Changed
+
+- `OmnibarEvents` observes the Omnibar instead of taking over its
+  `omnibarContentChangeDelegate` and `moveFromOmnibar` slots. **An
+  application delegate now keeps receiving its callbacks while an
+  `OmnibarEvents` is alive**, where 2.1.0 silenced it until `finish()`.
+  Two `OmnibarEvents` on one Omnibar now both work; in 2.1.0 the second
+  silently deafened the first.
+
+- A handler that calls `display(content:)` re-entrantly no longer sees that
+  echo dispatched before the event that caused it. The text field still
+  mutates synchronously, so `stringValue` is up to date on return; only the
+  notification is deferred until the outer dispatch finishes.
+
+- The package no longer requires Swift 6.2. Ending the streams needs no
+  `isolated deinit` any more, because the only state that teardown touches
+  is `Sendable`.
+
+### Deprecated
+
+- Nothing. `omnibarContentChangeDelegate` and `moveFromOmnibar` keep working
+  unchanged.
+
 ## 2.1.0
 
 ### Added

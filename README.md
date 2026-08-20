@@ -108,13 +108,30 @@ self.observation = Task { [events] in
     }
 }
 
-// `finish()` is `@MainActor`, so a plain `deinit` cannot call it.
-isolated deinit {
-    events.finish()
+deinit {
+    observation?.cancel()
 }
 ```
 
-`finish()` is not optional bookkeeping. A task consuming a stream holds the observer alive, and the observer only ends its streams once it is released — so relying on deallocation to stop the loop waits for a deallocation the loop itself prevents. Calling `finish()` ends every stream, and hands the delegate and action slots back to whatever held them before, so an Omnibar that already had a delegate keeps working afterwards.
+A task consuming a stream holds the observer alive, so the loop will not end on its own: stop it by cancelling that task or by calling `finish()`. Either works, and `finish()` is the one that also ends every other stream this observer handed out. Observers never take the Omnibar's delegate or action slots, so a delegate keeps receiving its callbacks throughout, and several observers can watch one Omnibar without noticing each other.
+
+An `Omnibar` also vends events directly, without the `AsyncOmnibar` library:
+
+```swift
+let observation = omnibar.observe { [weak self] event in
+    self?.handle(event)
+}
+// ...
+observation.cancel()
+
+for await event in omnibar.events() {
+    handle(event)
+}
+```
+
+`observe(_:)` retains its handler until the returned `Observation` is cancelled, so capture the Omnibar weakly inside it. Streams end when the Omnibar goes away or when the consuming task is cancelled.
+
+Observers run after `omnibarContentChangeDelegate` and `moveFromOmnibar`, then in registration order. Registering during a dispatch skips the in-flight event; cancelling during a dispatch does not.
 
 All event kinds share one stream because their order matters: clearing the Omnibar with Esc emits the `.contentChange` for the emptied text before the `.cancel`.
 
