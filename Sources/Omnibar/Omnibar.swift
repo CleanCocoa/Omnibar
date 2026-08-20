@@ -1,6 +1,7 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
 import AppKit
+import Synchronization
 
 extension NSTextField: TextReplaceable { }
 
@@ -50,6 +51,9 @@ public class Omnibar: NSTextField {
     var pendingEvents: [OmnibarEvent] = []
     var isEmitting = false
 
+    let sinks = Mutex<[Int: AsyncStream<OmnibarEvent>.Continuation]>([:])
+    var nextSinkID = 0
+
     /// Testing seam.
     var editableText: TextReplaceable { return self }
 
@@ -95,6 +99,13 @@ public class Omnibar: NSTextField {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
+    }
+
+    deinit {
+        sinks.withLock { sinks in
+            for continuation in sinks.values { continuation.finish() }
+            sinks.removeAll()
+        }
     }
 
     private func setup() {

@@ -37,6 +37,19 @@ extension Omnibar {
         observers.removeAll { $0.id == id }
     }
 
+    /// Returns a new stream of every ``OmnibarEvent`` from this point on.
+    ///
+    /// A stream created while an event is being dispatched still receives that event, unlike ``observe(_:)``. A consumer stops receiving events by cancelling its consuming `Task`; the stream also ends when the ``Omnibar`` deallocates.
+    public func events(
+        bufferingPolicy: AsyncStream<OmnibarEvent>.Continuation.BufferingPolicy = .unbounded
+    ) -> AsyncStream<OmnibarEvent> {
+        let (stream, continuation) = AsyncStream.makeStream(of: OmnibarEvent.self, bufferingPolicy: bufferingPolicy)
+        let id = nextSinkID
+        nextSinkID += 1
+        sinks.withLock { $0[id] = continuation }
+        return stream
+    }
+
     func emit(_ event: OmnibarEvent) {
         pendingEvents.append(event)
         guard !isEmitting else { return }
@@ -47,6 +60,11 @@ extension Omnibar {
             notifyLegacySlots(next)
             let recipients = observers
             for observer in recipients { observer.handler(next) }
+            sinks.withLock { sinks in
+                sinks = sinks.filter { _, continuation in
+                    if case .terminated = continuation.yield(next) { false } else { true }
+                }
+            }
         }
     }
 
