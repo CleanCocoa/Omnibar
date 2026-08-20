@@ -104,42 +104,45 @@ struct OmnibarEventsTests {
         #expect(await stream.next() == nil)
     }
 
-    @Test("the observer never claims the Omnibar's delegate or action slots")
+    @Test("the observer leaves an existing delegate in the slot")
     func neverClaimsSlots() {
         let omnibar = Omnibar()
+        let original = RecordingDelegate()
+        omnibar.omnibarContentChangeDelegate = original
+
         let events = OmnibarEvents(omnibar: omnibar)
 
-        events.finish()
-
-        #expect(omnibar.omnibarContentChangeDelegate == nil)
-        #expect(omnibar.moveFromOmnibar == nil)
+        withExtendedLifetime(events) {
+            #expect(omnibar.omnibarContentChangeDelegate === original)
+        }
     }
 
-    @Test("an existing delegate keeps working alongside the observer")
-    func leavesExistingDelegateInPlace() {
+    @Test("an existing delegate keeps receiving while the observer is alive")
+    func leavesExistingDelegateInPlace() async {
         let omnibar = Omnibar()
         let original = RecordingDelegate()
         omnibar.omnibarContentChangeDelegate = original
         let events = OmnibarEvents(omnibar: omnibar)
+        var stream = events.makeStream().makeAsyncIterator()
 
-        events.finish()
         omnibar.commit()
 
-        #expect(omnibar.omnibarContentChangeDelegate === original)
         #expect(original.commits == [""])
+        #expect(await stream.next() == .commit(text: ""))
     }
 
-    @Test("an existing movement handler keeps working alongside the observer")
-    func leavesExistingMovementHandlerInPlace() {
+    @Test("an existing movement handler keeps receiving while the observer is alive")
+    func leavesExistingMovementHandlerInPlace() async {
         let omnibar = Omnibar()
         let original = MovementRecorder()
         omnibar.moveFromOmnibar = MoveFromOmnibar { original.events.append($0) }
         let events = OmnibarEvents(omnibar: omnibar)
+        var stream = events.makeStream().makeAsyncIterator()
 
-        events.finish()
         _ = omnibar.textView(NSTextView(), doCommandBy: #selector(NSResponder.moveUp(_:)))
 
         #expect(original.events == [MovementEvent(movement: .up)])
+        #expect(await stream.next() == .movement(MovementEvent(movement: .up)))
     }
 
     @Test("streams handed out after finish() are already finished")
@@ -153,19 +156,50 @@ struct OmnibarEventsTests {
         #expect(await stream.next() == nil)
     }
 
-    @Test("two observers on one Omnibar both keep receiving, in any teardown order")
+    @Test("two observers on one Omnibar both receive every event", .timeLimit(.minutes(1)))
     func observersDoNotDisplaceEachOther() async {
         let omnibar = Omnibar()
         let first = OmnibarEvents(omnibar: omnibar)
         let second = OmnibarEvents(omnibar: omnibar)
+        var firstStream = first.makeStream().makeAsyncIterator()
         var secondStream = second.makeStream().makeAsyncIterator()
 
-        // Tearing the *first* one down twice must not disturb the second.
+        omnibar.commit()
+
+        #expect(await firstStream.next() == .commit(text: ""))
+        #expect(await secondStream.next() == .commit(text: ""))
+    }
+
+    @Test("tearing observers down out of order leaves the survivors working", .timeLimit(.minutes(1)))
+    func teardownOrderDoesNotMatter() async {
+        let omnibar = Omnibar()
+        let original = RecordingDelegate()
+        omnibar.omnibarContentChangeDelegate = original
+        let first = OmnibarEvents(omnibar: omnibar)
+        let second = OmnibarEvents(omnibar: omnibar)
+        var secondStream = second.makeStream().makeAsyncIterator()
+
         first.finish()
         first.finish()
         omnibar.commit()
 
         #expect(await secondStream.next() == .commit(text: ""))
+        #expect(omnibar.omnibarContentChangeDelegate === original)
+        #expect(original.commits == [""])
+    }
+
+    @Test("an observer dropped without finish() leaves the delegate working")
+    func droppedObserverStrandsNothing() {
+        let omnibar = Omnibar()
+        let original = RecordingDelegate()
+        omnibar.omnibarContentChangeDelegate = original
+
+        do { _ = OmnibarEvents(omnibar: omnibar) }
+
+        omnibar.commit()
+
+        #expect(omnibar.omnibarContentChangeDelegate === original)
+        #expect(original.commits == [""])
     }
 
     @Test("releasing the observer ends the streams")

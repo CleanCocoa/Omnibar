@@ -13,7 +13,7 @@ import Omnibar
 ///         }
 ///     }
 ///
-/// Streams end when this object is released, when ``finish()`` is called, or when the Omnibar goes away. A task consuming a stream holds this object alive, so cancel that task or call ``finish()`` to stop it.
+/// Streams end when this object is released or when ``finish()`` is called. Deallocating the Omnibar does not end them, and a task consuming one holds this object alive, so stop the loop by cancelling that task or by calling ``finish()``.
 ///
 /// There is no async counterpart for *displaying* content: call `Omnibar.display(content:)` directly from the main actor.
 @MainActor
@@ -30,9 +30,7 @@ public final class OmnibarEvents {
         }
     }
 
-    /// Backstop for observers released without ``finish()``.
-    ///
-    /// `AsyncStream` keeps its consumers suspended forever when the last reference to its continuation is released, so dropping the observer without ending its streams would hang every `for await` loop over it.
+    /// Ends the streams of an observer released without ``finish()``, which would otherwise suspend their consumers forever.
     deinit {
         for continuation in continuations {
             continuation.finish()

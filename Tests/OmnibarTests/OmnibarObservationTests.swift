@@ -237,6 +237,19 @@ struct OmnibarObservationTests {
 
     // MARK: - Re-entrancy
 
+    @Test("a legacy delegate's re-entrant display() is dispatched after its own callback returns")
+    func legacyDelegateReentrantDisplayIsDeferred() {
+        let omnibar = Omnibar()
+        let delegate = ReentrantDelegate(omnibar: omnibar)
+        omnibar.omnibarContentChangeDelegate = delegate
+
+        omnibar.display(content: .prefix(text: "typed"))
+
+        #expect(delegate.methods == ["typed", "echo"])
+        #expect(delegate.echoesSeenOutsideItsOwnGuard == 1)
+    }
+
+
     @Test("a handler-triggered display() is serialized after the event that caused it, for every observer")
     func reentrantDisplayIsSerializedForEveryObserver() {
         let omnibar = Omnibar()
@@ -410,4 +423,31 @@ private final class LoggingDelegate: OmnibarContentChangeDelegate {
     func omnibarDidCancelOperation(_ omnibar: Omnibar) {
         onEvent("cancel")
     }
+}
+
+/// Suppresses its own echo with a flag held across `display(content:)`, the AppKit idiom the bus changes the timing of.
+@MainActor
+private final class ReentrantDelegate: OmnibarContentChangeDelegate {
+    private let omnibar: Omnibar
+    private var isUpdating = false
+
+    var methods: [String] = []
+    var echoesSeenOutsideItsOwnGuard = 0
+
+    init(omnibar: Omnibar) {
+        self.omnibar = omnibar
+    }
+
+    func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
+        methods.append(contentChange.text)
+        guard !isUpdating else { return }
+        if methods.count > 1 { echoesSeenOutsideItsOwnGuard += 1; return }
+
+        isUpdating = true
+        omnibar.display(content: .prefix(text: "echo"))
+        isUpdating = false
+    }
+
+    func omnibar(_ omnibar: Omnibar, commit text: String) {}
+    func omnibarDidCancelOperation(_ omnibar: Omnibar) {}
 }

@@ -86,7 +86,7 @@ enum OmnibarContentChange {
 
 ## Async Streams
 
-`AsyncOmnibar` republishes the same interactions as an `AsyncStream`. The observer takes over the Omnibar's delegate and action slots for as long as it lives, so store it, and call `finish()` when its owner goes away:
+`AsyncOmnibar` republishes the same interactions as an `AsyncStream`. The Omnibar holds no reference to the observer, so store it, and call `finish()` when its owner goes away:
 
 ```swift
 import AsyncOmnibar
@@ -113,7 +113,7 @@ deinit {
 }
 ```
 
-A task consuming a stream holds the observer alive, so the loop will not end on its own: stop it by cancelling that task or by calling `finish()`. Either works, and `finish()` is the one that also ends every other stream this observer handed out. Observers never take the Omnibar's delegate or action slots, so a delegate keeps receiving its callbacks throughout, and several observers can watch one Omnibar without noticing each other.
+A task consuming a stream holds the observer alive, so the loop will not end on its own — not even when the Omnibar is deallocated. Stop it by cancelling that task or by calling `finish()`. Either works, and `finish()` is the one that also ends every other stream this observer handed out. Observers never take the Omnibar's delegate or action slots, so a delegate keeps receiving its callbacks throughout, and several observers can watch one Omnibar without noticing each other.
 
 An `Omnibar` also vends events directly, without the `AsyncOmnibar` library:
 
