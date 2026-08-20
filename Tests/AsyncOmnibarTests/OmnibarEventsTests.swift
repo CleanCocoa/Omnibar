@@ -1,5 +1,6 @@
 //  Copyright © 2026 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
+import AppKit
 import AsyncOmnibar
 import Omnibar
 import Testing
@@ -44,13 +45,15 @@ struct OmnibarEventsTests {
         #expect(await stream.next() == .cancel)
     }
 
-    @Test("forwards movement from the action slot it claimed")
+    @Test("forwards movement commands")
     func forwardsMovement() async {
         let omnibar = Omnibar()
         let events = OmnibarEvents(omnibar: omnibar)
         var stream = events.makeStream().makeAsyncIterator()
 
-        omnibar.moveFromOmnibar?(movement: .down, expandingSelection: true)
+        _ = omnibar.textView(
+            NSTextView(),
+            doCommandBy: #selector(NSResponder.moveDownAndModifySelection(_:)))
 
         #expect(
             await stream.next()
@@ -80,7 +83,7 @@ struct OmnibarEventsTests {
         var stream = events.makeStream().makeAsyncIterator()
 
         omnibar.display(content: .prefix(text: "kar"))
-        omnibar.moveFromOmnibar?(movement: .down)
+        _ = omnibar.textView(NSTextView(), doCommandBy: #selector(NSResponder.moveDown(_:)))
         omnibar.commit()
 
         #expect(
@@ -101,8 +104,8 @@ struct OmnibarEventsTests {
         #expect(await stream.next() == nil)
     }
 
-    @Test("finish() releases the Omnibar's delegate and action slots")
-    func finishReleasesOmnibar() {
+    @Test("the observer never claims the Omnibar's delegate or action slots")
+    func neverClaimsSlots() {
         let omnibar = Omnibar()
         let events = OmnibarEvents(omnibar: omnibar)
 
@@ -112,8 +115,8 @@ struct OmnibarEventsTests {
         #expect(omnibar.moveFromOmnibar == nil)
     }
 
-    @Test("finish() puts back the delegate it displaced")
-    func finishRestoresDisplacedDelegate() {
+    @Test("an existing delegate keeps working alongside the observer")
+    func leavesExistingDelegateInPlace() {
         let omnibar = Omnibar()
         let original = RecordingDelegate()
         omnibar.omnibarContentChangeDelegate = original
@@ -126,15 +129,15 @@ struct OmnibarEventsTests {
         #expect(original.commits == [""])
     }
 
-    @Test("finish() puts back the movement handler it displaced")
-    func finishRestoresDisplacedMovement() {
+    @Test("an existing movement handler keeps working alongside the observer")
+    func leavesExistingMovementHandlerInPlace() {
         let omnibar = Omnibar()
         let original = MovementRecorder()
         omnibar.moveFromOmnibar = MoveFromOmnibar { original.events.append($0) }
         let events = OmnibarEvents(omnibar: omnibar)
 
         events.finish()
-        omnibar.moveFromOmnibar?(movement: .up)
+        _ = omnibar.textView(NSTextView(), doCommandBy: #selector(NSResponder.moveUp(_:)))
 
         #expect(original.events == [MovementEvent(movement: .up)])
     }
@@ -150,16 +153,19 @@ struct OmnibarEventsTests {
         #expect(await stream.next() == nil)
     }
 
-    @Test("finish() does not reclaim slots a later observer took over")
-    func finishLeavesLaterObserverAlone() {
+    @Test("two observers on one Omnibar both keep receiving, in any teardown order")
+    func observersDoNotDisplaceEachOther() async {
         let omnibar = Omnibar()
         let first = OmnibarEvents(omnibar: omnibar)
         let second = OmnibarEvents(omnibar: omnibar)
+        var secondStream = second.makeStream().makeAsyncIterator()
 
+        // Tearing the *first* one down twice must not disturb the second.
         first.finish()
         first.finish()
+        omnibar.commit()
 
-        #expect(omnibar.omnibarContentChangeDelegate === second)
+        #expect(await secondStream.next() == .commit(text: ""))
     }
 
     @Test("releasing the observer ends the streams")
