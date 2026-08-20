@@ -58,10 +58,9 @@ extension Omnibar {
         while !pendingEvents.isEmpty {
             let next = pendingEvents.removeFirst()
             notifyLegacySlots(next)
-            let recipients = observers
-            for observer in recipients { observer.handler(next) }
-            sinks.withLock { sinks in
-                sinks = sinks.filter { _, continuation in
+            for observer in observers { observer.handler(next) }
+            sinks.withLock { open in
+                open = open.filter { _, continuation in
                     if case .terminated = continuation.yield(next) { false } else { true }
                 }
             }
