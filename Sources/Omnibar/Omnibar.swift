@@ -45,6 +45,11 @@ public class Omnibar: NSTextField {
     public weak var omnibarContentChangeDelegate: OmnibarContentChangeDelegate?
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 
+    var observers: [(id: Int, handler: @MainActor (OmnibarEvent) -> Void)] = []
+    var nextObserverID = 0
+    var pendingEvents: [OmnibarEvent] = []
+    var isEmitting = false
+
     /// Testing seam.
     var editableText: TextReplaceable { return self }
 
@@ -118,11 +123,7 @@ extension Omnibar {
         // Update cache
         previousContent.pushLatest(content)
 
-        omnibarContentChangeDelegate?.omnibar(
-            self,
-            didChangeContent: .replacement(text: content.string),
-            method: .programmaticReplacement
-        )
+        emit(.contentChange(.replacement(text: content.string), method: .programmaticReplacement))
     }
 }
 
@@ -191,7 +192,7 @@ extension Omnibar {
     }
 
     private func move(_ movement: MovementEvent.Movement, expandingSelection: Bool = false) {
-        moveFromOmnibar?(movement: movement, expandingSelection: expandingSelection)
+        emit(.movement(MovementEvent(movement: movement, expandingSelection: expandingSelection)))
     }
 
     public override func textDidChange(_ notification: Notification) {
@@ -212,12 +213,8 @@ extension Omnibar {
         if case .continuation = contentChange {
             self.display(content: contentChange.content)
         }
-        
-        omnibarContentChangeDelegate?.omnibar(
-            self,
-            didChangeContent: contentChange,
-            method: textChange.method
-        )
+
+        emit(.contentChange(contentChange, method: textChange.method))
     }
 
     /// Clears the text so that a change event is fired.
@@ -228,17 +225,13 @@ extension Omnibar {
         // Clearing the editor produces the text change event -- iff the editor was non-empty before. We want clear-text events to be triggered in all cases, though.
         if let fieldEditor = window?.fieldEditor(true, for: self) {
             if fieldEditor.string.isEmpty && self.alwaysFireWhenClearingText {
-                self.omnibarContentChangeDelegate?.omnibar(
-                    self,
-                    didChangeContent: .replacement(text: ""),
-                    method: .deletion
-                )
+                emit(.contentChange(.replacement(text: ""), method: .deletion))
             } else {
                 fieldEditor.delete(self)
             }
         }
 
-        self.omnibarContentChangeDelegate?.omnibarDidCancelOperation(self)
+        emit(.cancel)
     }
 
     public func focus() {
@@ -248,7 +241,7 @@ extension Omnibar {
 
     public func commit() {
 
-        self.omnibarContentChangeDelegate?.omnibar(self, commit: self.stringValue)
+        emit(.commit(text: self.stringValue))
     }
 }
 
