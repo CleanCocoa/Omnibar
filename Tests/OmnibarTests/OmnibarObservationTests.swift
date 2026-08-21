@@ -237,8 +237,8 @@ struct OmnibarObservationTests {
 
     // MARK: - Re-entrancy
 
-    @Test("a legacy delegate's re-entrant display() is dispatched after its own callback returns")
-    func legacyDelegateReentrantDisplayIsDeferred() {
+    @Test("a legacy delegate re-entering display() is called back inside its own callback")
+    func legacyDelegateReentrantDisplayNests() {
         let omnibar = Omnibar()
         let delegate = ReentrantDelegate(omnibar: omnibar)
         omnibar.omnibarContentChangeDelegate = delegate
@@ -246,7 +246,7 @@ struct OmnibarObservationTests {
         omnibar.display(content: .prefix(text: "typed"))
 
         #expect(delegate.methods == ["typed", "echo"])
-        #expect(delegate.echoesSeenOutsideItsOwnGuard == 1)
+        #expect(delegate.echoesSeenOutsideItsOwnGuard == 0)
     }
 
 

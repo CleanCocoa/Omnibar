@@ -21,16 +21,17 @@
   Two `OmnibarEvents` on one Omnibar now both work; in 2.1.0 the second
   silently deafened the first.
 
-- A handler that calls `display(content:)` re-entrantly no longer sees that
-  echo dispatched before the event that caused it. The text field still
+- An *observer* that calls `display(content:)` re-entrantly no longer sees
+  that echo dispatched before the event that caused it. The text field still
   mutates synchronously, so `stringValue` is up to date on return; only the
-  notification is deferred until the outer dispatch finishes.
+  notification to other observers is deferred until the outer dispatch
+  finishes.
 
-  **Delegate adopters upgrading from 2.1.0 should check for this.** The echo
-  no longer arrives nested inside the callback that triggered it, so a
-  delegate that suppresses its own echo by setting a flag around
-  `display(content:)` will see the flag already cleared when the echo
-  lands, and take the branch it wrote to avoid.
+  `omnibarContentChangeDelegate` and `moveFromOmnibar` are unaffected: they
+  are notified where the event arises, so a delegate that re-enters
+  `display(content:)` is still called back inside its own callback, and the
+  usual flag-around-`display()` idiom for suppressing an echo keeps
+  working.
 
 - The package no longer requires Swift 6.2. Ending the streams needs no
   `isolated deinit` any more, because the only state that teardown touches

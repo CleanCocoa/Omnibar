@@ -22,7 +22,7 @@ extension Omnibar {
 
     /// Registers `handler` to receive every ``OmnibarEvent``.
     ///
-    /// The legacy ``Omnibar/omnibarContentChangeDelegate`` and ``Omnibar/moveFromOmnibar`` are notified first, then observers in registration order. An observer registered while an event is being dispatched does not receive that event; one cancelled mid-dispatch still receives it. Discarding the returned ``Observation`` keeps the handler observing for the ``Omnibar``'s lifetime.
+    /// The legacy ``Omnibar/omnibarContentChangeDelegate`` and ``Omnibar/moveFromOmnibar`` are notified where the event arises, then observers in registration order. An observer registered while an event is being dispatched does not receive that event; one cancelled mid-dispatch still receives it. Discarding the returned ``Observation`` keeps the handler observing for the ``Omnibar``'s lifetime.
     ///
     /// The Omnibar retains `handler` until the observation is cancelled; capture the Omnibar weakly inside it.
     @discardableResult
@@ -52,12 +52,18 @@ extension Omnibar {
 
     func emit(_ event: OmnibarEvent) {
         pendingEvents.append(event)
-        guard !isEmitting else { return }
+
+        // The legacy slots are notified where the event arises, so a delegate that re-enters display(content:) is called back inside its own callback as it was before observers existed.
+        guard !isEmitting else {
+            notifyLegacySlots(event)
+            return
+        }
         isEmitting = true
         defer { isEmitting = false }
+        notifyLegacySlots(event)
+
         while !pendingEvents.isEmpty {
             let next = pendingEvents.removeFirst()
-            notifyLegacySlots(next)
             for observer in observers { observer.handler(next) }
             sinks.withLock { open in
                 open = open.filter { _, continuation in

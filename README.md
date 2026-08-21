@@ -131,7 +131,7 @@ for await event in omnibar.events() {
 
 `observe(_:)` retains its handler until the returned `Observation` is cancelled, so capture the Omnibar weakly inside it. Streams end when the Omnibar goes away or when the consuming task is cancelled.
 
-Observers run after `omnibarContentChangeDelegate` and `moveFromOmnibar`, then in registration order. Registering during a dispatch skips the in-flight event; cancelling during a dispatch does not.
+Observers run after `omnibarContentChangeDelegate` and `moveFromOmnibar`, then in registration order. The delegate and action slot are notified synchronously where the event arises; observers are dispatched in order, so one observer's `display(content:)` cannot reach another before the event that caused it. Registering during a dispatch skips the in-flight event; cancelling during a dispatch does not.
 
 All event kinds share one stream because their order matters: clearing the Omnibar with Esc emits the `.contentChange` for the emptied text before the `.cancel`.
 
