@@ -13,7 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var filterService: FilterService!
 
-    private var observation: Task<Void, Never>?
+    /// Held so movement delivery keeps running; dropping it would stop it silently.
+    private var movementObservation: Omnibar.Observation?
+    private var searchTask: Task<Void, Never>?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
@@ -24,8 +26,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             omnibarViewController?.display(selectedWord: selectedWord)
         }
 
+        // Movement goes through `observe(_:)` so selection lands in the same turn as the keypress.
+        movementObservation = omnibar.observe { [weak tableViewController] event in
+            guard case let .movement(movementEvent) = event else { return }
+            tableViewController?.move(movementEvent)
+        }
+
         let events = omnibar.events()
-        self.observation = Task { [weak self] in
+        self.searchTask = Task { [weak self] in
             for await event in events {
                 self?.handle(event)
             }
@@ -46,8 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case let .commit(text):
             omnibarViewController.confirm(text: text)
 
-        case let .movement(movementEvent):
-            tableViewController.move(movementEvent)
+        case .movement:
+            break
 
         case .cancel:
             break
@@ -56,7 +64,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
 
-        observation?.cancel()
+        movementObservation?.cancel()
+        searchTask?.cancel()
     }
 
     @IBAction func focusOmnibar(_ sender: Any) {
