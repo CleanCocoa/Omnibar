@@ -33,9 +33,12 @@
   usual flag-around-`display()` idiom for suppressing an echo keeps
   working.
 
-- The package no longer requires Swift 6.2. Ending the streams needs no
-  `isolated deinit` any more, because the only state that teardown touches
-  is `Sendable`.
+- The manifest requires `swift-tools-version: 6.2`, up from 6.1.
+
+  No code here needs it: ending the streams no longer needs an
+  `isolated deinit`, because the only state teardown touches is `Sendable`,
+  so the sources still build under 6.1. The floor is raised deliberately to
+  match the toolchain this is developed and tested against.
 
 ### Deprecated
 
