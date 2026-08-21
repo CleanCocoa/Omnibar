@@ -44,7 +44,6 @@ public class Omnibar: NSTextField {
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 
     var observers: [ObserverEntry] = []
-    var nextObserverID = 0
     var pendingEvents: [OmnibarEvent] = []
     var isEmitting = false
 

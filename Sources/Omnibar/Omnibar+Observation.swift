@@ -4,7 +4,6 @@ extension Omnibar {
 
     /// The Omnibar holds `token` weakly so a released observation is pruned at the next dispatch.
     struct ObserverEntry {
-        let id: Int
         weak var token: Observation?
         let handler: @MainActor (OmnibarEvent) -> Void
     }
@@ -13,16 +12,14 @@ extension Omnibar {
     @MainActor
     public final class Observation {
         private weak var omnibar: Omnibar?
-        private let id: Int
 
-        init(omnibar: Omnibar, id: Int) {
+        init(omnibar: Omnibar) {
             self.omnibar = omnibar
-            self.id = id
         }
 
         /// Stops the handler from receiving further events. Safe to call more than once and after the ``Omnibar`` is gone.
         public func cancel() {
-            omnibar?.removeObserver(id)
+            omnibar?.removeObserver(self)
             omnibar = nil
         }
     }
@@ -31,15 +28,13 @@ extension Omnibar {
     ///
     /// Delivery stops when the returned observation is cancelled or released, so the caller must hold it. Capture the Omnibar weakly in `handler`.
     public func observe(_ handler: @escaping @MainActor (OmnibarEvent) -> Void) -> Observation {
-        let id = nextObserverID
-        nextObserverID += 1
-        let observation = Observation(omnibar: self, id: id)
-        observers.append(ObserverEntry(id: id, token: observation, handler: handler))
+        let observation = Observation(omnibar: self)
+        observers.append(ObserverEntry(token: observation, handler: handler))
         return observation
     }
 
-    func removeObserver(_ id: Int) {
-        observers.removeAll { $0.id == id }
+    func removeObserver(_ observation: Observation) {
+        observers.removeAll { $0.token === observation }
     }
 
     /// Returns a stream of every ``OmnibarEvent`` from this point on.
