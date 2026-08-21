@@ -42,8 +42,6 @@ public class Omnibar: NSTextField {
         }
     }
 
-    public var moveFromOmnibar: MoveFromOmnibar?
-    public weak var omnibarContentChangeDelegate: OmnibarContentChangeDelegate?
     fileprivate var cachedTextFieldChange: TextFieldTextChange?
 
     var observers: [(id: Int, handler: @MainActor (OmnibarEvent) -> Void)] = []

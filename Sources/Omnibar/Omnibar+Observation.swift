@@ -22,7 +22,7 @@ extension Omnibar {
 
     /// Registers `handler` to receive every ``OmnibarEvent``.
     ///
-    /// The legacy ``Omnibar/omnibarContentChangeDelegate`` and ``Omnibar/moveFromOmnibar`` are notified where the event arises, then observers in registration order. An observer registered while an event is being dispatched does not receive that event; one cancelled mid-dispatch still receives it. Discarding the returned ``Observation`` keeps the handler observing for the ``Omnibar``'s lifetime.
+    /// Observers are notified in registration order. An observer registered while an event is being dispatched does not receive that event; one cancelled mid-dispatch still receives it. Discarding the returned ``Observation`` keeps the handler observing for the ``Omnibar``'s lifetime.
     ///
     /// The Omnibar retains `handler` until the observation is cancelled; capture the Omnibar weakly inside it.
     @discardableResult
@@ -53,14 +53,9 @@ extension Omnibar {
     func emit(_ event: OmnibarEvent) {
         pendingEvents.append(event)
 
-        // The legacy slots are notified where the event arises, so a delegate that re-enters display(content:) is called back inside its own callback as it was before observers existed.
-        guard !isEmitting else {
-            notifyLegacySlots(event)
-            return
-        }
+        guard !isEmitting else { return }
         isEmitting = true
         defer { isEmitting = false }
-        notifyLegacySlots(event)
 
         while !pendingEvents.isEmpty {
             let next = pendingEvents.removeFirst()
@@ -70,19 +65,6 @@ extension Omnibar {
                     if case .terminated = continuation.yield(next) { false } else { true }
                 }
             }
-        }
-    }
-
-    private func notifyLegacySlots(_ event: OmnibarEvent) {
-        switch event {
-        case let .contentChange(change, method: method):
-            omnibarContentChangeDelegate?.omnibar(self, didChangeContent: change, method: method)
-        case let .commit(text: text):
-            omnibarContentChangeDelegate?.omnibar(self, commit: text)
-        case .cancel:
-            omnibarContentChangeDelegate?.omnibarDidCancelOperation(self)
-        case let .movement(event):
-            moveFromOmnibar?(event: event)
         }
     }
 }

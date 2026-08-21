@@ -126,16 +126,15 @@ struct OmnibarMovementTests {
         ])
     func forwardsMovement(commandSelector: Selector, movement: MovementEvent.Movement) {
         let omnibar = Omnibar()
-        let recorder = MovementRecorder()
-        omnibar.moveFromOmnibar = .init(handler: { recorder.events.append($0) })
+        var events: [MovementEvent] = []
+        omnibar.observe {
+            guard case let .movement(event) = $0 else { return }
+            events.append(event)
+        }
 
         let didHandle = omnibar.doOmnibarCommand(commandSelector: commandSelector)
 
         #expect(didHandle)
-        #expect(recorder.events == [MovementEvent(movement: movement)])
+        #expect(events == [MovementEvent(movement: movement)])
     }
-}
-
-fileprivate final class MovementRecorder {
-    var events: [MovementEvent] = []
 }

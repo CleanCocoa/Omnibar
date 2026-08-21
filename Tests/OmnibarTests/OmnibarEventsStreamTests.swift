@@ -90,21 +90,6 @@ struct OmnibarEventsStreamTests {
         #expect(streamLog == handlerLog)
     }
 
-    @Test("legacy slots fire before closure observers; the stream sink also receives the event")
-    func legacyThenObserversThenStream() async {
-        let omnibar = Omnibar()
-        var log: [String] = []
-        let delegate = LoggingDelegate { kind in log.append("legacy:\(kind)") }
-        omnibar.omnibarContentChangeDelegate = delegate
-        omnibar.observe { _ in log.append("observer") }
-        var stream = omnibar.events().makeAsyncIterator()
-
-        omnibar.display(content: .prefix(text: "x"))
-
-        #expect(log == ["legacy:change", "observer"])
-        #expect(await stream.next() == .contentChange(.replacement(text: "x"), method: .programmaticReplacement))
-    }
-
     // MARK: - Live registration mid-dispatch
 
     @Test("a stream created while an event is being dispatched still receives that event")
@@ -175,25 +160,5 @@ struct OmnibarEventsStreamTests {
 
         #expect(weakOmnibar == nil)
         #expect(await stream.next() == nil)
-    }
-}
-
-private final class LoggingDelegate: OmnibarContentChangeDelegate {
-    let onEvent: (String) -> Void
-
-    init(onEvent: @escaping (String) -> Void) {
-        self.onEvent = onEvent
-    }
-
-    func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
-        onEvent("change")
-    }
-
-    func omnibar(_ omnibar: Omnibar, commit text: String) {
-        onEvent("commit")
-    }
-
-    func omnibarDidCancelOperation(_ omnibar: Omnibar) {
-        onEvent("cancel")
     }
 }

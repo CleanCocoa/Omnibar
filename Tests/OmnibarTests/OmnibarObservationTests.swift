@@ -87,33 +87,6 @@ struct OmnibarObservationTests {
         #expect(order == ["first", "second"])
     }
 
-    // MARK: - Legacy slots fire first
-
-    @Test("the legacy delegate fires before observers")
-    func legacyDelegateFiresBeforeObservers() {
-        let omnibar = Omnibar()
-        var log: [String] = []
-        let delegate = LoggingDelegate { _ in log.append("legacy") }
-        omnibar.omnibarContentChangeDelegate = delegate
-        omnibar.observe { _ in log.append("observer") }
-
-        omnibar.display(content: .prefix(text: "x"))
-
-        #expect(log == ["legacy", "observer"])
-    }
-
-    @Test("the legacy movement handler fires before observers")
-    func legacyMovementHandlerFiresBeforeObservers() {
-        let omnibar = Omnibar()
-        var log: [String] = []
-        omnibar.moveFromOmnibar = MoveFromOmnibar { _ in log.append("legacy") }
-        omnibar.observe { _ in log.append("observer") }
-
-        _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.moveDown(_:)))
-
-        #expect(log == ["legacy", "observer"])
-    }
-
     // MARK: - Ownership
 
     @Test("a handler that captures the Omnibar weakly lets it deallocate")
@@ -237,19 +210,6 @@ struct OmnibarObservationTests {
 
     // MARK: - Re-entrancy
 
-    @Test("a legacy delegate re-entering display() is called back inside its own callback")
-    func legacyDelegateReentrantDisplayNests() {
-        let omnibar = Omnibar()
-        let delegate = ReentrantDelegate(omnibar: omnibar)
-        omnibar.omnibarContentChangeDelegate = delegate
-
-        omnibar.display(content: .prefix(text: "typed"))
-
-        #expect(delegate.methods == ["typed", "echo"])
-        #expect(delegate.echoesSeenOutsideItsOwnGuard == 0)
-    }
-
-
     @Test("a handler-triggered display() is serialized after the event that caused it, for every observer")
     func reentrantDisplayIsSerializedForEveryObserver() {
         let omnibar = Omnibar()
@@ -351,26 +311,6 @@ struct OmnibarObservationTests {
         withExtendedLifetime(window) { }
     }
 
-    @Test("the legacy slots fire before observers for both Esc events")
-    func escLegacySlotsFireBeforeObserversForBothEvents() {
-        let (omnibar, window) = makeFocusedOmnibarInWindow()
-        var log: [String] = []
-        let delegate = LoggingDelegate { kind in log.append("legacy:\(kind)") }
-        omnibar.omnibarContentChangeDelegate = delegate
-        omnibar.observe { event in
-            switch event {
-            case .contentChange: log.append("observer:change")
-            case .cancel: log.append("observer:cancel")
-            default: break
-            }
-        }
-
-        _ = omnibar.doOmnibarCommand(commandSelector: #selector(NSResponder.cancelOperation(_:)))
-
-        #expect(log == ["legacy:change", "observer:change", "legacy:cancel", "observer:cancel"])
-        withExtendedLifetime(window) { }
-    }
-
     @Test("Esc does nothing when isResettable is false")
     func escWithIsResettableFalseDoesNothing() {
         let (omnibar, window) = makeFocusedOmnibarInWindow()
@@ -403,51 +343,4 @@ private func makeFocusedOmnibarInWindow() -> (omnibar: Omnibar, window: NSWindow
 @MainActor
 private final class ObservationBox {
     var value: Omnibar.Observation?
-}
-
-private final class LoggingDelegate: OmnibarContentChangeDelegate {
-    let onEvent: (String) -> Void
-
-    init(onEvent: @escaping (String) -> Void) {
-        self.onEvent = onEvent
-    }
-
-    func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
-        onEvent("change")
-    }
-
-    func omnibar(_ omnibar: Omnibar, commit text: String) {
-        onEvent("commit")
-    }
-
-    func omnibarDidCancelOperation(_ omnibar: Omnibar) {
-        onEvent("cancel")
-    }
-}
-
-/// Suppresses its own echo with a flag held across `display(content:)`, the AppKit idiom the bus changes the timing of.
-@MainActor
-private final class ReentrantDelegate: OmnibarContentChangeDelegate {
-    private let omnibar: Omnibar
-    private var isUpdating = false
-
-    var methods: [String] = []
-    var echoesSeenOutsideItsOwnGuard = 0
-
-    init(omnibar: Omnibar) {
-        self.omnibar = omnibar
-    }
-
-    func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod) {
-        methods.append(contentChange.text)
-        guard !isUpdating else { return }
-        if methods.count > 1 { echoesSeenOutsideItsOwnGuard += 1; return }
-
-        isUpdating = true
-        omnibar.display(content: .prefix(text: "echo"))
-        isUpdating = false
-    }
-
-    func omnibar(_ omnibar: Omnibar, commit text: String) {}
-    func omnibarDidCancelOperation(_ omnibar: Omnibar) {}
 }

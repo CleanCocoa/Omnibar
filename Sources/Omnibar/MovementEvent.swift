@@ -29,35 +29,3 @@ public struct MovementEvent: Equatable, Sendable {
         self.isExpandingSelection = isExpandingSelection
     }
 }
-
-/// Action handler used by ``Omnibar`` to forward movement events to change the selection in search results.
-@MainActor
-public struct MoveFromOmnibar {
-    let handler: @MainActor (_ event: MovementEvent) -> Void
-
-    public init(handler: @escaping @MainActor (_ event: MovementEvent) -> Void) {
-        self.handler = handler
-    }
-
-    public func move(_ movement: MovementEvent) {
-        handler(movement)
-    }
-
-    @inlinable @inline(__always)
-    public func callAsFunction(event: MovementEvent) {
-        move(event)
-    }
-
-    @inlinable @inline(__always)
-    public func callAsFunction(
-        movement: MovementEvent.Movement,
-        expandingSelection isExpandingSelection: Bool = false
-    ) {
-        move(
-            MovementEvent(
-                movement: movement,
-                expandingSelection: isExpandingSelection
-            )
-        )
-    }
-}
