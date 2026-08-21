@@ -1,5 +1,67 @@
 # Changelog
 
+## 3.0.0
+
+Breaking release. Removes the two ways of hearing about an Omnibar's events
+that predate 2.2.0's observation bus, leaving `observe(_:)` and `events()` as
+the only surface.
+
+### Removed
+
+| Symbol | Replacement |
+|---|---|
+| `Omnibar.omnibarContentChangeDelegate` | `observe(_:)` or `events()` |
+| `OmnibarContentChangeDelegate` | `OmnibarEvent` |
+| `Omnibar.moveFromOmnibar` | `.movement` case of `OmnibarEvent` |
+| `MoveFromOmnibar` | closure passed to `observe(_:)` |
+| `AsyncOmnibar` product and target | `Omnibar.events()` |
+| `OmnibarEvents` | `Omnibar.events()` |
+
+`MovementEvent`, `OmnibarContent`, `OmnibarContentChange`, `ChangeMethod`,
+`display(content:)`, `commit()`, `focus()`, `focusAndClearText()`,
+`textInsets`, `isResettable`, and `alwaysFireWhenClearingText` are untouched.
+
+### Changed
+
+- `observe(_:)` is no longer `@discardableResult`, and the Omnibar holds
+  observations weakly, pruning released ones at the next dispatch. In 2.2.0 a
+  discarded observation kept its handler running for the Omnibar's lifetime;
+  now dropping the token stops delivery, matching `AnyCancellable`.
+- A stream created from `events()` during a dispatch no longer receives the
+  in-flight event, matching `observe(_:)`. In 2.2.0 a stream created
+  mid-dispatch received it while an observation did not; both halves of the
+  API now snapshot at dispatch start and share one rule.
+
+### Migration
+
+```swift
+// 2.x
+omnibar.omnibarContentChangeDelegate = self
+omnibar.moveFromOmnibar = MoveFromOmnibar { [weak table] in table?.move($0) }
+
+func omnibar(_ o: Omnibar, didChangeContent c: OmnibarContentChange, method: ChangeMethod) { ... }
+func omnibar(_ o: Omnibar, commit text: String) { ... }
+func omnibarDidCancelOperation(_ o: Omnibar) { ... }
+
+// 3.0.0
+observation = omnibar.observe { [weak self] event in
+    switch event {
+    case let .contentChange(change, method): ...
+    case let .commit(text): ...
+    case .cancel: ...
+    case let .movement(movement): ...
+    }
+}
+```
+
+Two things do not show up as compile errors:
+
+- **Store the observation.** Dropping it stops delivery, silently.
+- **Filter echoes by `method`, not by a flag.** A delegate that suppressed
+  its own echo by bracketing `display(content:)` with a flag will not work as
+  an observer, because the echo arrives after the bracket closes. Check
+  `method != .programmaticReplacement` instead.
+
 ## 2.2.0
 
 ### Added

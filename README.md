@@ -1,15 +1,10 @@
 # Omnibar
 
-![Swift 6.1](https://img.shields.io/badge/Swift-6.1-blue.svg?style=flat)
+![Swift 6.2](https://img.shields.io/badge/Swift-6.2-blue.svg?style=flat)
 ![Version](https://img.shields.io/github/tag/CleanCocoa/Omnibar.svg?style=flat)
 ![Platform](https://img.shields.io/badge/platform-macOS%2015+-lightgrey.svg?style=flat)
 
 A search field with support for auto-completion of typed strings.
-
-The package ships two libraries:
-
-- `Omnibar` — the search field and its delegate-based API.
-- `AsyncOmnibar` — an `AsyncStream` decoration on top of it, for `for await` instead of delegate callbacks.
 
 > **Looking for RxSwift compatibility?** The reactive extensions (RxSwift) have moved to <https://github.com/CleanCocoa/RxOmnibar> after v0.21. That package targets the pre-2.0.0 delegate API and has not been updated for the renames in 2.0.0.
 
@@ -28,7 +23,7 @@ So if you type "aard", the Omnibar will suggest the term "aardvark" in the examp
 </div>
 
 
-## Delegate-based Approach
+## Usage
 
 ### Displaying Values
 
@@ -56,24 +51,50 @@ public enum OmnibarContent {
 
 ### Reacting to Events
 
-Set `omnibarContentChangeDelegate` to be notified of text changes. The `OmnibarContentChangeDelegate` protocol is `@MainActor` and requires all three of:
+An `Omnibar` has one observation surface, `OmnibarEvent`:
 
 ```swift
-func omnibar(_ omnibar: Omnibar, didChangeContent contentChange: OmnibarContentChange, method: ChangeMethod)
-func omnibar(_ omnibar: Omnibar, commit text: String)
-func omnibarDidCancelOperation(_ omnibar: Omnibar)
-```
-
-Arrow keys are a separate concern: set `moveFromOmnibar` to change the selected result without unfocusing the Omnibar.
-
-```swift
-omnibar.moveFromOmnibar = MoveFromOmnibar { event in
-    // event.movement is .up, .down, .top, or .bottom
-    // event.isExpandingSelection is true when Shift was held
+enum OmnibarEvent {
+    case contentChange(OmnibarContentChange, method: ChangeMethod)
+    case commit(text: String)
+    case cancel
+    case movement(MovementEvent)
 }
 ```
 
-`ChangeMethod` can be `.programmaticReplacement`, `.deletion`, `.insertion`, or `.appending` to convey what the user did so you can react to all cases differently.
+`observe(_:)` registers a closure that runs synchronously, in the same turn as the event:
+
+```swift
+let observation = omnibar.observe { [weak self] event in
+    switch event {
+    case let .contentChange(change, method):
+        guard method != .programmaticReplacement else { return }
+        self?.search(for: change.text)
+    case let .commit(text):
+        self?.open(text)
+    case let .movement(movement):
+        self?.moveSelection(movement)
+    case .cancel:
+        break
+    }
+}
+```
+
+`observe(_:)` is not `@discardableResult`: dropping the returned `Observation` stops delivery, silently, so store it for as long as you want to keep listening. `cancel()` is idempotent and safe after the Omnibar is gone. Capture the Omnibar weakly inside the handler.
+
+`events()` returns an `AsyncStream<OmnibarEvent>` instead, for `for await` consumers. It delivers on a later turn than the event that produced it:
+
+```swift
+for await event in omnibar.events() {
+    handle(event)
+}
+```
+
+The stream ends when the consuming task is cancelled or the Omnibar deallocates; every call to `events()` returns an independent stream that sees every event from that point on.
+
+Use `observe(_:)` for arrow-key movement, where the selection change should land in the same turn as the text change that caused it, and `events()` for search, where a later turn is fine and `async`/`await` reads more naturally. The Example app does exactly this split.
+
+`ChangeMethod` can be `.programmaticReplacement`, `.deletion`, `.insertion`, or `.appending` to convey what the user did so you can react to all cases differently. `display(content:)` produces `.programmaticReplacement`; filter it out with `method != .programmaticReplacement` to avoid reacting to your own echo.
 
 `OmnibarContentChange` is either a `.replacement` of the old stuff, or a `.continuation` of the last suggestion, if there was any; `.continuation` is just like a self-suggested `OmnibarContent.suggestion` waiting for approval.
 
@@ -84,58 +105,17 @@ enum OmnibarContentChange {
 }
 ```
 
-## Async Streams
+### Ordering and Dispatch
 
-`AsyncOmnibar` republishes the same interactions as an `AsyncStream`. The Omnibar holds no reference to the observer, so store it, and call `finish()` when its owner goes away:
+All event kinds share one stream because their relative order carries meaning:
 
-```swift
-import AsyncOmnibar
+- Observers receive events in registration order.
+- A recipient (observation or stream) registered during a dispatch does not receive the in-flight event; it receives the next one.
+- A recipient cancelled during a dispatch still receives the in-flight event.
+- An event caused by a handler — e.g. an observer calling `display(content:)` — is delivered after the event that caused it, to every recipient. One observer's echo cannot reach another observer before the event that produced it.
+- Esc emits the `.contentChange` for the emptied text before `.cancel`, whether the field was already empty or the change arrives through the field editor deleting the text.
 
-self.events = OmnibarEvents(omnibar: omnibar)
-self.observation = Task { [events] in
-    for await event in events.makeStream() {
-        switch event {
-        case let .contentChange(change, method):
-            guard method != .programmaticReplacement else { continue }
-            await search(for: change.text, offerSuggestion: method == .appending)
-        case let .commit(text):
-            open(text)
-        case let .movement(movement):
-            moveSelection(movement)
-        case .cancel:
-            break
-        }
-    }
-}
-
-deinit {
-    observation?.cancel()
-}
-```
-
-A task consuming a stream holds the observer alive, so the loop will not end on its own — not even when the Omnibar is deallocated. Stop it by cancelling that task or by calling `finish()`. Either works, and `finish()` is the one that also ends every other stream this observer handed out. Observers never take the Omnibar's delegate or action slots, so a delegate keeps receiving its callbacks throughout, and several observers can watch one Omnibar without noticing each other.
-
-An `Omnibar` also vends events directly, without the `AsyncOmnibar` library:
-
-```swift
-let observation = omnibar.observe { [weak self] event in
-    self?.handle(event)
-}
-// ...
-observation.cancel()
-
-for await event in omnibar.events() {
-    handle(event)
-}
-```
-
-`observe(_:)` retains its handler until the returned `Observation` is cancelled, so capture the Omnibar weakly inside it. Streams end when the Omnibar goes away or when the consuming task is cancelled.
-
-Observers run after `omnibarContentChangeDelegate` and `moveFromOmnibar`, then in registration order. The delegate and action slot are notified synchronously where the event arises; observers are dispatched in order, so one observer's `display(content:)` cannot reach another before the event that caused it. Registering during a dispatch skips the in-flight event; cancelling during a dispatch does not.
-
-All event kinds share one stream because their order matters: clearing the Omnibar with Esc emits the `.contentChange` for the emptied text before the `.cancel`.
-
-`makeStream()` can be called more than once, and every stream sees every event. Streams handed out after `finish()` are already finished. Displaying content stays synchronous — call `omnibar.display(content:)` from the main actor. To discard results of a search the user has already typed past, cancel the previous task:
+Displaying content stays synchronous — call `omnibar.display(content:)` from the main actor; `stringValue` is up to date on return. When `display(content:)` is called from inside a handler, the resulting event is delivered after the current one finishes, to every recipient. To discard results of a search the user has already typed past, cancel the previous task:
 
 ```swift
 searchTask?.cancel()
