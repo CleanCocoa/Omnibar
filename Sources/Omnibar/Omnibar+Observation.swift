@@ -2,7 +2,14 @@
 
 extension Omnibar {
 
-    /// Token returned by ``Omnibar/observe(_:)`` to stop receiving events.
+    /// The Omnibar holds `token` weakly so a released observation is pruned at the next dispatch.
+    struct ObserverEntry {
+        let id: Int
+        weak var token: Observation?
+        let handler: @MainActor (OmnibarEvent) -> Void
+    }
+
+    /// Stops delivery when cancelled or released.
     @MainActor
     public final class Observation {
         private weak var omnibar: Omnibar?
@@ -20,33 +27,31 @@ extension Omnibar {
         }
     }
 
-    /// Registers `handler` to receive every ``OmnibarEvent``.
+    /// Registers `handler` for every event, in registration order.
     ///
-    /// Observers are notified in registration order. An observer registered while an event is being dispatched does not receive that event; one cancelled mid-dispatch still receives it. Discarding the returned ``Observation`` keeps the handler observing for the ``Omnibar``'s lifetime.
-    ///
-    /// The Omnibar retains `handler` until the observation is cancelled; capture the Omnibar weakly inside it.
-    @discardableResult
+    /// Delivery stops when the returned observation is cancelled or released, so the caller must hold it. Capture the Omnibar weakly in `handler`.
     public func observe(_ handler: @escaping @MainActor (OmnibarEvent) -> Void) -> Observation {
         let id = nextObserverID
         nextObserverID += 1
-        observers.append((id: id, handler: handler))
-        return Observation(omnibar: self, id: id)
+        let observation = Observation(omnibar: self, id: id)
+        observers.append(ObserverEntry(id: id, token: observation, handler: handler))
+        return observation
     }
 
     func removeObserver(_ id: Int) {
         observers.removeAll { $0.id == id }
     }
 
-    /// Returns a new stream of every ``OmnibarEvent`` from this point on.
+    /// Returns a stream of every ``OmnibarEvent`` from this point on.
     ///
-    /// A stream created while an event is being dispatched still receives that event, unlike ``observe(_:)``. A consumer stops receiving events by cancelling its consuming `Task`; the stream also ends when the ``Omnibar`` deallocates.
+    /// Ends when the consuming task is cancelled or the ``Omnibar`` deallocates.
     public func events(
         bufferingPolicy: AsyncStream<OmnibarEvent>.Continuation.BufferingPolicy = .unbounded
     ) -> AsyncStream<OmnibarEvent> {
         let (stream, continuation) = AsyncStream.makeStream(of: OmnibarEvent.self, bufferingPolicy: bufferingPolicy)
         let id = nextSinkID
         nextSinkID += 1
-        sinks.withLock { $0[id] = continuation }
+        sinks[id] = continuation
         return stream
     }
 
@@ -59,10 +64,16 @@ extension Omnibar {
 
         while !pendingEvents.isEmpty {
             let next = pendingEvents.removeFirst()
-            for observer in observers { observer.handler(next) }
-            sinks.withLock { open in
-                open = open.filter { _, continuation in
-                    if case .terminated = continuation.yield(next) { false } else { true }
+
+            observers.removeAll { $0.token == nil }
+            let observerSnapshot = observers
+            let sinkSnapshot = sinks
+
+            for observer in observerSnapshot { observer.handler(next) }
+
+            for (id, continuation) in sinkSnapshot {
+                if case .terminated = continuation.yield(next) {
+                    sinks.removeValue(forKey: id)
                 }
             }
         }

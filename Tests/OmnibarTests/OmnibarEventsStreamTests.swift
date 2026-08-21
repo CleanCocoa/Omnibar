@@ -75,7 +75,7 @@ struct OmnibarEventsStreamTests {
     func streamOrderMatchesObserverOrder() async {
         let omnibar = Omnibar()
         var handlerLog: [OmnibarEvent] = []
-        omnibar.observe { handlerLog.append($0) }
+        let observation = omnibar.observe { handlerLog.append($0) }
         var stream = omnibar.events().makeAsyncIterator()
 
         omnibar.display(content: .prefix(text: "kar"))
@@ -88,24 +88,48 @@ struct OmnibarEventsStreamTests {
         streamLog.append(await stream.next()!)
 
         #expect(streamLog == handlerLog)
+        withExtendedLifetime(observation) { }
     }
 
     // MARK: - Live registration mid-dispatch
 
-    @Test("a stream created while an event is being dispatched still receives that event")
-    func streamCreatedDuringDispatchReceivesInFlightEvent() async {
+    @Test("a stream created during dispatch skips the in-flight event but receives the next one", .timeLimit(.minutes(1)))
+    func streamCreatedDuringDispatchSkipsInFlightEventButReceivesNext() async {
         let omnibar = Omnibar()
         var lateStream: AsyncStream<OmnibarEvent>.AsyncIterator!
         var lateStreamRegistered = false
-        omnibar.observe { _ in
+        let observation = omnibar.observe { _ in
             guard !lateStreamRegistered else { return }
             lateStreamRegistered = true
             lateStream = omnibar.events().makeAsyncIterator()
         }
 
+        omnibar.stringValue = "first"
+        omnibar.commit()
+        omnibar.stringValue = "second"
         omnibar.commit()
 
-        #expect(await lateStream.next() == .commit(text: ""))
+        #expect(await lateStream.next() == .commit(text: "second"))
+        withExtendedLifetime(observation) { }
+    }
+
+    @Test("a stream created by a handler receives only the handler-caused echo, not the in-flight event", .timeLimit(.minutes(1)))
+    func streamCreatedDuringDispatchViaHandlerReceivesOnlyEcho() async {
+        let omnibar = Omnibar()
+        var lateStream: AsyncStream<OmnibarEvent>.AsyncIterator!
+        var registered = false
+        let observation = omnibar.observe { _ in
+            guard !registered else { return }
+            registered = true
+            lateStream = omnibar.events().makeAsyncIterator()
+            omnibar.display(content: .prefix(text: "echo"))
+        }
+
+        omnibar.display(content: .prefix(text: "original"))
+
+        let echo = OmnibarEvent.contentChange(.replacement(text: "echo"), method: .programmaticReplacement)
+        #expect(await lateStream.next() == echo)
+        withExtendedLifetime(observation) { }
     }
 
     // MARK: - Buffering policy
@@ -138,11 +162,11 @@ struct OmnibarEventsStreamTests {
         task.cancel()
         await task.value
 
-        #expect(omnibar.sinks.withLock { $0.count } == 1)
+        #expect(omnibar.sinks.count == 1)
 
         omnibar.commit()
 
-        #expect(omnibar.sinks.withLock { $0.count } == 0)
+        #expect(omnibar.sinks.count == 0)
     }
 
     // MARK: - deinit

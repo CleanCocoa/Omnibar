@@ -127,7 +127,7 @@ struct OmnibarMovementTests {
     func forwardsMovement(commandSelector: Selector, movement: MovementEvent.Movement) {
         let omnibar = Omnibar()
         var events: [MovementEvent] = []
-        omnibar.observe {
+        let observation = omnibar.observe {
             guard case let .movement(event) = $0 else { return }
             events.append(event)
         }
@@ -136,5 +136,6 @@ struct OmnibarMovementTests {
 
         #expect(didHandle)
         #expect(events == [MovementEvent(movement: movement)])
+        withExtendedLifetime(observation) { }
     }
 }
