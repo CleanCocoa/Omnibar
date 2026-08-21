@@ -11,9 +11,6 @@ let package = Package(
         .library(
             name: "Omnibar",
             targets: ["Omnibar"]),
-        .library(
-            name: "AsyncOmnibar",
-            targets: ["AsyncOmnibar"]),
     ],
     dependencies: [
     ],
@@ -24,11 +21,5 @@ let package = Package(
         .testTarget(
             name: "OmnibarTests",
             dependencies: ["Omnibar"]),
-        .target(
-            name: "AsyncOmnibar",
-            dependencies: ["Omnibar"]),
-        .testTarget(
-            name: "AsyncOmnibarTests",
-            dependencies: ["AsyncOmnibar"]),
     ]
 )

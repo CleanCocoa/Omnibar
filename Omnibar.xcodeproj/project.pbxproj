@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0159DB91E8AE600908C8A2CF /* AsyncOmnibar in Frameworks */ = {isa = PBXBuildFile; productRef = D4990466BDC9383AAAB26D50 /* AsyncOmnibar */; };
 		5038D9471EDE902E00F3DA4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038D9461EDE902E00F3DA4F /* AppDelegate.swift */; };
 		5038D9491EDE902E00F3DA4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5038D9481EDE902E00F3DA4F /* Assets.xcassets */; };
 		5038D94C1EDE902E00F3DA4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5038D94A1EDE902E00F3DA4F /* MainMenu.xib */; };
@@ -129,7 +128,6 @@
 			files = (
 				5038DA371EE0093400F3DA4F /* ExampleModel.framework in Frameworks */,
 				FFC23A71B3BB5D43179A395E /* Omnibar in Frameworks */,
-				0159DB91E8AE600908C8A2CF /* AsyncOmnibar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +263,6 @@
 			name = Example;
 			packageProductDependencies = (
 				14DC6ABB9B8AB80B3FA31E7F /* Omnibar */,
-				D4990466BDC9383AAAB26D50 /* AsyncOmnibar */,
 			);
 			productName = Example;
 			productReference = 5038D9441EDE902E00F3DA4F /* Example.app */;
@@ -690,10 +687,6 @@
 		14DC6ABB9B8AB80B3FA31E7F /* Omnibar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Omnibar;
-		};
-		D4990466BDC9383AAAB26D50 /* AsyncOmnibar */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AsyncOmnibar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

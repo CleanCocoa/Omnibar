@@ -1,7 +1,6 @@
 //  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
 
 import AppKit
-import AsyncOmnibar
 import Omnibar
 
 @main
@@ -14,7 +13,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var filterService: FilterService!
 
-    private var omnibarEvents: OmnibarEvents?
     private var observation: Task<Void, Never>?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -26,11 +24,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             omnibarViewController?.display(selectedWord: selectedWord)
         }
 
-        let events = OmnibarEvents(omnibar: omnibar)
-        self.omnibarEvents = events
-        // Weak, because `self` owns this task: a strong capture would be a retain cycle. The task keeps `events` alive on its own.
+        let events = omnibar.events()
         self.observation = Task { [weak self] in
-            for await event in events.makeStream() {
+            for await event in events {
                 self?.handle(event)
             }
         }
@@ -60,7 +56,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
 
-        omnibarEvents?.finish()
         observation?.cancel()
     }
 
