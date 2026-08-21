@@ -98,7 +98,7 @@ public class Omnibar: NSTextField {
         setup()
     }
 
-    isolated deinit {
+    deinit {
         for continuation in sinks.values { continuation.finish() }
     }
 
