@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.1
+
+Internal only; no API or behavior change. Observations are removed by the
+token's identity instead of a parallel integer ID.
+
 ## 3.0.0
 
 Breaking release. Removes the two ways of hearing about an Omnibar's events
